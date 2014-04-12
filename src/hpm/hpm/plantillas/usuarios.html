@@ -22,7 +22,7 @@
                             
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <form class="input-group custom-search-form" method="post" >
+                            <form class="input-group custom-search-form" method="post" action={% url 'principal.views.indexUsuario' %} >
 
                                 <input type="text" class="form-control" placeholder="Buscar..." name="search" >
                                 {% csrf_token %}
