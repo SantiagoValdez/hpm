@@ -1,0 +1,22 @@
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  display: block;
+  background-image: url('img/hpm-bg.jpg');
+  width: 1400px;
+  height: 1000px;
+
+
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
+
+ .login-panel {
+    margin-top: 65%;
+}

@@ -1,0 +1,28 @@
+
+{% include 'header.html' %}
+
+        {% if usuario %}
+        <div id="page-wrapper">
+            
+        
+            <div class="row">
+        
+                <div class="col-lg-12">
+        
+                    <h1 class="page-header">Bienvenido {{usuario.nombre}}</h1>
+                    <p>Utiliza los menús del panel lateral para interactuar con el sistema.</p>
+                    <p> <br> <br> <hr> </p>
+                    <p> <small> <b>11/04/2014</b> - se muetran los menus disponibles, aún no se ha implementado el control de permisos. </small> </p>
+        
+                </div>
+                <!-- /.col-lg-12 -->
+        
+            </div>
+            <!-- /.row -->
+        
+
+
+        </div>
+        {% endif %}
+        <!-- /#page-wrapper -->
+{% include 'footer.html' %}
