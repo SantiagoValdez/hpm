@@ -10,7 +10,7 @@ from django.core import serializers
 
 def home(request):
 	"""  
-	Renderea la pagina principal
+	Funcion: Genera la pagina principal
 	"""
 	if( 'usuario' in request.session ):
 
@@ -22,7 +22,7 @@ def home(request):
 
 def login(request):
 	"""  
-	Formulario de Login
+	Funcion: Formulario de Login
 	"""
 	if ( request.method == 'POST' ):
 		
@@ -39,7 +39,7 @@ def login(request):
 
 def logout(request):
 	"""  
-	Finaliza sesion
+	Funcion: Finaliza sesion
 	"""
 	del request.session['usuario']
 
@@ -48,7 +48,7 @@ def logout(request):
 
 def indexUsuario(request):
 	"""  
-	Panel principal de administracion de usuarios
+	Funcion: Panel principal de administracion de usuarios
 	"""
 	if( 'usuario' in request.session ):
 
@@ -68,7 +68,7 @@ def indexUsuario(request):
 
 def eliminarUsuario(request, id):
 	"""  
-	Se encarga de eliminar un usuario
+	Funcion: Se ocupa de eliminar un usuario
 	"""
 	if( 'usuario' in request.session ):
 
@@ -81,7 +81,7 @@ def eliminarUsuario(request, id):
 
 def nuevoUsuario(request):
 	"""  
-	Se encarga de crear un nuevo usuario
+	Funcion: Se ocupa de crear un nuevo usuario
 	"""
 	if( 'usuario' in request.session ):
 
@@ -127,7 +127,7 @@ def nuevoUsuario(request):
 
 def modificarUsuario(request):
 	"""  
-	Se encarga de modificar un usuario
+	Funcion: Se ocupa de modificar un usuario
 	"""
 	if( 'usuario' in request.session ):
 
