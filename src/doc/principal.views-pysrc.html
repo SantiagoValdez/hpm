@@ -65,7 +65,7 @@
 <a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"> </tt>
 <a name="home"></a><div id="home-def"><a name="L11"></a><tt class="py-lineno"> 11</tt> <a class="py-toggle" href="#" id="home-toggle" onclick="return toggle('home');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#home">home</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="home-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="home-expanded"><a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        Renderea la pagina principal</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Genera la pagina principal</tt> </tt>
 <a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt> <tt class="py-string">'usuario'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">session</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
@@ -77,7 +77,7 @@
 </div><a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"> </tt>
 <a name="login"></a><div id="login-def"><a name="L23"></a><tt class="py-lineno"> 23</tt> <a class="py-toggle" href="#" id="login-toggle" onclick="return toggle('login');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#login">login</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="login-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="login-expanded"><a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        Formulario de Login</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Formulario de Login</tt> </tt>
 <a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-op">(</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">method</tt> <tt class="py-op">==</tt> <tt class="py-string">'POST'</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line">                 </tt>
@@ -94,7 +94,7 @@
 </div><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"> </tt>
 <a name="logout"></a><div id="logout-def"><a name="L40"></a><tt class="py-lineno"> 40</tt> <a class="py-toggle" href="#" id="logout-toggle" onclick="return toggle('logout');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#logout">logout</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="logout-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="logout-expanded"><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        Finaliza sesion</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Finaliza sesion</tt> </tt>
 <a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-keyword">del</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">session</tt><tt class="py-op">[</tt><tt class="py-string">'usuario'</tt><tt class="py-op">]</tt> </tt>
 <a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
@@ -103,7 +103,7 @@
 <a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"> </tt>
 <a name="indexUsuario"></a><div id="indexUsuario-def"><a name="L49"></a><tt class="py-lineno"> 49</tt> <a class="py-toggle" href="#" id="indexUsuario-toggle" onclick="return toggle('indexUsuario');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#indexUsuario">indexUsuario</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="indexUsuario-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="indexUsuario-expanded"><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        Panel principal de administracion de usuarios</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Panel principal de administracion de usuarios</tt> </tt>
 <a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt> <tt class="py-string">'usuario'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">session</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
@@ -123,7 +123,7 @@
 <a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
 <a name="eliminarUsuario"></a><div id="eliminarUsuario-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="eliminarUsuario-toggle" onclick="return toggle('eliminarUsuario');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#eliminarUsuario">eliminarUsuario</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="eliminarUsuario-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="eliminarUsuario-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        Se encarga de eliminar un usuario</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Se ocupa de eliminar un usuario</tt> </tt>
 <a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt> <tt class="py-string">'usuario'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">session</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
@@ -136,7 +136,7 @@
 </div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
 <a name="nuevoUsuario"></a><div id="nuevoUsuario-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="nuevoUsuario-toggle" onclick="return toggle('nuevoUsuario');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#nuevoUsuario">nuevoUsuario</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="nuevoUsuario-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="nuevoUsuario-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        Se encarga de crear un nuevo usuario</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Se ocupa de crear un nuevo usuario</tt> </tt>
 <a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt> <tt class="py-string">'usuario'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">session</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
@@ -183,7 +183,7 @@ principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclin
 <a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
 <a name="modificarUsuario"></a><div id="modificarUsuario-def"><a name="L128"></a><tt class="py-lineno">128</tt> <a class="py-toggle" href="#" id="modificarUsuario-toggle" onclick="return toggle('modificarUsuario');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#modificarUsuario">modificarUsuario</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 </div><div id="modificarUsuario-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="modificarUsuario-expanded"><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-docstring">"""  </tt> </tt>
-<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring">        Se encarga de modificar un usuario</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Se ocupa de modificar un usuario</tt> </tt>
 <a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt> <tt class="py-string">'usuario'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">request</tt><tt class="py-op">.</tt><tt class="py-name">session</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
 <a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"> </tt>
@@ -281,7 +281,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Apr 12 02:29:31 2014
+    Generated by Epydoc 3.0.1 on Sat Apr 12 04:26:09 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
