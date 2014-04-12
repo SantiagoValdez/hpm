@@ -6,7 +6,7 @@
 
         {% include 'modal-delete-usuario.html' %}
         {% include 'modal-new-usuario.html' %}
-
+        {% include 'modal-modificar-usuario.html' %}
         <div id="page-wrapper">
             
             
@@ -71,11 +71,13 @@
                                     <td>{{u.email}}</td>
                                     <td>{{u.ci}}</td>
                                     <td></td>
-                                    <td> <a href="#eliminar" class="btn btn-primary" 
-                                        onClick="eliminarUsuario( '{{u.username}}', '{% url 'principal.views.eliminarUsuario' u.id %}' );">
+                                    <td> <a href="#modificar" class="btn btn-primary"
+                                        onClick="modificarUsuario( '{{u.id}}','{{u.username}}','{{u.nombre}}','{{u.apellido}}','{{u.email}}','{{u.telefono}}','{{u.ci}}', '{{u.password}}' );"
+
+                                        >
                                             <i class="fa fa-pencil"></i> 
                                          </a> </td>
-                                    <td> <a href="#modificar" class="btn btn-danger"><i class="fa fa-minus-square"></i></a> </td>
+                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'principal.views.eliminarUsuario' u.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
                                 </tr>
                                 {% empty %}
                                     <tr>

@@ -7,18 +7,11 @@ from django.core.urlresolvers import reverse
 from django.core import serializers
 
 
-# Create your views here.
-
-def lista_bebidas(request):
-	bebidas = Bebida.objects.all()
-	if( 'usuario' in request.session ):
-		return render_to_response('home.html',{'lista' : bebidas})
-	else : 
-		return redirect('/login')
-
-
 
 def home(request):
+	"""  
+	Renderea la pagina principal
+	"""
 	if( 'usuario' in request.session ):
 
 		u = Usuario.objects.get(id=request.session['usuario'])
@@ -28,6 +21,9 @@ def home(request):
 		return redirect('/login')
 
 def login(request):
+	"""  
+	Formulario de Login
+	"""
 	if ( request.method == 'POST' ):
 		
 		try:
@@ -42,12 +38,18 @@ def login(request):
 		return render(request, 'login.html')
 
 def logout(request):
+	"""  
+	Finaliza sesion
+	"""
 	del request.session['usuario']
 
 	return redirect('/login')
 
 
 def indexUsuario(request):
+	"""  
+	Panel principal de administracion de usuarios
+	"""
 	if( 'usuario' in request.session ):
 
 		u = Usuario.objects.get(id=request.session['usuario'])
@@ -65,6 +67,9 @@ def indexUsuario(request):
 
 
 def eliminarUsuario(request, id):
+	"""  
+	Se encarga de eliminar un usuario
+	"""
 	if( 'usuario' in request.session ):
 
 		Usuario.objects.filter(id=id).delete()
@@ -75,6 +80,9 @@ def eliminarUsuario(request, id):
 		return redirect('/login')
 
 def nuevoUsuario(request):
+	"""  
+	Se encarga de crear un nuevo usuario
+	"""
 	if( 'usuario' in request.session ):
 
 		if( request.method == 'POST' ):
@@ -116,13 +124,72 @@ def nuevoUsuario(request):
 	else :
 		return redirect('/login')
 
+
+def modificarUsuario(request):
+	"""  
+	Se encarga de modificar un usuario
+	"""
+	if( 'usuario' in request.session ):
+
+		if( request.method == 'POST' ):
+			if ( 'nombre' in request.POST and 
+				'apellido' in request.POST and 
+				'username' in request.POST and 
+				'password' in request.POST and 
+				'email' in request.POST and 
+				'ci' in request.POST and
+				'telefono' in request.POST and
+				'id' in request.POST  ) :
+					id = request.POST['id'] 
+					u = Usuario.objects.get(id=id)
+					if ( u ):
+						u.nombre = request.POST['nombre']  
+						u.apellido = request.POST['apellido']  
+						u.username = request.POST['username']  
+						u.password = request.POST['password'] 
+						u.email = request.POST['email'] 
+						u.ci = request.POST['ci'] 
+						u.telefono = request.POST['telefono']
+						try:
+							u.save()
+						except Exception, e:
+							lista = Usuario.objects.all()
+							u = Usuario.objects.get(id=request.session['usuario'])
+							return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+						
+
+						lista = Usuario.objects.all()
+						u = Usuario.objects.get(id=request.session['usuario'])
+						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico usuario con exito'})
+					else :
+						lista = Usuario.objects.all()
+						u = Usuario.objects.get(id=request.session['usuario'])
+						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+			else:
+				lista = Usuario.objects.all()
+				u = Usuario.objects.get(id=request.session['usuario'])
+				return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+
+
+		return redirect('/usuarios')
+
+	else :
+		return redirect('/login')
+
+
 def apiGetUsuarios(request):
+	"""  
+	Retorna la lista de usuarios en formato json
+	"""
 	usuarios = Usuario.objects.all()
 
 	data = serializers.serialize("json", Usuario.objects.all())
 	return HttpResponse(data)
 
 def apiGetUsuario(request, id):
+	"""  
+	Retorna los detalles de un usuario en formato json
+	"""
 	usuario = Usuario.objects.all().filter(id=id)
 	data = serializers.serialize("json", usuario)
 	

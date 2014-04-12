@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^usuarios/', 'principal.views.indexUsuario'),
     url(r'^usuario/eliminar/(?P<id>\d+)/$', 'principal.views.eliminarUsuario'),
     url(r'^usuario/nuevo','principal.views.nuevoUsuario'),
+    url(r'^usuario/modificar','principal.views.modificarUsuario'),
 
     url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
     url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),
