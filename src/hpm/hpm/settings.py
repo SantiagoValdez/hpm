@@ -1,7 +1,7 @@
 #encoding:utf-8
 
 """
-Django settings for recetario project.
+Django settings for hpm project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -51,9 +51,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'recetario.urls'
+ROOT_URLCONF = 'hpm.urls'
 
-WSGI_APPLICATION = 'recetario.wsgi.application'
+WSGI_APPLICATION = 'hpm.wsgi.application'
 
 
 # Database
