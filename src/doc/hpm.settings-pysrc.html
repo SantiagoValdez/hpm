@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>hpm.settings</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="hpm-module.html">Package&nbsp;hpm</a> ::
+        Module&nbsp;settings
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+        <tr><td align="right"><span class="options"
+            >[<a href="frames.html" target="_top">frames</a
+            >]&nbsp;|&nbsp;<a href="hpm.settings-pysrc.html"
+            target="_top">no&nbsp;frames</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="hpm.settings-module.html">Module hpm.settings</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-comment">#encoding:utf-8</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-docstring">Django settings for hpm project.</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-docstring">For more information on this file, see</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">https://docs.djangoproject.com/en/1.6/topics/settings/</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">For the full list of settings and their values, see</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">https://docs.djangoproject.com/en/1.6/ref/settings/</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># Build paths inside the project like this: os.path.join(BASE_DIR, ...)</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">os</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt id="link-0" class="py-name" targets="Variable hpm.settings.BASE_DIR=hpm.settings-module.html#BASE_DIR"><a title="hpm.settings.BASE_DIR" class="py-name" href="#" onclick="return doclink('link-0', 'BASE_DIR', 'link-0');">BASE_DIR</a></tt> <tt class="py-op">=</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">dirname</tt><tt class="py-op">(</tt><tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">realpath</tt><tt class="py-op">(</tt><tt class="py-name">__file__</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># Quick-start development settings - unsuitable for production</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-comment"># SECURITY WARNING: keep the secret key used in production secret!</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt id="link-1" class="py-name" targets="Variable hpm.settings.SECRET_KEY=hpm.settings-module.html#SECRET_KEY"><a title="hpm.settings.SECRET_KEY" class="py-name" href="#" onclick="return doclink('link-1', 'SECRET_KEY', 'link-1');">SECRET_KEY</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'c+c_bqsj0#txzk3_#@iz^h=e@8lm5r8qef-kh4s00zn3q4-gmf'</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-comment"># SECURITY WARNING: don't run with debug turned on in production!</tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt id="link-2" class="py-name" targets="Variable hpm.settings.DEBUG=hpm.settings-module.html#DEBUG"><a title="hpm.settings.DEBUG" class="py-name" href="#" onclick="return doclink('link-2', 'DEBUG', 'link-2');">DEBUG</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable hpm.settings.TEMPLATE_DEBUG=hpm.settings-module.html#TEMPLATE_DEBUG"><a title="hpm.settings.TEMPLATE_DEBUG" class="py-name" href="#" onclick="return doclink('link-3', 'TEMPLATE_DEBUG', 'link-3');">TEMPLATE_DEBUG</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt id="link-4" class="py-name" targets="Variable hpm.settings.ALLOWED_HOSTS=hpm.settings-module.html#ALLOWED_HOSTS"><a title="hpm.settings.ALLOWED_HOSTS" class="py-name" href="#" onclick="return doclink('link-4', 'ALLOWED_HOSTS', 'link-4');">ALLOWED_HOSTS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-comment"># Application definition</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"><tt id="link-5" class="py-name" targets="Variable hpm.settings.INSTALLED_APPS=hpm.settings-module.html#INSTALLED_APPS"><a title="hpm.settings.INSTALLED_APPS" class="py-name" href="#" onclick="return doclink('link-5', 'INSTALLED_APPS', 'link-5');">INSTALLED_APPS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.admin'</tt><tt class="py-op">,</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.auth'</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.contenttypes'</tt><tt class="py-op">,</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.sessions'</tt><tt class="py-op">,</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.messages'</tt><tt class="py-op">,</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.staticfiles'</tt><tt class="py-op">,</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.admindocs'</tt><tt class="py-op">,</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt class="py-string">'principal'</tt><tt class="py-op">,</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line"> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"><tt id="link-6" class="py-name" targets="Variable hpm.settings.MIDDLEWARE_CLASSES=hpm.settings-module.html#MIDDLEWARE_CLASSES"><a title="hpm.settings.MIDDLEWARE_CLASSES" class="py-name" href="#" onclick="return doclink('link-6', 'MIDDLEWARE_CLASSES', 'link-6');">MIDDLEWARE_CLASSES</a></tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.sessions.middleware.SessionMiddleware'</tt><tt class="py-op">,</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">    <tt class="py-string">'django.middleware.common.CommonMiddleware'</tt><tt class="py-op">,</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-string">'django.middleware.csrf.CsrfViewMiddleware'</tt><tt class="py-op">,</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.auth.middleware.AuthenticationMiddleware'</tt><tt class="py-op">,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">    <tt class="py-string">'django.contrib.messages.middleware.MessageMiddleware'</tt><tt class="py-op">,</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">    <tt class="py-string">'django.middleware.clickjacking.XFrameOptionsMiddleware'</tt><tt class="py-op">,</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt id="link-7" class="py-name" targets="Variable hpm.settings.ROOT_URLCONF=hpm.settings-module.html#ROOT_URLCONF"><a title="hpm.settings.ROOT_URLCONF" class="py-name" href="#" onclick="return doclink('link-7', 'ROOT_URLCONF', 'link-7');">ROOT_URLCONF</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'hpm.urls'</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt id="link-8" class="py-name" targets="Variable hpm.settings.WSGI_APPLICATION=hpm.settings-module.html#WSGI_APPLICATION"><a title="hpm.settings.WSGI_APPLICATION" class="py-name" href="#" onclick="return doclink('link-8', 'WSGI_APPLICATION', 'link-8');">WSGI_APPLICATION</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'hpm.wsgi.application'</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-comment"># Database</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-comment"># https://docs.djangoproject.com/en/1.6/ref/settings/#databases</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt id="link-9" class="py-name" targets="Variable hpm.settings.DATABASES=hpm.settings-module.html#DATABASES"><a title="hpm.settings.DATABASES" class="py-name" href="#" onclick="return doclink('link-9', 'DATABASES', 'link-9');">DATABASES</a></tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt class="py-string">'default'</tt><tt class="py-op">:</tt> <tt class="py-op">{</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-string">'ENGINE'</tt><tt class="py-op">:</tt> <tt class="py-string">'django.db.backends.sqlite3'</tt><tt class="py-op">,</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-string">'NAME'</tt><tt class="py-op">:</tt> <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt id="link-10" class="py-name"><a title="hpm.settings.BASE_DIR" class="py-name" href="#" onclick="return doclink('link-10', 'BASE_DIR', 'link-0');">BASE_DIR</a></tt><tt class="py-op">,</tt> <tt class="py-string">'db.sqlite3'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-op">}</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-op">}</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-comment"># Internationalization</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-comment"># https://docs.djangoproject.com/en/1.6/topics/i18n/</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt id="link-11" class="py-name" targets="Variable hpm.settings.LANGUAGE_CODE=hpm.settings-module.html#LANGUAGE_CODE"><a title="hpm.settings.LANGUAGE_CODE" class="py-name" href="#" onclick="return doclink('link-11', 'LANGUAGE_CODE', 'link-11');">LANGUAGE_CODE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'en-us'</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt id="link-12" class="py-name" targets="Variable hpm.settings.TIME_ZONE=hpm.settings-module.html#TIME_ZONE"><a title="hpm.settings.TIME_ZONE" class="py-name" href="#" onclick="return doclink('link-12', 'TIME_ZONE', 'link-12');">TIME_ZONE</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'UTC'</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt id="link-13" class="py-name" targets="Variable hpm.settings.USE_I18N=hpm.settings-module.html#USE_I18N"><a title="hpm.settings.USE_I18N" class="py-name" href="#" onclick="return doclink('link-13', 'USE_I18N', 'link-13');">USE_I18N</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt id="link-14" class="py-name" targets="Variable hpm.settings.USE_L10N=hpm.settings-module.html#USE_L10N"><a title="hpm.settings.USE_L10N" class="py-name" href="#" onclick="return doclink('link-14', 'USE_L10N', 'link-14');">USE_L10N</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt id="link-15" class="py-name" targets="Variable hpm.settings.USE_TZ=hpm.settings-module.html#USE_TZ"><a title="hpm.settings.USE_TZ" class="py-name" href="#" onclick="return doclink('link-15', 'USE_TZ', 'link-15');">USE_TZ</a></tt> <tt class="py-op">=</tt> <tt class="py-name">True</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-comment"># Static files (CSS, JavaScript, Images)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-comment"># https://docs.djangoproject.com/en/1.6/howto/static-files/</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt id="link-16" class="py-name" targets="Variable hpm.settings.STATIC_URL=hpm.settings-module.html#STATIC_URL"><a title="hpm.settings.STATIC_URL" class="py-name" href="#" onclick="return doclink('link-16', 'STATIC_URL', 'link-16');">STATIC_URL</a></tt> <tt class="py-op">=</tt> <tt class="py-string">'/static/'</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt id="link-17" class="py-name" targets="Variable hpm.settings.STATICFILES_DIRS=hpm.settings-module.html#STATICFILES_DIRS"><a title="hpm.settings.STATICFILES_DIRS" class="py-name" href="#" onclick="return doclink('link-17', 'STATICFILES_DIRS', 'link-17');">STATICFILES_DIRS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">    <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt id="link-18" class="py-name"><a title="hpm.settings.BASE_DIR" class="py-name" href="#" onclick="return doclink('link-18', 'BASE_DIR', 'link-0');">BASE_DIR</a></tt><tt class="py-op">,</tt> <tt class="py-string">"static"</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt id="link-19" class="py-name" targets="Variable hpm.settings.ADMINS=hpm.settings-module.html#ADMINS"><a title="hpm.settings.ADMINS" class="py-name" href="#" onclick="return doclink('link-19', 'ADMINS', 'link-19');">ADMINS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">   <tt class="py-op">(</tt><tt class="py-string">'Santiago Valdez'</tt><tt class="py-op">,</tt> <tt class="py-string">'santiago.kenshinvaldez@gmail.com'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt id="link-20" class="py-name" targets="Variable hpm.settings.TEMPLATE_DIRS=hpm.settings-module.html#TEMPLATE_DIRS"><a title="hpm.settings.TEMPLATE_DIRS" class="py-name" href="#" onclick="return doclink('link-20', 'TEMPLATE_DIRS', 'link-20');">TEMPLATE_DIRS</a></tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">    <tt class="py-name">os</tt><tt class="py-op">.</tt><tt class="py-name">path</tt><tt class="py-op">.</tt><tt class="py-name">join</tt><tt class="py-op">(</tt><tt id="link-21" class="py-name"><a title="hpm.settings.BASE_DIR" class="py-name" href="#" onclick="return doclink('link-21', 'BASE_DIR', 'link-0');">BASE_DIR</a></tt><tt class="py-op">,</tt><tt class="py-string">'plantillas'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+      <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Sat Apr 12 02:29:31 2014
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
