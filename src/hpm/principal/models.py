@@ -1,12 +1,4 @@
 from django.db import models
-# Create your models here.
-
-class Bebida(models.Model):
-	nombre = models.CharField(max_length=50)
-	ingredientes = models.TextField()
-	preparacion = models.TextField()
-	def __unicode__(self):
-		return self.nombre
 
 class Usuario(models.Model):
     class Meta:
@@ -16,7 +8,7 @@ class Usuario(models.Model):
     def __unicode__(self):
         pass
     
-    username = models.CharField(max_length=45)
+    username = models.CharField(max_length=45, unique = True)
     password = models.CharField(max_length=45)
     nombre = models.CharField(max_length=45)
     apellido = models.CharField(max_length=45)
@@ -24,4 +16,15 @@ class Usuario(models.Model):
     ci = models.IntegerField()
     email = models.CharField(max_length=45)
         
+class Proyecto(models.Model):
+    class Meta:
+        verbose_name = 'Proyecto'
+        verbose_name_plural = 'Proyectos'
 
+    def __unicode__(self):
+        pass
+    
+    
+    nombre = models.CharField(unique = True, max_length=50)
+    descripcion = models.CharField(max_length=250)
+    
