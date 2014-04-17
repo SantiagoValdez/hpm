@@ -23,5 +23,5 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=20)
     ci = models.IntegerField()
     email = models.CharField(max_length=45)
-    
+        
 
