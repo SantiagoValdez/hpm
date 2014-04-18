@@ -20,9 +20,3 @@ Team
 * La Rubia
 * El Wuzo
 * El Valdez
-* SOOOOOOOOOOOOO OO OO OO OO OOO
-=======
-daaaaaaaaaammmmnnnnnn, dat ass
-mas pro
-:D
-FFFFFFFFFFFFFF
