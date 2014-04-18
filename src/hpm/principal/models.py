@@ -31,3 +31,14 @@ class Proyecto(models.Model):
     complejidad_total = models.IntegerField(default=0)
     estado = models.CharField(max_length=45)
     
+class Rol(models.Model):
+    class Meta:
+        verbose_name = 'Rol'
+        verbose_name_plural = 'Roles'
+
+    def __unicode__(self):
+        pass
+    
+    nombre = models.CharField(unique = True, max_length=45)
+    descripcion = models.CharField(max_length=150)
+    
