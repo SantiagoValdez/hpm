@@ -30,4 +30,8 @@ class Proyecto(models.Model):
     fecha_creacion = models.DateField()
     complejidad_total = models.IntegerField(default=0)
     estado = models.CharField(max_length=45)
-    
+
+class Permiso(models.Model):
+    id = models.IntegerField(unique = True)
+    nombre = models.CharField(max_length=50) 
+    valor = models.IntegerField()
