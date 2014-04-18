@@ -42,3 +42,16 @@ class Rol(models.Model):
     nombre = models.CharField(unique = True, max_length=45)
     descripcion = models.CharField(max_length=150)
     
+
+class Permiso(models.Model):
+
+    class Meta:
+        verbose_name = 'Permiso'
+        verbose_name_plural = 'Permisos'
+
+    def __unicode__(self):
+        pass
+
+    nombre = models.CharField(max_length=50) 
+    valor = models.IntegerField()
+
