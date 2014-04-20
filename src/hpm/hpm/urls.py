@@ -1,9 +1,15 @@
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
-
-
 admin.autodiscover()
+
+#urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'HPM.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+#
+#   url(r'^admin/', include(admin.site.urls)),
+#)
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,14 +19,16 @@ urlpatterns = patterns('',
     
     url(r'^login/', 'principal.views.login'),
     url(r'^logout/', 'principal.views.logout'),
+    
+    url(r'^usuarios/', include('principal.urls')),
 
-    url(r'^usuarios/', 'principal.views.indexUsuario'),
-    url(r'^usuario/eliminar/(?P<id>\d+)/$', 'principal.views.eliminarUsuario'),
-    url(r'^usuario/nuevo','principal.views.nuevoUsuario'),
-    url(r'^usuario/modificar','principal.views.modificarUsuario'),
+    url(r'^proyectos/', include('principal.urls')),
+    
+    url(r'^api/usuarios/', include('principal.urls')),
+    #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
+    #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),
 
-    url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
-    url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),
+    url(r'^api/proyectos', include('principal.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

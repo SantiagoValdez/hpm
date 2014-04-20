@@ -1,0 +1,106 @@
+
+{% include 'header.html' %}
+
+
+        {% if proyecto %}
+
+        {% include 'modal-delete-proyecto.html' %}
+        {% include 'modal-new-proyecto.html' %}
+        {% include 'modal-modificar-proyecto.html' %}
+        <div id="page-wrapper">
+            
+            
+        
+            <div class="row">
+        
+                <div class="col-lg-12">
+                    <div class="row">
+                        <h2 class="page-header">Administración de Proyectos</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <form class="input-group custom-search-form" method="post" action={% url 'app_proyecto.views.indexProyecto' %} >
+                            {% csrf_token %}
+
+                                <input type="text" class="form-control" placeholder="Buscar..." name="search" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+
+                            </form>
+                        </div>
+                    </div>
+
+                    {% if mensaje %}
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Atención!</strong> {{mensaje}}
+                        </div>
+                    {% endif %}
+                        <center>
+                            <h3>Listado de Proyectos</h3>                    
+                        </center>
+                        
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripcion</th>
+                                    <th>Fecha de creacion</th>
+                                    <th>Complejidad</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                    <th>Modificar</th>
+                                    <th>Eliminar</th>
+                                     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for p in lista %}
+                                <tr>
+                                    <td>{{p.nombre}}</td>
+                                    <td>{{p.descripcion}}</td>
+                                    <td>{{p.fecha_creacion}}</td>
+                                    <td>{{p.complejidad_total}}</td>
+                                    <td>{{p.estado}}</td>
+                                    <td></td>
+                                    <td> <a href="#modificar" class="btn btn-primary"
+                                        onClick="modificarProyecto( '{{p.id}}','{{p.nombre}}','{{p.descripcion}}','{{p.fecha_creacion}}','{{p.complejidad_total}}','{{p.estado}}' );"><i class="fa fa-pencil"></i></a> </td>
+                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarProyecto( '{{p.nombre}}', '{% url 'app_proyecto.views.eliminarProyecto' p.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+                                </tr>
+                                {% empty %}
+                                    <tr>
+                                        No hay resultados
+                                    </tr> 
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <center>
+
+                            <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                        </center>
+                    
+        
+                </div>
+                <!-- /.col-lg-12 -->
+        
+            </div>
+            <!-- /.row -->
+        
+
+            
+
+        </div>
+        {% endif %}
+
+        {% load staticfiles %}
+        <script src="{% static 'js/proyectos.js' %}"></script>
+
+        <!-- /#page-wrapper -->
+{% include 'footer.html' %}

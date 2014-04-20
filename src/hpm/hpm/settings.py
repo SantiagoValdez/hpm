@@ -40,6 +40,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'principal',
+    'app_usuario',
+    'app_proyecto',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -103,5 +105,5 @@ ADMINS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,'plantillas'),
+    os.path.join(BASE_DIR,'templates'),
 )

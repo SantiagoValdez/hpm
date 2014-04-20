@@ -1,0 +1,29 @@
+<div class="modal fade" id="modal-modificar">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modificar Proyecto</h4>
+			</div>
+			<form method="post" action="{% url 'app_proyecto.views.modificarProyecto' %}">
+			{% csrf_token %}
+				<div class="modal-body">
+					<center>
+						<input type="hidden" name="id" value="" id="m-id">
+						
+						<input type="text" name="nombre" placeholder="Nombre..." id="m-nombre"> <br> <br>
+						<input type="text" name="descripcion" placeholder="Descripcion..." id="m-descripcion"> <br> <br>
+						<input type="date" name="fecha_creacion" placeholder="Fecha de creacion..." id="m-fecha_creacion"> <br> <br>
+						<input type="number" name="complejidad_total" placeholder="Complejidad" id="m-complejidad_total"> <br> <br>
+						<input type="text" name="estado" placeholder="Estado..." id="m-estado"> <br> <br>
+					
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
