@@ -22,7 +22,7 @@
                             
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <form class="input-group custom-search-form" method="post" action={% url 'app_usuario.views.indexUsuario' %} >
+                            <form class="input-group custom-search-form" method="post" action={% url 'usuarios:index' %} >
                             {% csrf_token %}
 
                                 <input type="text" class="form-control" placeholder="Buscar..." name="search" >
@@ -77,7 +77,7 @@
                                         >
                                             <i class="fa fa-pencil"></i> 
                                          </a> </td>
-                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'app_usuario.views.eliminarUsuario' u.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
                                 </tr>
                                 {% empty %}
                                     <tr>

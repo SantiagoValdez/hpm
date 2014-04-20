@@ -2,7 +2,7 @@
 {% include 'header.html' %}
 
 
-        {% if proyecto %}
+        {% if usuario %}
 
         {% include 'modal-delete-proyecto.html' %}
         {% include 'modal-new-proyecto.html' %}
@@ -22,7 +22,7 @@
                             
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <form class="input-group custom-search-form" method="post" action={% url 'app_proyecto.views.indexProyecto' %} >
+                            <form class="input-group custom-search-form" method="post" action={% url 'proyectos:index' %} >
                             {% csrf_token %}
 
                                 <input type="text" class="form-control" placeholder="Buscar..." name="search" >
@@ -70,8 +70,8 @@
                                     <td>{{p.estado}}</td>
                                     <td></td>
                                     <td> <a href="#modificar" class="btn btn-primary"
-                                        onClick="modificarProyecto( '{{p.id}}','{{p.nombre}}','{{p.descripcion}}','{{p.fecha_creacion}}','{{p.complejidad_total}}','{{p.estado}}' );"><i class="fa fa-pencil"></i></a> </td>
-                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarProyecto( '{{p.nombre}}', '{% url 'app_proyecto.views.eliminarProyecto' p.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+                                        onClick="modificarProyecto( '{{p.id}}','{{p.nombre}}','{{p.descripcion}}','{{p.fecha_creacion | date:"d/m/Y" }}','{{p.complejidad_total}}','{{p.estado}}' );"><i class="fa fa-pencil"></i></a> </td>
+                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarProyecto( '{{p.nombre}}', '{% url 'proyectos:eliminar' p.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
                                 </tr>
                                 {% empty %}
                                     <tr>
@@ -100,7 +100,7 @@
         {% endif %}
 
         {% load staticfiles %}
-        <script src="{% static 'js/proyectos.js' %}"></script>
+        <!-- <script src="{% static 'js/proyectos.js' %}"></script> -->
 
         <!-- /#page-wrapper -->
 {% include 'footer.html' %}

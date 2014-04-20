@@ -1,27 +1,28 @@
 from principal.models import Proyecto
-
+from principal.models import Usuario
+from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
-
+import datetime
 # Create your views here.
 
 def indexProyecto(request):
 	"""  
 	Funcion: Panel principal de administracion de proyectos
 	"""
-	if( 'proyecto' in request.session ):
 
-		p = Proyecto.objects.get(id=request.session['proyecto'])
+	u = is_logged(request.session)
 
+	if( u ):
 
 		if request.method != 'POST' :
 			lista = Proyecto.objects.all()
 		else:
 			lista = Proyecto.objects.filter(nombre__startswith = request.POST['search'])
 
-		return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista})
+		return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista})
 
 	else : 
 		return redirect('/login')
@@ -31,7 +32,9 @@ def eliminarProyecto(request, id):
 	"""  
 	Funcion: Se ocupa de eliminar un proyecto
 	"""
-	if( 'proyecto' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		Proyecto.objects.filter(id=id).delete()
 
@@ -44,36 +47,35 @@ def nuevoProyecto(request):
 	"""  
 	Funcion: Se ocupa de crear un nuevo proyecto
 	"""
-	if( 'proyecto' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		if( request.method == 'POST' ):
 			if ( 'nombre' in request.POST and 
 				'descripcion' in request.POST and 
-				'fecha_creacion' in request.POST and 
 				'complejidad_total' in request.POST and 
 				'estado' in request.POST  ) :
 					p = Proyecto()
 					p.nombre = request.POST['nombre']  
-					u.descripcion = request.POST['descripcion']  
-					u.fecha_creacion = request.POST['fecha_creacion']  
-					u.complejidad_total = request.POST['complejidad_total'] 
-					u.estado = request.POST['estado'] 
+					p.descripcion = request.POST['descripcion']  
+					p.fecha_creacion = datetime.datetime.now()
+					p.complejidad_total = request.POST['complejidad_total'] 
+					p.estado = request.POST['estado'] 
 					try:
 						p.save()
 					except Exception, e:
 						lista = Proyecto.objects.all()
-						p = Proyecto.objects.get(id=request.session['proyecto'])
-						return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+						print e
+						return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 					
 
 					lista = Proyecto.objects.all()
-					p = Proyecto.objects.get(id=request.session['proyecto'])
-					return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Se creo proyecto con exito'})
+					return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se creo proyecto con exito'})
 
 			else:
 				lista = Proyecto.objects.all()
-				p = Proyecto.objects.get(id=request.session['proyecto'])
-				return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+				return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 
 
 		return redirect('/proyectos')
@@ -86,7 +88,9 @@ def modificarProyecto(request):
 	"""  
 	Funcion: Se ocupa de modificar un proyecto
 	"""
-	if( 'proyecto' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		if( request.method == 'POST' ):
 			if ( 'nombre' in request.POST and 
@@ -100,28 +104,24 @@ def modificarProyecto(request):
 					if ( p ):
 						p.nombre = request.POST['nombre']  
 						p.descripcion = request.POST['descripcion']  
-						p.fecha_creacion = request.POST['fecha_creacion']  
+						p.fecha_creacion = datetime.datetime.strptime(request.POST['fecha_creacion'], '%d/%m/%Y').date()
 						p.complejidad_total = request.POST['complejidad_total'] 
 						p.estado = request.POST['estado'] 
 						try:
 							p.save()
 						except Exception, e:
 							lista = Proyecto.objects.all()
-							p = Proyecto.objects.get(id=request.session['proyecto'])
-							return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+							return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 						
 
 						lista = Proyecto.objects.all()
-						u = Proyecto.objects.get(id=request.session['proyecto'])
-						return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Se modifico proyecto con exito'})
+						return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico proyecto con exito'})
 					else :
 						lista = Proyecto.objects.all()
-						p = Proyecto.objects.get(id=request.session['proyecto'])
-						return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+						return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 			else:
 				lista = Proyecto.objects.all()
-				p = Proyecto.objects.get(id=request.session['proyecto'])
-				return render(request, 'proyectos.html', {'proyecto' : p, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+				return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 
 
 		return redirect('/proyectos')

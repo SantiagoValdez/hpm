@@ -13,6 +13,7 @@
     <!-- Core CSS - Include with every page -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+    <link href="{% static 'css/datepicker.css' %}" rel="stylesheet">
 
     <!-- Page-Level Plugin CSS - Blank -->
 
@@ -73,11 +74,11 @@
 
 
                         <li>
-                            <a href="{% url 'app_usuario.views.indexUsuario' %}"><i class="fa fa-users fa-fw"></i> Usuarios</a>
+                            <a href="{% url 'usuarios:index' %}"><i class="fa fa-users fa-fw"></i> Usuarios</a>
                         </li>
 
                         <li>
-                            <a href="{% url 'app_proyecto.views.indexProyecto' %}"><i class="fa fa-users fa-fw"></i> Proyectos</a>
+                            <a href="{% url 'proyectos:index' %}"><i class="fa fa-users fa-fw"></i> Proyectos</a>
                         </li>
                         
                     </ul>

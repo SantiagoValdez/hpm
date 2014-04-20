@@ -40,8 +40,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admindocs',
     'principal',
-    'app_usuario',
     'app_proyecto',
+    'app_usuario',
+    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -69,9 +70,9 @@ DATABASES = {
 
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'HPM',
+        'NAME': 'hpm',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'pepe',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

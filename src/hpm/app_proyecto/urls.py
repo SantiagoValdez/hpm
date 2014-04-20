@@ -6,8 +6,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     #url(r'^$','principal.views.home'),
     
-    url(r'^proyecto/', 'app_proyecto.views.indexProyecto'),
-    url(r'^proyecto/eliminar/(?P<id>\d+)/$', 'app_proyecto.views.eliminarProyecto'),
-    url(r'^proyecto/nuevo','app_proyecto.views.nuevoProyecto'),
-    url(r'^proyecto/modificar','app_proyecto.views.modificarProyecto'),
+    url(r'^$', 'app_proyecto.views.indexProyecto', name = 'index'),
+    url(r'^eliminar/(?P<id>\d+)/$', 'app_proyecto.views.eliminarProyecto', name='eliminar'),
+    url(r'^nuevo','app_proyecto.views.nuevoProyecto', name='nuevo'),
+    url(r'^modificar','app_proyecto.views.modificarProyecto', name='modificar'),
 )

@@ -72,3 +72,9 @@ def apiGetProyecto(request, id):
 	proyecto = Proyecto.objects.all().filter(id=id)
 	data = serializers.serialize("json", proyecto)
 	return HttpResponse(data)
+
+def is_logged(session):
+	if( 'usuario' in session ):
+		return Usuario.objects.get(id=session['usuario'])
+	else:
+		return False

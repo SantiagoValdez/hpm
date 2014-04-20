@@ -20,15 +20,15 @@ urlpatterns = patterns('',
     url(r'^login/', 'principal.views.login'),
     url(r'^logout/', 'principal.views.logout'),
     
-    url(r'^usuarios/', include('principal.urls')),
+    url(r'^usuarios/', include('app_usuario.urls', namespace='usuarios')),
 
-    url(r'^proyectos/', include('principal.urls')),
+    url(r'^proyectos/', include('app_proyecto.urls' , namespace='proyectos')),
     
-    url(r'^api/usuarios/', include('principal.urls')),
-    #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
-    #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),
+    # url(r'^api/usuarios/', include('principal.urls')),
+    # #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
+    # #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),
 
-    url(r'^api/proyectos', include('principal.urls')),
+    # url(r'^api/proyectos', include('principal.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
