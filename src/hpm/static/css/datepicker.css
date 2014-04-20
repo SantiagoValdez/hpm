@@ -17,6 +17,7 @@
   /*.dow {
 		border-top: 1px solid #ddd !important;
 	}*/
+  z-index: 99999 !important;
 
 }
 .datepicker-inline {
@@ -31,6 +32,7 @@
 .datepicker-dropdown {
   top: 0;
   left: 0;
+
 }
 .datepicker-dropdown:before {
   content: '';
@@ -55,6 +57,7 @@
 }
 .datepicker > div {
   display: none;
+  z-index: 99999 !important;
 }
 .datepicker.days div.datepicker-days {
   display: block;

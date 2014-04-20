@@ -181,6 +181,7 @@
 
 		show: function(e) {
 			this.picker.show();
+			console.log("Dentro de show...");
 			this.height = this.component ? this.component.outerHeight() : this.element.outerHeight();
 			this.update();
 			this.place();
@@ -295,7 +296,7 @@
 						if(this.isInline) return;
 			var zIndex = parseInt(this.element.parents().filter(function() {
 							return $(this).css('z-index') != 'auto';
-						}).first().css('z-index'))+10;
+						}).first().css('z-index'))+99999;
 			var offset = this.component ? this.component.offset() : this.element.offset();
 			var height = this.component ? this.component.outerHeight(true) : this.element.outerHeight(true);
 			this.picker.css({

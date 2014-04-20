@@ -11,12 +11,53 @@
 					<center>
 						<input type="hidden" name="id" value="" id="m-id">
 						
-						<input type="text" name="nombre" placeholder="Nombre..." id="m-nombre"> <br> <br>
-						<input type="text" name="descripcion" placeholder="Descripcion..." id="m-descripcion"> <br> <br>
-						<input type="date" name="fecha_creacion" placeholder="Fecha de creacion..." id="m-fecha_creacion" disable> <br> <br>
-						<input type="number" name="complejidad_total" placeholder="Complejidad" id="m-complejidad_total"> <br> <br>
-						<input type="text" name="estado" placeholder="Estado..." id="m-estado"> <br> <br>
+						
+
+						<div class="control-group">
+							<label>Nombre:</label><br>
+							<div class="controls">
+								<input type="text" name="nombre" placeholder="Nombre..." required maxlength="50" data-validation-required-message="Por favor rellena este campo :)" minlength="2" data-validation-minlength-message="Se te podria ocurrir un nombre mas largo no?" id="m-nombre">
+								<p class="help-block"></p>
+							</div>
+						</div>
+						
+						
+						<div class="control-group">
+							<label>Descripcion:</label><br>
+							<div class="controls">
+								<input type="text" name="descripcion" placeholder="Descripcion..." required maxlength="250" data-validation-required-message="Por favor rellena este campo :)" id="m-descripcion">
+								<p class="help-block"></p>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label>Fecha de Creacion:</label><br>
+							<div class="controls">
+								<input type="text" name="fecha_creacion" placeholder="Fecha de creacion..." id="m-fecha_creacion" data-validation-required-message="Por favor rellena este campo :)" required>
+								<p class="help-block"></p>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label>Complejidad Total:</label><br>
+							<div class="controls">
+								<input type="number" name="complejidad_total" placeholder="Complejidad..." required data-validation-number-message="ups! ese no es un numero" data-validation-required-message="Por favor rellena este campo :)" id = "m-complejidad_total">
+								<p class="help-block"></p>
+							</div>
+						</div>
+						
+						
+						<div class="control-group">
+							<label>Estado:</label><br>
+							<div class="controls">
+								<input type="text" name="estado" placeholder="Estado..." required data-validation-required-message="Por favor rellena este campo :)" id="m-estado" >
+								<p class="help-block"></p>
+							</div>
+						</div>
+						<br>
 					
+
+
 					</center>
 				</div>
 				<div class="modal-footer">
