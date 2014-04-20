@@ -5,7 +5,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title">Nuevo Usuario</h4>
 			</div>
-			<form method="post" action="{% url 'usuarios:nuevo' %}">
+			<form method="post" action="{% url 'usuarios:nuevo' %}" id="#form-nuevo">
 				{% csrf_token %}
 				<div class="modal-body">
 					<center>

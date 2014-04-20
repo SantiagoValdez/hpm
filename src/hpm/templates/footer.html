@@ -8,6 +8,10 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
     <script src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <!-- input validator... -->
+    <script src="{% static 'js/validator/jqBootstrapValidation.js' %}"></script>
+
+
     <script src="{% static 'js/proyectos.js' %}"></script>
     <!-- Page-Level Plugin Scripts - Blank -->
 
@@ -15,6 +19,10 @@
     <script src="{% static 'js/sb-admin.js' %}"></script>
 
     <!-- Page-Level Demo Scripts - Blank - Use for reference -->
+
+    <script>
+        $(function () { $("input,select,textarea").not("[type=submit]").jqBootstrapValidation(); } );
+    </script>
 
 </body>
 
