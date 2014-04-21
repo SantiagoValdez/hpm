@@ -69,9 +69,17 @@
                                     <td>{{p.complejidad_total}}</td>
                                     <td>{{p.estado}}</td>
                                     <td></td>
-                                    <td> <a href="#modificar" class="btn btn-primary"
-                                        onClick="modificarProyecto( '{{p.id}}','{{p.nombre}}','{{p.descripcion}}','{{p.fecha_creacion | date:"d/m/Y" }}','{{p.complejidad_total}}','{{p.estado}}' );"><i class="fa fa-pencil"></i></a> </td>
-                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarProyecto( '{{p.nombre}}', '{% url 'proyectos:eliminar' p.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+                                    <td> 
+                                        {% if 'Modificar Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
+                                        <a href="#modificar" class="btn btn-primary"
+                                        onClick="modificarProyecto( '{{p.id}}','{{p.nombre}}','{{p.descripcion}}','{{p.fecha_creacion | date:"d/m/Y" }}','{{p.complejidad_total}}','{{p.estado}}' );"><i class="fa fa-pencil"></i></a> 
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if 'Eliminar Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
+                                         <a href="#eliminar" class="btn btn-danger" onClick="eliminarProyecto( '{{p.nombre}}', '{% url 'proyectos:eliminar' p.id %}' );"><i class="fa fa-minus-square"></i></a> 
+                                         {% endif %}
+                                     </td>
                                 </tr>
                                 {% empty %}
                                     <tr>
@@ -82,8 +90,9 @@
                         </table>
 
                         <center>
-
+                            {% if 'Crear Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
                             <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                            {% endif %}
                         </center>
                     
         

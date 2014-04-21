@@ -80,13 +80,13 @@
                         </li>
                         {% endif %}
                         
-                        {% if 'Administrar Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
+                        {% if 'Administrar Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
                         <li>
                             <a href="{% url 'proyectos:index' %}"><i class="fa fa-briefcase fa-fw"></i> Proyectos</a>
                         </li>
                         {% endif %}
 
-                        {% if 'Administrar Usuarios' in usuario.permisos or 'root' in usuario.permisos  %}
+                        {% if 'Administrar Roles' in usuario.permisos or 'root' in usuario.permisos  %}
                         <li>
                             <a href="{% url 'roles:index' %}"><i class="fa fa-key fa-fw"></i> Roles</a>
                         </li>

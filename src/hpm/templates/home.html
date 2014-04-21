@@ -9,12 +9,27 @@
                 <div class="col-lg-12">
         
                     <h1 class="page-header">Bienvenido {{usuario.nombre}}</h1>
-                    <p>Utiliza los menús del panel lateral para interactuar con el sistema.</p>
-                    <p> <br> <br> <hr> </p>
-                    <p> <small> <b>11/04/2014</b> - se muetran los menus disponibles, aún no se ha implementado el control de permisos. </small> </p>
+                    
+                    <br><br>                    
+                    <div class="jumbotron">
+                        <div class="container">
+                            <h2>No sabes por donde empezar?</h2>
+                            <p><b>HPM</b>, es un sistema para la gestión de proyectos. <b>HPM</b> esta diseñado para ser utilizado de manera facil para que usted tenga el mejor desempeño posible. </p>
+                            <p>Utiliza los menús del panel lateral para interactuar con el sistema.</p>
+                            <p></p>
+                            <center>
+                            {% load staticfiles %}
+                                 <img src="{% static 'img/hpm-logo.png' %}">
+                            </center>
+                            <p><small><b>¿Quien es el de la foto?</b>, es Hefesto, era el dios griego del fuego y la forja, así como de los herreros, los artesanos, los escultores, los metales y la metalurgia. Hefesto representaba el trabajo duro, conciso y robusto, es por eso que diseñamos este sistema inspirandonos en el. Asi que agarra tu martillo y empieza a forjar tus proyectos en <b>HPM</b></small></p>
+                        </div>
+                    </div>
+
+                    
+
                     {% for p in usuario.permisos %}
 
-                        {{p}}
+                       <!-- {{p}} -->
 
                     {% endfor %}
         

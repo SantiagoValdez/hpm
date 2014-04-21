@@ -73,27 +73,31 @@
                                     <td>{{u.ci}}</td>
                                     <td></td>
                                     <td> 
-
+                                        {% if 'Modificar Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
                                         <a href="#modificar" class="btn btn-primary"
                                         onClick="modificarUsuario( '{{u.id}}','{{u.username}}','{{u.nombre}}','{{u.apellido}}','{{u.email}}','{{u.telefono}}','{{u.ci}}', '{{u.password}}' );"
 
                                         >
                                             <i class="fa fa-pencil"></i> 
                                          </a>
-
+                                         {% endif %}
                                     </td>
-                                    <td> 
+                                    <td>
+                                        {% if 'Eliminar Usuarios' in usuario.permisos or 'root' in usuario.permisos %} 
                                         {% if u.id != 1 %}
                                         <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> 
 
                                         {% endif %}
+                                        {% endif %}
                                     </td>
 
                                     <td>
+                                        {% if 'Roles Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
                                         {% if u.id != 1 %}
                                         <a class="btn btn-warning" href="{% url 'usuarios:rol' u.id %}">
                                             <i class="fa fa-key"></i>
                                         </a>
+                                        {% endif %}
                                         {% endif %}
                                     </td>
 
@@ -108,8 +112,9 @@
                         </table>
 
                         <center>
-
+                            {% if 'Crear Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
                             <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                            {% endif %}
                         </center>
                     
         

@@ -70,7 +70,8 @@
                                     </td>
                                     <td>{{r.proyecto}}</td>
                                     <td></td>
-                                    <td> 
+                                    <td>
+                                        {% if 'Modificar Roles' in usuario.permisos or 'root' in usuario.permisos %} 
                                         {% if r.id != 1 %}
                                         <a href="#modificar" class="btn btn-primary"
                                         onClick="modificarRol( '{{r.id}}','{{r.nombre}}','{{r.descripcion}}', '{{r.proyecto.id}}');"
@@ -79,18 +80,23 @@
                                             <i class="fa fa-pencil"></i> 
                                          </a> 
                                          {% endif %}
+                                         {% endif %}
                                     </td>
-                                    <td> 
+                                    <td>
+                                        {% if 'Eliminar Roles' in usuario.permisos or 'root' in usuario.permisos %} 
                                         {% if r.id != 1 %}
                                         <a href="#eliminar" class="btn btn-danger" onClick="eliminarRol( '{{r.nombre}}', '{% url 'roles:eliminar' r.id %}' );"><i class="fa fa-minus-square"></i></a> 
+                                        {% endif %}
                                         {% endif %}
                                     </td>
 
                                     <td>
+                                        {% if 'Permisos Roles' in usuario.permisos or 'root' in usuario.permisos %}
                                         {% if r.id != 1 %}
                                         <a class="btn btn-warning" href="{% url 'roles:permisos' r.id %}">
                                             <i class="fa fa-lock"></i>
                                         </a>
+                                        {% endif %}
                                         {% endif %}
                                     </td>
 
@@ -104,8 +110,9 @@
                         </table>
 
                         <center>
-
+                            {% if 'Crear Roles' in usuario.permisos or 'root' in usuario.permisos %}
                             <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                            {% endif %}
                         </center>
                     
         
