@@ -13,6 +13,12 @@ import datetime
 def indexProyecto(request):
 	"""  
 	Funcion: Panel principal de administracion de proyectos
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado retorna un objeto 
+		HttpResponse del template proyectos.html renderizado con el contexto 
+		{'usuario': u, 'lista': lista}. Sino, retorna un objeto 
+		HttpResponseRedirect hacia '/login'. 
 	"""
 
 	u = is_logged(request.session)
@@ -34,6 +40,12 @@ def indexProyecto(request):
 def eliminarProyecto(request, id):
 	"""  
 	Funcion: Se ocupa de eliminar un proyecto
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id: id del proyecto a ser eliminado.
+	@return: Si el usuario se encuentra logueado y el proyecto es eliminado
+		exitosamente retorna un objeto HttpResponseRedirect hacia '/proyectos'.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'. 
 	"""
 	u = is_logged(request.session)
 
@@ -49,6 +61,13 @@ def eliminarProyecto(request, id):
 def nuevoProyecto(request):
 	"""  
 	Funcion: Se ocupa de crear un nuevo proyecto
+
+	@param request: Objeto que se encarga de manejar las peticiones http. 
+	@return: Si el usuario se encuentra logueado y si un nuevo proyecto
+		es creado exitosamente retorna un objeto HttpResponse del template
+		proyectos.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'mensaje' : 'Se creo proyecto con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -96,6 +115,13 @@ def nuevoProyecto(request):
 def modificarProyecto(request):
 	"""  
 	Funcion: Se ocupa de modificar un proyecto
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado y si el proyecto es 
+		modificado exitosamente retorna un objeto HttpResponse del template
+		proyectos.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico proyecto con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -140,7 +166,15 @@ def modificarProyecto(request):
 		return redirect('/login')
 
 def setAdministrador(proyecto, administrador):
+	"""
+	Funcion: Encargada de establecer un usuario administrador a un
+		proyecto.
 
+	@param proyecto: El proyecto al cual se establece el usuario
+		administrador.
+	@param administrador: Usuario dado para ser asignado como
+		administrador del proyecto dado.
+	"""	
 	rol = Rol()
 	rol.nombre = "Administrador del Proyecto " + proyecto.nombre
 	rol.proyecto = proyecto

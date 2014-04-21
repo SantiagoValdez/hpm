@@ -12,6 +12,12 @@ from django.core import serializers
 def indexRol(request):
 	"""  
 	Funcion: Panel principal de administracion de roles
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado retorna un objeto 
+		HttpResponse del template roles.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'proyectos' : proyectos}. Sino, 
+		retorna un objeto HttpResponseRedirect hacia '/login'. 
 	"""
 	u = is_logged(request.session)
 
@@ -33,6 +39,12 @@ def indexRol(request):
 def eliminarRol(request, id):
 	"""  
 	Funcion: Se ocupa de eliminar un rol
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id: id del rol a ser eliminado.
+	@return: Si el usuario se encuentra logueado y el rol es eliminado
+		exitosamente retorna un objeto HttpResponseRedirect hacia '/roles'.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -48,6 +60,13 @@ def eliminarRol(request, id):
 def nuevoRol(request):
 	"""  
 	Funcion: Se ocupa de crear un nuevo rol
+
+	@param request: Objeto que se encarga de manejar las peticiones http. 
+	@return: Si el usuario se encuentra logueado y si un nuevo rol
+		es creado exitosamente retorna un objeto HttpResponse del template
+		roles.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'mensaje' : 'Se creo rol con exito', 'proyectos' : proyectos}}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -93,6 +112,13 @@ def nuevoRol(request):
 def modificarRol(request):
 	"""  
 	Funcion: Se ocupa de modificar un rol
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado y si el rol es 
+		modificado exitosamente retorna un objeto HttpResponse del template
+		roles.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico el rol con exito', 'proyectos' : proyectos}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -142,7 +168,14 @@ def modificarRol(request):
 
 def permisosRol(request,id):
 	"""
-	Pantalla de adm de permisos del rol... ?
+	Pantalla de adm de permisos del rol.
+
+	@param request:  Objeto que se encarga de manejar las peticiones http.
+	@param id: id del rol de que se necesite los permisos.
+	@return: Si el usuario se encuentra logueado y si el rol existe retorna un 
+		objeto HttpResponse del template permisos.html renderizado con el contexto 
+		{'usuario' : u, 'rol' : rol, 'permisos' : permisos, 'mensaje' : 'Se modificaron los permisos con exito :)'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 
 	u = is_logged(request.session)
