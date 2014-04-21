@@ -1,6 +1,7 @@
 from principal.models import Usuario
 from principal.models import Proyecto
-
+from principal.models import Rol
+from principal.models import Permiso
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.core.urlresolvers import reverse
@@ -75,6 +76,20 @@ def apiGetProyecto(request, id):
 
 def is_logged(session):
 	if( 'usuario' in session ):
-		return Usuario.objects.get(id=session['usuario'])
+		user =  Usuario.objects.get(id=session['usuario'])
+		u = user.__dict__
+
+		lista_permisos = []
+		lista_roles = []
+		for r in user.roles.all():
+			lista_roles.append(r.nombre)
+			for p in r.permisos.all():
+				lista_permisos.append(p.nombre)
+
+		u['permisos'] = lista_permisos
+		u['roles'] = lista_roles
+		
+		return u
+
 	else:
 		return False
