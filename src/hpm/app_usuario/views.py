@@ -11,6 +11,12 @@ from django.core import serializers
 def indexUsuario(request):
 	"""  
 	Funcion: Panel principal de administracion de usuarios
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado retorna un objeto 
+		HttpResponse del template usuarios.html renderizado con el contexto 
+		{'usuario': u, 'lista': lista}. Sino, retorna un objeto 
+		HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -33,6 +39,12 @@ def indexUsuario(request):
 def eliminarUsuario(request, id):
 	"""  
 	Funcion: Se ocupa de eliminar un usuario
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id: id del usuario a ser eliminado.
+	@return: Si el usuario se encuentra logueado y el usuario dado es eliminado
+		exitosamente retorna un objeto HttpResponseRedirect hacia '/usuarios'.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -48,6 +60,13 @@ def eliminarUsuario(request, id):
 def nuevoUsuario(request):
 	"""  
 	Funcion: Se ocupa de crear un nuevo usuario
+
+	@param request: Objeto que se encarga de manejar las peticiones http. 
+	@return: Si el usuario se encuentra logueado y si un nuevo usuario
+		es creado exitosamente retorna un objeto HttpResponse del template
+		usuarios.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'mensaje' : 'Se creo usuario con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -96,6 +115,13 @@ def nuevoUsuario(request):
 def modificarUsuario(request):
 	"""  
 	Funcion: Se ocupa de modificar un usuario
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado y si el proyecto es 
+		modificado exitosamente retorna un objeto HttpResponse del template
+		usuarios.html renderizado con el contexto 
+		{'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico usuario con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	u = is_logged(request.session)
 
@@ -148,7 +174,14 @@ def modificarUsuario(request):
 
 def rolUsuario(request,id):
 	"""
-	Pantalla de adm de roles del usuario
+	Funcion: Pantalla de adm de roles del usuario
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id: id del usuario al cual se le asignara roles
+	@return: Si el usuario se encuentra logueado y si el rol existe retorna un 
+		objeto HttpResponse del template permisos.html renderizado con el contexto
+		{'usuario' : u, 'user' : usuario, 'roles' : roles, 'mensaje' : 'Se modificaron los roles del usuario con exito :)'}
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'. 
 	"""
 
 	u = is_logged(request.session)

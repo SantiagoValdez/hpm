@@ -12,6 +12,12 @@ from django.core import serializers
 def home(request):
 	"""  
 	Funcion: Genera la pagina principal
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el usuario se encuentra logueado retorna un objeto 
+		HttpResponse del template home.html renderizado con el contexto 
+		{'usuario': u}. Sino, retorna un objeto HttpResponseRedirect 
+		hacia '/login'.
 	"""
 	if( 'usuario' in request.session ):
 
@@ -24,6 +30,12 @@ def home(request):
 def login(request):
 	"""  
 	Funcion: Formulario de Login
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Si el metodo utilizado en la solicitud es POST, y si existe
+		un usuario retorna un objeto HttpResponseRedirect hacia '/'.
+		Sino, retorna un objeto HttpResponse del template login.html 
+		renderizado.
 	"""
 	if ( request.method == 'POST' ):
 		
@@ -41,6 +53,9 @@ def login(request):
 def logout(request):
 	"""  
 	Funcion: Finaliza sesion
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Retorna un objeto HttpResponseRedirect hacia '/login'.
 	"""
 	del request.session['usuario']
 
@@ -49,6 +64,9 @@ def logout(request):
 def apiGetUsuarios(request):
 	"""  
 	Retorna la lista de usuarios en formato json
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Retorna un objeto HttpResponse con la lista de usuarios.
 	"""
 	usuarios = Usuario.objects.all()
 
@@ -58,6 +76,10 @@ def apiGetUsuarios(request):
 def apiGetUsuario(request, id):
 	"""  
 	Retorna los detalles de un usuario en formato json
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id: id del usuario del que se requiere los detalles.
+	@return: Retorna un objeto HttpResponse con los detalles del usuario.
 	"""
 	usuario = Usuario.objects.all().filter(id=id)
 	data = serializers.serialize("json", usuario)
@@ -65,16 +87,38 @@ def apiGetUsuario(request, id):
 	return HttpResponse(data)
 
 def apiGetProyectos(request):
+	"""
+	Funcion: Devuelve la lista de proyectos en formato json.
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@return: Retorna un objeto HttpResponse con la lista de proyectos.
+	"""
 	proyectos = Proyecto.objects.all()
 	data =  serializers.serialize("json", Proyecto.objects.all())
 	return HttpResponse(data)
 
 def apiGetProyecto(request, id):
+	"""  
+	Funcion: Devuelve los detalles de un proyecto en formato json.
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id: id del proyecto del que se requiere los detalles.
+	@return: Retorna un objeto HttpResponse con los detalles del proyecto.
+	"""
 	proyecto = Proyecto.objects.all().filter(id=id)
 	data = serializers.serialize("json", proyecto)
 	return HttpResponse(data)
 
 def is_logged(session):
+	"""
+	Funcion: Se encarga de verificar si el usuario se encuentra logueado.
+		Y anexa los permisos y los roles del usuario.
+
+	@param session: Objeto que almacena datos sobre la sesion actual.
+	@return: Si el usuario se encuentra logueado retorna el usuario en
+		en cuestion. Sino, retorna False.
+	"""
+
 	if( 'usuario' in session ):
 		user =  Usuario.objects.get(id=session['usuario'])
 		u = user.__dict__
