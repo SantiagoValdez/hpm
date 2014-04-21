@@ -92,10 +92,12 @@ def nuevoProyecto(request):
 						setAdministrador(p,adm)
 						p.save()
 					except Exception, e:
-						p.delete()
+						if(p.id):
+							p.delete()
+						
 						lista = Proyecto.objects.all()
 						print e
-						return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error','usuarios' : usuarios})
+						return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error, por favor verifique que el nombre es unico he intente de nuevo','usuarios' : usuarios})
 					
 
 					lista = Proyecto.objects.all()

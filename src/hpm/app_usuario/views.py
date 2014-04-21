@@ -77,20 +77,20 @@ def nuevoUsuario(request):
 				'email' in request.POST and 
 				'ci' in request.POST and
 				'telefono' in request.POST  ) :
-					u = Usuario()
-					u.nombre = request.POST['nombre']  
-					u.apellido = request.POST['apellido']  
-					u.username = request.POST['username']  
-					u.password = request.POST['password'] 
-					u.email = request.POST['email'] 
-					u.ci = request.POST['ci'] 
-					u.telefono = request.POST['telefono']
+					user = Usuario()
+					user.nombre = request.POST['nombre']  
+					user.apellido = request.POST['apellido']  
+					user.username = request.POST['username']  
+					user.password = request.POST['password'] 
+					user.email = request.POST['email'] 
+					user.ci = request.POST['ci'] 
+					user.telefono = request.POST['telefono']
 					try:
-						u.save()
+						user.save()
 					except Exception, e:
 						lista = Usuario.objects.all()
 						
-						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
+						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error, comprueba que el username sea unico'})
 					
 
 					lista = Usuario.objects.all()

@@ -50,7 +50,12 @@
 						<div class="control-group">
 							<label>Estado:</label><br>
 							<div class="controls">
-								<input type="text" name="estado" placeholder="Estado..." required data-validation-required-message="Por favor rellena este campo :)" id="m-estado" >
+								<!--<input type="text" name="estado" placeholder="Estado..." required data-validation-required-message="Por favor rellena este campo :)" id="m-estado" >-->
+								<select name="estado" id="m-estado" equired data-validation-required-message="Por favor rellena este campo :)" >
+									<option value="no iniciado">No iniciado</option>
+									<option value="iniciado">Iniciado</option>
+									<option value="finalizado">Finalizado</option>
+								</select>
 								<p class="help-block"></p>
 							</div>
 						</div>
