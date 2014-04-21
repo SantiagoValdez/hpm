@@ -16,9 +16,6 @@ def indexUsuario(request):
 
 	if( u ):
 
-		u = Usuario.objects.get(id=request.session['usuario'])
-
-
 		if request.method != 'POST' :
 			lista = Usuario.objects.all()
 		else:
@@ -73,17 +70,17 @@ def nuevoUsuario(request):
 						u.save()
 					except Exception, e:
 						lista = Usuario.objects.all()
-						u = Usuario.objects.get(id=request.session['usuario'])
+						
 						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 					
 
 					lista = Usuario.objects.all()
-					u = Usuario.objects.get(id=request.session['usuario'])
+					
 					return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se creo usuario con exito'})
 
 			else:
 				lista = Usuario.objects.all()
-				u = Usuario.objects.get(id=request.session['usuario'])
+				
 				return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 
 
@@ -124,20 +121,20 @@ def modificarUsuario(request):
 							u.save()
 						except Exception, e:
 							lista = Usuario.objects.all()
-							u = Usuario.objects.get(id=request.session['usuario'])
+							
 							return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 						
 
 						lista = Usuario.objects.all()
-						u = Usuario.objects.get(id=request.session['usuario'])
+						
 						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico usuario con exito'})
 					else :
 						lista = Usuario.objects.all()
-						u = Usuario.objects.get(id=request.session['usuario'])
+						
 						return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 			else:
 				lista = Usuario.objects.all()
-				u = Usuario.objects.get(id=request.session['usuario'])
+				
 				return render(request, 'usuarios.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error'})
 
 

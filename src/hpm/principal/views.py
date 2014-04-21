@@ -13,9 +13,9 @@ def home(request):
 	"""  
 	Funcion: Genera la pagina principal
 	"""
-	if( 'usuario' in request.session ):
+	u = is_logged(request.session)
 
-		u = Usuario.objects.get(id=request.session['usuario'])
+	if( u ):
 
 		return render_to_response('home.html',{'usuario' : u})
 	else : 

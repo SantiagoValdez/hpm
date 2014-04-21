@@ -68,22 +68,29 @@
                     <ul class="nav" id="side-menu">
                         <li> <center><h3>Menú</h3></center></li>
                         
+
+
                         <li>
                             <a href="{% url 'principal.views.home' %}"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
 
-
+                        {% if 'Administrar Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
                         <li>
                             <a href="{% url 'usuarios:index' %}"><i class="fa fa-users fa-fw"></i> Usuarios</a>
                         </li>
-
+                        {% endif %}
+                        
+                        {% if 'Administrar Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
                         <li>
                             <a href="{% url 'proyectos:index' %}"><i class="fa fa-briefcase fa-fw"></i> Proyectos</a>
                         </li>
+                        {% endif %}
 
+                        {% if 'Administrar Usuarios' in usuario.permisos or 'root' in usuario.permisos  %}
                         <li>
                             <a href="{% url 'roles:index' %}"><i class="fa fa-key fa-fw"></i> Roles</a>
                         </li>
+                        {% endif %}
                         
                     </ul>
                     <!-- /#side-menu -->
