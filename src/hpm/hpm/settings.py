@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'principal',
     'app_proyecto',
     'app_usuario',
+    'app_rol',
     
 )
 

@@ -1,5 +1,5 @@
 from principal.models import Usuario
-
+from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.core.urlresolvers import reverse
@@ -11,7 +11,9 @@ def indexUsuario(request):
 	"""  
 	Funcion: Panel principal de administracion de usuarios
 	"""
-	if( 'usuario' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		u = Usuario.objects.get(id=request.session['usuario'])
 
@@ -31,7 +33,9 @@ def eliminarUsuario(request, id):
 	"""  
 	Funcion: Se ocupa de eliminar un usuario
 	"""
-	if( 'usuario' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		Usuario.objects.filter(id=id).delete()
 
@@ -44,7 +48,9 @@ def nuevoUsuario(request):
 	"""  
 	Funcion: Se ocupa de crear un nuevo usuario
 	"""
-	if( 'usuario' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		if( request.method == 'POST' ):
 			if ( 'nombre' in request.POST and 
@@ -90,7 +96,9 @@ def modificarUsuario(request):
 	"""  
 	Funcion: Se ocupa de modificar un usuario
 	"""
-	if( 'usuario' in request.session ):
+	u = is_logged(request.session)
+
+	if( u ):
 
 		if( request.method == 'POST' ):
 			if ( 'nombre' in request.POST and 

@@ -58,6 +58,7 @@
                                     <th></th>
                                     <th>Modificar</th>
                                     <th>Eliminar</th>
+                                    <th>Roles</th>
                                      
                                 </tr>
                             </thead>
@@ -78,6 +79,14 @@
                                             <i class="fa fa-pencil"></i> 
                                          </a> </td>
                                     <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+
+                                    <td>
+                                        <a class="btn btn-warning" href="#{{u.id}}">
+                                            <i class="fa fa-key"></i>
+                                        </a>
+                                    </td>
+
+
                                 </tr>
                                 {% empty %}
                                     <tr>

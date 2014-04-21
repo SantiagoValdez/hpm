@@ -24,6 +24,8 @@ urlpatterns = patterns('',
 
     url(r'^proyectos/', include('app_proyecto.urls' , namespace='proyectos')),
     
+    url(r'^roles/', include('app_rol.urls' , namespace='roles')),
+    
     # url(r'^api/usuarios/', include('principal.urls')),
     # #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
     # #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),

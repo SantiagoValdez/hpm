@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Nuevo Usuario</h4>
+				<h4 class="modal-title">Modificar Usuario</h4>
 			</div>
 			<form method="post" action="{% url 'usuarios:modificar' %}" novalidate>
 			{% csrf_token %}
@@ -12,43 +12,43 @@
 					<input type="hidden" name="id" value="" id="m-id">
 						
 						<div class="control-group">
-							<label> </label><br>
+							<label>Username: </label><br>
 							<div class="controls">
 								<input type="text" name="username" placeholder="Username..." id="m-username" required  data-validation-required-message="Por favor rellena este campo :)"> 
 							</div>
 						</div>
 						<div class="control-group">
-							<label> </label><br>
+							<label>Password: </label><br>
 							<div class="controls">
 								<input type="password" name="password" placeholder="Password..." id="m-password" required  data-validation-required-message="Por favor rellena este campo :)"> 
 							</div>
 						</div>
 						<div class="control-group">
-							<label> </label><br>
+							<label>Nombre: </label><br>
 							<div class="controls">
 								<input type="text" name="nombre" placeholder="Nombre..." id="m-nombre" required  data-validation-required-message="Por favor rellena este campo :)"> 
 							</div>
 						</div>
 						<div class="control-group">
-							<label> </label><br>
+							<label>Apellido: </label><br>
 							<div class="controls">
 								<input type="text" name="apellido" placeholder="Apellido..." id="m-apellido" required  data-validation-required-message="Por favor rellena este campo :)"> 
 							</div>
 						</div>
 						<div class="control-group">
-							<label> </label><br>
+							<label>CI: </label><br>
 							<div class="controls">
-								<input type="number" name="ci" placeholder="Ci..." id="m-ci" required  data-validation-required-message="Por favor rellena este campo :)"> 
+								<input type="number" name="ci" placeholder="Ci..." id="m-ci" required  data-validation-required-message="Por favor rellena este campo :)" data-validation-number-message="mmm la CI debe ser un numero"> 
 							</div>
 						</div>
 						<div class="control-group">
-							<label> </label><br>
+							<label>E-mail </label><br>
 							<div class="controls">
-								<input type="email" name="email" placeholder="Email" id="m-email" required  data-validation-required-message="Por favor rellena este campo :)"> 
+								<input type="email" name="email" placeholder="Email" id="m-email" required  data-validation-required-message="Por favor rellena este campo :)" data-validation-email-message="eso no se ve como un e-mail valido ¬¬"> 
 							</div>
 						</div>
 						<div class="control-group">
-							<label> </label><br>
+							<label>Telefono: </label><br>
 							<div class="controls">
 								<input type="phone" name="telefono" placeholder="Telefono..." id="m-telefono" required  data-validation-required-message="Por favor rellena este campo :)"> 
 							</div>

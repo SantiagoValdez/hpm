@@ -17,7 +17,7 @@ class Usuario(models.Model):
     telefono = models.CharField(max_length=20)
     ci = models.IntegerField()
     email = models.CharField(max_length=45)
-    roles = models.ManyToManyField('Rol')
+    roles = models.ManyToManyField('Rol',null=True, blank=True, default = None)
 
 class Proyecto(models.Model):
     class Meta:
@@ -43,8 +43,8 @@ class Rol(models.Model):
     
     nombre = models.CharField(unique = True, max_length=45)
     descripcion = models.CharField(max_length=150)
-    permisos = models.ManyToManyField('Permiso')
-    proyecto = models.ForeignKey(Proyecto)
+    permisos = models.ManyToManyField('Permiso',null=True, blank=True, default = None)
+    proyecto = models.ForeignKey(Proyecto,null=True, blank=True, default = None)
 
 
 class Permiso(models.Model):
