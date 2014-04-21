@@ -10,8 +10,7 @@ Iteracion 1 completa
 ToDo
 ====
 
-* Todo esta por hacerse....
-* Test
+* Minor bugs
 
 
 Team
