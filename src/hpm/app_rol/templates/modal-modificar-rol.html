@@ -1,0 +1,52 @@
+<div class="modal fade" id="modal-modificar">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Modificar Rol</h4>
+			</div>
+			<form method="post" action="{% url 'roles:modificar' %}" novalidate>
+			{% csrf_token %}
+				<div class="modal-body">
+					<center>
+					<input type="hidden" name="id" value="" id="m-id">
+						
+						
+						<div class="control-group">
+							<label>Nombre: </label><br>
+							<div class="controls">
+								<input type="text" name="nombre" placeholder="Nombre..." id="m-nombre" required  data-validation-required-message="Por favor rellena este campo :)"> 
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label>Descripcion: </label><br>
+							<div class="controls">
+								<input type="text" name="descripcion" placeholder="Descripcion" id="m-descripcion" required  data-validation-required-message="Por favor rellena este campo :)"> 
+							</div>
+						</div>
+						
+						
+						<div class="control-group">
+							<label>Proyecto: </label><br>
+							<div class="controls">
+								<select name="proyecto" id="m-proyecto">
+									<option value="0"> Sin proyecto </option>
+									{% for p in proyectos %}
+										<option value="{{p.id}}"> {{p.nombre}} </option>
+									{% endfor %}
+								</select> 
+							</div>
+						</div>
+						
+					
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
