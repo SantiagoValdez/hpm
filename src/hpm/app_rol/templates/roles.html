@@ -83,7 +83,7 @@
                                     <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarRol( '{{r.nombre}}', '{% url 'roles:eliminar' r.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
 
                                     <td>
-                                        <a class="btn btn-warning">
+                                        <a class="btn btn-warning" href="{% url 'roles:permisos' r.id %}">
                                             <i class="fa fa-lock"></i>
                                         </a>
                                     </td>
