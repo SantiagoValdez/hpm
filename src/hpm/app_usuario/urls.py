@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^eliminar/(?P<id>\d+)/$', 'app_usuario.views.eliminarUsuario', name='eliminar'),
     url(r'^nuevo','app_usuario.views.nuevoUsuario', name='nuevo'),
     url(r'^modificar','app_usuario.views.modificarUsuario', name='modificar'),
+    url(r'^rol/(?P<id>\d+)/$','app_usuario.views.rolUsuario', name='rol'),
 )

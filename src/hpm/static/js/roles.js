@@ -10,11 +10,10 @@ function eliminarRol(id, url){
 }
 
 
-function modificarRol(id, nombre, descripcion , proyecto, permisos){
+function modificarRol(id, nombre, descripcion , proyecto){
 	console.log("MODIFICAR ROL");
 	console.log(nombre);
 	console.log(descripcion);
-	console.log(permisos);
 	console.log(proyecto);
 	console.log("------------------");
 
@@ -22,7 +21,11 @@ function modificarRol(id, nombre, descripcion , proyecto, permisos){
 	$("#m-nombre").val(nombre);
 	$("#m-descripcion").val(descripcion);
 	//$("#m-permisos").val(permisos);
-	if (proyecto == "" ) proyecto = "0";
+	$("#m-nombre").prop('readonly', true);
+	if (proyecto == "" ) {
+		$("#m-nombre").prop('readonly', false);
+		proyecto = "0";
+	}
 	console.log(proyecto);
 	$("#m-proyecto").val(proyecto);
 

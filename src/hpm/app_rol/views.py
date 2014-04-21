@@ -124,7 +124,7 @@ def modificarRol(request):
 
 						lista = Rol.objects.all()
 						
-						return render(request, 'roles.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se creo rol con exito', 'proyectos' : proyectos})
+						return render(request, 'roles.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Se modifico el rol con exito', 'proyectos' : proyectos})
 					else:
 						lista = Rol.objects.all()
 						return render(request, 'roles.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Ocurrio un error', 'proyectos' : proyectos})
@@ -183,4 +183,3 @@ def permisosRol(request,id):
 			return redirect('/roles')
 	else : 
 		return redirect('/login')
-

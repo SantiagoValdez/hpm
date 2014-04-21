@@ -36,15 +36,22 @@
 							</div>
 						</div>
 						
-						
+						<br>
+
+
+						<hr>
 						<div class="control-group">
-							<label>Estado:</label><br>
+							<label>Administrador del Proyecto:</label><br>
 							<div class="controls">
-								<input type="text" name="estado" placeholder="Estado..." required data-validation-required-message="Por favor rellena este campo :)" >
+								<select name="administrador">
+									{% for u in usuarios %}
+										<option value="{{u.id}}"> [{{u.username}}] {{u.nombre}} {{u.apellido}} </option>
+									{% endfor %}
+								</select>
 								<p class="help-block"></p>
 							</div>
 						</div>
-						<br>
+						<hr>
 											
 					</center>
 				</div>

@@ -72,18 +72,29 @@
                                     <td>{{u.email}}</td>
                                     <td>{{u.ci}}</td>
                                     <td></td>
-                                    <td> <a href="#modificar" class="btn btn-primary"
+                                    <td> 
+
+                                        <a href="#modificar" class="btn btn-primary"
                                         onClick="modificarUsuario( '{{u.id}}','{{u.username}}','{{u.nombre}}','{{u.apellido}}','{{u.email}}','{{u.telefono}}','{{u.ci}}', '{{u.password}}' );"
 
                                         >
                                             <i class="fa fa-pencil"></i> 
-                                         </a> </td>
-                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+                                         </a>
+
+                                    </td>
+                                    <td> 
+                                        {% if u.id != 1 %}
+                                        <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> 
+
+                                        {% endif %}
+                                    </td>
 
                                     <td>
-                                        <a class="btn btn-warning" href="#{{u.id}}">
+                                        {% if u.id != 1 %}
+                                        <a class="btn btn-warning" href="{% url 'usuarios:rol' u.id %}">
                                             <i class="fa fa-key"></i>
                                         </a>
+                                        {% endif %}
                                     </td>
 
 

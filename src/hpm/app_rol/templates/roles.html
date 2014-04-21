@@ -70,20 +70,28 @@
                                     </td>
                                     <td>{{r.proyecto}}</td>
                                     <td></td>
-                                    <td> <a href="#modificar" class="btn btn-primary"
-                                        onClick="modificarRol( '{{r.id}}','{{r.nombre}}','{{r.descripcion}}', '{{r.proyecto.id}}', [ {% for p in r.permisos.all %}
-                                        {{p.id}}
-                                        {% endfor %} ] );"
+                                    <td> 
+                                        {% if r.id != 1 %}
+                                        <a href="#modificar" class="btn btn-primary"
+                                        onClick="modificarRol( '{{r.id}}','{{r.nombre}}','{{r.descripcion}}', '{{r.proyecto.id}}');"
 
                                         >
                                             <i class="fa fa-pencil"></i> 
-                                         </a> </td>
-                                    <td> <a href="#eliminar" class="btn btn-danger" onClick="eliminarRol( '{{r.nombre}}', '{% url 'roles:eliminar' r.id %}' );"><i class="fa fa-minus-square"></i></a> </td>
+                                         </a> 
+                                         {% endif %}
+                                    </td>
+                                    <td> 
+                                        {% if r.id != 1 %}
+                                        <a href="#eliminar" class="btn btn-danger" onClick="eliminarRol( '{{r.nombre}}', '{% url 'roles:eliminar' r.id %}' );"><i class="fa fa-minus-square"></i></a> 
+                                        {% endif %}
+                                    </td>
 
                                     <td>
+                                        {% if r.id != 1 %}
                                         <a class="btn btn-warning" href="{% url 'roles:permisos' r.id %}">
                                             <i class="fa fa-lock"></i>
                                         </a>
+                                        {% endif %}
                                     </td>
 
                                 </tr>

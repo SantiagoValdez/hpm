@@ -1,4 +1,5 @@
 from principal.models import Usuario
+from principal.models import Rol
 from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
@@ -143,4 +144,48 @@ def modificarUsuario(request):
 		return redirect('/usuarios')
 
 	else :
+		return redirect('/login')
+
+def rolUsuario(request,id):
+	"""
+	Pantalla de adm de roles del usuario
+	"""
+
+	u = is_logged(request.session)
+
+	if( u ):
+
+		usuario = Usuario.objects.get(id=id)
+		if(usuario):
+			roles = Rol.objects.all()
+			
+			if (request.method == 'POST' ) :
+				#lista = Rol.objects.filter(nombre__startswith = request.POST['search'])
+				# tengo que anadir los permisos al rol
+				print "dentro de post"
+				
+
+				print request.POST
+				
+				rids = []
+				if( 'roles' in request.POST ):
+					#Ids de los permisos
+					rids = request.POST.getlist('roles')
+				
+				try:
+					usuario.roles.clear()
+					for r in rids:
+						rol = Rol.objects.get(id=r)
+						usuario.roles.add(rol)
+
+					usuario.save()
+					return render(request, 'roles-usuario.html', {'usuario' : u, 'user' : usuario, 'roles' : roles, 'mensaje' : 'Se modificaron los roles del usuario con exito :)'})
+				except Exception, e:
+					print e
+					return render(request, 'roles-usuario.html', {'usuario' : u, 'user' : usuario, 'roles' : roles, 'mensaje' : 'Ocurrio un error al modificar los roles del usuario, intente de nuevo'})
+
+			return render(request, 'roles-usuario.html', {'usuario' : u, 'user' : usuario, 'roles' : roles})
+		else:
+			return redirect('/usuarios')
+	else : 
 		return redirect('/login')
