@@ -69,3 +69,24 @@ class Comite(models.Model):
 
     proyecto = models.ForeignKey(Proyecto, unique = True)
     usuarios = models.ManyToManyField('Usuario',null=True, blank=True, default = None)
+
+class Fase(models.Model):
+    """
+    Clase Fase
+    """
+    class Meta:
+        verbose_name = 'Fase'
+        verbose_name_plural = 'Fases'
+
+    def __unicode__(self):
+        return self.nombre
+
+    nro = models.IntegerField()
+    nombre = models.CharField(unique=True, max_length=50)
+    descripcion = models.CharField(max_length=250)
+    #estados posible "inicial","en desarrollo", "con lineas de base parciales"
+    # "con linea base", "finalizada"
+    estado = models.CharField(max_length=30)
+    #Cambiar para que no permita null
+    proyecto = models.ForeignKey(Proyecto,null=True, blank=True, default = None, on_delete=models.CASCADE)
+
