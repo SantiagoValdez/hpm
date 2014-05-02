@@ -80,7 +80,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="BASE_DIR"></a><span class="summary-name">BASE_DIR</span> = <code title="'/home/santiago/hpm/src/hpm/hpm'"><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm/hpm</code><code class="variable-quote">'</code></code>
+        <a name="BASE_DIR"></a><span class="summary-name">BASE_DIR</span> = <code title="'/home/santiago/hpm/src/hpm'"><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -122,7 +122,8 @@
  'django.contrib.messages',
  'django.contrib.staticfiles',
  'django.contrib.admindocs',
- 'principal')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">django.contrib.admin</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">django.contrib.auth</code><code class="variable-ellipsis">...</code></code>
+ 'principal',
+..."><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">django.contrib.admin</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">django.contrib.auth</code><code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
@@ -155,15 +156,19 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="hpm.settings-module.html#DATABASES" class="summary-name">DATABASES</a> = <code title="{'default': {'ENGINE': 'django.db.backends.sqlite3',
-             'NAME': '/home/santiago/hpm/src/hpm/hpm/db.sqlite3'}}"><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">default</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">ENGINE</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">django.db.backends.sqlite3</code><code class="variable-ellipsis">...</code></code>
+        <a href="hpm.settings-module.html#DATABASES" class="summary-name">DATABASES</a> = <code title="{'default': {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+             'HOST': '127.0.0.1',
+             'NAME': 'hpm',
+             'PASSWORD': 'pepe',
+             'PORT': '5432',
+             'USER': 'postgres'}}"><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">default</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">ENGINE</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">django.db.backends.postgre</code><code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="LANGUAGE_CODE"></a><span class="summary-name">LANGUAGE_CODE</span> = <code title="'en-us'"><code class="variable-quote">'</code><code class="variable-string">en-us</code><code class="variable-quote">'</code></code>
+        <a name="LANGUAGE_CODE"></a><span class="summary-name">LANGUAGE_CODE</span> = <code title="'es-PY'"><code class="variable-quote">'</code><code class="variable-string">es-PY</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -205,7 +210,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="STATICFILES_DIRS"></a><span class="summary-name">STATICFILES_DIRS</span> = <code title="('/home/santiago/hpm/src/hpm/hpm/static')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm/hpm/static</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
+        <a name="STATICFILES_DIRS"></a><span class="summary-name">STATICFILES_DIRS</span> = <code title="('/home/santiago/hpm/src/hpm/static')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm/static</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
     </td>
   </tr>
 <tr>
@@ -219,7 +224,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="TEMPLATE_DIRS"></a><span class="summary-name">TEMPLATE_DIRS</span> = <code title="('/home/santiago/hpm/src/hpm/hpm/plantillas')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm/hpm/plantillas</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
+        <a name="TEMPLATE_DIRS"></a><span class="summary-name">TEMPLATE_DIRS</span> = <code title="('/home/santiago/hpm/src/hpm/templates')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm/templates</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
     </td>
   </tr>
 <tr>
@@ -267,7 +272,8 @@
  <code class="variable-quote">'</code><code class="variable-string">django.contrib.messages</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">django.contrib.staticfiles</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">django.contrib.admindocs</code><code class="variable-quote">'</code><code class="variable-op">,</code>
- <code class="variable-quote">'</code><code class="variable-string">principal</code><code class="variable-quote">'</code><code class="variable-group">)</code>
+ <code class="variable-quote">'</code><code class="variable-string">principal</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+<code class="variable-ellipsis">...</code>
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -308,8 +314,12 @@
   <dl class="fields">
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
-<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">default</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">ENGINE</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">django.db.backends.sqlite3</code><code class="variable-quote">'</code><code class="variable-op">,</code>
-             <code class="variable-quote">'</code><code class="variable-string">NAME</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">/home/santiago/hpm/src/hpm/hpm/db.sqlite3</code><code class="variable-quote">'</code><code class="variable-group">}</code><code class="variable-group">}</code>
+<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">default</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">ENGINE</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">django.db.backends.postgresql_psycopg2</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+             <code class="variable-quote">'</code><code class="variable-string">HOST</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">127.0.0.1</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+             <code class="variable-quote">'</code><code class="variable-string">NAME</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">hpm</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+             <code class="variable-quote">'</code><code class="variable-string">PASSWORD</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">pepe</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+             <code class="variable-quote">'</code><code class="variable-string">PORT</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">5432</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+             <code class="variable-quote">'</code><code class="variable-string">USER</code><code class="variable-quote">'</code><code class="variable-op">: </code><code class="variable-quote">'</code><code class="variable-string">postgres</code><code class="variable-quote">'</code><code class="variable-group">}</code><code class="variable-group">}</code>
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -357,7 +367,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat Apr 12 04:26:09 2014
+    Generated by Epydoc 3.0.1 on Mon Apr 21 18:19:43 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
