@@ -23,6 +23,8 @@ urlpatterns = patterns('',
     url(r'^usuarios/', include('app_usuario.urls', namespace='usuarios')),
 
     url(r'^proyectos/', include('app_proyecto.urls' , namespace='proyectos')),
+
+    url(r'^fases/', include('app_fase.urls' , namespace='fases')),
     
     url(r'^roles/', include('app_rol.urls' , namespace='roles')),
     
