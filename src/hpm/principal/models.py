@@ -58,3 +58,14 @@ class Permiso(models.Model):
 
     nombre = models.CharField(max_length=50) 
     valor = models.IntegerField()
+
+class Comite(models.Model):
+    class Meta:
+        verbose_name = 'Comite'
+        verbose_name_plural = 'Comites'
+
+    def __unicode__(self):
+        return "Comite " + str(self.proyecto)
+
+    proyecto = models.ForeignKey(Proyecto, unique = True)
+    usuarios = models.ManyToManyField('Usuario',null=True, blank=True, default = None)

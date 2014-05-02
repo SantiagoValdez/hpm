@@ -1,49 +1,28 @@
 HPM TODO LIST
 =============
 
-PROGRAMMING BITCH
+Comite
+======
 
-* Usuarios
-	- agregar boton de "roles" [te manda adm de roles de ese usuario]	
-
-* Proyecto
-	- crear dinamicamente permisos de proyecto
-	- crear rol de proyecto
-	- asignar rol de adm. de proyecto a un usuario seleccionado
-	- cambios de estado [leer en el ers] con boton en lista
-
-* Roles
-	- Nuevo
-		- seleccion de permisos del rol.
-	- Eliminar
-	- Modificar
-		- preseleccionado los permisos que tiene.
-	
-	- Roles de usuario ( rol/usuario/<id> o usuario/<id>/roles )
+- Modelo
+- Crear Comite al crear Proyecto
+- Asignar usuario (se agrega usuario a la lista del comite)
+- Desasignar usuario ( se elimina el usuario de la lista del comite)
 
 
-BERLEN!
+Tipo Item
+==========
 
-- ABRIR TRELLO - Vas a poner bien todo esto que esta en esta lista chota
-- Estados del proyecto
-- Los roles por defecto
-- Leer parte del vencimiento de permisos [pam pam paaaam!]
-- Otros detalles 
-- Anotando en un gdoc. referencia-iteracion-2
+- Modelo
+- Nuevo Tipo Item
+- Modificar Tipo Item
+- Eliminar Tipo Item
+- Ver la forma en que La administracion de sus atributos sea mas transparente.
 
+Mensajeria
+==========
 
-TIÑO
-
-- Preguntarle a la profe si le gusta, y si esta lindo.
-
-PyDOC
-	- leer sobre pydoc como hacer mas churro los strings (epydoc)
-	- escribir cadenas de documentacion (mas churro, cuando yo te diga)
-
-TESTING
-	- mirar ejemplos de testing.
-	- planear testing standard para todo (muy yare es el que tenemos)
-	- escribir los test
-
-
-
+- Modelo
+- 
+- Plataforma de mensajeria
+ 
