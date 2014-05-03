@@ -90,3 +90,31 @@ class Fase(models.Model):
     #Cambiar para que no permita null
     proyecto = models.ForeignKey(Proyecto,null=True, blank=True, default = None, on_delete=models.CASCADE)
 
+class TipoItem(models.Model):
+    class Meta:
+        verbose_name = 'TipoItem'
+        verbose_name_plural = 'TipoItems'
+
+    def __unicode__(self):
+        return self.nombre
+    
+    nombre = models.TextField(max_length=50, unique=True)
+    codigo = models.TextField(max_length=50, unique=True)
+    descripcion = models.TextField(max_length=250)
+    proyecto = models.ForeignKey(Proyecto)
+    fase = models.ForeignKey(Fase)
+
+class AtributoTipoItem(models.Model):
+    class Meta:
+        verbose_name = 'AtributoTipoItem'
+        verbose_name_plural = 'AtributoTipoItems'
+
+    def __unicode__(self):
+        return self.nombre
+
+    nombre = models.TextField(max_length=50)
+    tipo = models.TextField(max_length=50)
+    valor_por_defecto = models.TextField(max_length=50)
+
+    tipo_item = models.ForeignKey(TipoItem)
+    

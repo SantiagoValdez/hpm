@@ -1,0 +1,76 @@
+<div class="modal fade" id="modal-importar">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Importar Tipo Item</h4>
+			</div>
+			<form method="post" action="{% url 'tipoitem:importar' fase.id %}" novalidate>
+				{% csrf_token %}
+				<div class="modal-body">
+					<center>
+
+
+						<hr>
+						<div class="control-group">
+							<label>Tipo Item:</label><br>
+							<div class="controls">
+								<select name="id-tipo" required data-validation-required-message="Por favor rellena este campo :)" onChange="mostrarInfoTipoItem();" id="id-tipo" >
+									{% for f in fase.proyecto.fase_set.all %}
+										{% if f != fase %}
+
+											{% for ti in f.tipoitem_set.all %}
+
+												<option value="{{ti.id}}">{{ti.nombre}} [{{ti.codigo}}]</option>
+
+											{% endfor %}
+										
+										{% endif %}
+									{% endfor %}
+
+								</select>
+								<p class="help-block"></p>
+							</div>
+						</div>
+						<hr>
+
+						<div id="info-tipo-item" class="bg-primary">
+							<!-- placeholder - se rellenara con js -->
+						</div>
+
+						<hr>
+
+						<div class="control-group">
+							<label>Codigo:</label><br>
+							<div class="controls">
+								<input type="text" name="codigo" placeholder="Codigo..." required maxlength="50" data-validation-required-message="Por favor rellena este campo :)" minlength="2" data-validation-minlength-message="Se te podria ocurrir un codigo mas largo no?">
+								<p class="help-block"></p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label>Nombre:</label><br>
+							<div class="controls">
+								<input type="text" name="nombre" placeholder="Nombre..." required maxlength="50" data-validation-required-message="Por favor rellena este campo :)" minlength="2" data-validation-minlength-message="Se te podria ocurrir un nombre mas largo no?">
+								<p class="help-block"></p>
+							</div>
+						</div>
+												
+						<div class="control-group">
+							<label>Descripcion:</label><br>
+							<div class="controls">
+								<input type="text" name="descripcion" placeholder="Descripcion..." required maxlength="250" data-validation-required-message="Por favor rellena este campo :)">
+								<p class="help-block"></p>
+							</div>
+						</div>
+						<br>						
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

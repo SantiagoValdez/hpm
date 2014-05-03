@@ -56,7 +56,7 @@
                                     <td>
                                         {# if 'Eliminar Proyectos' in usuario.permisos or 'root' in usuario.permisos #}
                                         {% if lista.count > 1 %}   
-                                         <a href="#eliminar" class="btn btn-danger" onClick="eliminarMiembro( '{{u.username}}', '{% url 'comites:eliminar' proyecto.id u.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                         <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarMiembro( '{{u.username}}', '{% url 'comites:eliminar' proyecto.id u.id %}' );"><i class="fa fa-minus-square"></i></a>
                                         {% endif %} 
                                          {# endif #}
                                      </td>
@@ -74,7 +74,11 @@
                             <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
                             {# endif #}
                         </center>
-                    
+                        <hr>
+                            <a class="btn btn-primary" href="{% url 'proyectos:index' %}">
+                                    <i class="fa fa-chevron-left "></i>
+                            </a>
+                        <hr>
         
                 </div>
                 <!-- /.col-lg-12 -->

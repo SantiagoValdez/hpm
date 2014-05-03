@@ -74,7 +74,7 @@
                                     <td></td>
                                     <td> 
                                         {% if 'Modificar Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
-                                        <a href="#modificar" class="btn btn-primary"
+                                        <a href="#modificar" class="btn btn-primary btn-outline"
                                         onClick="modificarUsuario( '{{u.id}}','{{u.username}}','{{u.nombre}}','{{u.apellido}}','{{u.email}}','{{u.telefono}}','{{u.ci}}', '{{u.password}}' );"
 
                                         >
@@ -85,7 +85,7 @@
                                     <td>
                                         {% if 'Eliminar Usuarios' in usuario.permisos or 'root' in usuario.permisos %} 
                                         {% if u.id != 1 %}
-                                        <a href="#eliminar" class="btn btn-danger" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> 
+                                        <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarUsuario( '{{u.username}}', '{% url 'usuarios:eliminar' u.id %}' );"><i class="fa fa-minus-square"></i></a> 
 
                                         {% endif %}
                                         {% endif %}

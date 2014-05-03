@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'app_usuario',
     'app_rol',
     'app_comite',
+    'app_tipo_item',
     
 )
 
@@ -73,9 +74,9 @@ DATABASES = {
 
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'HPM',
+        'NAME': 'hpm',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'pepe',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

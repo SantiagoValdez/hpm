@@ -29,6 +29,9 @@ urlpatterns = patterns('',
     url(r'^roles/', include('app_rol.urls' , namespace='roles')),
     
     url(r'^comites/', include('app_comite.urls' , namespace='comites')),
+
+    url(r'^tipoitem/', include('app_tipo_item.urls' , namespace='tipoitem')),
+
     # url(r'^api/usuarios/', include('principal.urls')),
     # #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
     # #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),

@@ -73,7 +73,7 @@
                                     <td>
                                         {% if 'Modificar Roles' in usuario.permisos or 'root' in usuario.permisos %} 
                                         {% if r.id != 1 %}
-                                        <a href="#modificar" class="btn btn-primary"
+                                        <a href="#modificar" class="btn btn-primary btn-outline"
                                         onClick="modificarRol( '{{r.id}}','{{r.nombre}}','{{r.descripcion}}', '{{r.proyecto.id}}');"
 
                                         >
@@ -85,7 +85,7 @@
                                     <td>
                                         {% if 'Eliminar Roles' in usuario.permisos or 'root' in usuario.permisos %} 
                                         {% if r.id != 1 %}
-                                        <a href="#eliminar" class="btn btn-danger" onClick="eliminarRol( '{{r.nombre}}', '{% url 'roles:eliminar' r.id %}' );"><i class="fa fa-minus-square"></i></a> 
+                                        <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarRol( '{{r.nombre}}', '{% url 'roles:eliminar' r.id %}' );"><i class="fa fa-minus-square"></i></a> 
                                         {% endif %}
                                         {% endif %}
                                     </td>

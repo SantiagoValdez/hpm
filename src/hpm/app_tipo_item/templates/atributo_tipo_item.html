@@ -4,9 +4,9 @@
 
         {% if usuario %}
 
-        {% include 'modal-delete-fases.html' %}
-        {% include 'modal-new-fases.html' %}
-        {% include 'modal-modificar-fases.html' %}
+        {% include 'modal-delete-atributo_tipo_item.html' %}
+        {% include 'modal-new-atributo_tipo_item.html' %}
+        {% include 'modal-modificar-atributo_tipo_item.html' %}
 
         <div id="page-wrapper">
             
@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <div class="row">
 
-                        <h2 class="page-header">Fases del Proyecto : {{proyecto.nombre}}</h2>
+                        <h2 class="page-header">Atributos del Tipo Item : {{tipo_item.nombre}} <small>[Cod. {{tipo_item.codigo}} <i> {{tipo_item.descripcion}} </i>]</small></h2>
                     </div>
 
 
@@ -28,47 +28,39 @@
                         </div>
                     {% endif %}
                         <center>
-                            <h3>Lista de Fases</h3>                    
+                            <h3>Lista de Atributos</h3>                    
                         </center>
                         <form method="post">
                             {% csrf_token %}
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Numero</th>
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Estado</th>
+                                        <th>Tipo</th>
+                                        <th>Valor por Defecto</th>
                                         <th></th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
-                                        <th>Tipo Item</th>
                                                                                  
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for f in fases %}
+                                    {% for a in lista %}
                                     <tr>
-                                        <td>{{f.nro}}</td>
-                                        <td>{{f.nombre}}</td>
-                                        <td>{{f.descripcion}}</td>
-                                        <td>{{f.estado}}</td>
+                                        <td>{{a.nombre}}</td>
+                                        <td>{{a.tipo}}</td>
+                                        <td>{{a.valor_por_defecto}}</td>
                                         <td></td>
                                         <td> 
-                                            {% if 'no iniciado' in proyecto.estado %}
+                                            {# if 'no iniciado' in proyecto.estado #}
                                             <a href="#modificar" class="btn btn-primary btn-outline"
-                                            onClick="modificarFase( '{{f.id}}','{{f.nro}}','{{f.nombre}}','{{f.descripcion}}','{{f.estado}}' );"><i class="fa fa-pencil"></i></a> 
-                                            {% endif %}
+                                            onClick="modificarAtributoTipoItem( '{{a.id}}','{{a.nombre}}','{{a.tipo}}','{{a.valor_por_defecto}}' );"><i class="fa fa-pencil"></i></a> 
+                                            {# endif #}
                                         </td>
                                         <td>
-                                            {% if 'no iniciado' in proyecto.estado and fases.count > 1 %}
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarFase( '{{f.nombre}}', '{% url 'fases:eliminar' proyecto.id f.id %}' );"><i class="fa fa-minus-square"></i></a>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if 'no iniciado' in proyecto.estado %}
-                                            <a href="{% url 'tipoitem:index' f.id %}" class="btn btn-warning"><i class="fa fa-sitemap"></i></a>
-                                            {% endif %}
+                                            {# if 'no iniciado' in proyecto.estado and tipo_items.count > 1 #}
+                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarAtributoTipoItem( '{{a.nombre}}', '{% url 'tipoitem:eliminarAtributo' tipo_item.id a.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {# endif #}
                                         </td>
 
                                     </tr>
@@ -88,7 +80,7 @@
                                                                 
                             </center>
                             <hr>
-                            <a class="btn btn-primary" href="{% url 'proyectos:index' %}">
+                            <a class="btn btn-primary" href="{% url 'tipoitem:index' tipo_item.fase.id %}">
                                     <i class="fa fa-chevron-left "></i>
                             </a>
                             <hr>
@@ -107,7 +99,7 @@
         {% endif %}
 
         {% load staticfiles %}
-        <script src="{% static 'js/fases.js' %}"></script>
+        <script src="{% static 'js/tipo_items.js' %}"></script>
 
         <!-- /#page-wrapper -->
 {% include 'footer.html' %}

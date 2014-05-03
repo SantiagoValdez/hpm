@@ -134,17 +134,17 @@ def modificarUsuario(request):
 				'telefono' in request.POST and
 				'id' in request.POST  ) :
 					id = request.POST['id'] 
-					u = Usuario.objects.get(id=id)
-					if ( u ):
-						u.nombre = request.POST['nombre']  
-						u.apellido = request.POST['apellido']  
-						u.username = request.POST['username']  
-						u.password = request.POST['password'] 
-						u.email = request.POST['email'] 
-						u.ci = request.POST['ci'] 
-						u.telefono = request.POST['telefono']
+					user = Usuario.objects.get(id=id)
+					if ( user ):
+						user.nombre = request.POST['nombre']  
+						user.apellido = request.POST['apellido']  
+						user.username = request.POST['username']  
+						user.password = request.POST['password'] 
+						user.email = request.POST['email'] 
+						user.ci = request.POST['ci'] 
+						user.telefono = request.POST['telefono']
 						try:
-							u.save()
+							user.save()
 						except Exception, e:
 							lista = Usuario.objects.all()
 							

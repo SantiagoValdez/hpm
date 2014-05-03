@@ -1,28 +1,21 @@
 HPM TODO LIST
 =============
 
-Comite
-======
+Proyecto
+========
 
-- Modelo
 - Crear Comite al crear Proyecto
-- Asignar usuario (se agrega usuario a la lista del comite)
-- Desasignar usuario ( se elimina el usuario de la lista del comite)
-
+- Asignar al lider del Proyecto como Miembro del Comite
 
 Tipo Item
 ==========
 
-- Modelo
-- Nuevo Tipo Item
-- Modificar Tipo Item
-- Eliminar Tipo Item
-- Ver la forma en que La administracion de sus atributos sea mas transparente.
+- Importar (O_O)
+
 
 Mensajeria
 ==========
 
-- Modelo
-- 
+- Modelo 
 - Plataforma de mensajeria
  
