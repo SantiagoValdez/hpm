@@ -10,6 +10,16 @@ from django.core import serializers
 # Create your views here.
 
 def indexFase(request, id_proyecto):
+	"""
+	Funcion: Panel principal de administracion de las fases del proyecto
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_proyecto: Identificador del proyecto del cual se visualizan sus fases.
+	@return: Si el usuario se encuentra logueado retorna un objeto 
+		HttpResponse del template fases.html renderizado con el contexto 
+		{'usuario': u, 'proyecto' : proyecto, 'lista': lista}. Sino, retorna un objeto 
+		HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
@@ -26,6 +36,17 @@ def indexFase(request, id_proyecto):
 		return redirect('/login')
 
 def nuevaFase(request, id_proyecto):
+	"""  
+	Funcion: Se ocupa de crear una nueva fase
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_proyecto: Identificador del proyecto al cual se le agregara una nueva fase. 
+	@return: Si el usuario se encuentra logueado y si una nueva fase 
+		es creada exitosamente retorna un objeto HttpResponse del template
+		fases.html renderizado con el contexto 
+		{'usuario' : u, 'proyecto' : proyecto, 'fases' : fases, 'mensaje' : 'Se creo la fase con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
@@ -63,6 +84,18 @@ def nuevaFase(request, id_proyecto):
 		return redirect('/login')
 
 def eliminarFase(request, id_proyecto, id_fase):
+	"""  
+	Funcion: Se ocupa de eliminar una fase del proyecto
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_proyecto: Identificador del proyecto del cual se elimina un fase. Utilizado para
+		renderizar el indice de fases.
+	@param id_fase: Identificador de la fase a ser eliminada.
+	@return: Si el usuario se encuentra logueado y el proyecto es eliminado
+		exitosamente retorna un objeto HttpResponseRedirect hacia el indice de fases del
+		correspondiente proyecto.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'. 
+	"""
 
 	u = is_logged(request.session)
 
@@ -76,6 +109,17 @@ def eliminarFase(request, id_proyecto, id_fase):
 		return redirect('/login')
 
 def modificarFase(request, id_proyecto):
+	"""  
+	Funcion: Se ocupa de modificar una fase de un determinado proyecto
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@id_proyecto: Identificador del proyecto cuya fase sera modificada
+	@return: Si el usuario se encuentra logueado y si la fase es 
+		modificada exitosamente retorna un objeto HttpResponse del template
+		fases.html renderizado con el contexto 
+		{'usuario' : u, 'proyecto' : proyecto, 'fases' : fases, 'mensaje' : 'Se modifico la fase con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
