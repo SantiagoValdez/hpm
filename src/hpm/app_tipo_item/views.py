@@ -123,7 +123,59 @@ def modificarTipoItem(request, id_fase):
 
 
 def importarTipoItem(request, id_fase):
-	return HttpResponse("hola")
+	u = is_logged(request.session)
+
+	if (u):
+		fase = Fase.objects.get(id=id_fase)
+		
+		if (request.method == 'POST'):
+			
+			if('nombre' in request.POST and
+				'descripcion' in request.POST and
+				'codigo' in request.POST and
+				'id-tipo' in request.POST ):
+				
+				ti = TipoItem()
+				ti.nombre = request.POST['nombre']
+				ti.descripcion = request.POST['descripcion']
+				ti.codigo = request.POST['codigo']
+				ti.fase = fase
+				ti.proyecto = fase.proyecto
+				
+				
+								
+				try:
+					ti.save()
+					#Copiamos los Atributos del Original
+
+					to = TipoItem.objects.get(id=request.POST['id-tipo'])
+
+					for at in to.atributotipoitem_set.all():
+						a = AtributoTipoItem()
+						a.nombre = at.nombre
+						a.tipo = at.tipo
+						a.valor_por_defecto = at.valor_por_defecto
+
+						ti.atributotipoitem_set.add(a)
+					
+				except Exception, e:
+					if(ti.id):
+						ti.delete()
+					print e
+					lista = fase.tipoitem_set.all()
+					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
+
+				lista = fase.tipoitem_set.all()
+				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se importo el tipo item con exito'})
+			else:
+				lista = fase.tipoitem_set.all()
+				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
+
+		else:
+			return redirect('tipoitem:index', id_fase = id_fase)
+	else:
+		return redirect('/login')
+
 
 def getTipoItem(request,id_tipo_item):
 	ti = TipoItem.objects.get(id=id_tipo_item)

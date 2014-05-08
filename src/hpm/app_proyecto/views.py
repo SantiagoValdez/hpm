@@ -2,6 +2,7 @@ from principal.models import Proyecto
 from principal.models import Usuario
 from principal.models import Rol
 from principal.models import Permiso
+from principal.models import Comite
 from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
@@ -90,6 +91,7 @@ def nuevoProyecto(request):
 						p.save()
 						adm = Usuario.objects.get(id=request.POST['administrador'])
 						setAdministrador(p,adm)
+						crearComite(p, adm)
 						p.save()
 					except Exception, e:
 						if(p.id):
@@ -185,3 +187,20 @@ def setAdministrador(proyecto, administrador):
 
 	administrador.roles.add(rol)
 	administrador.save()
+
+def crearComite(proyecto, administrador):
+	"""
+	Funcion: Encargada de establecer el comite de solicitudes de cambio
+		proyecto.
+
+	@param proyecto: El proyecto al cual se establece el usuario
+		administrador.
+	@param administrador: Usuario dado para ser asignado como
+		administrador del proyecto dado.
+	"""
+
+	comite = Comite()
+	comite.proyecto = proyecto
+	comite.save()
+	comite.usuarios.add(administrador)
+	comite.save()
