@@ -118,3 +118,48 @@ class AtributoTipoItem(models.Model):
 
     tipo_item = models.ForeignKey(TipoItem)
     
+
+class AtributoItem(models.Model):
+    class Meta:
+        verbose_name = 'AtributoItem'
+        verbose_name_plural = 'AtributosItems'
+
+    def __unicode__(self):
+        return str(self.id)
+    
+    valor = models.TextField(max_length=150)
+    atributo_tipo_item = models.ForeignKey(AtributoTipoItem)
+
+class Item(models.Model):
+    class Meta:
+        verbose_name = 'Item'
+        verbose_name_plural = 'Items'
+
+    def __unicode__(self):
+        return str(self.id)
+
+    version = models.IntegerField()
+    complejidad = models.IntegerField()
+    costo = models.IntegerField()
+    prioridad = models.IntegerField()
+    estado = models.TextField(max_length=50)
+
+
+    
+
+class ProxyItem(models.Model):
+    class Meta:
+        verbose_name = 'ProxyItem'
+        verbose_name_plural = 'ProxyItems'
+
+    def __unicode__(self):
+        return self.nombre
+
+    nombre = models.TextField(max_length=50)
+    numero = models.IntegerField()
+    eliminado = models.BooleanField(default = False)
+
+    fase = models.ForeignKey(Fase)
+    tipo_item = models.ForeignKey(TipoItem)
+
+    

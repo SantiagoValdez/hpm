@@ -1,0 +1,30 @@
+
+- Cuando inicia un proyecto que no se puede editar?
+	Solamente las fases (numero etc)
+
+- Cuando finaliza un fase ?
+
+	Cuando todos sus items estan en una LB
+
+- Cuando crea la Linea Base ?
+
+	En cualquier momento
+
+- Como saber que usuarios pueden/trabajan en los items?
+
+	Por permiso sobre items en la fase
+
+Estados de un Item
+==================
+- Inicial : cuando se estan realizando modificaciones posee algunas que aun no culminaron.
+- Listo : espera aprobación.
+- Aprobado : esta listo para formar parte de una LB.
+- Rechazado : estaba listo pero fue rechazado.
+- Final : aquel que forma de una LB activa.
+- Eliminado : fue borrado.
+- Revision : fue modificado sus items relacionados pasan a revision para ser revisados.
+
+Relaciones
+==========
+
+- 
