@@ -130,10 +130,10 @@ class AtributoItem(models.Model):
     valor = models.TextField(max_length=150)
     atributo_tipo_item = models.ForeignKey(AtributoTipoItem)
 
-class Item(models.Model):
+class VersionItem(models.Model):
     class Meta:
-        verbose_name = 'Item'
-        verbose_name_plural = 'Items'
+        verbose_name = 'VersionItem'
+        verbose_name_plural = 'VersionesItems'
 
     def __unicode__(self):
         return str(self.id)
@@ -144,13 +144,13 @@ class Item(models.Model):
     prioridad = models.IntegerField()
     estado = models.TextField(max_length=50)
 
+    proxy = models.ForeignKey('Item')
+    atributos = models.ManyToManyField('AtributoItem',null=True, blank=True, default = None)
 
-    
-
-class ProxyItem(models.Model):
+class Item(models.Model):
     class Meta:
-        verbose_name = 'ProxyItem'
-        verbose_name_plural = 'ProxyItems'
+        verbose_name = 'Item'
+        verbose_name_plural = 'Items'
 
     def __unicode__(self):
         return self.nombre
@@ -158,8 +158,24 @@ class ProxyItem(models.Model):
     nombre = models.TextField(max_length=50)
     numero = models.IntegerField()
     eliminado = models.BooleanField(default = False)
+    version = models.IntegerField()
 
     fase = models.ForeignKey(Fase)
     tipo_item = models.ForeignKey(TipoItem)
-
     
+class Relacion(models.Model):
+    class Meta:
+        verbose_name = 'Relacion'
+        verbose_name_plural = 'Relaciones'
+
+    def __unicode__(self):
+        pass
+    tipo = models.TextField(max_length=50)
+
+    #Guarda la referencia al item antecesor o padre
+    antecesor = models.ForeignKey(VersionItem, related_name='relacion_antecesor_set')
+    #Guarda la referencia al item sucesor o hijo
+    sucesor = models.ForeignKey(VersionItem, related_name='relacion_sucesor_set')
+    
+    proyecto = models.ForeignKey(Proyecto)
+    fase = models.ForeignKey(Fase)

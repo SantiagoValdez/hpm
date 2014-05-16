@@ -1,0 +1,113 @@
+
+{% include 'header.html' %}
+
+
+        {% if usuario %}
+
+        {% include 'modal-delete-tipo_item.html' %}
+        {% include 'modal-new-tipo_item.html' %}
+        {% include 'modal-modificar-tipo_item.html' %}
+        {% include 'modal-import-tipo_item.html' %}
+        <div id="page-wrapper">
+            
+            
+        
+            <div class="row">
+        
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <h2 class="page-header">Tipo de Items de la Fase : {{fase.nombre}} <small>[Nro. {{fase.nro}} <i> {{fase.descripcion}} </i>]</small></h2>
+                    </div>
+
+
+                    {% if mensaje %}
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Atención!</strong> {{mensaje}}
+                        </div>
+                    {% endif %}
+                        <center>
+                            <h3>Lista de Tipos de Items</h3>                    
+                        </center>
+                        <form method="post">
+                            {% csrf_token %}
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th></th>
+                                        <th>Modificar</th>
+                                        <th>Eliminar</th>
+                                        <th>Atributos</th>
+                                                                                 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for t in lista %}
+                                    <tr>
+                                        <td>{{t.codigo}}</td>
+                                        <td>{{t.nombre}}</td>
+                                        <td>{{t.descripcion}}</td>
+                                        <td></td>
+                                        <td> 
+                                            {# if 'no iniciado' in proyecto.estado #}
+                                            <a href="#modificar" class="btn btn-primary btn-outline"
+                                            onClick="modificarTipoItem( '{{t.id}}','{{t.codigo}}','{{t.nombre}}','{{t.descripcion}}' );"><i class="fa fa-pencil"></i></a> 
+                                            {# endif #}
+                                        </td>
+                                        <td>
+                                            {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
+                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarTipoItem( '{{t.nombre}}', '{% url 'tipoitem:eliminar' fase.id t.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {# endif #}
+                                        </td>
+
+                                        <td>
+                                            {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
+                                            <a href="{% url 'tipoitem:indexAtributo' t.id %}" class="btn btn-warning"><i class="fa fa-bars"></i></a>
+                                            {# endif #}
+                                        </td>
+
+                                    </tr>
+                                    {% empty %}
+                                        <tr>
+                                            No hay resultados
+                                        </tr> 
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            
+                            <center>
+                                
+                                <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                                <hr>
+                                <a class="btn btn-info btn-outline" data-toggle="modal" href='#modal-importar' onClick="mostrarInfoTipoItem();"><i class="fa fa-download"></i> <small>importar</small> </a>
+                                                                
+                            </center>
+                            <hr>
+                            <a class="btn btn-primary" href="{% url 'fases:index' fase.proyecto.id %}">
+                                    <i class="fa fa-chevron-left "></i>
+                            </a>
+                            <hr>
+                        </form>
+        
+                </div>
+                <!-- /.col-lg-12 -->
+        
+            </div>
+            <!-- /.row -->
+        
+
+            
+
+        </div>
+        {% endif %}
+
+        {% load staticfiles %}
+        <script src="{% static 'js/fases.js' %}"></script>
+
+        <!-- /#page-wrapper -->
+{% include 'footer.html' %}
