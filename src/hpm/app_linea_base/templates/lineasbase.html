@@ -4,10 +4,9 @@
 
         {% if usuario %}
 
-        {% include 'modal-delete-fases.html' %}
-        {% include 'modal-new-fases.html' %}
-        {% include 'modal-modificar-fases.html' %}
-
+        {% include 'modal-delete-lineabase.html' %}
+        {% include 'modal-new-lineabase.html' %}
+        {% include 'modal-modificar-lineabase.html' %}
         <div id="page-wrapper">
             
             
@@ -17,9 +16,8 @@
                 <div class="col-lg-12">
                     <div class="row">
 
-                        <h2 class="page-header">Fases del Proyecto : {{proyecto.nombre}}</h2>
+                        <h2 class="page-header">Lineas Base de la Fase : {{fase.nombre}} <small>[Nro. {{fase.nro}} <i> {{fase.descripcion}} </i>]</small></h2>
                     </div>
-
 
                     {% if mensaje %}
                         <div class="alert alert-warning">
@@ -28,7 +26,7 @@
                         </div>
                     {% endif %}
                         <center>
-                            <h3>Lista de Fases</h3>                    
+                            <h3>Lista de Lineas Base</h3>                    
                         </center>
                         <form method="post">
                             {% csrf_token %}
@@ -37,44 +35,28 @@
                                     <tr>
                                         <th>Numero</th>
                                         <th>Nombre</th>
-                                        <th>Descripcion</th>
                                         <th>Estado</th>
                                         <th></th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
-                                        <th>Tipo Item</th>
-                                        <th>Linea Base</th>
-                                                                                 
+                                                                                                                         
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for f in fases %}
+                                    {% for l in lineasb %}
                                     <tr>
-                                        <td>{{f.nro}}</td>
-                                        <td>{{f.nombre}}</td>
-                                        <td>{{f.descripcion}}</td>
-                                        <td>{{f.estado}}</td>
+                                        <td>{{l.nro}}</td>
+                                        <td>{{l.nombre}}</td>
+                                        <td>{{l.estado}}</td>
                                         <td></td>
                                         <td> 
-                                            {% if 'no iniciado' in proyecto.estado %}
                                             <a href="#modificar" class="btn btn-primary btn-outline"
-                                            onClick="modificarFase( '{{f.id}}','{{f.nro}}','{{f.nombre}}','{{f.descripcion}}','{{f.estado}}' );"><i class="fa fa-pencil"></i></a> 
-                                            {% endif %}
+                                            onClick="modificarLineaBase( '{{l.id}}','{{l.nro}}','{{l.nombre}}','{{l.estado}}' );"><i class="fa fa-pencil"></i></a> 
                                         </td>
                                         <td>
-                                            {% if 'no iniciado' in proyecto.estado and fases.count > 1 %}
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarFase( '{{f.nombre}}', '{% url 'fases:eliminar' proyecto.id f.id %}' );"><i class="fa fa-minus-square"></i></a>
-                                            {% endif %}
+                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id l.id %}' );"><i class="fa fa-minus-square"></i></a>
                                         </td>
-                                        <td>
-                                            {% if 'no iniciado' in proyecto.estado %}
-                                            <a href="{% url 'tipoitem:index' f.id %}" class="btn btn-warning"><i class="fa fa-sitemap"></i></a>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <a href="{% url 'lineasbase:index' f.id %}" class="btn btn-default btn-outline"><i class="fa fa-calendar"></i></a>
-                                        </td>
-
+                                        
                                     </tr>
                                     {% empty %}
                                         <tr>
@@ -88,11 +70,11 @@
                             <center>
                                 
                                 <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
-                               
-                                                                
+                                
+                                                                                            
                             </center>
                             <hr>
-                            <a class="btn btn-primary" href="{% url 'proyectos:index' %}">
+                            <a class="btn btn-primary" href="{% url 'fases:index' fase.proyecto.id %}">
                                     <i class="fa fa-chevron-left "></i>
                             </a>
                             <hr>
@@ -111,7 +93,7 @@
         {% endif %}
 
         {% load staticfiles %}
-        <script src="{% static 'js/fases.js' %}"></script>
+        <script src="{% static 'js/lineasbase.js' %}"></script>
 
         <!-- /#page-wrapper -->
 {% include 'footer.html' %}

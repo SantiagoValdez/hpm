@@ -32,4 +32,4 @@ class RolTest(TestCase):
 		r = Rol.objects.get(nombre="Administrador proyectoTest").delete()
 		tr = Rol.objects.all()
 
-		self.assertEqual(len(tr), 0)
+		self.assertEqual(tr.count(), 0)

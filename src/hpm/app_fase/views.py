@@ -79,7 +79,7 @@ def nuevaFase(request, id_proyecto):
 				return render(request, 'fases.html', {'usuario' : u,'proyecto' : proyecto,'fases' : fases,'mensaje' : 'Ocurrio un error'})
 
 		else:
-			return redirect('/fases')
+			return redirect('fases:index', id_proyecto = id_proyecto)
 	else:
 		return redirect('/login')
 
