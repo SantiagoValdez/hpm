@@ -3,6 +3,9 @@ from django.db import models
 # Create your models here.
 
 class Usuario(models.Model):
+    """
+    Clase Usuario
+    """
     class Meta:
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
@@ -20,6 +23,9 @@ class Usuario(models.Model):
     roles = models.ManyToManyField('Rol',null=True, blank=True, default = None)
 
 class Proyecto(models.Model):
+    """
+    Clase Proyecto
+    """
     class Meta:
         verbose_name = 'Proyecto'
         verbose_name_plural = 'Proyectos'
@@ -34,6 +40,9 @@ class Proyecto(models.Model):
     estado = models.CharField(max_length=45)
     
 class Rol(models.Model):
+    """
+    Clase Rol
+    """
     class Meta:
         verbose_name = 'Rol'
         verbose_name_plural = 'Roles'
@@ -48,7 +57,9 @@ class Rol(models.Model):
 
 
 class Permiso(models.Model):
-
+    """
+    Clase Permiso
+    """
     class Meta:
         verbose_name = 'Permiso'
         verbose_name_plural = 'Permisos'
@@ -60,6 +71,9 @@ class Permiso(models.Model):
     valor = models.IntegerField()
 
 class Comite(models.Model):
+    """
+    Clase Comite
+    """
     class Meta:
         verbose_name = 'Comite'
         verbose_name_plural = 'Comites'
@@ -91,6 +105,9 @@ class Fase(models.Model):
     proyecto = models.ForeignKey(Proyecto,null=True, blank=True, default = None, on_delete=models.CASCADE)
 
 class TipoItem(models.Model):
+    """
+    Clase TipoItem
+    """
     class Meta:
         verbose_name = 'TipoItem'
         verbose_name_plural = 'TipoItems'
@@ -105,6 +122,9 @@ class TipoItem(models.Model):
     fase = models.ForeignKey(Fase)
 
 class AtributoTipoItem(models.Model):
+    """
+    Clase AtributoTipoItem
+    """
     class Meta:
         verbose_name = 'AtributoTipoItem'
         verbose_name_plural = 'AtributoTipoItems'
@@ -151,10 +171,8 @@ class Item(models.Model):
     class Meta:
         verbose_name = 'Item'
         verbose_name_plural = 'Items'
-
     def __unicode__(self):
         return self.nombre
-
     nombre = models.TextField(max_length=50)
     numero = models.IntegerField()
     eliminado = models.BooleanField(default = False)
@@ -179,3 +197,23 @@ class Relacion(models.Model):
     
     proyecto = models.ForeignKey(Proyecto)
     fase = models.ForeignKey(Fase)
+
+class LineaBase(models.Model):
+    """
+    Clase LineaBase
+    """
+    class Meta:
+        verbose_name = 'LineaBase'
+        verbose_name_plural = 'LineasBase'
+
+    def __unicode__(self):
+        return self.nombre
+
+    fase = models.ForeignKey(Fase, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, null=True)
+    nombre = models.TextField(max_length=50)
+    nro = models.IntegerField()
+    # estados posibles: valido, no valido y liberado
+    # estados posibles gab: inicial, en desarrollo,
+    # con lineas de base parciales, linea base, finalizado
+    estado = models.TextField()

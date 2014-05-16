@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'app_rol',
     'app_comite',
     'app_tipo_item',
+    'app_linea_base',
     
 )
 
