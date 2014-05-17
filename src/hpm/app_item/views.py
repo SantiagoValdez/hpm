@@ -6,6 +6,7 @@ from principal.models import VersionItem
 from principal.models import AtributoItem
 from principal.models import TipoItem
 from principal.models import AtributoTipoItem
+from principal.models import Relacion
 from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
@@ -20,161 +21,180 @@ def indexItem(request, id_fase):
 	if( u ):
 
 		fase = Fase.objects.get(id=id_fase)
-		lista = fase.tipoitem_set.all()
+		lista = fase.item_set.all().filter(eliminado=False)
 			
-		return render(request, 'tipo_item.html', {'usuario' : u, 'fase' : fase, 'lista' : lista})
+		return render(request, 'item.html', {'usuario' : u, 'fase' : fase, 'lista' : lista})
 
 	else : 
 		return redirect('/login')
 
-def nuevoItem(request, id_fase):
+def nuevoItem(request, id_fase, id_tipo_item):
 
 	u = is_logged(request.session)
 
 	if (u):
 		fase = Fase.objects.get(id=id_fase)
+		tipo_item = TipoItem.objects.get(id=id_tipo_item)
 		
 		if (request.method == 'POST'):
 			
 			if('nombre' in request.POST and
-				'descripcion' in request.POST and
-				'codigo' in request.POST ):
-				ti = Item()
-				ti.nombre = request.POST['nombre']
-				ti.descripcion = request.POST['descripcion']
-				ti.codigo = request.POST['codigo']
-				ti.fase = fase
-				ti.proyecto = fase.proyecto
+				'numero' in request.POST and
+				'complejidad' in request.POST and
+				'costo' in request.POST and
+				'prioridad' in request.POST ):
+
+
+				atributos = { 
+					'complejidad' :  request.POST ['complejidad'], 
+					'costo' :  request.POST ['costo'], 
+					'prioridad' :  request.POST ['prioridad'] 
+					}
 				
-								
+				for atributo in tipo_item.atributotipoitem_set.all():
+					
+					valor = atributo.valor_por_defecto
+
+					if(atributo.nombre in request.POST):
+						valor = request.POST[atributo.nombre]
+
+					atributos[atributo.nombre] = valor
+
+
+				
 				try:
-					ti.save()
+					newItem(request.POST["nombre"], request.POST["numero"], fase.id, tipo_item.id, atributos)
 					
 				except Exception, e:
 
 					print e
-					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
+					
+					return render(request, 'nuevo-item.html', {'usuario' : u,'fase' : fase,'tipo_item' : tipo_item, 'mensaje' : 'Ocurrio un error al crear el item. Verifique los datos.' })
 
-				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se creo el tipo item con exito'})
+				
+				return redirect('item:index', id_fase)
 			else:
-				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
+				return render(request, 'nuevo-item.html', {'usuario' : u,'fase' : fase,'tipo_item' : tipo_item, 'mensaje' : 'Ocurrio un error al crear el item. Verifique los datos.' })
 
+		# ON GET
 		else:
-			return redirect('tipoitem:index', id_fase = id_fase)
+
+
+			return render(request, 'nuevo-item.html', {'usuario' : u,'fase' : fase,'tipo_item' : tipo_item })
+
+			#return HttpResponse("Hola fase :" + str(id_fase) + " tipo " + str(id_tipo_item))
 	else:
 		return redirect('/login')
 
-def eliminarItem(request, id_fase, id_tipo_item):
+def eliminarItem(request, id_fase, id_item):
 
 	u = is_logged(request.session)
 
 	if( u ):
 
-		Item.objects.filter(id=id_tipo_item).delete()
+		deleteItem(id_item)
 
-		return redirect('tipoitem:index', id_fase = id_fase)
-
-	else :
-		return redirect('/login')
-
-def modificarItem(request, id_fase):
-
-	u = is_logged(request.session)
-
-	if( u ):
-		fase = Fase.objects.get(id=id_fase)
-		if( request.method == 'POST' ):
-			if ( 'nombre' in request.POST and 
-				'descripcion' in request.POST and
-				'codigo' in request.POST and
-				'id' in request.POST) :
-				 
-				t = Item.objects.get(id=request.POST['id'])
-				if ( t ):
-					t.nombre = request.POST['nombre']  
-					t.descripcion = request.POST['descripcion']  
-					t.codigo = request.POST['codigo']
-
-					try:
-						t.save()
-					except Exception, e:
-						lista = fase.tipoitem_set.all()
-						return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
-
-					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se modifico el tipo item con exito'})
-
-
-				else:
-					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
-
-			else:
-				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error. Verifique si completo los campos correctamente'})
-
-
-
-		return redirect('tipoitem:index', id_fase = id_fase)
+		return redirect('item:index', id_fase = id_fase)
 
 	else :
 		return redirect('/login')
 
+def modificarItem(request, id_fase, id_item):
 
-def importarItem(request, id_fase):
 	u = is_logged(request.session)
 
 	if (u):
 		fase = Fase.objects.get(id=id_fase)
+		item = Item.objects.get(id=id_item)
+		version = VersionItem.objects.get(id=item.id_actual)
+		tipo_item = item.tipo_item 
+
+		if (request.method == 'POST'):
+			
+			if(	'complejidad' in request.POST and
+				'costo' in request.POST and
+				'prioridad' in request.POST and
+				'estado' in request.POST ):
+
+
+				atributos = { 
+					'complejidad' :  request.POST ['complejidad'], 
+					'costo' :  request.POST ['costo'], 
+					'prioridad' :  request.POST ['prioridad'],
+					'estado' :  request.POST ['estado']
+					}
+				
+				for atributo in tipo_item.atributotipoitem_set.all():
+					
+					valor = atributo.valor_por_defecto
+
+					if(atributo.nombre in request.POST):
+						valor = request.POST[atributo.nombre]
+
+					atributos[atributo.nombre] = valor
+
+
+				
+				try:
+					newVersion(id_item, atributos)
+					
+				except Exception, e:
+
+					print e
+					
+					return render(request, 'modificar-item.html', {'usuario' : u,'fase' : fase, 'item' : item, 'version' : version ,'tipo_item' : tipo_item, 'mensaje' : 'Ocurrio un error al modificar el item. Verifique los datos.' })
+
+				
+				return redirect('item:index', id_fase)
+			else:
+				print "Campos incompletos..."
+				return render(request, 'modificar-item.html', {'usuario' : u,'fase' : fase, 'item' : item, 'version' : version, 'tipo_item' : tipo_item, 'mensaje' : 'Ocurrio un error al modificar el item. Verifique los datos.' })
+
+		# ON GET
+		else:
+
+
+			return render(request, 'modificar-item.html', {'usuario' : u,'fase' : fase, 'item' : item, 'version' : version, 'tipo_item' : tipo_item })
+
+			#return HttpResponse("Hola fase :" + str(id_fase) + " tipo " + str(id_tipo_item))
+	else:
+		return redirect('/login')
+
+
+def revertirItem(request, id_fase, id_item):
+	u = is_logged(request.session)
+
+	if (u):
+		fase = Fase.objects.get(id=id_fase)
+		item = Item.objects.get(id=id_item)
 		
 		if (request.method == 'POST'):
 			
-			if('nombre' in request.POST and
-				'descripcion' in request.POST and
-				'codigo' in request.POST and
-				'id-tipo' in request.POST ):
-				
-				ti = Item()
-				ti.nombre = request.POST['nombre']
-				ti.descripcion = request.POST['descripcion']
-				ti.codigo = request.POST['codigo']
-				ti.fase = fase
-				ti.proyecto = fase.proyecto
-				
-				
-								
+			if(	'id_version' in request.POST ):
+
+				id_version = request.POST['id_version']
 				try:
-					ti.save()
-					#Copiamos los Atributos del Original
-
-					to = Item.objects.get(id=request.POST['id-tipo'])
-
-					for at in to.atributotipoitem_set.all():
-						a = AtributoItem()
-						a.nombre = at.nombre
-						a.tipo = at.tipo
-						a.valor_por_defecto = at.valor_por_defecto
-
-						ti.atributotipoitem_set.add(a)
+					setVersionItem(id_item, id_version)
 					
 				except Exception, e:
-					if(ti.id):
-						ti.delete()
+
 					print e
-					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
+					
+					return render(request, 'revertir-item.html', {'usuario' : u,'fase' : fase, 'item' : item,  'mensaje' : 'Ocurrio un error al revertir el item. Intente de nuevo' })
 
-				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se importo el tipo item con exito'})
+				item = Item.objects.get(id=id_item)
+				return render(request, 'revertir-item.html', {'usuario' : u,'fase' : fase, 'item' : item,  'mensaje' : 'Se cambio la version del item con exito.' })
 			else:
-				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
+				print "Campos incompletos..."
+				return render(request, 'revertir-item.html', {'usuario' : u,'fase' : fase, 'item' : item,  'mensaje' : 'Ocurrio un error al revertir el item. Intente de nuevo.' })
 
+		# ON GET
 		else:
-			return redirect('tipoitem:index', id_fase = id_fase)
+
+
+			return render(request, 'revertir-item.html', {'usuario' : u,'fase' : fase, 'item' : item })
+
+			#return HttpResponse("Hola fase :" + str(id_fase) + " tipo " + str(id_tipo_item))
 	else:
 		return redirect('/login')
 
@@ -318,7 +338,7 @@ def modificarAtributoItem(request, id_tipo_item):
 		return redirect('/login')
 
 
-def newItem(nombre, numero, version, id_fase, id_tipo_item, atributos):
+def newItem(nombre, numero, id_fase, id_tipo_item, atributos):
 	"""
 
 	"""
@@ -337,6 +357,46 @@ def newItem(nombre, numero, version, id_fase, id_tipo_item, atributos):
 
 		item.save()
 
+		#Creamos la version
+		version_item = VersionItem()
+		version_item.version = item.version
+		version_item.complejidad = atributos["complejidad"]
+		version_item.costo = atributos["costo"]
+		version_item.prioridad = atributos["prioridad"]
+		version_item.estado = "inicial"
+
+		#Finalmente relacionamos la version con el item 
+		version_item.proxy = item
+
+		version_item.save()
+
+		#Seteamos los atributos del tipo item
+		atributos_tipo_item = tipo_item.atributotipoitem_set.all()
+
+		for atributo_tipo_item in atributos_tipo_item:
+
+			atributo_item = AtributoItem()
+			atributo_item.valor = atributos[atributo_tipo_item.nombre]
+			atributo_item.atributo_tipo_item = atributo_tipo_item
+			atributo_item.save()
+
+			version_item.atributos.add(atributo_item)
+
+		#Guardamos la version de nuevo y actualizamos las versiones
+		version_item.save()
+		item.version = version_item.version
+		item.id_actual = version_item.id
+		item.save()
+
+def newVersion(id_item, atributos):
+	"""
+
+	"""
+
+	with transaction.atomic():
+		
+		item = Item.objects.get(id=id_item)
+		tipo_item = item.tipo_item
 		#Creamos la version
 		version_item = VersionItem()
 		version_item.version = item.version
@@ -368,11 +428,59 @@ def newItem(nombre, numero, version, id_fase, id_tipo_item, atributos):
 		item.id_actual = version_item.id
 		item.save()
 
-def newVersion():
+def setVersionItem(id_item,id_version):
 	"""
 
 	"""
 
+	with transaction.atomic():
+		
+		item = Item.objects.get(id=id_item)
+		version_item = VersionItem.objects.get(id=id_version)
+
+		#Realizo este cambio solo para cambiar el timestamp 
+		version_item.proxy = item
+
+		
+		version_item.save()
+		item.version = version_item.version
+		item.id_actual = version_item.id
+		item.save()
+
+
+def deleteItem(id_item):
+	"""
+	
+	"""
+	item = Item.objects.get(id=id_item)
+	item.eliminado = True
+	item.save()
+
+def newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor):
+	"""
+
+	"""
+
+	fase = Fase.objects.get(id=id_fase)
+	item_antecesor = Item.objects.get(id = id_antecesor)
+	item_sucesor = Item.objects.get(id= id_sucesor)
+	
+	antecesor = VersionItem.objects.get(id = item_antecesor.id_actual)
+	sucesor = VersionItem.objects.get(id= item_sucesor.id_actual)
 	
 
+	proyecto = fase.proyecto
 
+	relacion = Relacion()
+	relacion.fase = fase
+	relacion.proyecto = proyecto
+	relacion.sucesor = sucesor
+	relacion.antecesor = antecesor
+	relacion.tipo = tipo
+
+	relacion.save()
+
+def deleteRelacion(id_relacion):
+
+	relacion = Relacion.objects.get(id=id_relacion)
+	relacion.delete()

@@ -1,0 +1,129 @@
+
+{% include 'header.html' %}
+
+
+        {% if usuario %}
+
+        
+        <div id="page-wrapper">
+            
+            
+        
+            <div class="row">
+        
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <h2 class="page-header">Nuevo Item del Tipo : {{tipo_item.nombre}} <small>[Cod. {{tipo_item.codigo}} <i> {{tipo_item.descripcion}} </i>]</small></h2>
+                    </div>
+
+
+                    {% if mensaje %}
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Atención!</strong> {{mensaje}}
+                        </div>
+                    {% endif %}
+                        <center>
+                            <h3>Rellene los campos del Item</h3>                    
+                        </center>
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            
+                            <center>
+                            <!-- Campos por defecto -->
+                            <div class="control-group">
+                            <label>Nombre:</label><br>
+                            <div class="controls">
+                                <input type="text" name="nombre" placeholder="Nombre..." required maxlength="50" data-validation-required-message="Por favor rellena este campo :)" minlength="2" data-validation-minlength-message="Se te podria ocurrir un nombre mas largo no?">
+                                <p class="help-block"></p>
+                            </div>
+                            </div>
+
+                            <div class="control-group">
+                            <label>Numero:</label><br>
+                            <div class="controls">
+                                <input type="number" name="numero" placeholder="Numero..." required data-validation-number-message="ups! ese no es un numero" data-validation-required-message="Por favor rellena este campo :)">
+                                <p class="help-block"></p>
+                            </div>
+                            </div>
+
+                            <div class="control-group">
+                            <label>Complejidad:</label><br>
+                            <div class="controls">
+                                <input type="number" name="complejidad" placeholder="Complejidad..." required data-validation-number-message="ups! ese no es un numero" data-validation-required-message="Por favor rellena este campo :)">
+                                <p class="help-block"></p>
+                            </div>
+                            </div>
+
+                            <div class="control-group">
+                            <label>Costo:</label><br>
+                            <div class="controls">
+                                <input type="number" name="costo" placeholder="Costo..." required data-validation-number-message="ups! ese no es un numero" data-validation-required-message="Por favor rellena este campo :)">
+                                <p class="help-block"></p>
+                            </div>
+                            </div>
+
+                            <div class="control-group">
+                            <label>Prioridad:</label><br>
+                            <div class="controls">
+                                <input type="number" name="prioridad" placeholder="Prioridad..." required data-validation-number-message="ups! ese no es un numero" data-validation-required-message="Por favor rellena este campo :)">
+                                <p class="help-block"></p>
+                            </div>
+                            </div>
+
+                            {% for atributo in tipo_item.atributotipoitem_set.all %}
+
+                                <div class="control-group">
+                                <label>{{atributo.nombre}}:</label><br>
+                                <div class="controls">
+                                
+                                    <input 
+
+                                    
+                                    {% if atributo.tipo == 'numerico' %}
+                                    type="number" data-validation-number-message="ups! ese no es un numero"
+                                    {% elif atributo.tipo == 'fecha' %}
+                                    type="date" 
+                                    {% else %}
+                                    type="text" 
+                                    {% endif %}
+                                    name="{{atributo.nombre}}" placeholder="{{atributo.nombre}}..." required data-validation-required-message="Por favor rellena este campo :)" value="{{atributo.valor_por_defecto}}">
+                                    
+                                    <p class="help-block"></p>
+                                
+                                </div>
+                                </div>
+
+
+
+                            {% endfor %}
+
+
+                            </center>
+                            <hr>
+                            <center>
+                                <button type="submit" class="btn btn-primary">Guardar</button>                                
+                            </center>
+                        </form>
+                            <hr>
+                            <a class="btn btn-primary" href="{% url 'item:index' fase.id %}">
+                                    <i class="fa fa-chevron-left "></i>
+                            </a>
+                            <hr>
+                        
+        
+                </div>
+                <!-- /.col-lg-12 -->
+        
+            </div>
+            <!-- /.row -->
+        
+
+            
+
+        </div>
+        {% endif %}
+
+        <!-- /#page-wrapper -->
+{% include 'footer.html' %}
