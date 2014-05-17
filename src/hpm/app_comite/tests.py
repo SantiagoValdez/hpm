@@ -1,50 +1,51 @@
-# from django.test import TestCase
+from django.test import TestCase
+from django.utils import timezone
+from principal.models import Proyecto, Comite
 
-# # Create your tests here.
+# Create your tests here.
 
-# from django.test import TestCase
-# from django.utils import timezone
-# from django.http import HttpResponse
-# from django.core.urlresolvers import reverse
+def crear_proyecto(nombre, descripcion, fecha_creacion, complejidad_total, estado):
+	"""
+	Funcion: Encargada de crear un proyecto para realizacion de pruebas
+	"""
+	return Proyecto.objects.create(nombre=nombre, descripcion=descripcion,
+								 fecha_creacion=fecha_creacion,
+								 complejidad_total=complejidad_total,
+								 estado=estado
+								 )
 
-# from principal.models import Proyecto
-# from principal.models import Rol
-# from principal.models import Permiso
+def crear_comite(proyecto):
+	"""
+	Funcion: Encargada de crear un comite para realizacion de pruebas
+	"""
+	return Comite.objects.create(proyecto=proyecto)
 
-# # Create your tests here.
+class ComiteTest(TestCase):
 
-# def crear_proyecto(nombre, descripcion, fecha_creacion, complejidad_total, estado):
-# 	return Proyecto.objects.create(nombre=nombre, descripcion=descripcion,
-# 								 fecha_creacion=fecha_creacion,
-# 								 complejidad_total=complejidad_total,
-# 								 estado=estado
-# 								 )
+	def test_creacion_comite(self):
+		"""
+		Se comprueba que el comite es creado exitosamente
+		"""
+		tproyecto = crear_proyecto("Proyecto1", "Descripcion1", timezone.now(), 0, "no iniciado")
+		tproyecto.save()
+		tproyecto_id = tproyecto.id
+		tcomite = crear_comite(tproyecto)
+		tcomite.save()
+		tcomiteproyecto_id = tcomite.proyecto.id
+		self.assertEqual(tcomiteproyecto_id, tproyecto_id)
 
-# def crear_rol(nombre, descripcion):
-# 	return Rol.objects.create(nombre=nombre, descripcion=descripcion)
+	def test_eliminacion_comite(self):
+		"""
+		Se comprueba que al eliminar el proyecto, el comite
+		asociado al mismo tambien es eliminado
+		"""
+		tproyecto = crear_proyecto("Proyecto1", "Descripcion1", timezone.now(), 0, "no iniciado")
+		tproyecto.save()
+		tcomite = crear_comite(tproyecto)
+		tcomite.save()
+		tcomite_id = tcomite.id
 
-# def crear_permiso(nombre, valor):
-# 	return Permiso.objects.create(nombre=nombre, valor=valor)
-
-# class ProyectoTest(TestCase):
-
-# 	def test_creacion_proyecto(self):
-# 		p = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
-# 		tp = Proyecto.objects.get(nombre="proyectoTest")
-# 		self.assertEqual(tp.nombre, "proyectoTest")
-
-# 	def test_eliminacion_proyecto(self):
-# 		p = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
-# 		r = crear_rol("Administrador proyectoTest", "rol de prueba")
-# 		r.proyecto = p
-# 		r.save()
-# 		pr = crear_permiso("crear",0)
-# 		r.permisos.add(pr)
-# 		pr = crear_permiso("modificar",0)
-# 		r.permisos.add(pr)
-
-# 		Proyecto.objects.get(nombre="proyectoTest").delete()
-# 		tp = Proyecto.objects.all()
-# 		r = Rol.objects.all()
-# 		self.assertEqual(len(tp), 0)
-# 		self.assertEqual(len(r), 0)
+		tproyecto.delete()
+		tproyecto.save()
+		tcomite = Comite.objects.all()
+		self.assertEqual(tcomite.count(), 0)

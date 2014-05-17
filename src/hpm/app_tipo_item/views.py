@@ -12,6 +12,16 @@ import json
 # Create your views here.
 
 def indexTipoItem(request, id_fase):
+	"""  
+	Funcion: Panel principal de administracion de tipos de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_fase: Identificador de la fase de la cual se visualizan sus tipos de item.
+	@return: Si el getTipoItemusuario se encuentra logueado retorna un objeto 
+		HttpResponse del template tipo_item.html renderizado con el contexto 
+		{'usuario': u, 'fase': fase,'lista': lista}. Sino, retorna un objeto 
+		HttpResponseRedirect hacia '/login'. 
+	"""
 
 	u = is_logged(request.session)
 
@@ -26,6 +36,17 @@ def indexTipoItem(request, id_fase):
 		return redirect('/login')
 
 def nuevoTipoItem(request, id_fase):
+	"""  
+	Funcion: Se ocupa de crear un nuevo tipo de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_fase: Identificador de la fase a la cual se le agregara un nuevo tipo de item. 
+	@return: Si el usuario se encuentra logueado y si un nuevo tipo de item 
+		es creado exitosamente retorna un objeto HttpResponse del template
+		tipo_item.html renderizado con el contexto 
+		{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se creo el tipo item con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
@@ -66,6 +87,18 @@ def nuevoTipoItem(request, id_fase):
 		return redirect('/login')
 
 def eliminarTipoItem(request, id_fase, id_tipo_item):
+	"""  
+	Funcion: Se ocupa de eliminar un tipo de item de la fase
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_fase: Identificador de la fase de la cual se elimina un tipo de item. Utilizado para
+		renderizar el indice de tipo de item.
+	@param id_tipo_item: Identificador del tipo de item a ser eliminado.
+	@return: Si el usuario se encuentra logueado y el tipo de item es eliminado
+		exitosamente retorna un objeto HttpResponseRedirect hacia el indice de tipo de item de la
+		correspondiente fase.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'. 
+	"""
 
 	u = is_logged(request.session)
 
@@ -79,6 +112,17 @@ def eliminarTipoItem(request, id_fase, id_tipo_item):
 		return redirect('/login')
 
 def modificarTipoItem(request, id_fase):
+	"""  
+	Funcion: Se ocupa de modificar un tipo de item de una determinada fase
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@id_fase: Identificador de la fase cuyo tipo de item sera modificado.
+	@return: Si el usuario se encuentra logueado y si el tipo de item es 
+		modificado exitosamente retorna un objeto HttpResponse del template
+		tipo_item.html renderizado con el contexto 
+		{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se modifico el tipo item con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
@@ -123,6 +167,18 @@ def modificarTipoItem(request, id_fase):
 
 
 def importarTipoItem(request, id_fase):
+	"""
+	Funcion: Se ocupa de importar la estructura de un tipo item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_fase: Identificador de la fase a donde se importa el tipo de item.
+	@return: Si el usuario se encuentra logueado y si la importacion de tipo de item es 
+		exitosa retorna un objeto HttpResponse del template
+		tipo_item.html renderizado con el contexto 
+		{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se importo el tipo item con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
+
 	u = is_logged(request.session)
 
 	if (u):
@@ -178,6 +234,14 @@ def importarTipoItem(request, id_fase):
 
 
 def getTipoItem(request,id_tipo_item):
+	"""
+	Funcion: Se ocupa de obtener los datos de un tipo de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_tipo_item: Identificador del tipo de item del cual se quiere obtener sus datos.
+	@return: Retorna un objeto HttpResponse con los datos del tipo item en formato json.
+	"""
+
 	ti = TipoItem.objects.get(id=id_tipo_item)
 
 	dic = {}
@@ -205,6 +269,16 @@ def getTipoItem(request,id_tipo_item):
 ###############################################
 
 def indexAtributoTipoItem(request, id_tipo_item):
+	"""
+	Funcion: Panel principal de administracion de los atributos de tipo de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_proyecto: Identificador del tipo de item del cual se visualizan sus atributos.
+	@return: Si el usuario se encuentra logueado retorna un objeto 
+		HttpResponse del template atributo_tipo_item.html renderizado con el contexto 
+		{'usuario' : u, 'tipo_item' : tipoitem, 'lista' : lista}. Sino, retorna un objeto 
+		HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
@@ -220,6 +294,17 @@ def indexAtributoTipoItem(request, id_tipo_item):
 		return redirect('/login')
 
 def nuevoAtributoTipoItem(request, id_tipo_item):
+	"""  
+	Funcion: Se ocupa de crear un nuevo atributo de tipo de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_tipo_item: Identificador del tipo de item al cual se le agregara un nuevo atributo. 
+	@return: Si el usuario se encuentra logueado y si un nuevo atributo 
+		es creado exitosamente retorna un objeto HttpResponse del template
+		atributo_tipo_item.html renderizado con el contexto 
+		{'usuario' : u,'tipo_item' : tipoitem,'lista' : lista,'mensaje' : 'Se creo el atributo con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 
@@ -260,6 +345,18 @@ def nuevoAtributoTipoItem(request, id_tipo_item):
 		return redirect('/login')
 
 def eliminarAtributoTipoItem(request, id_tipo_item, id_atributo_tipo_item):
+	"""  
+	Funcion: Se ocupa de eliminar un atributo del tipo de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@param id_tipo_item: Identificador del tipo de item del cual se elimina un atributo. Utilizado para
+		renderizar el indice de atributos.
+	@param id_atributo_tipo_item: Identificador del atributo a ser eliminado.
+	@return: Si el usuario se encuentra logueado y el atributo de tipo de item es eliminado
+		exitosamente retorna un objeto HttpResponseRedirect hacia el indice de atributos del
+		correspondiente tipo de item.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'. 
+	"""
 
 	u = is_logged(request.session)
 
@@ -273,6 +370,17 @@ def eliminarAtributoTipoItem(request, id_tipo_item, id_atributo_tipo_item):
 		return redirect('/login')
 
 def modificarAtributoTipoItem(request, id_tipo_item):
+	"""  
+	Funcion: Se ocupa de modificar un atributo de un determinado tipo de item
+
+	@param request: Objeto que se encarga de manejar las peticiones http.
+	@id_tipo_item: Identificador del tipo de item cuyo atributo sera modificado.
+	@return: Si el usuario se encuentra logueado y si el atributo de tipo de item es 
+		modificado exitosamente retorna un objeto HttpResponse del template
+		atributo_tipo_item.html renderizado con el contexto 
+		{'usuario' : u,'tipo_item' : tipoitem,'lista' : lista,'mensaje' : 'Se modifico el atributo con exito'}.
+		Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+	"""
 
 	u = is_logged(request.session)
 

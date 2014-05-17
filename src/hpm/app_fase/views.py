@@ -88,7 +88,7 @@ def eliminarFase(request, id_proyecto, id_fase):
 	Funcion: Se ocupa de eliminar una fase del proyecto
 
 	@param request: Objeto que se encarga de manejar las peticiones http.
-	@param id_proyecto: Identificador del proyecto del cual se elimina un fase. Utilizado para
+	@param id_proyecto: Identificador del proyecto del cual se elimina una fase. Utilizado para
 		renderizar el indice de fases.
 	@param id_fase: Identificador de la fase a ser eliminada.
 	@return: Si el usuario se encuentra logueado y el proyecto es eliminado
@@ -113,7 +113,7 @@ def modificarFase(request, id_proyecto):
 	Funcion: Se ocupa de modificar una fase de un determinado proyecto
 
 	@param request: Objeto que se encarga de manejar las peticiones http.
-	@id_proyecto: Identificador del proyecto cuya fase sera modificada
+	@id_proyecto: Identificador del proyecto cuya fase sera modificada.
 	@return: Si el usuario se encuentra logueado y si la fase es 
 		modificada exitosamente retorna un objeto HttpResponse del template
 		fases.html renderizado con el contexto 

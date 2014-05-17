@@ -19,6 +19,26 @@
                         <h2 class="page-header">Lineas Base de la Fase : {{fase.nombre}} <small>[Nro. {{fase.nro}} <i> {{fase.descripcion}} </i>]</small></h2>
                     </div>
 
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            
+                            <form class="input-group custom-search-form" method="post" action={% url 'lineasbase:index' fase.id %} >
+                            {% csrf_token %}
+
+                                <input type="text" class="form-control" placeholder="Buscar..." name="search" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+
+                            </form>
+                        </div>
+                    </div>
+
                     {% if mensaje %}
                         <div class="alert alert-warning">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -37,6 +57,9 @@
                                         <th>Nombre</th>
                                         <th>Estado</th>
                                         <th></th>
+                                        <th>Liberar</th>
+                                        <th>Cerrar</th>
+                                        <th></th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
                                                                                                                          
@@ -48,6 +71,13 @@
                                         <td>{{l.nro}}</td>
                                         <td>{{l.nombre}}</td>
                                         <td>{{l.estado}}</td>
+                                        <td></td>
+                                        <td>
+                                            <a class="btn btn-primary btn-outline" href="{% url 'lineasbase:liberar' fase.id l.id %}"><i class="fa fa-unlock "></i></a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-outline" href="{% url 'lineasbase:cerrar' fase.id l.id %}"><i class="fa fa-lock "></i></a>
+                                        </td>
                                         <td></td>
                                         <td> 
                                             <a href="#modificar" class="btn btn-primary btn-outline"
