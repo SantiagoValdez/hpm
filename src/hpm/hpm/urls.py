@@ -34,6 +34,8 @@ urlpatterns = patterns('',
 
     url(r'^lineabase/', include('app_linea_base.urls' , namespace='lineasbase')),
 
+    url(r'^item/', include('app_item.urls' , namespace='item')),
+
     # url(r'^api/usuarios/', include('principal.urls')),
     # #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
     # #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),

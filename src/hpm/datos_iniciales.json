@@ -1,0 +1,988 @@
+[
+{
+    "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
+    }
+},
+{
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "user", 
+        "name": "user", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
+    }
+},
+{
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
+    }
+},
+{
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "usuario", 
+        "name": "Usuario", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "proyecto", 
+        "name": "Proyecto", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "rol", 
+        "name": "Rol", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permiso", 
+        "name": "Permiso", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 11, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "comite", 
+        "name": "Comite", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "fase", 
+        "name": "Fase", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "tipoitem", 
+        "name": "TipoItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "atributotipoitem", 
+        "name": "AtributoTipoItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 15, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "atributoitem", 
+        "name": "AtributoItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 16, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "versionitem", 
+        "name": "VersionItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 17, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "item", 
+        "name": "Item", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 18, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "relacion", 
+        "name": "Relacion", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 19, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "lineabase", 
+        "name": "LineaBase", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": "vr4rrp4fh5ox9k2cfldscjinqrlw4q6q", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2014-05-04T23:19:21.294Z", 
+        "session_data": "NjViMjUxOTlkMTg0NTc0ZTQwZGQ1MDYyZDA3Mjg2YTYzMGQyNjE4NDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="
+    }
+},
+{
+    "pk": "ybkq8ruhdvyjdxp4hsw06dyu0si04cg2", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2014-05-31T00:52:12.399Z", 
+        "session_data": "ZjQ5NzVkODQyZmI2YTM0ZjhjYzc4YzY4M2I3OGUyMmFhZjc3YzdhNTp7InVzdWFyaW8iOjF9"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "admin", 
+        "ci": 0, 
+        "roles": [
+            1, 
+            2
+        ], 
+        "apellido": "HPM", 
+        "nombre": "Administrador del Sistema", 
+        "password": "admin", 
+        "telefono": "000-000", 
+        "email": "admin@hpm.com"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "santiago", 
+        "ci": 4202083, 
+        "roles": [], 
+        "apellido": "Valdez", 
+        "nombre": "Santiago", 
+        "password": "santiago", 
+        "telefono": "554-889", 
+        "email": "santiago@hpm.me"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "guillermo", 
+        "ci": 4362801, 
+        "roles": [], 
+        "apellido": "Pati\u00f1o", 
+        "nombre": "Guillermo", 
+        "password": "guillermo", 
+        "telefono": "0981-722-774", 
+        "email": "guillermo@hpm.me"
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "belen", 
+        "ci": 4123321, 
+        "roles": [], 
+        "apellido": "Gonzalez", 
+        "nombre": "Belen", 
+        "password": "belen", 
+        "telefono": "0971-347-442", 
+        "email": "belen@hpm.me"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.proyecto", 
+    "fields": {
+        "descripcion": "Proyecto de software de \"gestion de proyectos\" HPM ", 
+        "nombre": "HPM", 
+        "fecha_creacion": "2014-05-17", 
+        "complejidad_total": 0, 
+        "estado": "no iniciado"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol principal del sistema. Equivalente al root.", 
+        "nombre": "Administrador del Sistema", 
+        "permisos": [
+            1
+        ], 
+        "proyecto": null
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol del administrador del proyecto HPM", 
+        "nombre": "Administrador del Proyecto HPM", 
+        "permisos": [], 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "root", 
+        "valor": 0
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.comite", 
+    "fields": {
+        "proyecto": 1, 
+        "usuarios": [
+            1
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": " Etapa donde se define el problema a resolver, las metas del proyecto, las metas de calidad y se identifica cualquier restricci\u00f3n aplicable al proyecto", 
+        "nombre": "Plan Operativo", 
+        "nro": 1, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": " Permite entregar una visi\u00f3n de alto nivel sobre el proyecto, poniendo \u00e9nfasis en la descripci\u00f3n del problema desde el punto de vista de los clientes y desarrolladores. Tambi\u00e9n se considera la posibilidad de una planificaci\u00f3n de los recursos sobre un", 
+        "nombre": "Especificaci\u00f3n de requisitos", 
+        "nro": 2, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Especifica la informaci\u00f3n sobre la cual el software a desarrollar trabajar\u00e1.", 
+        "nombre": "Especificaci\u00f3n funcional", 
+        "nro": 3, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Permite describir como el sistema va a satisfacer los requisitos. Esta etapa a menudo tiene diferentes niveles de detalle. Los niveles m\u00e1s altos de detalle generalmente describen los componentes o m\u00f3dulos que formar\u00e1n el software a ser producido.", 
+        "nombre": "Dise\u00f1o", 
+        "nro": 4, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Aqu\u00ed es donde el software a ser desarrollado se codifica. Dependiendo del tama\u00f1o del proyecto, la programaci\u00f3n puede ser distribuida entre distintos programadores o grupos de programadores.", 
+        "nombre": "Implementaci\u00f3n", 
+        "nro": 5, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Es la fase donde todos los subsistemas codificados independientemente se juntan. Cada secci\u00f3n es enlazada con otra y, entonces, probada. Este proceso se repite hasta que se han agregado todos los m\u00f3dulos y el sistema se prueba como un todo.", 
+        "nombre": "Integraci\u00f3n", 
+        "nro": 6, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Una vez que el sistema ha sido integrado, comienza esta etapa. Es donde es probado para verificar que el sistema es consistente con la definici\u00f3n de requisitos y la especificaci\u00f3n funcional.", 
+        "nombre": "Validaci\u00f3n y verificaci\u00f3n", 
+        "nro": 7, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "El mantenimiento ocurre cuando existe alg\u00fan problema dentro de un sistema existente, e involucrar\u00eda la correcci\u00f3n de errores que no fueron descubiertos en las fases de prueba, mejoras en la implementaci\u00f3n de las unidades del sistema y cambios.", 
+        "nombre": "Mantenimiento", 
+        "nro": 8, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Representa un documento que forme parte del plan operativo.", 
+        "nombre": "Documento Plan Operativo", 
+        "codigo": "doc_plan_operativo", 
+        "fase": 1, 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.atributotipoitem", 
+    "fields": {
+        "nombre": "size(kb)", 
+        "valor_por_defecto": "0", 
+        "tipo_item": 1, 
+        "tipo": "numerico"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.atributotipoitem", 
+    "fields": {
+        "nombre": "autor", 
+        "valor_por_defecto": "Autor Anonimo", 
+        "tipo_item": 1, 
+        "tipo": "texto"
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_usuario", 
+        "name": "Can add Usuario", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_usuario", 
+        "name": "Can change Usuario", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_usuario", 
+        "name": "Can delete Usuario", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_proyecto", 
+        "name": "Can add Proyecto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_proyecto", 
+        "name": "Can change Proyecto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_proyecto", 
+        "name": "Can delete Proyecto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_rol", 
+        "name": "Can add Rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_rol", 
+        "name": "Can change Rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_rol", 
+        "name": "Can delete Rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permiso", 
+        "name": "Can add Permiso", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permiso", 
+        "name": "Can change Permiso", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permiso", 
+        "name": "Can delete Permiso", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_comite", 
+        "name": "Can add Comite", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_comite", 
+        "name": "Can change Comite", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_comite", 
+        "name": "Can delete Comite", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_fase", 
+        "name": "Can add Fase", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_fase", 
+        "name": "Can change Fase", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_fase", 
+        "name": "Can delete Fase", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_tipoitem", 
+        "name": "Can add TipoItem", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_tipoitem", 
+        "name": "Can change TipoItem", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_tipoitem", 
+        "name": "Can delete TipoItem", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_atributotipoitem", 
+        "name": "Can add AtributoTipoItem", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_atributotipoitem", 
+        "name": "Can change AtributoTipoItem", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_atributotipoitem", 
+        "name": "Can delete AtributoTipoItem", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_atributoitem", 
+        "name": "Can add AtributoItem", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_atributoitem", 
+        "name": "Can change AtributoItem", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_atributoitem", 
+        "name": "Can delete AtributoItem", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_versionitem", 
+        "name": "Can add VersionItem", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_versionitem", 
+        "name": "Can change VersionItem", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_versionitem", 
+        "name": "Can delete VersionItem", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_item", 
+        "name": "Can add Item", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_item", 
+        "name": "Can change Item", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_item", 
+        "name": "Can delete Item", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_relacion", 
+        "name": "Can add Relacion", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_relacion", 
+        "name": "Can change Relacion", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_relacion", 
+        "name": "Can delete Relacion", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_lineabase", 
+        "name": "Can add LineaBase", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_lineabase", 
+        "name": "Can change LineaBase", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_lineabase", 
+        "name": "Can delete LineaBase", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "santiago", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-04-20T23:19:21.283Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$WqmsJ2lzFrTx$H63Hi8zNyJXbhQ7m1coTjaNHXt1vPRQUMJktCHpdUIM=", 
+        "email": "santiago@local.com", 
+        "date_joined": "2014-04-20T23:19:10.348Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2014-04-20T23:19:31.759Z", 
+        "object_repr": "root", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 10
+    }
+},
+{
+    "pk": 2, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2014-04-20T23:19:53.778Z", 
+        "object_repr": "Administrador del Sistema", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 9
+    }
+},
+{
+    "pk": 3, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2014-04-20T23:20:16.057Z", 
+        "object_repr": "admin", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 7
+    }
+}
+]
