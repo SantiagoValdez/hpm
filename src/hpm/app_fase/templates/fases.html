@@ -44,6 +44,7 @@
                                         <th>Eliminar</th>
                                         <th>Tipo Item</th>
                                         <th>Linea Base</th>
+                                        <th>Item</th>
                                                                                  
                                     </tr>
                                 </thead>
@@ -73,6 +74,10 @@
                                         </td>
                                         <td>
                                             <a href="{% url 'lineasbase:index' f.id %}" class="btn btn-default btn-outline"><i class="fa fa-calendar"></i></a>
+                                        </td>
+
+                                        <td>
+                                            <a href="{% url 'item:index' f.id %}" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i></a>
                                         </td>
 
                                     </tr>

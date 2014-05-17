@@ -21,8 +21,12 @@ def indexItem(request, id_fase):
 	if( u ):
 
 		fase = Fase.objects.get(id=id_fase)
-		lista = fase.item_set.all().filter(eliminado=False)
-			
+
+		if request.method != 'POST' :
+			lista = fase.item_set.all().filter(eliminado=False)
+		else:
+			lista = fase.item_set.all().filter(nombre__startswith = request.POST['search'],eliminado=False)
+		
 		return render(request, 'item.html', {'usuario' : u, 'fase' : fase, 'lista' : lista})
 
 	else : 

@@ -24,6 +24,24 @@
                         <h2 class="page-header">Items de la Fase : {{fase.nombre}} <small>[Nro. {{fase.nro}} <i> {{fase.descripcion}} </i>]</small></h2>
                     </div>
 
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                            
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                            <form class="input-group custom-search-form" method="post" action={% url 'item:index' fase.id %} >
+                            {% csrf_token %}
+
+                                <input type="text" class="form-control" placeholder="Buscar..." name="search" >
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+
+                            </form>
+                        </div>
+                    </div>
 
                     {% if mensaje %}
                         <div class="alert alert-warning">
