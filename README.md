@@ -7,12 +7,17 @@ Hephaustus Project Manager — IS2 class project
 
 Iteracion 1 completa
 Iteracion 2 completa
-Iteracion 3 en proceso
+Iteracion 3 completa
+Iteracion 4 en proceso
 
 ToDo
 ====
 
 * Minor bugs
+* Tener en cuenta el alcance de la iteracion
+* Entorno de producción
+* Script de población automática de tablas paramétricas del sistema 
+* Conjunto depruebas
 
 
 Team
