@@ -17,7 +17,8 @@ ToDo
 * Tener en cuenta el alcance de la iteracion
 * Entorno de producción
 * Script de población automática de tablas paramétricas del sistema 
-* Conjunto depruebas
+* Conjunto de pruebas
+* Linea Base y finalizacion fase
 
 
 Team
