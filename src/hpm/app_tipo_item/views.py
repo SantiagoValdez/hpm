@@ -273,7 +273,7 @@ def indexAtributoTipoItem(request, id_tipo_item):
 	Funcion: Panel principal de administracion de los atributos de tipo de item
 
 	@param request: Objeto que se encarga de manejar las peticiones http.
-	@param id_proyecto: Identificador del tipo de item del cual se visualizan sus atributos.
+	@param id_tipo_item: Identificador del tipo de item del cual se visualizan sus atributos.
 	@return: Si el usuario se encuentra logueado retorna un objeto 
 		HttpResponse del template atributo_tipo_item.html renderizado con el contexto 
 		{'usuario' : u, 'tipo_item' : tipoitem, 'lista' : lista}. Sino, retorna un objeto 

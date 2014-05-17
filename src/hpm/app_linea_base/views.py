@@ -125,7 +125,7 @@ def modificarLineaBase(request, id_fase):
 	Funcion: Se ocupa de modificar una linea base de una determinada fase
 
 	@param request: Objeto que se encarga de manejar las peticiones http.
-	@id_fase: Identificador de la fase cuya linea base sera modificada
+	@param id_fase: Identificador de la fase cuya linea base sera modificada.
 	@return: Si el usuario se encuentra logueado y si la linea base es 
 		modificada exitosamente retorna un objeto HttpResponse del template
 		lineasbase.html renderizado con el contexto 
