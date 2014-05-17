@@ -158,7 +158,7 @@ class VersionItem(models.Model):
     def __unicode__(self):
         return str(self.id)
 
-    version = models.IntegerField()
+    version = models.DateTimeField(auto_now=True, auto_now_add=True )
     complejidad = models.IntegerField()
     costo = models.IntegerField()
     prioridad = models.IntegerField()
@@ -176,7 +176,8 @@ class Item(models.Model):
     nombre = models.TextField(max_length=50)
     numero = models.IntegerField()
     eliminado = models.BooleanField(default = False)
-    version = models.IntegerField()
+    version = models.DateTimeField(null=True)
+    id_actual = models.IntegerField(null=True)
 
     fase = models.ForeignKey(Fase)
     tipo_item = models.ForeignKey(TipoItem)

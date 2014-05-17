@@ -1,6 +1,9 @@
 from principal.models import Proyecto
 from principal.models import Usuario
 from principal.models import Fase
+from principal.models import Item
+from principal.models import VersionItem
+from principal.models import AtributoItem
 from principal.models import TipoItem
 from principal.models import AtributoTipoItem
 from principal.views import is_logged
@@ -8,11 +11,10 @@ from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.core.urlresolvers import reverse
 import json
-
+from django.db import transaction
 # Create your views here.
 
-def indexTipoItem(request, id_fase):
-
+def indexItem(request, id_fase):
 	u = is_logged(request.session)
 
 	if( u ):
@@ -25,7 +27,7 @@ def indexTipoItem(request, id_fase):
 	else : 
 		return redirect('/login')
 
-def nuevoTipoItem(request, id_fase):
+def nuevoItem(request, id_fase):
 
 	u = is_logged(request.session)
 
@@ -37,7 +39,7 @@ def nuevoTipoItem(request, id_fase):
 			if('nombre' in request.POST and
 				'descripcion' in request.POST and
 				'codigo' in request.POST ):
-				ti = TipoItem()
+				ti = Item()
 				ti.nombre = request.POST['nombre']
 				ti.descripcion = request.POST['descripcion']
 				ti.codigo = request.POST['codigo']
@@ -65,20 +67,20 @@ def nuevoTipoItem(request, id_fase):
 	else:
 		return redirect('/login')
 
-def eliminarTipoItem(request, id_fase, id_tipo_item):
+def eliminarItem(request, id_fase, id_tipo_item):
 
 	u = is_logged(request.session)
 
 	if( u ):
 
-		TipoItem.objects.filter(id=id_tipo_item).delete()
+		Item.objects.filter(id=id_tipo_item).delete()
 
 		return redirect('tipoitem:index', id_fase = id_fase)
 
 	else :
 		return redirect('/login')
 
-def modificarTipoItem(request, id_fase):
+def modificarItem(request, id_fase):
 
 	u = is_logged(request.session)
 
@@ -90,7 +92,7 @@ def modificarTipoItem(request, id_fase):
 				'codigo' in request.POST and
 				'id' in request.POST) :
 				 
-				t = TipoItem.objects.get(id=request.POST['id'])
+				t = Item.objects.get(id=request.POST['id'])
 				if ( t ):
 					t.nombre = request.POST['nombre']  
 					t.descripcion = request.POST['descripcion']  
@@ -122,7 +124,7 @@ def modificarTipoItem(request, id_fase):
 		return redirect('/login')
 
 
-def importarTipoItem(request, id_fase):
+def importarItem(request, id_fase):
 	u = is_logged(request.session)
 
 	if (u):
@@ -135,7 +137,7 @@ def importarTipoItem(request, id_fase):
 				'codigo' in request.POST and
 				'id-tipo' in request.POST ):
 				
-				ti = TipoItem()
+				ti = Item()
 				ti.nombre = request.POST['nombre']
 				ti.descripcion = request.POST['descripcion']
 				ti.codigo = request.POST['codigo']
@@ -148,10 +150,10 @@ def importarTipoItem(request, id_fase):
 					ti.save()
 					#Copiamos los Atributos del Original
 
-					to = TipoItem.objects.get(id=request.POST['id-tipo'])
+					to = Item.objects.get(id=request.POST['id-tipo'])
 
 					for at in to.atributotipoitem_set.all():
-						a = AtributoTipoItem()
+						a = AtributoItem()
 						a.nombre = at.nombre
 						a.tipo = at.tipo
 						a.valor_por_defecto = at.valor_por_defecto
@@ -177,8 +179,8 @@ def importarTipoItem(request, id_fase):
 		return redirect('/login')
 
 
-def getTipoItem(request,id_tipo_item):
-	ti = TipoItem.objects.get(id=id_tipo_item)
+def getItem(request,id_tipo_item):
+	ti = Item.objects.get(id=id_tipo_item)
 
 	dic = {}
 	dic['nombre'] = ti.nombre
@@ -199,18 +201,18 @@ def getTipoItem(request,id_tipo_item):
 	return HttpResponse(data)
 
 ###############################################
-#	Atributos de Tipo Item 					  #
+#	Atributos de  Item 					  #
 #											  #
 #											  #
 ###############################################
 
-def indexAtributoTipoItem(request, id_tipo_item):
+def indexAtributoItem(request, id_tipo_item):
 
 	u = is_logged(request.session)
 
 	if( u ):
 
-		tipoitem = TipoItem.objects.get(id=id_tipo_item)
+		tipoitem = Item.objects.get(id=id_tipo_item)
 		print tipoitem
 		lista = tipoitem.atributotipoitem_set.all()
 			
@@ -219,19 +221,19 @@ def indexAtributoTipoItem(request, id_tipo_item):
 	else : 
 		return redirect('/login')
 
-def nuevoAtributoTipoItem(request, id_tipo_item):
+def nuevoAtributoItem(request, id_tipo_item):
 
 	u = is_logged(request.session)
 
 	if (u):
-		tipoitem = TipoItem.objects.get(id=id_tipo_item)
+		tipoitem = Item.objects.get(id=id_tipo_item)
 		
 		if (request.method == 'POST'):
 			
 			if('nombre' in request.POST and
 				'valor_por_defecto' in request.POST and
 				'tipo' in request.POST ):
-				a = AtributoTipoItem()
+				a = AtributoItem()
 				a.nombre = request.POST['nombre']
 				a.valor_por_defecto = request.POST['valor_por_defecto']
 				a.tipo = request.POST['tipo']
@@ -259,32 +261,32 @@ def nuevoAtributoTipoItem(request, id_tipo_item):
 	else:
 		return redirect('/login')
 
-def eliminarAtributoTipoItem(request, id_tipo_item, id_atributo_tipo_item):
+def eliminarAtributoItem(request, id_tipo_item, id_atributo_tipo_item):
 
 	u = is_logged(request.session)
 
 	if( u ):
 
-		AtributoTipoItem.objects.filter(id=id_atributo_tipo_item).delete()
+		AtributoItem.objects.filter(id=id_atributo_tipo_item).delete()
 
 		return redirect('tipoitem:indexAtributo', id_tipo_item = id_tipo_item)
 
 	else :
 		return redirect('/login')
 
-def modificarAtributoTipoItem(request, id_tipo_item):
+def modificarAtributoItem(request, id_tipo_item):
 
 	u = is_logged(request.session)
 
 	if( u ):
-		tipoitem = TipoItem.objects.get(id=id_tipo_item)
+		tipoitem = Item.objects.get(id=id_tipo_item)
 		if( request.method == 'POST' ):
 			if ( 'nombre' in request.POST and 
 				'valor_por_defecto' in request.POST and
 				'tipo' in request.POST and
 				'id' in request.POST) :
 				 
-				a = AtributoTipoItem.objects.get(id=request.POST['id'])
+				a = AtributoItem.objects.get(id=request.POST['id'])
 				if ( a ):
 					a.nombre = request.POST['nombre']
 					a.valor_por_defecto = request.POST['valor_por_defecto']
@@ -314,3 +316,63 @@ def modificarAtributoTipoItem(request, id_tipo_item):
 
 	else :
 		return redirect('/login')
+
+
+def newItem(nombre, numero, version, id_fase, id_tipo_item, atributos):
+	"""
+
+	"""
+
+	with transaction.atomic():
+		#Creamos el item
+		item = Item()
+		item.nombre = nombre
+		item.numero = numero
+		item.eliminado = False
+		
+		fase = Fase.objects.get(id=id_fase)
+		tipo_item = TipoItem.objects.get(id=id_tipo_item)
+		item.fase = fase
+		item.tipo_item = tipo_item 
+
+		item.save()
+
+		#Creamos la version
+		version_item = VersionItem()
+		version_item.version = item.version
+		version_item.complejidad = atributos["complejidad"]
+		version_item.costo = atributos["costo"]
+		version_item.prioridad = atributos["prioridad"]
+		version_item.estado = atributos["estado"]
+
+		#Finalmente relacionamos la version con el item 
+		version_item.proxy = item
+
+		version_item.save()
+
+		#Seteamos los atributos del tipo item
+		atributos_tipo_item = tipo_item.atributotipoitem_set.all()
+
+		for atributo_tipo_item in atributos_tipo_item:
+
+			atributo_item = AtributoItem()
+			atributo_item.valor = atributos[atributo_tipo_item.nombre]
+			atributo_item.atributo_tipo_item = atributo_tipo_item
+			atributo_item.save()
+
+			version_item.atributos.add(atributo_item)
+
+		#Guardamos la version de nuevo y actualizamos las versiones
+		version_item.save()
+		item.version = version_item.version
+		item.id_actual = version_item.id
+		item.save()
+
+def newVersion():
+	"""
+
+	"""
+
+	
+
+
