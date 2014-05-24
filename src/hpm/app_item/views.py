@@ -486,6 +486,7 @@ def newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor):
         if(item_sucesor == relacion.sucesor.proxy):
             raise Exception("Ya posee esta relacion!")
 
+
     antecesor = VersionItem.objects.get(id=item_antecesor.id_actual)
     sucesor = VersionItem.objects.get(id=item_sucesor.id_actual)
 
