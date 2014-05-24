@@ -1,0 +1,38 @@
+<div class="modal fade" id="modal-nuevo">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Agregar Item a la Linea Base</h4>
+			</div>
+			<form method="post" action="{% url 'lineasbase:agregarItem' fase.id linea_base.id %}" novalidate>
+				{% csrf_token %}
+				<div class="modal-body">
+					<center>
+
+						<div class="control-group">
+							<label>Item:</label><br>
+							<div class="controls">
+								<select name="id_item" required data-validation-required-message="Por favor rellena este campo :)" >
+									{% for item in fase.item_set.all %}
+										{% for version in item.versionitem_set.all %}
+											{% if item.id_actual == version.id and version.estado == 'aprobado' %}	
+												<option value="{{item.id}}">{{item.nombre}}</option>
+											{% endif %}
+										{% endfor %}
+									{% endfor %}
+								</select>
+								<p class="help-block"></p>
+							</div>
+						</div>
+						<br>						
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Agregar</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

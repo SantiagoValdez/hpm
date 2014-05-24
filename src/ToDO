@@ -1,21 +1,31 @@
 HPM TODO LIST
 =============
+ TOTAL [ 0/18 ]
 
-Proyecto
-========
+LB
+===
+- Agregar Item LB [ 2 ]
+- Historial	[ 2 ]
 
-- Crear Comite al crear Proyecto
-- Asignar al lider del Proyecto como Miembro del Comite
-
-Tipo Item
-==========
-
-- Importar (O_O)
-
+Item
+====
+- Relacionar [ 2 ]
+- Historial [ 2 ]
 
 Mensajeria
 ==========
 
-- Modelo 
-- Plataforma de mensajeria
+- Modelo [ 1 ]
+- Plataforma de mensajeria [ 2 ]
+
+Solicitud
+==========
+
+- Administrar Solicitud de Cambio [ 1 ]
+- Crear Solicitud [ 1 ]
+- Modificar Solicitud [ 1 ]
+- Eliminar Solicitud [ 1 ]
+- Enviar Solicitud [ 1 ]
+- Votar Solicitud [ 2 ]
+
  

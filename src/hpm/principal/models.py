@@ -181,6 +181,7 @@ class Item(models.Model):
 
     fase = models.ForeignKey(Fase)
     tipo_item = models.ForeignKey(TipoItem)
+    linea_base = models.ForeignKey('LineaBase', null=True, blank=True, default = None, on_delete=models.CASCADE)
     
 class Relacion(models.Model):
     class Meta:

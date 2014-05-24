@@ -36,12 +36,9 @@
                         </div>
                     </div>
 
-                    {% if mensaje %}
-                        <div class="alert alert-warning">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <strong>Atención!</strong> {{mensaje}}
-                        </div>
-                    {% endif %}
+
+                    {% include 'mensaje.html' %}
+                    
                         <center>
                             <h3>Listado de Usuarios</h3>                    
                         </center>

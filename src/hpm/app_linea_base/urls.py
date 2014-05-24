@@ -14,5 +14,7 @@ urlpatterns = patterns('',
     url(r'^(?P<id_fase>\d+)/modificar','app_linea_base.views.modificarLineaBase', name='modificar'),
     url(r'^(?P<id_fase>\d+)/cerrar/(?P<id_lineabase>\d+)/$','app_linea_base.views.cerrarLineaBase', name='cerrar'),
     url(r'^(?P<id_fase>\d+)/liberar/(?P<id_lineabase>\d+)/$','app_linea_base.views.liberarLineaBase', name='liberar'),
-    
+    url(r'^(?P<id_fase>\d+)/items/(?P<id_lineabase>\d+)/$','app_linea_base.views.itemLineaBase', name='items'),
+    url(r'^(?P<id_fase>\d+)/item/add/(?P<id_lineabase>\d+)/$','app_linea_base.views.agregarItemLineaBase', name='agregarItem'),
+    url(r'^(?P<id_fase>\d+)/item/remove/(?P<id_lineabase>\d+)/(?P<id_item>\d+)/$','app_linea_base.views.removerItemLineaBase', name='removerItem'),
 )

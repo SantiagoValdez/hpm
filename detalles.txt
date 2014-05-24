@@ -5,6 +5,7 @@
 - Cuando finaliza un fase ?
 
 	Cuando todos sus items estan en una LB
+	
 
 - Cuando crea la Linea Base ?
 
@@ -13,6 +14,13 @@
 - Como saber que usuarios pueden/trabajan en los items?
 
 	Por permiso sobre items en la fase
+
+Estados de una Fase:
+====================
+- Incial	:	al crear si aún no tiene ningun item o tipo item.
+- En desarrollo	:	cuando se crea el primer tipo item o item.
+- Con linea base:	cuando se crea una linea base.
+- Finalizado	:	todos los items estan en una lb, todos los item tienen sucesor. 
 
 Estados de un Item
 ==================
@@ -23,6 +31,15 @@ Estados de un Item
 - Final : aquel que forma de una LB activa.
 - Eliminado : fue borrado.
 - Revision : fue modificado sus items relacionados pasan a revision para ser revisados.
+
+
+Estados de la Linea Base
+=========================
+
+- Inicial : se puede agregar items y modificar etc.
+- Cerrada : todos sus item pasan a estado final.
+- Liberada : todos los items pasan a revision.
+- 
 
 Relaciones
 ==========

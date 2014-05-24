@@ -1,0 +1,28 @@
+
+{% if messages %}
+<!-- INICIO DE MENSAJES -->
+	<div class="row">
+		<br>
+	{% for message in messages %}
+
+		{% if  'info' in message.tags   %}
+			<div class="alert alert-info">
+		{% elif  'warning' in message.tags   %}
+			<div class="alert alert-warning">
+		{% elif  'error' in message.tags   %}
+			<div class="alert alert-danger">
+		{% elif  'success' in message.tags   %}
+			<div class="alert alert-success">
+		{% elif 'debug' in  message.tags %}
+			<!-- Debug message -->
+			<div class="hide">
+		{% else %}
+			<div class="alert alert-info">
+		{% endif %}
+		    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		    <strong>Op!</strong> {{message}}
+		</div>
+	{% endfor %}
+	</div>
+<!-- FIN DE MENSAJES -->
+{% endif %}
