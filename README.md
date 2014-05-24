@@ -8,7 +8,8 @@ Hephaustus Project Manager — IS2 class project
 Iteracion 1 completa
 Iteracion 2 completa
 Iteracion 3 completa
-Iteracion 4 en proceso
+Iteracion 4 completa
+Iteracion 5 en proceso
 
 ToDo
 ====
