@@ -2,35 +2,57 @@
 
 	{% if usuario %}
 
-		<center>
-			<div class="form-row field-asunto">
-		    	<div>
-		        	<label class="required" for="id_sender">Remitente:</label><br>
-		        	<textarea class="TextField" readonly cols="20" id="id_sender" name="sender" rows="1">
-{{mensaje.sender}}</textarea>
+			<div id="page-wrapper">
+				
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			        	<br>
+			        	<b>Remitente:</b>
+			        	 {{mensaje.sender}}
+			        	<br>
+			        </div>
+			        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						
+					</div>
 				</div>
-			</div>
-			<div class="form-row field-asunto">
-		    	<div>
-		        	<label class="required" for="id_asunto">Asunto:</label><br>
-		        	<textarea class="TextField" readonly cols="40" id="id_asunto" name="asunto" rows="1">
-{{mensaje.asunto}}</textarea>
-				</div>
-			</div>
-			<div class="form-row field-mensaje">
-		    	<div>
-		        	<label class="required" for="id_mensaje">Mensaje:</label><br>
-		        	<textarea class="vLargeTextField" readonly cols="40" id="id_mensaje" name="mensaje" rows="40">
-{{mensaje.mensaje}}</textarea>
-				</div>
-			</div>
-		
-			<hr>
-            	<a class="btn btn-primary" href="{% url 'mensajes:index' %}">
-            	<i class="fa fa-chevron-left "></i></a>
-        	<hr>
 
-    	</center>
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+			        	<br>
+			        	<b>Asunto:</b> {{mensaje.asunto}}
+			        	<br>
+			        </div>
+			        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						
+					</div>
+					<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+						<hr>
+			        	<b>Mensaje:</b>
+			        	<h4>{{mensaje.mensaje}}</h4>
+					</div>
+						
+					<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+						
+					</div>
+				</div>
+
+				<hr>
+	            	<a class="btn btn-primary" href="{% url 'mensajes:index' %}">
+	            	<i class="fa fa-chevron-left "></i></a>
+	        	<hr>
+        	</div>
+    	
 
 	{% endif %}	
 {% include 'footer.html' %}

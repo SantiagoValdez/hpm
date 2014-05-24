@@ -100,9 +100,8 @@ def eliminarMensaje(request, id_mensaje):
 
     if(u):
 
-        Mensaje.objects.filter(id=id_mensaje).delete()
-        Mensaje.save()
-
+        Mensaje.objects.get(id=id_mensaje).delete()
+        
         messages.success(request, 'Se ha eliminado el mensaje exitosamente.')
 
         return redirect('mensajes:index')

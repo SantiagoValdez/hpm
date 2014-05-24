@@ -17,24 +17,7 @@
                     <div class="row">
                         <h2 class="page-header">Mensajes</h2>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                            
-                        </div>
-                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                            <form class="input-group custom-search-form" method="post" action={% url 'mensajes:index' %} >
-                            {% csrf_token %}
-
-                                <input type="text" class="form-control" placeholder="Buscar..." name="search" >
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-
-                            </form>
-                        </div>
-                    </div>
+                    
 
 
                     {% include 'mensaje.html' %}

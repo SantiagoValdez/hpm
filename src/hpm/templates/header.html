@@ -41,7 +41,11 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 
-                <a href="{% url 'mensajes:index' %}"><i class="fa fa-envelope fa-fw"></i></a>
+                <a href="{% url 'mensajes:index' %}"><i class="fa fa-envelope fa-fw"></i>
+                    {% if usuario.no_leido %}
+                    <span class="badge">{{usuario.no_leido}}</span>
+                    {% endif %}
+                </a>
                 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

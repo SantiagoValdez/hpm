@@ -133,6 +133,9 @@ def is_logged(session):
 		u['permisos'] = lista_permisos
 		u['roles'] = lista_roles
 		
+		if( user.destinatario.filter(estado='no leido') ):
+			u['no_leido'] = len(user.destinatario.filter(estado='no leido'))
+
 		return u
 
 	else:
