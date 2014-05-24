@@ -236,3 +236,23 @@ class Mensaje(models.Model):
     asunto = models.TextField(max_length=50)
     mensaje = models.TextField(max_length=500)
     estado = models.TextField(max_length=20)
+
+class Solicitud(models.Model):
+    class Meta:
+        verbose_name = 'Solicitud'
+        verbose_name_plural = 'Solicituds'
+
+    def __unicode__(self):
+        return self.nombre
+
+    nombre = models.TextField(max_length=50)
+    descripcion = models.TextField(max_length=250)
+    accion = models.TextField(max_length=50)
+    estado = models.TextField(max_length=50)
+    cantidad_votantes = models.IntegerField()
+    votos_positivos = models.IntegerField()
+    votos_negativos = models.IntegerField()
+    item = models.ForeignKey('Item')
+    usuario = models.ForeignKey('usuario')
+    fase = models.ForeignKey('Fase')
+    votantes = models.ManyToManyField('Usuario',null=True, blank=True, default = None, related_name="solicitud_a_votar")

@@ -430,6 +430,20 @@ def newVersion(id_item, atributos):
         item.id_actual = version_item.id
         item.save()
 
+def setEstadoItem(id_item, estado):
+    with transaction.atomic():
+
+        item = Item.objects.get(id=id_item)
+        version_actual = VersionItem.objects.get(id=item.id_actual)
+
+        version_actual.estado = estado
+
+        version_actual.save()
+        item.version = version_actual.version
+        item.save()
+
+
+
 
 def setVersionItem(id_item, id_version):
     """

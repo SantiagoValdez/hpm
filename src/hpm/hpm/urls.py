@@ -37,6 +37,8 @@ urlpatterns = patterns('',
 
     url(r'^item/', include('app_item.urls' , namespace='item')),
 
+    url(r'^solicitud/', include('app_solicitud.urls' , namespace='solicitud')),
+
     # url(r'^api/usuarios/', include('principal.urls')),
     # #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
     # #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),

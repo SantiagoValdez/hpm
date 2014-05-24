@@ -1,0 +1,63 @@
+<div class="modal fade" id="modal-nuevo">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Nueva Solicitud</h4>
+			</div>
+			<form method="post" action="{% url 'solicitud:nuevo' fase.id %}" novalidate>
+				{% csrf_token %}
+				<div class="modal-body">
+					<center>
+
+						
+						<div class="control-group">
+							<label>Nombre:</label><br>
+							<div class="controls">
+								<input type="text" name="nombre" placeholder="Nombre..." required maxlength="50" data-validation-required-message="Por favor rellena este campo :)" minlength="2" data-validation-minlength-message="Se te podria ocurrir un nombre mas largo no?">
+								<p class="help-block"></p>
+							</div>
+						</div>
+												
+						<div class="control-group">
+							<label>Descripcion:</label><br>
+							<div class="controls">
+								<input type="text" name="descripcion" placeholder="Descripcion..." required maxlength="250" data-validation-required-message="Por favor rellena este campo :)">
+								<p class="help-block"></p>
+							</div>
+						</div>
+						
+						<div class="control-group">
+							<label>Accion:</label><br>
+							<div class="controls">
+								<select name="accion" required data-validation-required-message="Por favor rellena este campo :)" >
+									<option value="eliminar">Eliminar</option>
+									<option value="modificar">Modificar</option>
+								</select>
+								<p class="help-block"></p>
+							</div>
+						</div>
+
+						<div class="control-group">
+							<label>Item:</label><br>
+							<div class="controls">
+								<select name="id_item">
+									{% for i in fase.item_set.all %}
+											<option value="{{i.id}}">{{i.nombre}}</option>
+									{% endfor %}
+								</select>
+								<p class="help-block"></p>
+							</div>
+						</div>
+						<hr>
+											
+					</center>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

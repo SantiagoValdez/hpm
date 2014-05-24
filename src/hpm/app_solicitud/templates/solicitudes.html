@@ -3,8 +3,10 @@
 
         {% if usuario %}
 
-        {% include 'modal-delete-comite.html' %}
-        {% include 'modal-new-comite.html' %}
+        {% include 'modal-delete-solicitud.html' %}
+        {% include 'modal-send-solicitud.html' %}
+        {% include 'modal-new-solicitud.html' %}
+        {% include 'modal-modificar-solicitud.html' %}
         <div id="page-wrapper">
             
             
@@ -24,12 +26,6 @@
                             <h3>Listado de Solicitudes</h3>                    
                         </center>
                     
-                    {% if lista.count|divisibleby:"2" and lista.count > 0 %}   
-                        <div class="alert alert-warning">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                            <strong>Atención!</strong> El numero de miembros debe ser impar.
-                        </div>
-                    {% endif %}
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -60,29 +56,31 @@
                                     <td></td>
                                     <td>
                                         {% if s.estado == 'inicial' %} 
-                                         <a href="#modificar" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
+                                         <a href="#modificar" class="btn btn-danger btn-outline" onClick="modificarSolicitud( '{{s.id}}','{{s.item.id}}','{{s.nombre}}','{{s.descripcion}}','{{s.accion}}' );" ><i class="fa fa-minus-square" ></i></a>
                                         {% endif %}
                                      </td>
                                     <td>
                                         {% if s.estado == 'inicial' %}
-                                         <a href="#eliminar" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
+                                         <a href="#eliminar" class="btn btn-danger btn-outline"  onClick="eliminarSolicitud( '{{s.nombre}}', '{% url 'solicitud:eliminar' fase.id s.id %}' );"><i class="fa fa-minus-square"></i></a>
                                         {% endif %}
                                      </td>
 
                                      <td>
                                         {% if s.estado == 'inicial' %} 
-                                         <a href="#enviar" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
+                                         <a href="#enviar" class="btn btn-danger btn-outline" onClick="enviarSolicitud( '{{s.nombre}}', '{% url 'solicitud:enviar' fase.id s.id %}' );"><i class="fa fa-minus-square"></i></a>
                                         {% endif %}
                                      </td>
 
-                                     {% for m in fase.proyecto.comite_set.first.usuarios %}
+                                     
+                                     
+                                     {% for m in fase.proyecto.comite_set.first.usuarios.all %}
                                         {% if m.id == usuario.id %}
                                             {% if s.estado == 'pendiente' %}
                                                 <td> 
-                                                <a href="#aprobar" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
+                                                <a href="{% url 'solicitud:aprobar' fase.id s.id %}" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
                                                 </td>
                                                 <td> 
-                                                <a href="#rechazar" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
+                                                <a href="{% url 'solicitud:rechazar' fase.id s.id %}" class="btn btn-danger btn-outline" ><i class="fa fa-minus-square"></i></a>
                                                 </td>
                                             {% endif %}
                                         {% endif %}
@@ -103,7 +101,7 @@
                             {# endif #}
                         </center>
                         <hr>
-                            <a class="btn btn-primary" href="{% url 'proyectos:index' %}">
+                            <a class="btn btn-primary" href="{% url 'fases:index' fase.proyecto.id %}">
                                     <i class="fa fa-chevron-left "></i>
                             </a>
                         <hr>

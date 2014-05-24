@@ -50,6 +50,7 @@ INSTALLED_APPS = (
     'app_linea_base',
     'app_item',
     'app_mensajeria',
+    'app_solicitud',
     
 )
 
