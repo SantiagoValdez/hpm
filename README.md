@@ -20,6 +20,7 @@ ToDo
 * Script de población automática de tablas paramétricas del sistema 
 * Conjunto de pruebas
 * Linea Base y finalizacion fase
+* Comite y Solicitud de cambio
 
 
 Team
