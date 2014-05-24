@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 import json
 from django.db import transaction
+from django.contrib import messages
 # Create your views here.
 
 
@@ -246,11 +247,58 @@ def revertirItem(request, id_fase, id_item):
         else:
 
             return render(request, 'revertir-item.html', {'usuario': u, 'fase': fase, 'item': item})
-
-            # return HttpResponse("Hola fase :" + str(id_fase) + " tipo " +
-            # str(id_tipo_item))
     else:
         return redirect('/login')
+
+
+def relacionarItem(request, id_fase, id_item):
+    u = is_logged(request.session)
+
+    if(u):
+        
+        fase = Fase.objects.get(id=id_fase)
+        item = Item.objects.get(id=id_item)
+        
+        # on post
+        if request.method == 'POST':
+            if( ('sucesor' in request.POST or 'hijo' in request.POST ) and
+                'tipo' in request.POST ):
+
+                try:
+
+                    id_antecesor = id_item
+                    tipo = request.POST['tipo']
+                    if(tipo == 'padre-hijo'):
+                        id_sucesor = request.POST['hijo']
+                    else:
+                        id_sucesor = request.POST['sucesor']
+
+                    newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor)
+                    messages.success(request,'Se creo la relacion con exito.')
+                except Exception, e:
+                    print e
+                    messages.error(request, 'No se pudo crear la relacion. Intente de nuevo.')
+
+            else:
+                messages.error(request, 'No se pudo crear la relacion. Intente de nuevo.')
+        
+        # finalmente... siempre... siempre...
+        lista = getRelacionesItem(id_item)
+        return render(request, 'relacionar-item.html', {'usuario' : u, 'fase' : fase, 'item' : item, 'lista' : lista})
+
+    else:
+        return redirect('/login')
+
+def removerRelacionItem(request, id_fase, id_item , id_relacion):
+    print "Remover ... Relacion "
+    try:
+        deleteRelacion(id_relacion)
+        messages.success(request,"Se elimino la relacion con exito")
+    except Exception, e:
+        print e
+        messages.error(request, "No se pudo eliminar la relacion")
+
+    return redirect('item:relacionar', id_fase=id_fase, id_item=id_item)
 
 
 def getItem(request, id_tipo_item):
@@ -281,168 +329,6 @@ def getItem(request, id_tipo_item):
     data = json.dumps(dic)
 
     return HttpResponse(data)
-
-#
-# Atributos de  Item 					  #
-#
-#
-#
-
-
-def indexAtributoItem(request, id_tipo_item):
-    """
-    Funcion: Panel principal de administracion de los atributos de item
-
-    @param request: Objeto que se encarga de manejar las peticiones http.
-    @param id_tipo_item: Identificador del item del cual se visualizan sus atributos.
-    @return: Si el usuario se encuentra logueado retorna un objeto
-            HttpResponse del template atributo_tipo_item.html renderizado con el contexto
-            {'usuario' : u, 'tipo_item' : tipoitem, 'lista' : lista}. Sino, retorna un objeto
-            HttpResponseRedirect hacia '/login'.
-    """
-
-    u = is_logged(request.session)
-
-    if(u):
-
-        tipoitem = Item.objects.get(id=id_tipo_item)
-        print tipoitem
-        lista = tipoitem.atributotipoitem_set.all()
-
-        return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista})
-
-    else:
-        return redirect('/login')
-
-
-def nuevoAtributoItem(request, id_tipo_item):
-    """
-    Funcion: Se ocupa de crear un nuevo atributo de item
-
-    @param request: Objeto que se encarga de manejar las peticiones http.
-    @param id_tipo_item: Identificador del tipo de item que se utiliza como base para el atributo.
-    @return: Si el usuario se encuentra logueado y si un nuevo atributo
-            es creado exitosamente retorna un objeto HttpResponse del template
-            atributo_tipo_item.html renderizado con el contexto
-            {'usuario' : u,'tipo_item' : tipoitem,'lista' : lista,'mensaje' : 'Se creo el atributo con exito'}.
-            Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
-    """
-
-    u = is_logged(request.session)
-
-    if (u):
-        tipoitem = Item.objects.get(id=id_tipo_item)
-
-        if (request.method == 'POST'):
-
-            if('nombre' in request.POST and
-                    'valor_por_defecto' in request.POST and
-                    'tipo' in request.POST):
-                a = AtributoItem()
-                a.nombre = request.POST['nombre']
-                a.valor_por_defecto = request.POST['valor_por_defecto']
-                a.tipo = request.POST['tipo']
-                a.tipo_item = tipoitem
-
-                try:
-                    a.save()
-
-                except Exception, e:
-
-                    print e
-                    lista = tipoitem.atributotipoitem_set.all()
-                    return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Ocurrio un error, verifique que el nombre es unico e intente de nuevo'})
-
-                lista = tipoitem.atributotipoitem_set.all()
-                return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Se creo el atributo con exito'})
-            else:
-                lista = tipoitem.atributotipoitem_set.all()
-                return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Ocurrio un error'})
-
-        else:
-            return redirect('tipoitem:indexAtributo', id_tipo_item=id_tipo_item)
-    else:
-        return redirect('/login')
-
-
-def eliminarAtributoItem(request, id_tipo_item, id_atributo_tipo_item):
-    """
-    Funcion: Se ocupa de eliminar un atributo del item
-
-    @param request: Objeto que se encarga de manejar las peticiones http.
-    @param id_tipo_item: Identificador del tipo de item el cual se utiliza para renderizar
-            el indice de atributos.
-    @param id_atributo_tipo_item: Identificador del atributo de item a eliminar.
-    @return: Si el usuario se encuentra logueado y el atributo de item es eliminado
-            exitosamente retorna un objeto HttpResponseRedirect hacia el indice de atributos del
-            correspondiente tipo de item.
-            Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
-    """
-
-    u = is_logged(request.session)
-
-    if(u):
-
-        AtributoItem.objects.filter(id=id_atributo_tipo_item).delete()
-
-        return redirect('tipoitem:indexAtributo', id_tipo_item=id_tipo_item)
-
-    else:
-        return redirect('/login')
-
-
-def modificarAtributoItem(request, id_tipo_item):
-    """
-    Funcion: Se ocupa de modificar un atributo de un determinado item
-
-    @param request: Objeto que se encarga de manejar las peticiones http.
-    @id_tipo_item: Identificador del tipo de item cuyo atributo sera modificado.
-    @return: Si el usuario se encuentra logueado y si el atributo de tipo de item es
-            modificado exitosamente retorna un objeto HttpResponse del template
-            atributo_tipo_item.html renderizado con el contexto
-            {'usuario' : u,'tipo_item' : tipoitem,'lista' : lista,'mensaje' : 'Se modifico el atributo con exito'}.
-            Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
-    """
-
-    u = is_logged(request.session)
-
-    if(u):
-        tipoitem = Item.objects.get(id=id_tipo_item)
-        if(request.method == 'POST'):
-            if ('nombre' in request.POST and
-                    'valor_por_defecto' in request.POST and
-                    'tipo' in request.POST and
-                    'id' in request.POST):
-
-                a = AtributoItem.objects.get(id=request.POST['id'])
-                if (a):
-                    a.nombre = request.POST['nombre']
-                    a.valor_por_defecto = request.POST['valor_por_defecto']
-                    a.tipo = request.POST['tipo']
-
-                    try:
-                        a.save()
-                    except Exception, e:
-                        print e
-                        lista = tipoitem.atributotipoitem_set.all()
-                        return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Ocurrio un error, verifique que el nombre es unico e intente de nuevo'})
-
-                    lista = tipoitem.atributotipoitem_set.all()
-                    return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Se modifico el atributo con exito'})
-
-                else:
-                    lista = tipoitem.atributotipoitem_set.all()
-                    return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Ocurrio un error'})
-
-            else:
-                lista = tipoitem.atributotipoitem_set.all()
-                return render(request, 'atributo_tipo_item.html', {'usuario': u, 'tipo_item': tipoitem, 'lista': lista, 'mensaje': 'Ocurrio un error. Verifique si completo los campos correctamente'})
-
-        return redirect('tipoitem:indexAtributo', id_tipo_item=id_tipo_item)
-
-    else:
-        return redirect('/login')
-
 
 def newItem(nombre, numero, id_fase, id_tipo_item, atributos):
     """
@@ -588,9 +474,17 @@ def newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor):
     @param id_sucesor: Identificador del item sucesor en la relacion.
     """
 
+    print "Nueva relacion..."
+    print "ID A:" + str(id_antecesor)
+    print "ID S:" + str(id_sucesor)
+
     fase = Fase.objects.get(id=id_fase)
     item_antecesor = Item.objects.get(id=id_antecesor)
     item_sucesor = Item.objects.get(id=id_sucesor)
+
+    for relacion in getRelacionesItem(id_antecesor):
+        if(item_sucesor == relacion.sucesor.proxy):
+            raise Exception("Ya posee esta relacion!")
 
     antecesor = VersionItem.objects.get(id=item_antecesor.id_actual)
     sucesor = VersionItem.objects.get(id=item_sucesor.id_actual)
@@ -613,6 +507,30 @@ def deleteRelacion(id_relacion):
 
     @param id_relacion: Identificador de la relacion a ser eliminada.
     """
-
+    print "Dentro de Delete Relacion id : " + str(id_relacion)
     relacion = Relacion.objects.get(id=id_relacion)
     relacion.delete()
+
+def getRelacionesItem(id_item):
+    relaciones = None
+    try:
+        item = Item.objects.get(id=id_item)
+        print item
+        version = VersionItem.objects.get(id=item.id_actual)
+        print version
+        antecesores = version.relacion_antecesor_set.all()
+        print antecesores
+        sucesores = version.relacion_sucesor_set.all()
+        print sucesores
+
+        relaciones = []
+        relaciones += antecesores
+        relaciones += sucesores
+        print relaciones
+
+    except Exception, e:
+        print e
+
+    return relaciones
+
+   

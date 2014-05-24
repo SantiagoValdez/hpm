@@ -5,6 +5,7 @@
         {% if usuario %}
 
         {% include 'modal-add-item-lineabase.html' %}
+        {% include 'modal-remove-item-lineabase.html' %}
         <div id="page-wrapper">
             
             
@@ -37,6 +38,8 @@
                         </div>
                     </div>
 
+                    {% include 'mensaje.html' %}
+
                     {% if mensaje %}
                         <div class="alert alert-warning">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -68,7 +71,7 @@
                                         <td></td>
                                         
                                         <td>
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id linea_base.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{i.nombre}}', '{% url 'lineasbase:removerItem' fase.id linea_base.id i.id %}' );"><i class="fa fa-minus-square"></i></a>
                                         </td>
                                         
                                     </tr>

@@ -48,3 +48,29 @@ function setUrlNewItem(id_fase){
 	
 
 }
+
+function setListaRelacion(){
+
+	var tipo = $("#tipo").val();
+	console.log(tipo)
+
+	if(tipo == 'padre-hijo'){
+		console.log("tipo padre-hijo");
+		$("#s-hijo").removeClass('hide');
+		$("#s-sucesor").addClass('hide');
+	}else{
+		console.log("tipo antecesor-sucesor");
+		$("#s-sucesor").removeClass('hide');
+		$("#s-hijo").addClass('hide');
+	}
+
+}
+
+function eliminarRelacionItem(url){
+	console.log("Eliminar Relacion Item");
+	console.log(url);
+
+	$("#modal-eliminar").modal('show');
+	$("#btn-eliminar").attr('href', url);
+
+}

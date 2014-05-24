@@ -13,8 +13,8 @@ urlpatterns = patterns('',
     url(r'^(?P<id_fase>\d+)/eliminar/(?P<id_item>\d+)/$', 'app_item.views.eliminarItem', name='eliminar'),
     url(r'^(?P<id_fase>\d+)/modificar/(?P<id_item>\d+)/','app_item.views.modificarItem', name='modificar'),
     url(r'^(?P<id_fase>\d+)/revertir/(?P<id_item>\d+)/','app_item.views.revertirItem', name='revertir'),
-    
-
+    url(r'^(?P<id_fase>\d+)/relacion/(?P<id_item>\d+)/','app_item.views.relacionarItem', name='relacionar'),
+    url(r'^(?P<id_fase>\d+)/relaciones/(?P<id_item>\d+)/remover/(?P<id_relacion>\d+)','app_item.views.removerRelacionItem', name='removerRelacion'),
     url(r'^get/(?P<id_item>\d+)/$','app_item.views.getItem', name='get'),
 
 )

@@ -189,7 +189,7 @@ class Relacion(models.Model):
         verbose_name_plural = 'Relaciones'
 
     def __unicode__(self):
-        pass
+        return 'ID : ' + str(self.id)
     tipo = models.TextField(max_length=50)
 
     #Guarda la referencia al item antecesor o padre

@@ -1,0 +1,115 @@
+
+{% include 'header.html' %}
+
+
+        {% if usuario %}
+        
+        
+        {% include 'modal-delete-relacion-item.html' %}       
+        {% include 'modal-new-relacion-item.html' %}
+        
+        <div id="page-wrapper">
+            
+            
+        
+            <div class="row">
+        
+                <div class="col-lg-12">
+                    <div class="row">
+
+                        <h2 class="page-header">Relaciones del Item : {{item.nombre}} </h2>
+                    </div>
+
+                    
+                        {% include 'mensaje.html' %}
+
+                        <center>
+                            <h3>Lista de Relaciones del Item</h3>                    
+                        </center>
+                        <form method="post">
+                            {% csrf_token %}
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo</th>
+                                        <th>Funcion</th>
+                                        <th>Item Relacionado</th>
+                                        <th></th>
+                                        <th>Eliminar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for r in lista %}
+                                    <tr>
+                                        <td>{{r.tipo}}</td>
+                                        
+                                        {% for version in item.versionitem_set.all %}
+                                            {% if version.id == item.id_actual %}
+                                                {% if r.tipo == 'padre-hijo' %}
+                                                    {% if item == r.antecesor.proxy %}
+                                                        <td>Padre</td>
+                                                    {% else %}
+                                                        <td>Hijo</td>
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if item == r.antecesor.proxy %}
+                                                        <td>Antecesor</td>
+                                                    {% else %}
+                                                        <td>Sucesor</td>
+                                                    {% endif %}
+                                                {% endif %}
+
+                                                {% if item == r.antecesor.proxy %}
+                                                        <td>{{r.sucesor.proxy}} </td>
+                                                {% else %}
+                                                        <td>{{r.antecesor.proxy}}</td>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        <td></td>
+                                        
+                                        <td>
+                                            {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
+                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarRelacionItem( '{% url 'item:removerRelacion' fase.id item.id r.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {# endif #}
+                                        </td>
+
+                                    </tr>
+                                    {% empty %}
+                                        <tr>
+                                            No hay resultados
+                                        </tr> 
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            
+                            <center>
+                                
+                                <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo' onClick="setListaRelacion();"><i class="fa fa-plus-square fa-2x"></i></a>
+                                                              
+                            </center>
+                            <hr>
+                            <a class="btn btn-primary" href="{% url 'item:index' fase.id %}">
+                                    <i class="fa fa-chevron-left "></i>
+                            </a>
+                            <hr>
+                        </form>
+        
+                </div>
+                <!-- /.col-lg-12 -->
+        
+            </div>
+            <!-- /.row -->
+        
+
+            
+
+        </div>
+        {% endif %}
+
+        {% load staticfiles %}
+        <script src="{% static 'js/fases.js' %}"></script>
+
+        <!-- /#page-wrapper -->
+{% include 'footer.html' %}

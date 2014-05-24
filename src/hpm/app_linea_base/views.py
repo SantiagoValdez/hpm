@@ -8,6 +8,7 @@ from django.core import serializers
 import datetime
 import os.path
 from django.db import transaction
+from django.contrib import messages
 
 # Create your views here.
 
@@ -289,27 +290,33 @@ def agregarItemLineaBase(request, id_fase, id_lineabase):
     u = is_logged(request.session)
     if(u):
 
-        print "HOLAAAA :D "        
         if(request.method == 'POST'):
             id_item = request.POST['id_item']
-            print "MIRA MIRA ... SE SUPONE QUE MANDO I:" + str(id_item) + " - LB:" + str(id_lineabase)
-            addItemLB(id_item,id_lineabase)
+            
+            try:
+                addItemLB(id_item,id_lineabase)
+                messages.success(request, 'Se agrego el item con exito.')
+            except Exception, e:
+                print e
+                messages.error(request,'Ocurrio un error al agregar el item. Intente de nuevo.')
+            
 
         return redirect('lineasbase:items', id_fase = id_fase, id_lineabase = id_lineabase)
-        #return render(request,'item-lineabase.html', {'usuario' : u, 'fase' : fase, 'linea_base' : lb})
     else:
         redirect('/login')
 
 def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
     u = is_logged(request.session)
     if(u):        
-        if(request.method == 'POST'):
-            #id_item = request.POST['id_item']
-            #addItemLB(id_item,id_lineabase)
-            print "SEP"
+        
+        try:
+            deleteItemLB(id_item)
+            messages.success(request, 'Se removio el item con exito.')
+        except Exception, e:
+            print e
+            messages.error(request,'Ocurrio un error al remover el item. Intente de nuevo.')
 
         return redirect('lineasbase:items', id_fase = id_fase, id_lineabase = id_lineabase)
-        #return render(request,'item-lineabase.html', {'usuario' : u, 'fase' : fase, 'linea_base' : lb})
     else:
         redirect('/login')
 

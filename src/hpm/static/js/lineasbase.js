@@ -9,6 +9,16 @@ function eliminarLineaBase(id, url){
 
 }
 
+function eliminarLineaBase(id, url){
+	console.log("Eliminar Item Linea Base");
+	console.log(id);
+	console.log(url);
+
+	$("#nombre-item").text(id);
+	$("#modal-eliminar").modal('show');
+	$("#btn-eliminar").attr('href', url);
+
+}
 
 function modificarLineaBase(id, nro, nombre, estado){
 	console.log("MODIFICAR LINEA BASE");
