@@ -110,6 +110,15 @@ def eliminarMensaje(request, id_mensaje):
         return redirect('/login')
 
 def verMensaje(request, id_mensaje):
+    """
+    Funcion: Se ocupa de visualizar el contenido de los mensajes
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_mensaje: Identificador del mensaje que se visualizara.
+    @return: Si el usuario esta logueado, se retorna una objeto HttpResponse
+        del template ver-mensaje.html con el contexto {'usuario':u, 'mensaje':mensaje}.
+        Sino, retorna un objeto HttpResponseRedirect hacia /login.
+    """
 
 	u = is_logged(request.session)
 
