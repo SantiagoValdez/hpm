@@ -219,3 +219,20 @@ class LineaBase(models.Model):
     # estados posibles gab: inicial, en desarrollo,
     # con lineas de base parciales, linea base, finalizado
     estado = models.TextField()
+
+class Mensaje(models.Model):
+    """"
+    Clase Mensaje
+    """
+    class Meta:
+        verbose_name = 'Mensaje'
+        verbose_name_plural = 'Mensajes'
+
+    def __unicode__(self):
+        return self.asunto
+
+    sender = models.ForeignKey(Usuario, related_name='remitente')
+    receiver = models.ForeignKey(Usuario, related_name='destinatario')
+    asunto = models.TextField(max_length=50)
+    mensaje = models.TextField(max_length=500)
+    estado = models.TextField(max_length=20)

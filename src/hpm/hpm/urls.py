@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     
     url(r'^login/', 'principal.views.login'),
     url(r'^logout/', 'principal.views.logout'),
+    url(r'^mensajes/', include('app_mensajeria.urls', namespace='mensajes')),
     
     url(r'^usuarios/', include('app_usuario.urls', namespace='usuarios')),
 

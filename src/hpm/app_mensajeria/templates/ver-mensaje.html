@@ -1,0 +1,36 @@
+{% include 'header.html' %}
+
+	{% if usuario %}
+
+		<center>
+			<div class="form-row field-asunto">
+		    	<div>
+		        	<label class="required" for="id_sender">Remitente:</label><br>
+		        	<textarea class="TextField" readonly cols="20" id="id_sender" name="sender" rows="1">
+{{mensaje.sender}}</textarea>
+				</div>
+			</div>
+			<div class="form-row field-asunto">
+		    	<div>
+		        	<label class="required" for="id_asunto">Asunto:</label><br>
+		        	<textarea class="TextField" readonly cols="40" id="id_asunto" name="asunto" rows="1">
+{{mensaje.asunto}}</textarea>
+				</div>
+			</div>
+			<div class="form-row field-mensaje">
+		    	<div>
+		        	<label class="required" for="id_mensaje">Mensaje:</label><br>
+		        	<textarea class="vLargeTextField" readonly cols="40" id="id_mensaje" name="mensaje" rows="40">
+{{mensaje.mensaje}}</textarea>
+				</div>
+			</div>
+		
+			<hr>
+            	<a class="btn btn-primary" href="{% url 'mensajes:index' %}">
+            	<i class="fa fa-chevron-left "></i></a>
+        	<hr>
+
+    	</center>
+
+	{% endif %}	
+{% include 'footer.html' %}
