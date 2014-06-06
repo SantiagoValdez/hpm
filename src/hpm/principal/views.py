@@ -2,10 +2,13 @@ from principal.models import Usuario
 from principal.models import Proyecto
 from principal.models import Rol
 from principal.models import Permiso
+from principal.models import LineaBase
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
+import os.path
+import datetime
 
 
 
@@ -140,3 +143,25 @@ def is_logged(session):
 
 	else:
 		return False
+
+def historialLineaBase(operacion, id_lineabase, usuario):
+    """
+    Funcion: Se ocupa de registrar las operaciones realizadas a una
+
+    @param operacion: Operacion realizada sobre la linea base.
+    @param id_lineabase: Identificador de la linea base sobre la cual se realizan
+            las operaciones.
+    @param usuario: Usuario que realizo las operacion sobre la linea base.
+    """
+
+    lb = LineaBase.objects.get(id=id_lineabase)
+    fasenombre = lb.fase.nombre
+
+    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    base_path = os.path.dirname(os.path.dirname(__file__))
+    path = os.path.join(base_path, 'historial/lineabase/')
+    name = os.path.join(path, "informe-" + fasenombre + "-lb-" + str(lb.id))
+
+    with open(name, "a") as myfile:
+        myfile.write("{0}\t{1}\t{2}\t{3}\n".format(
+            date, operacion, lb.nombre, usuario.username))

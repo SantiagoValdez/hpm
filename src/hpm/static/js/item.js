@@ -74,3 +74,11 @@ function eliminarRelacionItem(url){
 	$("#btn-eliminar").attr('href', url);
 
 }
+
+function adjuntarArchivo(nombre){
+	console.log("Adjuntar archivo a");
+	console.log(nombre);
+
+	$("#modal-modificar").modal('show');
+
+}

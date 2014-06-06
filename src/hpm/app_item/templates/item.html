@@ -9,6 +9,7 @@
         {# include 'modal-new-tipo_item.html' #}
         {# include 'modal-modificar-tipo_item.html' #}
         {# include 'modal-import-tipo_item.html' #}
+        {# include 'modal-adjuntar.html' #}
         
         {% include 'modal-new-item.html' %}
         
@@ -62,6 +63,7 @@
                                         <th>Version</th>
                                         <th>Tipo</th>
                                         <th>Atributos</th>
+                                        <th>Archivo</th>
                                         <th></th>
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
@@ -98,6 +100,11 @@
 
                                             {% endfor %}
 
+                                        </td>
+                                        <td>
+                                            
+                                            <a href="#adjuntar" class="btn btn-default btn-outline" onClick="adjuntarArchivo( '{{i.nombre}}' );"><i class="fa fa-paperclip"></i></a>
+                                            
                                         </td>
                                         <td></td>
                                         <td> 
@@ -166,7 +173,8 @@
         {% endif %}
 
         {% load staticfiles %}
-        <script src="{% static 'js/fases.js' %}"></script>
+        <script src="{% static 'js/item.js' %}"></script>
+
 
         <!-- /#page-wrapper -->
 {% include 'footer.html' %}

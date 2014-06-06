@@ -4,6 +4,8 @@ from principal.models import VersionItem
 from principal.models import AtributoItem
 from principal.models import TipoItem
 from principal.models import Relacion
+from principal.models import ArchivoForm, Archivo
+from principal.models import HistorialItem
 from principal.views import is_logged
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
@@ -69,6 +71,8 @@ def nuevoItem(request, id_fase, id_tipo_item):
                     'costo' in request.POST and
                     'prioridad' in request.POST):
 
+                user = Usuario.objects.get(id=request.session['usuario'])
+
                 atributos = {
                     'complejidad':  request.POST['complejidad'],
                     'costo':  request.POST['costo'],
@@ -87,6 +91,7 @@ def nuevoItem(request, id_fase, id_tipo_item):
                 try:
                     newItem(request.POST["nombre"], request.POST[
                             "numero"], fase.id, tipo_item.id, atributos)
+                    HistorialItem("crear",fase.id, user.id)
 
                 except Exception, e:
 
@@ -177,8 +182,11 @@ def modificarItem(request, id_fase, id_item):
 
                     atributos[atributo.nombre] = valor
 
+                user = Usuario.objects.get(id=request.session['usuario'])
+
                 try:
                     newVersion(id_item, atributos)
+                    HistorialItem('modificar',item.id,user.id)
 
                 except Exception, e:
 
@@ -228,8 +236,10 @@ def revertirItem(request, id_fase, id_item):
             if(	'id_version' in request.POST):
 
                 id_version = request.POST['id_version']
+                user = Usuario.objects.get(id=request.session['usuario'])
                 try:
                     setVersionItem(id_item, id_version)
+                    HistorialItem('revertir a'+ str(id_version),id_item,user.id)
 
                 except Exception, e:
 
@@ -273,8 +283,12 @@ def relacionarItem(request, id_fase, id_item):
                     else:
                         id_sucesor = request.POST['sucesor']
 
+                    item1 = Item.objects.get(id=id_antecesor)
+                    item2 = Item.objects.get(id=id_sucesor)
+                    user = Usuario.objects.get(id=request.session['usuario'])
                     newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor)
                     messages.success(request,'Se creo la relacion con exito.')
+                    HistorialItem('relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item,user.id)
                 except Exception, e:
                     print e
                     messages.error(request, 'No se pudo crear la relacion. Intente de nuevo.')
@@ -292,8 +306,14 @@ def relacionarItem(request, id_fase, id_item):
 def removerRelacionItem(request, id_fase, id_item , id_relacion):
     print "Remover ... Relacion "
     try:
+        relacion = Relacion.objects.get(id=id_relacion)
+        item1 = Item.objects.get(id=id_item)
+        item2 = Item.objects.get(id=relacion.sucesor.proxy.id)
+        user = Usuario.objects.get(id=request.session['usuario'])
         deleteRelacion(id_relacion)
         messages.success(request,"Se elimino la relacion con exito")
+        HistorialItem('eliminar relacion con' + item2.nombre,item1.id,user.id)
+
     except Exception, e:
         print e
         messages.error(request, "No se pudo eliminar la relacion")
@@ -548,4 +568,39 @@ def getRelacionesItem(id_item):
 
     return relaciones
 
-   
+def historialItem(operacion, id_item, id_usuario):
+    """
+    Funcion: Se ocupa de registrar las operaciones realizadas a un item
+
+    @param operacion: Operacion realizada sobre la linea base.
+    @param id_item: Identificador del item sobre el cual se realizan
+            las operaciones.
+    @param usuario: Usuario que realizo las operacion sobre la linea base.
+    """
+
+    item = Item.objects.get(id=id_item)
+    date = datetime.datetime.now()
+    user = Usuario.objects.get(id=id_usuario)
+    op = operacion
+
+    hist = HistorialItem()
+    hist.fecha = date
+    hist.operacion = op
+    hist.item = item
+    hist.usuario = user.username
+    hist.save()
+
+def adjuntarArchivo(request, id_fase, id_item):
+    print id_fase
+    
+#    if request.method == 'POST':
+#        form = ArchivoForm(request.POST, request.FILES)
+#        item = Item.objects.get(id=id_item)
+#        if form.is_valid:
+#            nuevoArchivo = Archivo(archivo=request.FILES['archivo'])
+#           nuevoArchivo.save()
+#            item.archivo = nuevoArchivo
+#
+#            return redirect('item:index', id_fase=id_fase)
+#    else:
+#        form = ArchivoForm()

@@ -60,6 +60,7 @@
                                         <th>Modificar</th>
                                         <th>Eliminar</th>
                                         <th></th>
+                                        <th>Historial</th>
                                         <th>Items</th>
                                         <th>Liberar</th>
                                         <th>Cerrar</th>
@@ -82,6 +83,10 @@
                                             <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id l.id %}' );"><i class="fa fa-minus-square"></i></a>
                                         </td>
                                         <td></td>
+                                        <td>
+                                            <a href="{% url 'lineasbase:historial' fase.id l.id %}" class="btn btn-default btn-outline"><i class="fa fa-calendar-o"></i></a>
+
+                                        </td>
                                         <td>
                                             <a href="{% url 'lineasbase:items' fase.id l.id %}" class="btn btn-primary"><i class="fa fa-dot-circle-o"></i></a>
 

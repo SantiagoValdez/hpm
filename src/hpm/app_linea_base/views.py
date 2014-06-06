@@ -1,14 +1,13 @@
 from django.shortcuts import render
-from principal.models import Proyecto, Usuario, Fase, LineaBase, Item
+from principal.models import Proyecto, Usuario, Fase, LineaBase, Item, HistorialLineaBase
 from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
 from django.core.urlresolvers import reverse
 from django.core import serializers
-import datetime
-import os.path
 from django.db import transaction
 from django.contrib import messages
+import datetime
 
 # Create your views here.
 
@@ -76,7 +75,7 @@ def nuevaLineaBase(request, id_fase):
 
                 try:
                     lb.save()
-                    historialLineaBase("crear", lb.id, user)
+                    historialLineaBase("crear", lb.id, user.id)
 
                 except Exception, e:
                     if(lb.id):
@@ -158,7 +157,7 @@ def modificarLineaBase(request, id_fase):
                         lb.save()
                         user = Usuario.objects.get(
                             id=request.session['usuario'])
-                        historialLineaBase("modificar", lb.id, user)
+                        historialLineaBase("modificar", lb.id, user.id)
                     except Exception, e:
                         lineasb = LineaBase.objects.filter(
                             fase=fase).order_by('nro')
@@ -207,7 +206,7 @@ def liberarLineaBase(request, id_fase, id_lineabase):
         lb.estado = "liberada"
         lb.save()
         user = Usuario.objects.get(id=request.session['usuario'])
-        historialLineaBase("liberar", lb.id, user)
+        historialLineaBase("liberar", lb.id, user.id)
 
         # Falta la varificacion de los item pertenecientes
 
@@ -242,7 +241,7 @@ def cerrarLineaBase(request, id_fase, id_lineabase):
         lb.estado = "valido"
         lb.save()
         user = Usuario.objects.get(id=request.session['usuario'])
-        historialLineaBase("cerrar", lb.id, user)
+        historialLineaBase("cerrar", lb.id, user.id)
 
         # Falta la varificacion de los item pertenecientes
 
@@ -252,9 +251,9 @@ def cerrarLineaBase(request, id_fase, id_lineabase):
         return redirect('/login')
 
 
-def historialLineaBase(operacion, id_lineabase, usuario):
+def historialLineaBase(operacion, id_lineabase, id_usuario):
     """
-    Funcion: Se ocupa de registrar las operaciones realizadas a una
+    Funcion: Se ocupa de registrar las operaciones realizadas a una linea base
 
     @param operacion: Operacion realizada sobre la linea base.
     @param id_lineabase: Identificador de la linea base sobre la cual se realizan
@@ -263,17 +262,28 @@ def historialLineaBase(operacion, id_lineabase, usuario):
     """
 
     lb = LineaBase.objects.get(id=id_lineabase)
-    fasenombre = lb.fase.nombre
+    #date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    date = datetime.datetime.now()
+    user = Usuario.objects.get(id=id_usuario)
+    op = operacion
 
-    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    base_path = os.path.dirname(os.path.dirname(__file__))
-    path = os.path.join(base_path, 'historial/lineabase/')
-    name = os.path.join(path, "informe-" + fasenombre + "-lb-" + str(lb.id))
+    hist = HistorialLineaBase()
+    hist.fecha = date
+    hist.operacion = op
+    hist.lineabase = lb
+    hist.usuario = user.username
+    hist.save()
 
-    with open(name, "a") as myfile:
-        myfile.write("{0}\t{1}\t{2}\t{3}\n".format(
-            date, operacion, lb.nombre, usuario.username))
+def indexHistorialLineaBase(request, id_fase, id_lineabase):
+    """"""
+    u = is_logged(request.session)
+    if(u):
+        lb = LineaBase.objects.get(id=id_lineabase)
+        fase = Fase.objects.get(id=id_fase)
 
+        return render(request,'historial-lineabase.html', {'usuario' : u, 'fase' : fase, 'linea_base' : lb})
+    else:
+        redirect('/login')
 
 def itemLineaBase(request,id_fase,id_lineabase):
     
@@ -292,9 +302,13 @@ def agregarItemLineaBase(request, id_fase, id_lineabase):
 
         if(request.method == 'POST'):
             id_item = request.POST['id_item']
+            item = Item.objects.get(id=id_item)
+            lb = LineaBase.objects.get(id=id_lineabase)
+            user = Usuario.objects.get(id=request.session['usuario'])
             
             try:
                 addItemLB(id_item,id_lineabase)
+                historialLineaBase("item " + item.nombre + " agregado",lb.id,user.id)
                 messages.success(request, 'Se agrego el item con exito.')
             except Exception, e:
                 print e
@@ -310,7 +324,11 @@ def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
     if(u):        
         
         try:
+            item = Item.objects.get(id=id_item)
+            lb = LineaBase.objects.get(id=id_lineabase)
+            user = Usuario.objects.get(id=request.session['usuario'])
             deleteItemLB(id_item)
+            historialLineaBase("item " + item.nombre + " elimanado",lb.id,user.id)
             messages.success(request, 'Se removio el item con exito.')
         except Exception, e:
             print e

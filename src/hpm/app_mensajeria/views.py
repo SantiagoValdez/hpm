@@ -120,9 +120,9 @@ def verMensaje(request, id_mensaje):
         Sino, retorna un objeto HttpResponseRedirect hacia /login.
     """
 
-	u = is_logged(request.session)
+    u = is_logged(request.session)
 
-	if(u):
+    if(u):
 		mensaje = Mensaje.objects.get(id=id_mensaje)
 
 		if(mensaje.estado == 'no leido'):
@@ -136,5 +136,5 @@ def verMensaje(request, id_mensaje):
 				messages.error(request, 'Ocurrio un error al vizualizar el mensaje.')
 
 		return render(request,'ver-mensaje.html', {'usuario':u, 'mensaje':mensaje})
-	else:
+    else:
 		return redirect('/login')

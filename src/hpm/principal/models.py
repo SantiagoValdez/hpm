@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 
@@ -140,6 +141,9 @@ class AtributoTipoItem(models.Model):
     
 
 class AtributoItem(models.Model):
+    """
+    Clase AtributoItem
+    """
     class Meta:
         verbose_name = 'AtributoItem'
         verbose_name_plural = 'AtributosItems'
@@ -151,6 +155,9 @@ class AtributoItem(models.Model):
     atributo_tipo_item = models.ForeignKey(AtributoTipoItem)
 
 class VersionItem(models.Model):
+    """
+    Clase VersionItem
+    """
     class Meta:
         verbose_name = 'VersionItem'
         verbose_name_plural = 'VersionesItems'
@@ -168,6 +175,9 @@ class VersionItem(models.Model):
     atributos = models.ManyToManyField('AtributoItem',null=True, blank=True, default = None)
 
 class Item(models.Model):
+    """
+    Clase Item
+    """
     class Meta:
         verbose_name = 'Item'
         verbose_name_plural = 'Items'
@@ -182,8 +192,18 @@ class Item(models.Model):
     fase = models.ForeignKey(Fase)
     tipo_item = models.ForeignKey(TipoItem)
     linea_base = models.ForeignKey('LineaBase', null=True, blank=True, default = None, on_delete=models.CASCADE)
+
+class Archivo(models.Model):
+    archivo = models.FileField(upload_to='archivos')
+    item = models.ForeignKey(Item)
+
+class ArchivoForm(forms.Form):
+    archivo = forms.FileField(label='Selecciona un archivo',help_text='max. 10 megabytes')
     
 class Relacion(models.Model):
+    """
+    Clase Relacion
+    """
     class Meta:
         verbose_name = 'Relacion'
         verbose_name_plural = 'Relaciones'
@@ -221,7 +241,7 @@ class LineaBase(models.Model):
     estado = models.TextField()
 
 class Mensaje(models.Model):
-    """"
+    """
     Clase Mensaje
     """
     class Meta:
@@ -238,9 +258,12 @@ class Mensaje(models.Model):
     estado = models.TextField(max_length=20)
 
 class Solicitud(models.Model):
+    """
+    Clase Solicitud
+    """
     class Meta:
         verbose_name = 'Solicitud'
-        verbose_name_plural = 'Solicituds'
+        verbose_name_plural = 'Solicitudes'
 
     def __unicode__(self):
         return self.nombre
@@ -256,3 +279,35 @@ class Solicitud(models.Model):
     usuario = models.ForeignKey('usuario')
     fase = models.ForeignKey('Fase')
     votantes = models.ManyToManyField('Usuario',null=True, blank=True, default = None, related_name="solicitud_a_votar")
+
+class HistorialLineaBase(models.Model):
+    """
+    Clase HistorialLineaBase
+    """
+    class Meta:
+        verbose_name = 'HistorialLineaBase'
+        verbose_name_plural = 'HistorialesLineaBase'
+
+    def __unicode__(self):
+        return self.id
+
+    fecha = models.DateTimeField()
+    operacion = models.TextField(max_length=20)
+    lineabase = models.ForeignKey(LineaBase)
+    usuario = models.TextField(max_length=45)
+
+class HistorialItem(models.Model):
+    """
+    Clase HistorialItem
+    """
+    class Meta:
+        verbose_name = 'HistorialItem'
+        verbose_name_plural = 'HistorialesItem'
+
+    def __unicode__(self):
+        return self.id
+
+    fecha = models.DateTimeField()
+    operacion = models.TextField(max_length=20)
+    item = models.ForeignKey(Item)
+    usuario = models.TextField(max_length=45)
