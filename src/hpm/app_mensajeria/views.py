@@ -7,6 +7,7 @@ from django.contrib import messages
 
 # Create your views here.
 
+
 def indexMensaje(request):
     """
     Funcion: Panel principal de administracion de mensajes
@@ -22,17 +23,18 @@ def indexMensaje(request):
     if(u):
 
         if request.method != 'POST':
-        	destinatario = Usuario.objects.get(id=u['id'])
-        	lista = Mensaje.objects.filter(receiver=destinatario)
+            destinatario = Usuario.objects.get(id=u['id'])
+            lista = Mensaje.objects.filter(receiver=destinatario)
         else:
             lista = Mensaje.objects.filter(
                 username__startswith=request.POST['search'])
 
         usuarios = Usuario.objects.all()
-        return render(request, 'mensajes.html', {'usuario': u, 'usuarios':usuarios,'lista': lista})
+        return render(request, 'mensajes.html', {'usuario': u, 'usuarios': usuarios, 'lista': lista})
 
     else:
         return redirect('/login')
+
 
 def nuevoMensaje(request):
     """
@@ -42,8 +44,8 @@ def nuevoMensaje(request):
     @param id_sender: Identificador del usuario remitente.
     @param id_receiver: Identificador del usuario destinatario.
     @return: Si el usuario no esta logueado retorna un objeto HttpResponseRedirect
-    	hacia '/login'. Si el metodo no es POST  retorna un objeto HttpResponseRedirect
-    	hacia el indice de mensajes.
+        hacia '/login'. Si el metodo no es POST  retorna un objeto HttpResponseRedirect
+        hacia el indice de mensajes.
     """
     u = is_logged(request.session)
 
@@ -64,7 +66,7 @@ def nuevoMensaje(request):
                 mensaje.asunto = request.POST['asunto']
                 mensaje.mensaje = request.POST['mensaje']
                 mensaje.estado = 'no leido'
-                
+
                 try:
                     mensaje.save()
                 except Exception, e:
@@ -86,6 +88,7 @@ def nuevoMensaje(request):
     else:
         return redirect('/login')
 
+
 def eliminarMensaje(request, id_mensaje):
     """
     Funcion: Se ocupa de eliminar un mensaje
@@ -101,13 +104,14 @@ def eliminarMensaje(request, id_mensaje):
     if(u):
 
         Mensaje.objects.get(id=id_mensaje).delete()
-        
+
         messages.success(request, 'Se ha eliminado el mensaje exitosamente.')
 
         return redirect('mensajes:index')
 
     else:
         return redirect('/login')
+
 
 def verMensaje(request, id_mensaje):
     """
@@ -123,18 +127,18 @@ def verMensaje(request, id_mensaje):
     u = is_logged(request.session)
 
     if(u):
-		mensaje = Mensaje.objects.get(id=id_mensaje)
+        mensaje = Mensaje.objects.get(id=id_mensaje)
+        if(mensaje.estado == 'no leido'):
+            mensaje.estado = 'leido'
 
-		if(mensaje.estado == 'no leido'):
-			mensaje.estado = 'leido'
-
-			try:
-				mensaje.save()
-			except Exception, e:
-				#Error al guardar
-				print e
-				messages.error(request, 'Ocurrio un error al vizualizar el mensaje.')
-
-		return render(request,'ver-mensaje.html', {'usuario':u, 'mensaje':mensaje})
+            try:
+                mensaje.save()
+            except Exception, e:
+                # Error al guardar
+                print e
+                messages.error(
+                    request, 'Ocurrio un error al vizualizar el mensaje.')
+        return render(request, 'ver-mensaje.html', {'usuario': u, 'mensaje': mensaje})
     else:
-		return redirect('/login')
+        return redirect('/login')
+

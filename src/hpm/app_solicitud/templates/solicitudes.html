@@ -67,7 +67,9 @@
 
                                      <td>
                                         {% if s.estado == 'inicial' %} 
-                                         <a href="#enviar" class="btn btn-default btn-outline" onClick="enviarSolicitud( '{{s.nombre}}', '{% url 'solicitud:enviar' fase.id s.id %}' );"><i class="fa fa-level-up"></i></a>
+
+                                         <a href="#enviar" class="btn btn-primary btn-outline" onClick="enviarSolicitud( '{{s.nombre}}', '{% url 'solicitud:enviar' fase.id s.id %}' );"><i class="fa fa-envelope"></i></a>
+
                                         {% endif %}
                                      </td>
 
@@ -77,7 +79,8 @@
                                         {% if m.id == usuario.id %}
                                             {% if s.estado == 'pendiente' %}
                                                 <td> 
-                                                <a href="{% url 'solicitud:aprobar' fase.id s.id %}" class="btn btn-success btn-outline" ><i class="fa fa-thumbs-up"></i></a>
+
+                                                <a href="{% url 'solicitud:aprobar' fase.id s.id %}" class="btn btn-danger btn-outline" ><i class="fa fa-thumbs-up"></i></a>
                                                 </td>
                                                 <td> 
                                                 <a href="{% url 'solicitud:rechazar' fase.id s.id %}" class="btn btn-danger btn-outline" ><i class="fa fa-thumbs-down"></i></a>

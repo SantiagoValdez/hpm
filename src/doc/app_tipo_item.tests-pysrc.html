@@ -53,10 +53,476 @@
 </table>
 <h1 class="epydoc">Source Code for <a href="app_tipo_item.tests-module.html">Module app_tipo_item.tests</a></h1>
 <pre class="py-src">
-<a name="L1"></a><tt class="py-lineno">1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt> <tt class="py-keyword">import</tt> <tt class="py-name">TestCase</tt> </tt>
-<a name="L2"></a><tt class="py-lineno">2</tt>  <tt class="py-line"> </tt>
-<a name="L3"></a><tt class="py-lineno">3</tt>  <tt class="py-line"><tt class="py-comment"># Create your tests here.</tt> </tt>
-<a name="L4"></a><tt class="py-lineno">4</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt> <tt class="py-keyword">import</tt> <tt class="py-name">TestCase</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">utils</tt> <tt class="py-keyword">import</tt> <tt class="py-name">timezone</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package principal=principal-module.html"><a title="principal" class="py-name" href="#" onclick="return doclink('link-0', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module app_comite.models=app_comite.models-module.html,Module app_fase.models=app_fase.models-module.html,Module app_item.models=app_item.models-module.html,Module app_linea_base.models=app_linea_base.models-module.html,Module app_mensajeria.models=app_mensajeria.models-module.html,Module app_proyecto.models=app_proyecto.models-module.html,Module app_rol.models=app_rol.models-module.html,Module app_solicitud.models=app_solicitud.models-module.html,Module app_tipo_item.models=app_tipo_item.models-module.html,Module app_usuario.models=app_usuario.models-module.html,Module principal.models=principal.models-module.html"><a title="app_comite.models
+app_fase.models
+app_item.models
+app_linea_base.models
+app_mensajeria.models
+app_proyecto.models
+app_rol.models
+app_solicitud.models
+app_tipo_item.models
+app_usuario.models
+principal.models" class="py-name" href="#" onclick="return doclink('link-1', 'models', 'link-1');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class principal.models.Proyecto=principal.models.Proyecto-class.html"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-2', 'Proyecto', 'link-2');">Proyecto</a></tt><tt class="py-op">,</tt> <tt id="link-3" class="py-name" targets="Class principal.models.Fase=principal.models.Fase-class.html"><a title="principal.models.Fase" class="py-name" href="#" onclick="return doclink('link-3', 'Fase', 'link-3');">Fase</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Class principal.models.TipoItem=principal.models.TipoItem-class.html"><a title="principal.models.TipoItem" class="py-name" href="#" onclick="return doclink('link-4', 'TipoItem', 'link-4');">TipoItem</a></tt><tt class="py-op">,</tt> <tt id="link-5" class="py-name" targets="Class principal.models.AtributoTipoItem=principal.models.AtributoTipoItem-class.html"><a title="principal.models.AtributoTipoItem" class="py-name" href="#" onclick="return doclink('link-5', 'AtributoTipoItem', 'link-5');">AtributoTipoItem</a></tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment"># Create your tests here.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"> </tt>
+<a name="crear_proyecto"></a><div id="crear_proyecto-def"><a name="L7"></a><tt class="py-lineno">  7</tt> <a class="py-toggle" href="#" id="crear_proyecto-toggle" onclick="return toggle('crear_proyecto');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests-module.html#crear_proyecto">crear_proyecto</a><tt class="py-op">(</tt><tt class="py-param">nombre</tt><tt class="py-op">,</tt> <tt class="py-param">descripcion</tt><tt class="py-op">,</tt> <tt class="py-param">fecha_creacion</tt><tt class="py-op">,</tt> <tt class="py-param">complejidad_total</tt><tt class="py-op">,</tt> <tt class="py-param">estado</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="crear_proyecto-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="crear_proyecto-expanded"><a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Encargada de crear un proyecto para realizacion de pruebas</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-6" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-6', 'Proyecto', 'link-2');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">create</tt><tt class="py-op">(</tt><tt id="link-7" class="py-name" targets="Variable principal.models.AtributoTipoItem.nombre=principal.models.AtributoTipoItem-class.html#nombre,Variable principal.models.Fase.nombre=principal.models.Fase-class.html#nombre,Variable principal.models.Item.nombre=principal.models.Item-class.html#nombre,Variable principal.models.LineaBase.nombre=principal.models.LineaBase-class.html#nombre,Variable principal.models.Permiso.nombre=principal.models.Permiso-class.html#nombre,Variable principal.models.Proyecto.nombre=principal.models.Proyecto-class.html#nombre,Variable principal.models.Rol.nombre=principal.models.Rol-class.html#nombre,Variable principal.models.Solicitud.nombre=principal.models.Solicitud-class.html#nombre,Variable principal.models.TipoItem.nombre=principal.models.TipoItem-class.html#nombre,Variable principal.models.Usuario.nombre=principal.models.Usuario-class.html#nombre"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-7', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">=</tt><tt id="link-8" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-8', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name" targets="Variable principal.models.Fase.descripcion=principal.models.Fase-class.html#descripcion,Variable principal.models.Proyecto.descripcion=principal.models.Proyecto-class.html#descripcion,Variable principal.models.Rol.descripcion=principal.models.Rol-class.html#descripcion,Variable principal.models.Solicitud.descripcion=principal.models.Solicitud-class.html#descripcion,Variable principal.models.TipoItem.descripcion=principal.models.TipoItem-class.html#descripcion"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-9', 'descripcion', 'link-9');">descripcion</a></tt><tt class="py-op">=</tt><tt id="link-10" class="py-name"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-10', 'descripcion', 'link-9');">descripcion</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line">                                                                 <tt id="link-11" class="py-name" targets="Variable principal.models.Proyecto.fecha_creacion=principal.models.Proyecto-class.html#fecha_creacion"><a title="principal.models.Proyecto.fecha_creacion" class="py-name" href="#" onclick="return doclink('link-11', 'fecha_creacion', 'link-11');">fecha_creacion</a></tt><tt class="py-op">=</tt><tt id="link-12" class="py-name"><a title="principal.models.Proyecto.fecha_creacion" class="py-name" href="#" onclick="return doclink('link-12', 'fecha_creacion', 'link-11');">fecha_creacion</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line">                                                                 <tt id="link-13" class="py-name" targets="Variable principal.models.Proyecto.complejidad_total=principal.models.Proyecto-class.html#complejidad_total"><a title="principal.models.Proyecto.complejidad_total" class="py-name" href="#" onclick="return doclink('link-13', 'complejidad_total', 'link-13');">complejidad_total</a></tt><tt class="py-op">=</tt><tt id="link-14" class="py-name"><a title="principal.models.Proyecto.complejidad_total" class="py-name" href="#" onclick="return doclink('link-14', 'complejidad_total', 'link-13');">complejidad_total</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line">                                                                 <tt id="link-15" class="py-name" targets="Variable principal.models.Fase.estado=principal.models.Fase-class.html#estado,Variable principal.models.LineaBase.estado=principal.models.LineaBase-class.html#estado,Variable principal.models.Mensaje.estado=principal.models.Mensaje-class.html#estado,Variable principal.models.Proyecto.estado=principal.models.Proyecto-class.html#estado,Variable principal.models.Solicitud.estado=principal.models.Solicitud-class.html#estado,Variable principal.models.VersionItem.estado=principal.models.VersionItem-class.html#estado"><a title="principal.models.Fase.estado
+principal.models.LineaBase.estado
+principal.models.Mensaje.estado
+principal.models.Proyecto.estado
+principal.models.Solicitud.estado
+principal.models.VersionItem.estado" class="py-name" href="#" onclick="return doclink('link-15', 'estado', 'link-15');">estado</a></tt><tt class="py-op">=</tt><tt id="link-16" class="py-name"><a title="principal.models.Fase.estado
+principal.models.LineaBase.estado
+principal.models.Mensaje.estado
+principal.models.Proyecto.estado
+principal.models.Solicitud.estado
+principal.models.VersionItem.estado" class="py-name" href="#" onclick="return doclink('link-16', 'estado', 'link-15');">estado</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line">                                                                 <tt class="py-op">)</tt> </tt>
+</div><a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"> </tt>
+<a name="crear_fase"></a><div id="crear_fase-def"><a name="L17"></a><tt class="py-lineno"> 17</tt> <a class="py-toggle" href="#" id="crear_fase-toggle" onclick="return toggle('crear_fase');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests-module.html#crear_fase">crear_fase</a><tt class="py-op">(</tt><tt class="py-param">nombre</tt><tt class="py-op">,</tt> <tt class="py-param">descripcion</tt><tt class="py-op">,</tt> <tt class="py-param">proyecto</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="crear_fase-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="crear_fase-expanded"><a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Encargada de crear una fase para realizacion de pruebas</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">        <tt class="py-name">nrofases</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="principal.models.Fase" class="py-name" href="#" onclick="return doclink('link-17', 'Fase', 'link-3');">Fase</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">count</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line">        <tt class="py-name">f</tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name"><a title="principal.models.Fase" class="py-name" href="#" onclick="return doclink('link-18', 'Fase', 'link-3');">Fase</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">create</tt><tt class="py-op">(</tt><tt id="link-19" class="py-name" targets="Variable principal.models.Fase.nro=principal.models.Fase-class.html#nro,Variable principal.models.LineaBase.nro=principal.models.LineaBase-class.html#nro"><a title="principal.models.Fase.nro
+principal.models.LineaBase.nro" class="py-name" href="#" onclick="return doclink('link-19', 'nro', 'link-19');">nro</a></tt><tt class="py-op">=</tt><tt class="py-name">nrofases</tt><tt class="py-op">,</tt> <tt id="link-20" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-20', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">=</tt><tt id="link-21" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-21', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">,</tt> <tt id="link-22" class="py-name"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-22', 'descripcion', 'link-9');">descripcion</a></tt><tt class="py-op">=</tt><tt id="link-23" class="py-name"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-23', 'descripcion', 'link-9');">descripcion</a></tt><tt class="py-op">,</tt> <tt id="link-24" class="py-name" targets="Variable principal.models.Comite.proyecto=principal.models.Comite-class.html#proyecto,Variable principal.models.Fase.proyecto=principal.models.Fase-class.html#proyecto,Variable principal.models.Relacion.proyecto=principal.models.Relacion-class.html#proyecto,Variable principal.models.Rol.proyecto=principal.models.Rol-class.html#proyecto,Variable principal.models.TipoItem.proyecto=principal.models.TipoItem-class.html#proyecto"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-24', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">=</tt><tt id="link-25" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-25', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">                 </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">f</tt> </tt>
+</div><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"> </tt>
+<a name="crear_tipo_item"></a><div id="crear_tipo_item-def"><a name="L26"></a><tt class="py-lineno"> 26</tt> <a class="py-toggle" href="#" id="crear_tipo_item-toggle" onclick="return toggle('crear_tipo_item');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests-module.html#crear_tipo_item">crear_tipo_item</a><tt class="py-op">(</tt><tt class="py-param">nombre</tt><tt class="py-op">,</tt> <tt class="py-param">codigo</tt><tt class="py-op">,</tt> <tt class="py-param">descripcion</tt><tt class="py-op">,</tt> <tt class="py-param">proyecto</tt><tt class="py-op">,</tt> <tt class="py-param">fase</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="crear_tipo_item-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="crear_tipo_item-expanded"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Encargada de crear un tipo de item para realizacion de pruebas</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-name">ti</tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="principal.models.TipoItem" class="py-name" href="#" onclick="return doclink('link-26', 'TipoItem', 'link-4');">TipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">create</tt><tt class="py-op">(</tt><tt id="link-27" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-27', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">=</tt><tt id="link-28" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-28', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">,</tt> <tt id="link-29" class="py-name" targets="Variable principal.models.TipoItem.codigo=principal.models.TipoItem-class.html#codigo"><a title="principal.models.TipoItem.codigo" class="py-name" href="#" onclick="return doclink('link-29', 'codigo', 'link-29');">codigo</a></tt><tt class="py-op">=</tt><tt id="link-30" class="py-name"><a title="principal.models.TipoItem.codigo" class="py-name" href="#" onclick="return doclink('link-30', 'codigo', 'link-29');">codigo</a></tt><tt class="py-op">,</tt>  </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">                                                                <tt id="link-31" class="py-name"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-31', 'descripcion', 'link-9');">descripcion</a></tt><tt class="py-op">=</tt><tt id="link-32" class="py-name"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-32', 'descripcion', 'link-9');">descripcion</a></tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-33', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">=</tt><tt id="link-34" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-34', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">                                                                <tt id="link-35" class="py-name" targets="Variable principal.models.Item.fase=principal.models.Item-class.html#fase,Variable principal.models.LineaBase.fase=principal.models.LineaBase-class.html#fase,Variable principal.models.Relacion.fase=principal.models.Relacion-class.html#fase,Variable principal.models.Solicitud.fase=principal.models.Solicitud-class.html#fase,Variable principal.models.TipoItem.fase=principal.models.TipoItem-class.html#fase"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-35', 'fase', 'link-35');">fase</a></tt><tt class="py-op">=</tt><tt id="link-36" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-36', 'fase', 'link-35');">fase</a></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">                                                                <tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">ti</tt> </tt>
+</div><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line"> </tt>
+<a name="crear_atributo_tipo_item"></a><div id="crear_atributo_tipo_item-def"><a name="L36"></a><tt class="py-lineno"> 36</tt> <a class="py-toggle" href="#" id="crear_atributo_tipo_item-toggle" onclick="return toggle('crear_atributo_tipo_item');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests-module.html#crear_atributo_tipo_item">crear_atributo_tipo_item</a><tt class="py-op">(</tt><tt class="py-param">nombre</tt><tt class="py-op">,</tt> <tt class="py-param">tipo</tt><tt class="py-op">,</tt> <tt class="py-param">valorpordefecto</tt><tt class="py-op">,</tt> <tt class="py-param">tipoitem</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="crear_atributo_tipo_item-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="crear_atributo_tipo_item-expanded"><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Encargada de crear un atributo de tipo de item para realizacion de pruebas</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-name">tat</tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="principal.models.AtributoTipoItem" class="py-name" href="#" onclick="return doclink('link-37', 'AtributoTipoItem', 'link-5');">AtributoTipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">create</tt><tt class="py-op">(</tt><tt id="link-38" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-38', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">=</tt><tt id="link-39" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-39', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">,</tt> <tt id="link-40" class="py-name" targets="Variable principal.models.AtributoTipoItem.tipo=principal.models.AtributoTipoItem-class.html#tipo,Variable principal.models.Relacion.tipo=principal.models.Relacion-class.html#tipo"><a title="principal.models.AtributoTipoItem.tipo
+principal.models.Relacion.tipo" class="py-name" href="#" onclick="return doclink('link-40', 'tipo', 'link-40');">tipo</a></tt><tt class="py-op">=</tt><tt id="link-41" class="py-name"><a title="principal.models.AtributoTipoItem.tipo
+principal.models.Relacion.tipo" class="py-name" href="#" onclick="return doclink('link-41', 'tipo', 'link-40');">tipo</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line">                                                                                 <tt id="link-42" class="py-name" targets="Variable principal.models.AtributoTipoItem.valor_por_defecto=principal.models.AtributoTipoItem-class.html#valor_por_defecto"><a title="principal.models.AtributoTipoItem.valor_por_defecto" class="py-name" href="#" onclick="return doclink('link-42', 'valor_por_defecto', 'link-42');">valor_por_defecto</a></tt><tt class="py-op">=</tt><tt class="py-name">valorpordefecto</tt><tt class="py-op">,</tt>  </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">                                                                                 <tt id="link-43" class="py-name" targets="Variable principal.models.AtributoTipoItem.tipo_item=principal.models.AtributoTipoItem-class.html#tipo_item,Variable principal.models.Item.tipo_item=principal.models.Item-class.html#tipo_item"><a title="principal.models.AtributoTipoItem.tipo_item
+principal.models.Item.tipo_item" class="py-name" href="#" onclick="return doclink('link-43', 'tipo_item', 'link-43');">tipo_item</a></tt><tt class="py-op">=</tt><tt class="py-name">tipoitem</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">                                                                                 <tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">tat</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="TipoItemTest"></a><div id="TipoItemTest-def"><a name="L46"></a><tt class="py-lineno"> 46</tt> <a class="py-toggle" href="#" id="TipoItemTest-toggle" onclick="return toggle('TipoItemTest');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="app_tipo_item.tests.TipoItemTest-class.html">TipoItemTest</a><tt class="py-op">(</tt><tt class="py-base-class">TestCase</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TipoItemTest-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="TipoItemTest-expanded"><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="TipoItemTest.test_creacion_tipoitem"></a><div id="TipoItemTest.test_creacion_tipoitem-def"><a name="L48"></a><tt class="py-lineno"> 48</tt> <a class="py-toggle" href="#" id="TipoItemTest.test_creacion_tipoitem-toggle" onclick="return toggle('TipoItemTest.test_creacion_tipoitem');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests.TipoItemTest-class.html#test_creacion_tipoitem">test_creacion_tipoitem</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TipoItemTest.test_creacion_tipoitem-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="TipoItemTest.test_creacion_tipoitem-expanded"><a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">                Se comprueba que el tipo de item es creado exitosamente</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                <tt id="link-44" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-44', 'proyecto', 'link-24');">proyecto</a></tt> <tt class="py-op">=</tt> <tt id="link-45" class="py-name" targets="Function app_comite.tests.crear_proyecto()=app_comite.tests-module.html#crear_proyecto,Function app_fase.tests.crear_proyecto()=app_fase.tests-module.html#crear_proyecto,Function app_item.tests.crear_proyecto()=app_item.tests-module.html#crear_proyecto,Function app_linea_base.tests.crear_proyecto()=app_linea_base.tests-module.html#crear_proyecto,Function app_proyecto.tests.crear_proyecto()=app_proyecto.tests-module.html#crear_proyecto,Function app_solicitud.tests.crear_proyecto()=app_solicitud.tests-module.html#crear_proyecto,Function app_tipo_item.tests.crear_proyecto()=app_tipo_item.tests-module.html#crear_proyecto"><a title="app_comite.tests.crear_proyecto
+app_fase.tests.crear_proyecto
+app_item.tests.crear_proyecto
+app_linea_base.tests.crear_proyecto
+app_proyecto.tests.crear_proyecto
+app_solicitud.tests.crear_proyecto
+app_tipo_item.tests.crear_proyecto" class="py-name" href="#" onclick="return doclink('link-45', 'crear_proyecto', 'link-45');">crear_proyecto</a></tt><tt class="py-op">(</tt><tt class="py-string">"Proyecto1"</tt><tt class="py-op">,</tt> <tt class="py-string">"Descripcion1"</tt><tt class="py-op">,</tt> <tt class="py-name">timezone</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"no iniciado"</tt><tt class="py-op">)</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                <tt id="link-46" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-46', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                <tt id="link-47" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-47', 'fase', 'link-35');">fase</a></tt> <tt class="py-op">=</tt> <tt id="link-48" class="py-name" targets="Function app_fase.tests.crear_fase()=app_fase.tests-module.html#crear_fase,Function app_item.tests.crear_fase()=app_item.tests-module.html#crear_fase,Function app_linea_base.tests.crear_fase()=app_linea_base.tests-module.html#crear_fase,Function app_tipo_item.tests.crear_fase()=app_tipo_item.tests-module.html#crear_fase"><a title="app_fase.tests.crear_fase
+app_item.tests.crear_fase
+app_linea_base.tests.crear_fase
+app_tipo_item.tests.crear_fase" class="py-name" href="#" onclick="return doclink('link-48', 'crear_fase', 'link-48');">crear_fase</a></tt><tt class="py-op">(</tt><tt class="py-string">"Fase test"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion test"</tt><tt class="py-op">,</tt> <tt id="link-49" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-49', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                <tt id="link-50" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-50', 'fase', 'link-35');">fase</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt> <tt class="py-op">=</tt> <tt id="link-51" class="py-name" targets="Function app_item.tests.crear_tipo_item()=app_item.tests-module.html#crear_tipo_item,Function app_tipo_item.tests.crear_tipo_item()=app_tipo_item.tests-module.html#crear_tipo_item"><a title="app_item.tests.crear_tipo_item
+app_tipo_item.tests.crear_tipo_item" class="py-name" href="#" onclick="return doclink('link-51', 'crear_tipo_item', 'link-51');">crear_tipo_item</a></tt><tt class="py-op">(</tt><tt class="py-string">"tipo item test"</tt><tt class="py-op">,</tt> <tt class="py-string">"testcod"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion ti test"</tt><tt class="py-op">,</tt> <tt id="link-52" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-52', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">,</tt> <tt id="link-53" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-53', 'fase', 'link-35');">fase</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">                <tt class="py-name">tipoitem_id</tt> <tt class="py-op">=</tt> <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">                <tt class="py-name">ti</tt> <tt class="py-op">=</tt> <tt id="link-54" class="py-name"><a title="principal.models.TipoItem" class="py-name" href="#" onclick="return doclink('link-54', 'TipoItem', 'link-4');">TipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">tipoitem_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">ti</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-55', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">,</tt><tt class="py-string">"tipo item test"</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="TipoItemTest.test_eliminacion_proyecto_tipoitem"></a><div id="TipoItemTest.test_eliminacion_proyecto_tipoitem-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="TipoItemTest.test_eliminacion_proyecto_tipoitem-toggle" onclick="return toggle('TipoItemTest.test_eliminacion_proyecto_tipoitem');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests.TipoItemTest-class.html#test_eliminacion_proyecto_tipoitem">test_eliminacion_proyecto_tipoitem</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TipoItemTest.test_eliminacion_proyecto_tipoitem-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="TipoItemTest.test_eliminacion_proyecto_tipoitem-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">                Se comprueba que al eliminar el proyecto, todos los tipos de item</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">                asociados a las fases del mismo tambien son eliminados</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">                <tt id="link-56" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-56', 'proyecto', 'link-24');">proyecto</a></tt> <tt class="py-op">=</tt> <tt id="link-57" class="py-name"><a title="app_comite.tests.crear_proyecto
+app_fase.tests.crear_proyecto
+app_item.tests.crear_proyecto
+app_linea_base.tests.crear_proyecto
+app_proyecto.tests.crear_proyecto
+app_solicitud.tests.crear_proyecto
+app_tipo_item.tests.crear_proyecto" class="py-name" href="#" onclick="return doclink('link-57', 'crear_proyecto', 'link-45');">crear_proyecto</a></tt><tt class="py-op">(</tt><tt class="py-string">"Proyecto1"</tt><tt class="py-op">,</tt> <tt class="py-string">"Descripcion1"</tt><tt class="py-op">,</tt> <tt class="py-name">timezone</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"no iniciado"</tt><tt class="py-op">)</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">                <tt id="link-58" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-58', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">                <tt id="link-59" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-59', 'fase', 'link-35');">fase</a></tt> <tt class="py-op">=</tt> <tt id="link-60" class="py-name"><a title="app_fase.tests.crear_fase
+app_item.tests.crear_fase
+app_linea_base.tests.crear_fase
+app_tipo_item.tests.crear_fase" class="py-name" href="#" onclick="return doclink('link-60', 'crear_fase', 'link-48');">crear_fase</a></tt><tt class="py-op">(</tt><tt class="py-string">"Fase test"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion test"</tt><tt class="py-op">,</tt> <tt id="link-61" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-61', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">                <tt id="link-62" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-62', 'fase', 'link-35');">fase</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt> <tt class="py-op">=</tt> <tt id="link-63" class="py-name"><a title="app_item.tests.crear_tipo_item
+app_tipo_item.tests.crear_tipo_item" class="py-name" href="#" onclick="return doclink('link-63', 'crear_tipo_item', 'link-51');">crear_tipo_item</a></tt><tt class="py-op">(</tt><tt class="py-string">"tipo item test"</tt><tt class="py-op">,</tt> <tt class="py-string">"testcod"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion ti test"</tt><tt class="py-op">,</tt> <tt id="link-64" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-64', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">,</tt> <tt id="link-65" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-65', 'fase', 'link-35');">fase</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">                <tt class="py-name">tipoitem_id</tt> <tt class="py-op">=</tt> <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line"> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">                <tt id="link-66" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-66', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">                <tt class="py-name">nrotipoitem</tt> <tt class="py-op">=</tt> <tt id="link-67" class="py-name"><a title="principal.models.TipoItem" class="py-name" href="#" onclick="return doclink('link-67', 'TipoItem', 'link-4');">TipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">nrotipoitem</tt><tt class="py-op">.</tt><tt class="py-name">count</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"> </tt>
+<a name="TipoItemTest.test_creacion_atributo"></a><div id="TipoItemTest.test_creacion_atributo-def"><a name="L80"></a><tt class="py-lineno"> 80</tt> <a class="py-toggle" href="#" id="TipoItemTest.test_creacion_atributo-toggle" onclick="return toggle('TipoItemTest.test_creacion_atributo');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests.TipoItemTest-class.html#test_creacion_atributo">test_creacion_atributo</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TipoItemTest.test_creacion_atributo-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="TipoItemTest.test_creacion_atributo-expanded"><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">                Se comprueba que el atributo de tipo de item es creado exitosamente</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                <tt id="link-68" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-68', 'proyecto', 'link-24');">proyecto</a></tt> <tt class="py-op">=</tt> <tt id="link-69" class="py-name"><a title="app_comite.tests.crear_proyecto
+app_fase.tests.crear_proyecto
+app_item.tests.crear_proyecto
+app_linea_base.tests.crear_proyecto
+app_proyecto.tests.crear_proyecto
+app_solicitud.tests.crear_proyecto
+app_tipo_item.tests.crear_proyecto" class="py-name" href="#" onclick="return doclink('link-69', 'crear_proyecto', 'link-45');">crear_proyecto</a></tt><tt class="py-op">(</tt><tt class="py-string">"Proyecto1"</tt><tt class="py-op">,</tt> <tt class="py-string">"Descripcion1"</tt><tt class="py-op">,</tt> <tt class="py-name">timezone</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"no iniciado"</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">                <tt id="link-70" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-70', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                <tt id="link-71" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-71', 'fase', 'link-35');">fase</a></tt> <tt class="py-op">=</tt> <tt id="link-72" class="py-name"><a title="app_fase.tests.crear_fase
+app_item.tests.crear_fase
+app_linea_base.tests.crear_fase
+app_tipo_item.tests.crear_fase" class="py-name" href="#" onclick="return doclink('link-72', 'crear_fase', 'link-48');">crear_fase</a></tt><tt class="py-op">(</tt><tt class="py-string">"Fase test"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion test"</tt><tt class="py-op">,</tt> <tt id="link-73" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-73', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">                <tt id="link-74" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-74', 'fase', 'link-35');">fase</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt> <tt class="py-op">=</tt> <tt id="link-75" class="py-name"><a title="app_item.tests.crear_tipo_item
+app_tipo_item.tests.crear_tipo_item" class="py-name" href="#" onclick="return doclink('link-75', 'crear_tipo_item', 'link-51');">crear_tipo_item</a></tt><tt class="py-op">(</tt><tt class="py-string">"tipo item test"</tt><tt class="py-op">,</tt> <tt class="py-string">"testcod"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion ti test"</tt><tt class="py-op">,</tt> <tt id="link-76" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-76', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">,</tt> <tt id="link-77" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-77', 'fase', 'link-35');">fase</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">                <tt class="py-comment">#tipoitem_id = tipoitem.id</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">                <tt class="py-name">atributo</tt> <tt class="py-op">=</tt> <tt id="link-78" class="py-name" targets="Function app_tipo_item.tests.crear_atributo_tipo_item()=app_tipo_item.tests-module.html#crear_atributo_tipo_item"><a title="app_tipo_item.tests.crear_atributo_tipo_item" class="py-name" href="#" onclick="return doclink('link-78', 'crear_atributo_tipo_item', 'link-78');">crear_atributo_tipo_item</a></tt><tt class="py-op">(</tt><tt class="py-string">"Atributo test"</tt><tt class="py-op">,</tt> <tt class="py-string">"integer"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">,</tt> <tt class="py-name">tipoitem</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">                <tt class="py-name">atributo_id</tt> <tt class="py-op">=</tt> <tt class="py-name">atributo</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line">                <tt class="py-name">tatributo</tt> <tt class="py-op">=</tt> <tt id="link-79" class="py-name"><a title="principal.models.AtributoTipoItem" class="py-name" href="#" onclick="return doclink('link-79', 'AtributoTipoItem', 'link-5');">AtributoTipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">atributo_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tatributo</tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">,</tt> <tt class="py-name">atributo_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-name">tnombretipoitem</tt> <tt class="py-op">=</tt> <tt class="py-name">atributo</tt><tt class="py-op">.</tt><tt id="link-80" class="py-name"><a title="principal.models.AtributoTipoItem.tipo_item
+principal.models.Item.tipo_item" class="py-name" href="#" onclick="return doclink('link-80', 'tipo_item', 'link-43');">tipo_item</a></tt><tt class="py-op">.</tt><tt id="link-81" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-81', 'nombre', 'link-7');">nombre</a></tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tnombretipoitem</tt><tt class="py-op">,</tt> <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt id="link-82" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-82', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"> </tt>
+<a name="TipoItemTest.test_eliminacion_atributo"></a><div id="TipoItemTest.test_eliminacion_atributo-def"><a name="L99"></a><tt class="py-lineno"> 99</tt> <a class="py-toggle" href="#" id="TipoItemTest.test_eliminacion_atributo-toggle" onclick="return toggle('TipoItemTest.test_eliminacion_atributo');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="app_tipo_item.tests.TipoItemTest-class.html#test_eliminacion_atributo">test_eliminacion_atributo</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="TipoItemTest.test_eliminacion_atributo-collapsed" style="display:none;" pad="+++" indent="++++++++++++"></div><div id="TipoItemTest.test_eliminacion_atributo-expanded"><a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">                Se comprueba que el atributo de tipo de item es eliminado exitosamente</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                <tt id="link-83" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-83', 'proyecto', 'link-24');">proyecto</a></tt> <tt class="py-op">=</tt> <tt id="link-84" class="py-name"><a title="app_comite.tests.crear_proyecto
+app_fase.tests.crear_proyecto
+app_item.tests.crear_proyecto
+app_linea_base.tests.crear_proyecto
+app_proyecto.tests.crear_proyecto
+app_solicitud.tests.crear_proyecto
+app_tipo_item.tests.crear_proyecto" class="py-name" href="#" onclick="return doclink('link-84', 'crear_proyecto', 'link-45');">crear_proyecto</a></tt><tt class="py-op">(</tt><tt class="py-string">"Proyecto1"</tt><tt class="py-op">,</tt> <tt class="py-string">"Descripcion1"</tt><tt class="py-op">,</tt> <tt class="py-name">timezone</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"no iniciado"</tt><tt class="py-op">)</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">                <tt id="link-85" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-85', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                <tt id="link-86" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-86', 'fase', 'link-35');">fase</a></tt> <tt class="py-op">=</tt> <tt id="link-87" class="py-name"><a title="app_fase.tests.crear_fase
+app_item.tests.crear_fase
+app_linea_base.tests.crear_fase
+app_tipo_item.tests.crear_fase" class="py-name" href="#" onclick="return doclink('link-87', 'crear_fase', 'link-48');">crear_fase</a></tt><tt class="py-op">(</tt><tt class="py-string">"Fase test"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion test"</tt><tt class="py-op">,</tt> <tt id="link-88" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-88', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">                <tt id="link-89" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-89', 'fase', 'link-35');">fase</a></tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt> <tt class="py-op">=</tt> <tt id="link-90" class="py-name"><a title="app_item.tests.crear_tipo_item
+app_tipo_item.tests.crear_tipo_item" class="py-name" href="#" onclick="return doclink('link-90', 'crear_tipo_item', 'link-51');">crear_tipo_item</a></tt><tt class="py-op">(</tt><tt class="py-string">"tipo item test"</tt><tt class="py-op">,</tt> <tt class="py-string">"testcod"</tt><tt class="py-op">,</tt> <tt class="py-string">"descripcion ti test"</tt><tt class="py-op">,</tt> <tt id="link-91" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-91', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">,</tt> <tt id="link-92" class="py-name"><a title="principal.models.Item.fase
+principal.models.LineaBase.fase
+principal.models.Relacion.fase
+principal.models.Solicitud.fase
+principal.models.TipoItem.fase" class="py-name" href="#" onclick="return doclink('link-92', 'fase', 'link-35');">fase</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">                <tt class="py-comment">#tipoitem_id = tipoitem.id</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">                <tt class="py-name">atributo</tt> <tt class="py-op">=</tt> <tt id="link-93" class="py-name"><a title="app_tipo_item.tests.crear_atributo_tipo_item" class="py-name" href="#" onclick="return doclink('link-93', 'crear_atributo_tipo_item', 'link-78');">crear_atributo_tipo_item</a></tt><tt class="py-op">(</tt><tt class="py-string">"Atributo test"</tt><tt class="py-op">,</tt> <tt class="py-string">"integer"</tt><tt class="py-op">,</tt> <tt class="py-string">"0"</tt><tt class="py-op">,</tt> <tt class="py-name">tipoitem</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">                <tt class="py-name">atributo_id</tt> <tt class="py-op">=</tt> <tt class="py-name">atributo</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">                <tt class="py-name">tatributo</tt> <tt class="py-op">=</tt> <tt id="link-94" class="py-name"><a title="principal.models.AtributoTipoItem" class="py-name" href="#" onclick="return doclink('link-94', 'AtributoTipoItem', 'link-5');">AtributoTipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">atributo_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tatributo</tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">,</tt> <tt class="py-name">atributo_id</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">                <tt class="py-name">tnombretipoitem</tt> <tt class="py-op">=</tt> <tt class="py-name">atributo</tt><tt class="py-op">.</tt><tt id="link-95" class="py-name"><a title="principal.models.AtributoTipoItem.tipo_item
+principal.models.Item.tipo_item" class="py-name" href="#" onclick="return doclink('link-95', 'tipo_item', 'link-43');">tipo_item</a></tt><tt class="py-op">.</tt><tt id="link-96" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-96', 'nombre', 'link-7');">nombre</a></tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tnombretipoitem</tt><tt class="py-op">,</tt> <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt id="link-97" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-97', 'nombre', 'link-7');">nombre</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">                <tt class="py-name">tipoitem</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">                <tt class="py-name">tatributo</tt> <tt class="py-op">=</tt> <tt id="link-98" class="py-name"><a title="principal.models.AtributoTipoItem" class="py-name" href="#" onclick="return doclink('link-98', 'AtributoTipoItem', 'link-5');">AtributoTipoItem</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt id="link-99" class="py-name"><a title="principal.models.AtributoTipoItem.tipo_item
+principal.models.Item.tipo_item" class="py-name" href="#" onclick="return doclink('link-99', 'tipo_item', 'link-43');">tipo_item</a></tt><tt class="py-op">=</tt><tt class="py-name">tipoitem</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tatributo</tt><tt class="py-op">.</tt><tt class="py-name">count</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -86,7 +552,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 12:57:46 2014
+    Generated by Epydoc 3.0.1 on Sat May 24 10:18:59 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

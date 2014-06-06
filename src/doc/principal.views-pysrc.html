@@ -53,31 +53,47 @@
 </table>
 <h1 class="epydoc">Source Code for <a href="principal.views-module.html">Module principal.views</a></h1>
 <pre class="py-src">
-<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package principal=principal-module.html"><a title="principal" class="py-name" href="#" onclick="return doclink('link-0', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module app_comite.models=app_comite.models-module.html,Module app_fase.models=app_fase.models-module.html,Module app_proyecto.models=app_proyecto.models-module.html,Module app_rol.models=app_rol.models-module.html,Module app_tipo_item.models=app_tipo_item.models-module.html,Module app_usuario.models=app_usuario.models-module.html,Module principal.models=principal.models-module.html"><a title="app_comite.models
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package principal=principal-module.html"><a title="principal" class="py-name" href="#" onclick="return doclink('link-0', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module app_comite.models=app_comite.models-module.html,Module app_fase.models=app_fase.models-module.html,Module app_item.models=app_item.models-module.html,Module app_linea_base.models=app_linea_base.models-module.html,Module app_mensajeria.models=app_mensajeria.models-module.html,Module app_proyecto.models=app_proyecto.models-module.html,Module app_rol.models=app_rol.models-module.html,Module app_solicitud.models=app_solicitud.models-module.html,Module app_tipo_item.models=app_tipo_item.models-module.html,Module app_usuario.models=app_usuario.models-module.html,Module principal.models=principal.models-module.html"><a title="app_comite.models
 app_fase.models
+app_item.models
+app_linea_base.models
+app_mensajeria.models
 app_proyecto.models
 app_rol.models
+app_solicitud.models
 app_tipo_item.models
 app_usuario.models
 principal.models" class="py-name" href="#" onclick="return doclink('link-1', 'models', 'link-1');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class principal.models.Usuario=principal.models.Usuario-class.html"><a title="principal.models.Usuario" class="py-name" href="#" onclick="return doclink('link-2', 'Usuario', 'link-2');">Usuario</a></tt> </tt>
 <a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-3" class="py-name"><a title="principal" class="py-name" href="#" onclick="return doclink('link-3', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-4" class="py-name"><a title="app_comite.models
 app_fase.models
+app_item.models
+app_linea_base.models
+app_mensajeria.models
 app_proyecto.models
 app_rol.models
+app_solicitud.models
 app_tipo_item.models
 app_usuario.models
 principal.models" class="py-name" href="#" onclick="return doclink('link-4', 'models', 'link-1');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-5" class="py-name" targets="Class principal.models.Proyecto=principal.models.Proyecto-class.html"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-5', 'Proyecto', 'link-5');">Proyecto</a></tt> </tt>
 <a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-6" class="py-name"><a title="principal" class="py-name" href="#" onclick="return doclink('link-6', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="app_comite.models
 app_fase.models
+app_item.models
+app_linea_base.models
+app_mensajeria.models
 app_proyecto.models
 app_rol.models
+app_solicitud.models
 app_tipo_item.models
 app_usuario.models
 principal.models" class="py-name" href="#" onclick="return doclink('link-7', 'models', 'link-1');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Class principal.models.Rol=principal.models.Rol-class.html"><a title="principal.models.Rol" class="py-name" href="#" onclick="return doclink('link-8', 'Rol', 'link-8');">Rol</a></tt> </tt>
 <a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-9" class="py-name"><a title="principal" class="py-name" href="#" onclick="return doclink('link-9', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="app_comite.models
 app_fase.models
+app_item.models
+app_linea_base.models
+app_mensajeria.models
 app_proyecto.models
 app_rol.models
+app_solicitud.models
 app_tipo_item.models
 app_usuario.models
 principal.models" class="py-name" href="#" onclick="return doclink('link-10', 'models', 'link-1');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class principal.models.Permiso=principal.models.Permiso-class.html"><a title="principal.models.Permiso" class="py-name" href="#" onclick="return doclink('link-11', 'Permiso', 'link-11');">Permiso</a></tt> </tt>
@@ -160,8 +176,10 @@ principal.models" class="py-name" href="#" onclick="return doclink('link-10', 'm
 <a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"><tt class="py-docstring">        @param id: id del usuario del que se requiere los detalles.</tt> </tt>
 <a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Retorna un objeto HttpResponse con los detalles del usuario.</tt> </tt>
 <a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
-<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt class="py-name">usuario</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name"><a title="principal.models.Usuario" class="py-name" href="#" onclick="return doclink('link-19', 'Usuario', 'link-2');">Usuario</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
-<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">serializers</tt><tt class="py-op">.</tt><tt class="py-name">serialize</tt><tt class="py-op">(</tt><tt class="py-string">"json"</tt><tt class="py-op">,</tt> <tt class="py-name">usuario</tt><tt class="py-op">)</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">        <tt id="link-19" class="py-name" targets="Variable principal.models.LineaBase.usuario=principal.models.LineaBase-class.html#usuario,Variable principal.models.Solicitud.usuario=principal.models.Solicitud-class.html#usuario"><a title="principal.models.LineaBase.usuario
+principal.models.Solicitud.usuario" class="py-name" href="#" onclick="return doclink('link-19', 'usuario', 'link-19');">usuario</a></tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="principal.models.Usuario" class="py-name" href="#" onclick="return doclink('link-20', 'Usuario', 'link-2');">Usuario</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">serializers</tt><tt class="py-op">.</tt><tt class="py-name">serialize</tt><tt class="py-op">(</tt><tt class="py-string">"json"</tt><tt class="py-op">,</tt> <tt id="link-21" class="py-name"><a title="principal.models.LineaBase.usuario
+principal.models.Solicitud.usuario" class="py-name" href="#" onclick="return doclink('link-21', 'usuario', 'link-19');">usuario</a></tt><tt class="py-op">)</tt> </tt>
 <a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">         </tt>
 <a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">HttpResponse</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
@@ -172,8 +190,8 @@ principal.models" class="py-name" href="#" onclick="return doclink('link-10', 'm
 <a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        @param request: Objeto que se encarga de manejar las peticiones http.</tt> </tt>
 <a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Retorna un objeto HttpResponse con la lista de proyectos.</tt> </tt>
 <a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
-<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">proyectos</tt> <tt class="py-op">=</tt> <tt id="link-20" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-20', 'Proyecto', 'link-5');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
-<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt>  <tt class="py-name">serializers</tt><tt class="py-op">.</tt><tt class="py-name">serialize</tt><tt class="py-op">(</tt><tt class="py-string">"json"</tt><tt class="py-op">,</tt> <tt id="link-21" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-21', 'Proyecto', 'link-5');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">proyectos</tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-22', 'Proyecto', 'link-5');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt>  <tt class="py-name">serializers</tt><tt class="py-op">.</tt><tt class="py-name">serialize</tt><tt class="py-op">(</tt><tt class="py-string">"json"</tt><tt class="py-op">,</tt> <tt id="link-23" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-23', 'Proyecto', 'link-5');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
 <a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">HttpResponse</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"> </tt>
 <a name="apiGetProyecto"></a><div id="apiGetProyecto-def"><a name="L100"></a><tt class="py-lineno">100</tt> <a class="py-toggle" href="#" id="apiGetProyecto-toggle" onclick="return toggle('apiGetProyecto');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#apiGetProyecto">apiGetProyecto</a><tt class="py-op">(</tt><tt class="py-param">request</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
@@ -184,14 +202,16 @@ principal.models" class="py-name" href="#" onclick="return doclink('link-10', 'm
 <a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"><tt class="py-docstring">        @param id: id del proyecto del que se requiere los detalles.</tt> </tt>
 <a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"><tt class="py-docstring">        @return: Retorna un objeto HttpResponse con los detalles del proyecto.</tt> </tt>
 <a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
-<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt id="link-22" class="py-name" targets="Variable principal.models.Comite.proyecto=principal.models.Comite-class.html#proyecto,Variable principal.models.Fase.proyecto=principal.models.Fase-class.html#proyecto,Variable principal.models.Rol.proyecto=principal.models.Rol-class.html#proyecto,Variable principal.models.TipoItem.proyecto=principal.models.TipoItem-class.html#proyecto"><a title="principal.models.Comite.proyecto
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt id="link-24" class="py-name" targets="Variable principal.models.Comite.proyecto=principal.models.Comite-class.html#proyecto,Variable principal.models.Fase.proyecto=principal.models.Fase-class.html#proyecto,Variable principal.models.Relacion.proyecto=principal.models.Relacion-class.html#proyecto,Variable principal.models.Rol.proyecto=principal.models.Rol-class.html#proyecto,Variable principal.models.TipoItem.proyecto=principal.models.TipoItem-class.html#proyecto"><a title="principal.models.Comite.proyecto
 principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
 principal.models.Rol.proyecto
-principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-22', 'proyecto', 'link-22');">proyecto</a></tt> <tt class="py-op">=</tt> <tt id="link-23" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-23', 'Proyecto', 'link-5');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
-<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">serializers</tt><tt class="py-op">.</tt><tt class="py-name">serialize</tt><tt class="py-op">(</tt><tt class="py-string">"json"</tt><tt class="py-op">,</tt> <tt id="link-24" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-24', 'proyecto', 'link-24');">proyecto</a></tt> <tt class="py-op">=</tt> <tt id="link-25" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-25', 'Proyecto', 'link-5');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">filter</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">serializers</tt><tt class="py-op">.</tt><tt class="py-name">serialize</tt><tt class="py-op">(</tt><tt class="py-string">"json"</tt><tt class="py-op">,</tt> <tt id="link-26" class="py-name"><a title="principal.models.Comite.proyecto
 principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
 principal.models.Rol.proyecto
-principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-24', 'proyecto', 'link-22');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-26', 'proyecto', 'link-24');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
 <a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">HttpResponse</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
 <a name="is_logged"></a><div id="is_logged-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="is_logged-toggle" onclick="return toggle('is_logged');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="principal.views-module.html#is_logged">is_logged</a><tt class="py-op">(</tt><tt class="py-param">session</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
@@ -205,27 +225,33 @@ principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doc
 <a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
 <a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"> </tt>
 <a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt><tt class="py-op">(</tt> <tt class="py-string">'usuario'</tt> <tt class="py-keyword">in</tt> <tt class="py-name">session</tt> <tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-name">user</tt> <tt class="py-op">=</tt>  <tt id="link-25" class="py-name"><a title="principal.models.Usuario" class="py-name" href="#" onclick="return doclink('link-25', 'Usuario', 'link-2');">Usuario</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">session</tt><tt class="py-op">[</tt><tt class="py-string">'usuario'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">                <tt class="py-name">user</tt> <tt class="py-op">=</tt>  <tt id="link-27" class="py-name"><a title="principal.models.Usuario" class="py-name" href="#" onclick="return doclink('link-27', 'Usuario', 'link-2');">Usuario</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">get</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">=</tt><tt class="py-name">session</tt><tt class="py-op">[</tt><tt class="py-string">'usuario'</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
 <a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">                <tt class="py-name">u</tt> <tt class="py-op">=</tt> <tt class="py-name">user</tt><tt class="py-op">.</tt><tt class="py-name">__dict__</tt> </tt>
 <a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
 <a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">                <tt class="py-name">lista_permisos</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
 <a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">                <tt class="py-name">lista_roles</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
-<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">r</tt> <tt class="py-keyword">in</tt> <tt class="py-name">user</tt><tt class="py-op">.</tt><tt id="link-26" class="py-name" targets="Variable principal.models.Usuario.roles=principal.models.Usuario-class.html#roles"><a title="principal.models.Usuario.roles" class="py-name" href="#" onclick="return doclink('link-26', 'roles', 'link-26');">roles</a></tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                        <tt class="py-name">lista_roles</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">r</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Variable principal.models.AtributoTipoItem.nombre=principal.models.AtributoTipoItem-class.html#nombre,Variable principal.models.Fase.nombre=principal.models.Fase-class.html#nombre,Variable principal.models.Permiso.nombre=principal.models.Permiso-class.html#nombre,Variable principal.models.Proyecto.nombre=principal.models.Proyecto-class.html#nombre,Variable principal.models.Rol.nombre=principal.models.Rol-class.html#nombre,Variable principal.models.TipoItem.nombre=principal.models.TipoItem-class.html#nombre,Variable principal.models.Usuario.nombre=principal.models.Usuario-class.html#nombre"><a title="principal.models.AtributoTipoItem.nombre
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">                <tt class="py-keyword">for</tt> <tt class="py-name">r</tt> <tt class="py-keyword">in</tt> <tt class="py-name">user</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Variable principal.models.Usuario.roles=principal.models.Usuario-class.html#roles"><a title="principal.models.Usuario.roles" class="py-name" href="#" onclick="return doclink('link-28', 'roles', 'link-28');">roles</a></tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">                        <tt class="py-name">lista_roles</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">r</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Variable principal.models.AtributoTipoItem.nombre=principal.models.AtributoTipoItem-class.html#nombre,Variable principal.models.Fase.nombre=principal.models.Fase-class.html#nombre,Variable principal.models.Item.nombre=principal.models.Item-class.html#nombre,Variable principal.models.LineaBase.nombre=principal.models.LineaBase-class.html#nombre,Variable principal.models.Permiso.nombre=principal.models.Permiso-class.html#nombre,Variable principal.models.Proyecto.nombre=principal.models.Proyecto-class.html#nombre,Variable principal.models.Rol.nombre=principal.models.Rol-class.html#nombre,Variable principal.models.Solicitud.nombre=principal.models.Solicitud-class.html#nombre,Variable principal.models.TipoItem.nombre=principal.models.TipoItem-class.html#nombre,Variable principal.models.Usuario.nombre=principal.models.Usuario-class.html#nombre"><a title="principal.models.AtributoTipoItem.nombre
 principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
 principal.models.Permiso.nombre
 principal.models.Proyecto.nombre
 principal.models.Rol.nombre
+principal.models.Solicitud.nombre
 principal.models.TipoItem.nombre
-principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-27', 'nombre', 'link-27');">nombre</a></tt><tt class="py-op">)</tt> </tt>
-<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">r</tt><tt class="py-op">.</tt><tt id="link-28" class="py-name" targets="Variable principal.models.Rol.permisos=principal.models.Rol-class.html#permisos"><a title="principal.models.Rol.permisos" class="py-name" href="#" onclick="return doclink('link-28', 'permisos', 'link-28');">permisos</a></tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                                <tt class="py-name">lista_permisos</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-29', 'nombre', 'link-29');">nombre</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">                        <tt class="py-keyword">for</tt> <tt class="py-name">p</tt> <tt class="py-keyword">in</tt> <tt class="py-name">r</tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Variable principal.models.Rol.permisos=principal.models.Rol-class.html#permisos"><a title="principal.models.Rol.permisos" class="py-name" href="#" onclick="return doclink('link-30', 'permisos', 'link-30');">permisos</a></tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">                                <tt class="py-name">lista_permisos</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">p</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
 principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
 principal.models.Permiso.nombre
 principal.models.Proyecto.nombre
 principal.models.Rol.nombre
+principal.models.Solicitud.nombre
 principal.models.TipoItem.nombre
-principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-29', 'nombre', 'link-27');">nombre</a></tt><tt class="py-op">)</tt> </tt>
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-31', 'nombre', 'link-29');">nombre</a></tt><tt class="py-op">)</tt> </tt>
 <a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt>
 <a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">                <tt class="py-name">u</tt><tt class="py-op">[</tt><tt class="py-string">'permisos'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">lista_permisos</tt> </tt>
 <a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line">                <tt class="py-name">u</tt><tt class="py-op">[</tt><tt class="py-string">'roles'</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">lista_roles</tt> </tt>
@@ -264,7 +290,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 12:57:46 2014
+    Generated by Epydoc 3.0.1 on Sat May 24 10:18:59 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -53,26 +53,38 @@
 </table>
 <h1 class="epydoc">Source Code for <a href="hpm.urls-module.html">Module hpm.urls</a></h1>
 <pre class="py-src">
-<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">conf</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module app_comite.urls=app_comite.urls-module.html,Module app_fase.urls=app_fase.urls-module.html,Module app_proyecto.urls=app_proyecto.urls-module.html,Module app_rol.urls=app_rol.urls-module.html,Module app_tipo_item.urls=app_tipo_item.urls-module.html,Module app_usuario.urls=app_usuario.urls-module.html,Module hpm.urls=hpm.urls-module.html,Module principal.urls=principal.urls-module.html"><a title="app_comite.urls
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">conf</tt><tt class="py-op">.</tt><tt id="link-0" class="py-name" targets="Module app_comite.urls=app_comite.urls-module.html,Module app_fase.urls=app_fase.urls-module.html,Module app_item.urls=app_item.urls-module.html,Module app_linea_base.urls=app_linea_base.urls-module.html,Module app_mensajeria.urls=app_mensajeria.urls-module.html,Module app_proyecto.urls=app_proyecto.urls-module.html,Module app_rol.urls=app_rol.urls-module.html,Module app_solicitud.urls=app_solicitud.urls-module.html,Module app_tipo_item.urls=app_tipo_item.urls-module.html,Module app_usuario.urls=app_usuario.urls-module.html,Module hpm.urls=hpm.urls-module.html,Module principal.urls=principal.urls-module.html"><a title="app_comite.urls
 app_fase.urls
+app_item.urls
+app_linea_base.urls
+app_mensajeria.urls
 app_proyecto.urls
 app_rol.urls
+app_solicitud.urls
 app_tipo_item.urls
 app_usuario.urls
 hpm.urls
 principal.urls" class="py-name" href="#" onclick="return doclink('link-0', 'urls', 'link-0');">urls</a></tt> <tt class="py-keyword">import</tt> <tt class="py-name">patterns</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">,</tt> <tt class="py-name">url</tt> </tt>
 <a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
-<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">contrib</tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module app_comite.admin=app_comite.admin-module.html,Module app_fase.admin=app_fase.admin-module.html,Module app_proyecto.admin=app_proyecto.admin-module.html,Module app_rol.admin=app_rol.admin-module.html,Module app_tipo_item.admin=app_tipo_item.admin-module.html,Module app_usuario.admin=app_usuario.admin-module.html,Module principal.admin=principal.admin-module.html"><a title="app_comite.admin
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">contrib</tt> <tt class="py-keyword">import</tt> <tt id="link-1" class="py-name" targets="Module app_comite.admin=app_comite.admin-module.html,Module app_fase.admin=app_fase.admin-module.html,Module app_item.admin=app_item.admin-module.html,Module app_linea_base.admin=app_linea_base.admin-module.html,Module app_mensajeria.admin=app_mensajeria.admin-module.html,Module app_proyecto.admin=app_proyecto.admin-module.html,Module app_rol.admin=app_rol.admin-module.html,Module app_solicitud.admin=app_solicitud.admin-module.html,Module app_tipo_item.admin=app_tipo_item.admin-module.html,Module app_usuario.admin=app_usuario.admin-module.html,Module principal.admin=principal.admin-module.html"><a title="app_comite.admin
 app_fase.admin
+app_item.admin
+app_linea_base.admin
+app_mensajeria.admin
 app_proyecto.admin
 app_rol.admin
+app_solicitud.admin
 app_tipo_item.admin
 app_usuario.admin
 principal.admin" class="py-name" href="#" onclick="return doclink('link-1', 'admin', 'link-1');">admin</a></tt> </tt>
 <a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt id="link-2" class="py-name"><a title="app_comite.admin
 app_fase.admin
+app_item.admin
+app_linea_base.admin
+app_mensajeria.admin
 app_proyecto.admin
 app_rol.admin
+app_solicitud.admin
 app_tipo_item.admin
 app_usuario.admin
 principal.admin" class="py-name" href="#" onclick="return doclink('link-2', 'admin', 'link-1');">admin</a></tt><tt class="py-op">.</tt><tt class="py-name">autodiscover</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
@@ -85,10 +97,14 @@ principal.admin" class="py-name" href="#" onclick="return doclink('link-2', 'adm
 <a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment">#   url(r'^admin/', include(admin.site.urls)),</tt> </tt>
 <a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment">#)</tt> </tt>
 <a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
-<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable app_comite.urls.urlpatterns=app_comite.urls-module.html#urlpatterns,Variable app_fase.urls.urlpatterns=app_fase.urls-module.html#urlpatterns,Variable app_proyecto.urls.urlpatterns=app_proyecto.urls-module.html#urlpatterns,Variable app_rol.urls.urlpatterns=app_rol.urls-module.html#urlpatterns,Variable app_tipo_item.urls.urlpatterns=app_tipo_item.urls-module.html#urlpatterns,Variable app_usuario.urls.urlpatterns=app_usuario.urls-module.html#urlpatterns,Variable hpm.urls.urlpatterns=hpm.urls-module.html#urlpatterns,Variable principal.urls.urlpatterns=principal.urls-module.html#urlpatterns"><a title="app_comite.urls.urlpatterns
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt id="link-3" class="py-name" targets="Variable app_comite.urls.urlpatterns=app_comite.urls-module.html#urlpatterns,Variable app_fase.urls.urlpatterns=app_fase.urls-module.html#urlpatterns,Variable app_item.urls.urlpatterns=app_item.urls-module.html#urlpatterns,Variable app_linea_base.urls.urlpatterns=app_linea_base.urls-module.html#urlpatterns,Variable app_mensajeria.urls.urlpatterns=app_mensajeria.urls-module.html#urlpatterns,Variable app_proyecto.urls.urlpatterns=app_proyecto.urls-module.html#urlpatterns,Variable app_rol.urls.urlpatterns=app_rol.urls-module.html#urlpatterns,Variable app_solicitud.urls.urlpatterns=app_solicitud.urls-module.html#urlpatterns,Variable app_tipo_item.urls.urlpatterns=app_tipo_item.urls-module.html#urlpatterns,Variable app_usuario.urls.urlpatterns=app_usuario.urls-module.html#urlpatterns,Variable hpm.urls.urlpatterns=hpm.urls-module.html#urlpatterns,Variable principal.urls.urlpatterns=principal.urls-module.html#urlpatterns"><a title="app_comite.urls.urlpatterns
 app_fase.urls.urlpatterns
+app_item.urls.urlpatterns
+app_linea_base.urls.urlpatterns
+app_mensajeria.urls.urlpatterns
 app_proyecto.urls.urlpatterns
 app_rol.urls.urlpatterns
+app_solicitud.urls.urlpatterns
 app_tipo_item.urls.urlpatterns
 app_usuario.urls.urlpatterns
 hpm.urls.urlpatterns
@@ -100,42 +116,57 @@ principal.urls.urlpatterns" class="py-name" href="#" onclick="return doclink('li
 <a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line">     </tt>
 <a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^login/'</tt><tt class="py-op">,</tt> <tt class="py-string">'principal.views.login'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
 <a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^logout/'</tt><tt class="py-op">,</tt> <tt class="py-string">'principal.views.logout'</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">     </tt>
-<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^usuarios/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_usuario.urls'</tt><tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'usuarios'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
-<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^proyectos/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_proyecto.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'proyectos'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
-<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^fases/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_fase.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'fases'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">     </tt>
-<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^roles/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_rol.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'roles'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">     </tt>
-<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^comites/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_comite.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'comites'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"> </tt>
-<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^tipoitem/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_tipo_item.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'tipoitem'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"> </tt>
-<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">    <tt class="py-comment"># url(r'^api/usuarios/', include('principal.urls')),</tt> </tt>
-<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt class="py-comment"># #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),</tt> </tt>
-<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line">    <tt class="py-comment"># #url(r'^api/usuario/(?P&lt;id&gt;\d+)/$', 'principal.views.apiGetUsuario'),</tt> </tt>
-<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"> </tt>
-<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line">    <tt class="py-comment"># url(r'^api/proyectos', include('principal.urls')),</tt> </tt>
-<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"> </tt>
-<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^admin/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt id="link-4" class="py-name"><a title="app_comite.admin
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^mensajes/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_mensajeria.urls'</tt><tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'mensajes'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">     </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^usuarios/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_usuario.urls'</tt><tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'usuarios'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
+<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^proyectos/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_proyecto.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'proyectos'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^fases/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_fase.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'fases'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">     </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^roles/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_rol.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'roles'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">     </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^comites/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_comite.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'comites'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^tipoitem/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_tipo_item.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'tipoitem'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^lineabase/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_linea_base.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'lineasbase'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^item/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_item.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'item'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^solicitud/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'app_solicitud.urls'</tt> <tt class="py-op">,</tt> <tt class="py-name">namespace</tt><tt class="py-op">=</tt><tt class="py-string">'solicitud'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-comment"># url(r'^api/usuarios/', include('principal.urls')),</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">    <tt class="py-comment"># #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">    <tt class="py-comment"># #url(r'^api/usuario/(?P&lt;id&gt;\d+)/$', 'principal.views.apiGetUsuario'),</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">    <tt class="py-comment"># url(r'^api/proyectos', include('principal.urls')),</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^admin/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt id="link-4" class="py-name"><a title="app_comite.admin
 app_fase.admin
+app_item.admin
+app_linea_base.admin
+app_mensajeria.admin
 app_proyecto.admin
 app_rol.admin
+app_solicitud.admin
 app_tipo_item.admin
 app_usuario.admin
 principal.admin" class="py-name" href="#" onclick="return doclink('link-4', 'admin', 'link-1');">admin</a></tt><tt class="py-op">.</tt><tt class="py-name">site</tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="app_comite.urls
 app_fase.urls
+app_item.urls
+app_linea_base.urls
+app_mensajeria.urls
 app_proyecto.urls
 app_rol.urls
+app_solicitud.urls
 app_tipo_item.urls
 app_usuario.urls
 hpm.urls
 principal.urls" class="py-name" href="#" onclick="return doclink('link-5', 'urls', 'link-0');">urls</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^admin/doc/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'django.contrib.admindocs.urls'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
-<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
-<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-name">url</tt><tt class="py-op">(</tt><tt class="py-string">r'^admin/doc/'</tt><tt class="py-op">,</tt> <tt class="py-name">include</tt><tt class="py-op">(</tt><tt class="py-string">'django.contrib.admindocs.urls'</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -165,7 +196,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 12:57:46 2014
+    Generated by Epydoc 3.0.1 on Sat May 24 10:18:59 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

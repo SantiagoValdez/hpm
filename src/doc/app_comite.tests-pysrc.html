@@ -53,57 +53,130 @@
 </table>
 <h1 class="epydoc">Source Code for <a href="app_comite.tests-module.html">Module app_comite.tests</a></h1>
 <pre class="py-src">
-<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-comment"># from django.test import TestCase</tt> </tt>
-<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
-<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-comment"># # Create your tests here.</tt> </tt>
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">test</tt> <tt class="py-keyword">import</tt> <tt class="py-name">TestCase</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">django</tt><tt class="py-op">.</tt><tt class="py-name">utils</tt> <tt class="py-keyword">import</tt> <tt class="py-name">timezone</tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package principal=principal-module.html"><a title="principal" class="py-name" href="#" onclick="return doclink('link-0', 'principal', 'link-0');">principal</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module app_comite.models=app_comite.models-module.html,Module app_fase.models=app_fase.models-module.html,Module app_item.models=app_item.models-module.html,Module app_linea_base.models=app_linea_base.models-module.html,Module app_mensajeria.models=app_mensajeria.models-module.html,Module app_proyecto.models=app_proyecto.models-module.html,Module app_rol.models=app_rol.models-module.html,Module app_solicitud.models=app_solicitud.models-module.html,Module app_tipo_item.models=app_tipo_item.models-module.html,Module app_usuario.models=app_usuario.models-module.html,Module principal.models=principal.models-module.html"><a title="app_comite.models
+app_fase.models
+app_item.models
+app_linea_base.models
+app_mensajeria.models
+app_proyecto.models
+app_rol.models
+app_solicitud.models
+app_tipo_item.models
+app_usuario.models
+principal.models" class="py-name" href="#" onclick="return doclink('link-1', 'models', 'link-1');">models</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class principal.models.Proyecto=principal.models.Proyecto-class.html"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-2', 'Proyecto', 'link-2');">Proyecto</a></tt><tt class="py-op">,</tt> <tt id="link-3" class="py-name" targets="Class principal.models.Comite=principal.models.Comite-class.html"><a title="principal.models.Comite" class="py-name" href="#" onclick="return doclink('link-3', 'Comite', 'link-3');">Comite</a></tt> </tt>
 <a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"> </tt>
-<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># from django.test import TestCase</tt> </tt>
-<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-comment"># from django.utils import timezone</tt> </tt>
-<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-comment"># from django.http import HttpResponse</tt> </tt>
-<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-comment"># from django.core.urlresolvers import reverse</tt> </tt>
-<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"> </tt>
-<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-comment"># from principal.models import Proyecto</tt> </tt>
-<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-comment"># from principal.models import Rol</tt> </tt>
-<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-comment"># from principal.models import Permiso</tt> </tt>
-<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"> </tt>
-<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"><tt class="py-comment"># # Create your tests here.</tt> </tt>
-<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line"> </tt>
-<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"><tt class="py-comment"># def crear_proyecto(nombre, descripcion, fecha_creacion, complejidad_total, estado):</tt> </tt>
-<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment">#       return Proyecto.objects.create(nombre=nombre, descripcion=descripcion,</tt> </tt>
-<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment">#                                                                fecha_creacion=fecha_creacion,</tt> </tt>
-<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-comment">#                                                                complejidad_total=complejidad_total,</tt> </tt>
-<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-comment">#                                                                estado=estado</tt> </tt>
-<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"><tt class="py-comment">#                                                                )</tt> </tt>
-<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
-<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line"><tt class="py-comment"># def crear_rol(nombre, descripcion):</tt> </tt>
-<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"><tt class="py-comment">#       return Rol.objects.create(nombre=nombre, descripcion=descripcion)</tt> </tt>
-<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line"> </tt>
-<a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"><tt class="py-comment"># def crear_permiso(nombre, valor):</tt> </tt>
-<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-comment">#       return Permiso.objects.create(nombre=nombre, valor=valor)</tt> </tt>
-<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"> </tt>
-<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-comment"># class ProyectoTest(TestCase):</tt> </tt>
-<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"> </tt>
-<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-comment">#       def test_creacion_proyecto(self):</tt> </tt>
-<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-comment">#               p = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")</tt> </tt>
-<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-comment">#               tp = Proyecto.objects.get(nombre="proyectoTest")</tt> </tt>
-<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-comment">#               self.assertEqual(tp.nombre, "proyectoTest")</tt> </tt>
-<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"> </tt>
-<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-comment">#       def test_eliminacion_proyecto(self):</tt> </tt>
-<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-comment">#               p = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")</tt> </tt>
-<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-comment">#               r = crear_rol("Administrador proyectoTest", "rol de prueba")</tt> </tt>
-<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-comment">#               r.proyecto = p</tt> </tt>
-<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-comment">#               r.save()</tt> </tt>
-<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-comment">#               pr = crear_permiso("crear",0)</tt> </tt>
-<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"><tt class="py-comment">#               r.permisos.add(pr)</tt> </tt>
-<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line"><tt class="py-comment">#               pr = crear_permiso("modificar",0)</tt> </tt>
-<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line"><tt class="py-comment">#               r.permisos.add(pr)</tt> </tt>
-<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
-<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line"><tt class="py-comment">#               Proyecto.objects.get(nombre="proyectoTest").delete()</tt> </tt>
-<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"><tt class="py-comment">#               tp = Proyecto.objects.all()</tt> </tt>
-<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"><tt class="py-comment">#               r = Rol.objects.all()</tt> </tt>
-<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"><tt class="py-comment">#               self.assertEqual(len(tp), 0)</tt> </tt>
-<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line"><tt class="py-comment">#               self.assertEqual(len(r), 0)</tt> </tt>
-<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-comment"># Create your tests here.</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"> </tt>
+<a name="crear_proyecto"></a><div id="crear_proyecto-def"><a name="L7"></a><tt class="py-lineno"> 7</tt> <a class="py-toggle" href="#" id="crear_proyecto-toggle" onclick="return toggle('crear_proyecto');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="app_comite.tests-module.html#crear_proyecto">crear_proyecto</a><tt class="py-op">(</tt><tt class="py-param">nombre</tt><tt class="py-op">,</tt> <tt class="py-param">descripcion</tt><tt class="py-op">,</tt> <tt class="py-param">fecha_creacion</tt><tt class="py-op">,</tt> <tt class="py-param">complejidad_total</tt><tt class="py-op">,</tt> <tt class="py-param">estado</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="crear_proyecto-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="crear_proyecto-expanded"><a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Encargada de crear un proyecto para realizacion de pruebas</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-4" class="py-name"><a title="principal.models.Proyecto" class="py-name" href="#" onclick="return doclink('link-4', 'Proyecto', 'link-2');">Proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">create</tt><tt class="py-op">(</tt><tt id="link-5" class="py-name" targets="Variable principal.models.AtributoTipoItem.nombre=principal.models.AtributoTipoItem-class.html#nombre,Variable principal.models.Fase.nombre=principal.models.Fase-class.html#nombre,Variable principal.models.Item.nombre=principal.models.Item-class.html#nombre,Variable principal.models.LineaBase.nombre=principal.models.LineaBase-class.html#nombre,Variable principal.models.Permiso.nombre=principal.models.Permiso-class.html#nombre,Variable principal.models.Proyecto.nombre=principal.models.Proyecto-class.html#nombre,Variable principal.models.Rol.nombre=principal.models.Rol-class.html#nombre,Variable principal.models.Solicitud.nombre=principal.models.Solicitud-class.html#nombre,Variable principal.models.TipoItem.nombre=principal.models.TipoItem-class.html#nombre,Variable principal.models.Usuario.nombre=principal.models.Usuario-class.html#nombre"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-5', 'nombre', 'link-5');">nombre</a></tt><tt class="py-op">=</tt><tt id="link-6" class="py-name"><a title="principal.models.AtributoTipoItem.nombre
+principal.models.Fase.nombre
+principal.models.Item.nombre
+principal.models.LineaBase.nombre
+principal.models.Permiso.nombre
+principal.models.Proyecto.nombre
+principal.models.Rol.nombre
+principal.models.Solicitud.nombre
+principal.models.TipoItem.nombre
+principal.models.Usuario.nombre" class="py-name" href="#" onclick="return doclink('link-6', 'nombre', 'link-5');">nombre</a></tt><tt class="py-op">,</tt> <tt id="link-7" class="py-name" targets="Variable principal.models.Fase.descripcion=principal.models.Fase-class.html#descripcion,Variable principal.models.Proyecto.descripcion=principal.models.Proyecto-class.html#descripcion,Variable principal.models.Rol.descripcion=principal.models.Rol-class.html#descripcion,Variable principal.models.Solicitud.descripcion=principal.models.Solicitud-class.html#descripcion,Variable principal.models.TipoItem.descripcion=principal.models.TipoItem-class.html#descripcion"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-7', 'descripcion', 'link-7');">descripcion</a></tt><tt class="py-op">=</tt><tt id="link-8" class="py-name"><a title="principal.models.Fase.descripcion
+principal.models.Proyecto.descripcion
+principal.models.Rol.descripcion
+principal.models.Solicitud.descripcion
+principal.models.TipoItem.descripcion" class="py-name" href="#" onclick="return doclink('link-8', 'descripcion', 'link-7');">descripcion</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line">                                                                 <tt id="link-9" class="py-name" targets="Variable principal.models.Proyecto.fecha_creacion=principal.models.Proyecto-class.html#fecha_creacion"><a title="principal.models.Proyecto.fecha_creacion" class="py-name" href="#" onclick="return doclink('link-9', 'fecha_creacion', 'link-9');">fecha_creacion</a></tt><tt class="py-op">=</tt><tt id="link-10" class="py-name"><a title="principal.models.Proyecto.fecha_creacion" class="py-name" href="#" onclick="return doclink('link-10', 'fecha_creacion', 'link-9');">fecha_creacion</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line">                                                                 <tt id="link-11" class="py-name" targets="Variable principal.models.Proyecto.complejidad_total=principal.models.Proyecto-class.html#complejidad_total"><a title="principal.models.Proyecto.complejidad_total" class="py-name" href="#" onclick="return doclink('link-11', 'complejidad_total', 'link-11');">complejidad_total</a></tt><tt class="py-op">=</tt><tt id="link-12" class="py-name"><a title="principal.models.Proyecto.complejidad_total" class="py-name" href="#" onclick="return doclink('link-12', 'complejidad_total', 'link-11');">complejidad_total</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line">                                                                 <tt id="link-13" class="py-name" targets="Variable principal.models.Fase.estado=principal.models.Fase-class.html#estado,Variable principal.models.LineaBase.estado=principal.models.LineaBase-class.html#estado,Variable principal.models.Mensaje.estado=principal.models.Mensaje-class.html#estado,Variable principal.models.Proyecto.estado=principal.models.Proyecto-class.html#estado,Variable principal.models.Solicitud.estado=principal.models.Solicitud-class.html#estado,Variable principal.models.VersionItem.estado=principal.models.VersionItem-class.html#estado"><a title="principal.models.Fase.estado
+principal.models.LineaBase.estado
+principal.models.Mensaje.estado
+principal.models.Proyecto.estado
+principal.models.Solicitud.estado
+principal.models.VersionItem.estado" class="py-name" href="#" onclick="return doclink('link-13', 'estado', 'link-13');">estado</a></tt><tt class="py-op">=</tt><tt id="link-14" class="py-name"><a title="principal.models.Fase.estado
+principal.models.LineaBase.estado
+principal.models.Mensaje.estado
+principal.models.Proyecto.estado
+principal.models.Solicitud.estado
+principal.models.VersionItem.estado" class="py-name" href="#" onclick="return doclink('link-14', 'estado', 'link-13');">estado</a></tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">                                                                 <tt class="py-op">)</tt> </tt>
+</div><a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line"> </tt>
+<a name="crear_comite"></a><div id="crear_comite-def"><a name="L17"></a><tt class="py-lineno">17</tt> <a class="py-toggle" href="#" id="crear_comite-toggle" onclick="return toggle('crear_comite');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="app_comite.tests-module.html#crear_comite">crear_comite</a><tt class="py-op">(</tt><tt class="py-param">proyecto</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="crear_comite-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="crear_comite-expanded"><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"><tt class="py-docstring">        Funcion: Encargada de crear un comite para realizacion de pruebas</tt> </tt>
+<a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-15" class="py-name"><a title="principal.models.Comite" class="py-name" href="#" onclick="return doclink('link-15', 'Comite', 'link-3');">Comite</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">create</tt><tt class="py-op">(</tt><tt id="link-16" class="py-name" targets="Variable principal.models.Comite.proyecto=principal.models.Comite-class.html#proyecto,Variable principal.models.Fase.proyecto=principal.models.Fase-class.html#proyecto,Variable principal.models.Relacion.proyecto=principal.models.Relacion-class.html#proyecto,Variable principal.models.Rol.proyecto=principal.models.Rol-class.html#proyecto,Variable principal.models.TipoItem.proyecto=principal.models.TipoItem-class.html#proyecto"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-16', 'proyecto', 'link-16');">proyecto</a></tt><tt class="py-op">=</tt><tt id="link-17" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-17', 'proyecto', 'link-16');">proyecto</a></tt><tt class="py-op">)</tt> </tt>
+</div><a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line"> </tt>
+<a name="ComiteTest"></a><div id="ComiteTest-def"><a name="L23"></a><tt class="py-lineno">23</tt> <a class="py-toggle" href="#" id="ComiteTest-toggle" onclick="return toggle('ComiteTest');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="app_comite.tests.ComiteTest-class.html">ComiteTest</a><tt class="py-op">(</tt><tt class="py-base-class">TestCase</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ComiteTest-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="ComiteTest-expanded"><a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="ComiteTest.test_creacion_comite"></a><div id="ComiteTest.test_creacion_comite-def"><a name="L25"></a><tt class="py-lineno">25</tt> <a class="py-toggle" href="#" id="ComiteTest.test_creacion_comite-toggle" onclick="return toggle('ComiteTest.test_creacion_comite');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="app_comite.tests.ComiteTest-class.html#test_creacion_comite">test_creacion_comite</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ComiteTest.test_creacion_comite-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="ComiteTest.test_creacion_comite-expanded"><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"><tt class="py-docstring">                Se comprueba que el comite es creado exitosamente</tt> </tt>
+<a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">                <tt class="py-name">tproyecto</tt> <tt class="py-op">=</tt> <tt id="link-18" class="py-name" targets="Function app_comite.tests.crear_proyecto()=app_comite.tests-module.html#crear_proyecto,Function app_fase.tests.crear_proyecto()=app_fase.tests-module.html#crear_proyecto,Function app_item.tests.crear_proyecto()=app_item.tests-module.html#crear_proyecto,Function app_linea_base.tests.crear_proyecto()=app_linea_base.tests-module.html#crear_proyecto,Function app_proyecto.tests.crear_proyecto()=app_proyecto.tests-module.html#crear_proyecto,Function app_solicitud.tests.crear_proyecto()=app_solicitud.tests-module.html#crear_proyecto,Function app_tipo_item.tests.crear_proyecto()=app_tipo_item.tests-module.html#crear_proyecto"><a title="app_comite.tests.crear_proyecto
+app_fase.tests.crear_proyecto
+app_item.tests.crear_proyecto
+app_linea_base.tests.crear_proyecto
+app_proyecto.tests.crear_proyecto
+app_solicitud.tests.crear_proyecto
+app_tipo_item.tests.crear_proyecto" class="py-name" href="#" onclick="return doclink('link-18', 'crear_proyecto', 'link-18');">crear_proyecto</a></tt><tt class="py-op">(</tt><tt class="py-string">"Proyecto1"</tt><tt class="py-op">,</tt> <tt class="py-string">"Descripcion1"</tt><tt class="py-op">,</tt> <tt class="py-name">timezone</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"no iniciado"</tt><tt class="py-op">)</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line">                <tt class="py-name">tproyecto</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line">                <tt class="py-name">tproyecto_id</tt> <tt class="py-op">=</tt> <tt class="py-name">tproyecto</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line">                <tt class="py-name">tcomite</tt> <tt class="py-op">=</tt> <tt id="link-19" class="py-name" targets="Function app_comite.tests.crear_comite()=app_comite.tests-module.html#crear_comite,Function app_solicitud.tests.crear_comite()=app_solicitud.tests-module.html#crear_comite"><a title="app_comite.tests.crear_comite
+app_solicitud.tests.crear_comite" class="py-name" href="#" onclick="return doclink('link-19', 'crear_comite', 'link-19');">crear_comite</a></tt><tt class="py-op">(</tt><tt class="py-name">tproyecto</tt><tt class="py-op">)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line">                <tt class="py-name">tcomite</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">                <tt class="py-name">tcomiteproyecto_id</tt> <tt class="py-op">=</tt> <tt class="py-name">tcomite</tt><tt class="py-op">.</tt><tt id="link-20" class="py-name"><a title="principal.models.Comite.proyecto
+principal.models.Fase.proyecto
+principal.models.Relacion.proyecto
+principal.models.Rol.proyecto
+principal.models.TipoItem.proyecto" class="py-name" href="#" onclick="return doclink('link-20', 'proyecto', 'link-16');">proyecto</a></tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tcomiteproyecto_id</tt><tt class="py-op">,</tt> <tt class="py-name">tproyecto_id</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="ComiteTest.test_eliminacion_comite"></a><div id="ComiteTest.test_eliminacion_comite-def"><a name="L37"></a><tt class="py-lineno">37</tt> <a class="py-toggle" href="#" id="ComiteTest.test_eliminacion_comite-toggle" onclick="return toggle('ComiteTest.test_eliminacion_comite');">-</a><tt class="py-line">        <tt class="py-keyword">def</tt> <a class="py-def-name" href="app_comite.tests.ComiteTest-class.html#test_eliminacion_comite">test_eliminacion_comite</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ComiteTest.test_eliminacion_comite-collapsed" style="display:none;" pad="++" indent="++++++++++++"></div><div id="ComiteTest.test_eliminacion_comite-expanded"><a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">                <tt class="py-docstring">"""</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-docstring">                Se comprueba que al eliminar el proyecto, el comite</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-docstring">                asociado al mismo tambien es eliminado</tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-docstring">                """</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">                <tt class="py-name">tproyecto</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="app_comite.tests.crear_proyecto
+app_fase.tests.crear_proyecto
+app_item.tests.crear_proyecto
+app_linea_base.tests.crear_proyecto
+app_proyecto.tests.crear_proyecto
+app_solicitud.tests.crear_proyecto
+app_tipo_item.tests.crear_proyecto" class="py-name" href="#" onclick="return doclink('link-21', 'crear_proyecto', 'link-18');">crear_proyecto</a></tt><tt class="py-op">(</tt><tt class="py-string">"Proyecto1"</tt><tt class="py-op">,</tt> <tt class="py-string">"Descripcion1"</tt><tt class="py-op">,</tt> <tt class="py-name">timezone</tt><tt class="py-op">.</tt><tt class="py-name">now</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-string">"no iniciado"</tt><tt class="py-op">)</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">                <tt class="py-name">tproyecto</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">                <tt class="py-name">tcomite</tt> <tt class="py-op">=</tt> <tt id="link-22" class="py-name"><a title="app_comite.tests.crear_comite
+app_solicitud.tests.crear_comite" class="py-name" href="#" onclick="return doclink('link-22', 'crear_comite', 'link-19');">crear_comite</a></tt><tt class="py-op">(</tt><tt class="py-name">tproyecto</tt><tt class="py-op">)</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">                <tt class="py-name">tcomite</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">                <tt class="py-name">tcomite_id</tt> <tt class="py-op">=</tt> <tt class="py-name">tcomite</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">                <tt class="py-name">tproyecto</tt><tt class="py-op">.</tt><tt class="py-name">delete</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">                <tt class="py-name">tproyecto</tt><tt class="py-op">.</tt><tt class="py-name">save</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L50"></a><tt class="py-lineno">50</tt>  <tt class="py-line">                <tt class="py-name">tcomite</tt> <tt class="py-op">=</tt> <tt id="link-23" class="py-name"><a title="principal.models.Comite" class="py-name" href="#" onclick="return doclink('link-23', 'Comite', 'link-3');">Comite</a></tt><tt class="py-op">.</tt><tt class="py-name">objects</tt><tt class="py-op">.</tt><tt class="py-name">all</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">assertEqual</tt><tt class="py-op">(</tt><tt class="py-name">tcomite</tt><tt class="py-op">.</tt><tt class="py-name">count</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line"> </tt><script type="text/javascript">
 <!--
 expandto(location.href);
 // -->
@@ -133,7 +206,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sat May  3 12:57:46 2014
+    Generated by Epydoc 3.0.1 on Sat May 24 10:18:59 2014
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
