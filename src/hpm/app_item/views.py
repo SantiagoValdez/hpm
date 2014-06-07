@@ -12,6 +12,7 @@ from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 import json
 import datetime
+from django.utils.timezone import utc
 from django.db import transaction
 from django.contrib import messages
 # Create your views here.
@@ -581,7 +582,7 @@ def historialItem(operacion, id_item, id_usuario):
     """
 
     item = Item.objects.get(id=id_item)
-    date = datetime.datetime.now()
+    date = datetime.datetime.now().utcnow().replace(tzinfo=utc)
     user = Usuario.objects.get(id=id_usuario)
     op = operacion
 
