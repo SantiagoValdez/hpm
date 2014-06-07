@@ -4,7 +4,7 @@
 
         {% if usuario %}
         
-        
+        {% include 'modal-revivir-item.html' %}
         {% include 'modal-delete-item.html' %}
         {# include 'modal-new-tipo_item.html' #}
         {# include 'modal-modificar-tipo_item.html' #}
@@ -161,7 +161,7 @@
                                         <td>
                                             {% if i.eliminado %}
                                             {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
-                                            <a href="#" class="btn btn-default" onClick="showImpacto('{% url 'item:getImpacto' i.id %}');"><i class="fa fa-ambulance"></i></a>
+                                            <a href="#" class="btn btn-default" onClick="revivirItem('{{i.nombre}}', '{% url 'item:revivir' fase.id i.id %}');"><i class="fa fa-ambulance"></i></a>
                                             {# endif #}
                                             {% endif %}
                                         </td>
