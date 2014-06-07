@@ -37,10 +37,10 @@ def indexItem(request, id_fase):
         fase = Fase.objects.get(id=id_fase)
 
         if request.method != 'POST':
-            lista = fase.item_set.all().filter(eliminado=False)
+            lista = fase.item_set.all()
         else:
             lista = fase.item_set.all().filter(
-                nombre__startswith=request.POST['search'], eliminado=False)
+                nombre__startswith=request.POST['search'])
 
         return render(request, 'item.html', {'usuario': u, 'fase': fase, 'lista': lista})
 
@@ -136,6 +136,32 @@ def eliminarItem(request, id_fase, id_item):
     if(u):
 
         deleteItem(id_item)
+
+        return redirect('item:index', id_fase=id_fase)
+
+    else:
+        return redirect('/login')
+
+
+def revivirItem(request, id_fase, id_item):
+    """
+    Funcion: Se ocupa de eliminar un item de una fase
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_fase: Identificador de la fase de la cual se elimina el item. Utilizado para
+            renderizar el indice de los items.
+    @param id_lineabase: Identificador del item a ser eliminado.
+    @return: Si el usuario se encuentra logueado y el item es eliminado
+            exitosamente retorna un objeto HttpResponseRedirect hacia el indice de items de la
+            correspondiente fase.
+            Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+    """
+
+    u = is_logged(request.session)
+
+    if(u):
+
+        resurrectItem(id_item)
 
         return redirect('item:index', id_fase=id_fase)
 
@@ -284,7 +310,7 @@ def relacionarItem(request, id_fase, id_item):
 
         fase = Fase.objects.get(id=id_fase)
         item = Item.objects.get(id=id_item)
-        graph = generarArborItem(id_item)
+        
         # on post
         if request.method == 'POST':
             if(('sucesor' in request.POST or 'hijo' in request.POST) and
@@ -299,13 +325,20 @@ def relacionarItem(request, id_fase, id_item):
                     else:
                         id_sucesor = request.POST['sucesor']
 
-                    item1 = Item.objects.get(id=id_antecesor)
-                    item2 = Item.objects.get(id=id_sucesor)
-                    user = Usuario.objects.get(id=request.session['usuario'])
-                    newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor)
-                    messages.success(request, 'Se creo la relacion con exito.')
-                    historialItem(
-                        'relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item, user.id)
+                    if(not detectCicle(id_antecesor, id_sucesor)):
+                        item1 = Item.objects.get(id=id_antecesor)
+                        item2 = Item.objects.get(id=id_sucesor)
+                        user = Usuario.objects.get(
+                            id=request.session['usuario'])
+                        newRelacionItems(
+                            id_fase, tipo, id_antecesor, id_sucesor)
+                        messages.success(
+                            request, 'Se creo la relacion con exito.')
+                        historialItem(
+                            'relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item, user.id)
+                    else:
+                        messages.error(
+                            request, 'No se pudo crear la relacion por que se formaria un ciclo.')
                 except Exception, e:
                     print e
                     messages.error(
@@ -317,7 +350,8 @@ def relacionarItem(request, id_fase, id_item):
 
         # finalmente... siempre... siempre...
         lista = getRelacionesItem(id_item)
-        return render(request, 'relacionar-item.html', {'usuario': u, 'fase': fase, 'item': item, 'lista': lista, 'graph':graph})
+        graph = generarArborItem(id_item)
+        return render(request, 'relacionar-item.html', {'usuario': u, 'fase': fase, 'item': item, 'lista': lista, 'graph': graph})
 
     else:
         return redirect('/login')
@@ -371,6 +405,7 @@ def getItem(request, id_tipo_item):
 
     return HttpResponse(data)
 
+
 def getImpactoItem(request, id_item):
     """
     Funcion: Se ocupa de obtener los datos de un item
@@ -386,7 +421,7 @@ def getImpactoItem(request, id_item):
     dic = {}
     dic['impacto'] = impacto
     dic['nombre'] = item.nombre
-    
+
     print dic
 
     data = json.dumps(dic)
@@ -536,9 +571,46 @@ def deleteItem(id_item):
 
     @param id_item: Identificador del item a ser eliminado.
     """
-    item = Item.objects.get(id=id_item)
-    item.eliminado = True
-    item.save()
+    with transaction.atomic():
+        item = Item.objects.get(id=id_item)
+        item.eliminado = True
+
+        setEstadoItem(id_item, 'eliminado')
+
+        relaciones = getRelacionesItem(id_item)
+        for r in relaciones:
+            r.eliminado = True
+            r.save()
+
+        item.save()
+
+
+def resurrectItem(id_item):
+    """
+    Funcion: Encargada de revivir el item.
+
+    @param id_item: Identificador del item a ser revivido.
+    """
+    with transaction.atomic():
+        item = Item.objects.get(id=id_item)
+        item.eliminado = False
+
+        setEstadoItem(id_item, 'inicial')
+
+        relaciones = getRelacionesItem(id_item, True)
+
+        for r in relaciones:
+
+            id_ant = r.antecesor.proxy.id
+            id_suc = r.sucesor.proxy.id
+
+            if(not detectCicle(id_ant, id_suc)):
+                r.eliminado = False
+                r.save()
+            else:
+                r.delete()
+
+        item.save()
 
 
 def newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor):
@@ -589,16 +661,17 @@ def deleteRelacion(id_relacion):
     relacion.delete()
 
 
-def getRelacionesItem(id_item):
+def getRelacionesItem(id_item, all=False):
     relaciones = None
     try:
         item = Item.objects.get(id=id_item)
         print item
         version = VersionItem.objects.get(id=item.id_actual)
         print version
-        antecesores = version.relacion_antecesor_set.all()
+        antecesores = version.relacion_antecesor_set.all().filter(
+            eliminado=all)
         print antecesores
-        sucesores = version.relacion_sucesor_set.all()
+        sucesores = version.relacion_sucesor_set.all().filter(eliminado=all)
         print sucesores
 
         relaciones = []
@@ -611,21 +684,43 @@ def getRelacionesItem(id_item):
 
     return relaciones
 
+
 def getAntecesoresItem(id_item):
     antecesores = None
     try:
         item = Item.objects.get(id=id_item)
         version = VersionItem.objects.get(id=item.id_actual)
-        antecesores_r = version.relacion_sucesor_set.all()
-        print antecesores_r
+        antecesores_r = version.relacion_sucesor_set.all().filter(
+            eliminado=False)
+
         antecesores = []
-        
+
         for r in antecesores_r:
             i = Item.objects.get(id=r.antecesor.proxy.id)
             antecesores.append(i)
 
-        
-        print antecesores
+
+
+    except Exception, e:
+        print e
+
+    return antecesores
+
+def getAntecesoresItemDeep(id_item):
+    antecesores = None
+    try:
+        item = Item.objects.get(id=id_item)
+        version = VersionItem.objects.get(id=item.id_actual)
+        antecesores_r = version.relacion_sucesor_set.all().filter(
+            eliminado=False)
+
+        antecesores = []
+
+        for r in antecesores_r:
+            i = Item.objects.get(id=r.antecesor.proxy.id)
+            antecesores += getAntecesoresItemDeep(i.id)
+            antecesores.append(i)
+
 
     except Exception, e:
         print e
@@ -637,16 +732,37 @@ def getSucesoresItem(id_item):
     try:
         item = Item.objects.get(id=id_item)
         version = VersionItem.objects.get(id=item.id_actual)
-        sucesores_r = version.relacion_antecesor_set.all()
-        print sucesores_r
+        sucesores_r = version.relacion_antecesor_set.all().filter(
+            eliminado=False)
+
         sucesores = []
-        
+
         for r in sucesores_r:
             i = Item.objects.get(id=r.sucesor.proxy.id)
             sucesores.append(i)
 
-        
-        print sucesores
+
+
+    except Exception, e:
+        print e
+
+    return sucesores
+
+def getSucesoresItemDeep(id_item):
+    sucesores = None
+    try:
+        item = Item.objects.get(id=id_item)
+        version = VersionItem.objects.get(id=item.id_actual)
+        sucesores_r = version.relacion_antecesor_set.all().filter(
+            eliminado=False)
+
+        sucesores = []
+
+        for r in sucesores_r:
+            i = Item.objects.get(id=r.sucesor.proxy.id)
+            sucesores += getSucesoresItemDeep(i.id)
+            sucesores.append(i)
+
 
     except Exception, e:
         print e
@@ -714,30 +830,31 @@ def adjuntarArchivo(request, id_fase, id_item):
         print id_fase
         item = Item.objects.get(id=id_item)
         fase = Fase.objects.get(id=id_fase)
-           
+
         if request.method == 'POST':
             form = ArchivoForm(request.POST, request.FILES)
-            
+
             try:
                 if form.is_valid:
                     nuevoArchivo = Archivo(archivo=request.FILES['archivo'])
                     nuevoArchivo.item = item
                     nuevoArchivo.save()
-                    
+
                     return redirect('item:adjuntar', id_fase=id_fase, id_item=id_item)
 
-            except Exception,e:
+            except Exception, e:
                 print e
-                messages.error(request,'No se pudo subir el archivo.')
+                messages.error(request, 'No se pudo subir el archivo.')
 
         else:
             form = ArchivoForm()
 
         documents = Archivo.objects.filter(item=item)
 
-        return render(request, 'item-adjuntar.html',{'usuario':u,'documents':documents,'form':form,'item':item,'fase':fase})
+        return render(request, 'item-adjuntar.html', {'usuario': u, 'documents': documents, 'form': form, 'item': item, 'fase': fase})
     else:
         return redirect('/login')
+
 
 def calcularImpacto(id_item):
     """
@@ -748,18 +865,18 @@ def calcularImpacto(id_item):
     """
     item = Item.objects.get(id=id_item)
 
-    #print item
+    # print item
     version = VersionItem.objects.get(id=item.id_actual)
-    #print version
+    # print version
     antecesores = version.relacion_antecesor_set.all()
-    #print antecesores
+    # print antecesores
     sucesores = version.relacion_sucesor_set.all()
-    #print sucesores
+    # print sucesores
 
     relaciones = []
     relaciones += antecesores
     relaciones += sucesores
-    #print relaciones
+    # print relaciones
 
     impacto = 0 + version.costo
 
@@ -772,8 +889,9 @@ def calcularImpacto(id_item):
             v = VersionItem.objects.get(id=r.sucesor.id)
             impacto = impacto + v.costo
 
-    #print impacto
+    # print impacto
     return impacto
+
 
 def generarArborItem(id_item):
     """
@@ -790,32 +908,60 @@ def generarArborItem(id_item):
 
     item = Item.objects.get(id=id_item)
 
-    js += 'nodes:{' + str(item.id) + ':{ color:"#428bca", mass:200, label:"'+ item.nombre + '"},'
+    js += 'nodes:{' + str(item.id) + \
+        ':{ color:"#428bca", mass:200, label:"' + item.nombre + '"},'
 
-    #los nodos antecesores
+    # los nodos antecesores
     ant = getAntecesoresItem(id_item)
 
     for i in ant:
-        js += ' '+ str(i.id) + ':{ color: "green", label: "'+ i.nombre +'"},'
+        js += ' ' + \
+            str(i.id) + ':{ color: "green", label: "' + i.nombre + '"},'
 
     suc = getSucesoresItem(id_item)
     for i in suc:
-        js += ' '+ str(i.id) + ':{ color: "red", label: "'+ i.nombre +'"},'
+        js += ' ' + str(i.id) + ':{ color: "red", label: "' + i.nombre + '"},'
 
     js += '}, edges:{'
 
-    #sucesores
-    js += ' '+ str(item.id) + ': {'
+    # sucesores
+    js += ' ' + str(item.id) + ': {'
     for i in suc:
-        js += ' '+ str(i.id) + ':{ color: "red" },'
+        js += ' ' + str(i.id) + ':{ color: "red" },'
     js += '},'
 
-    #antecesores
+    # antecesores
     for i in ant:
-        js += ' ' + str(i.id) + ': { ' + str(item.id) + ': { color : "green" } },'
+        js += ' ' + \
+            str(i.id) + ': { ' + str(item.id) + ': { color : "green" } },'
 
     js += '}'
 
-    
     return js
 
+
+def detectCicle(id_antecesor, id_sucesor):
+    print "=============================="
+    print "DETECTAR CICLO :"
+    print id_antecesor
+    print id_sucesor
+
+    print getAntecesoresItemDeep(id_antecesor)
+    print getSucesoresItemDeep(id_sucesor)   
+    print "============================="
+    ants = getAntecesoresItemDeep(id_antecesor)
+
+    
+    for i in ants:
+        if(str(i.id) == str(id_sucesor)) :
+            return True
+
+    sucs = getSucesoresItemDeep(id_sucesor)
+
+
+    for i in sucs:
+        print i.id
+        if(str(i.id) == str(id_antecesor)):
+            return True
+    
+    return False

@@ -29,7 +29,9 @@
 								{% for f in fase.proyecto.fase_set.all %}
 									{% if f.nro == fase.nro|add:"1" %}
 										{% for i in f.item_set.all %}
+											{% if not i.eliminado %}
 											<option value="{{i.id}}">{{i.nombre}}</option>
+											{% endif %}
 										{% endfor %}
 									{% endif %}
 								{% endfor %}
@@ -44,7 +46,9 @@
 								<select name="hijo" required data-validation-required-message="Por favor rellena este campo :)" >
 								{% for i in fase.item_set.all %}
 									{% if i != item %}
+										{% if not i.eliminado %}
 										<option value="{{i.id}}">{{i.nombre}}</option>
+										{% endif %}
 									{% endif %}
 								{% endfor %}
 								</select>

@@ -211,7 +211,7 @@ class Relacion(models.Model):
     def __unicode__(self):
         return 'ID : ' + str(self.id)
     tipo = models.TextField(max_length=50)
-
+    eliminado = models.BooleanField(default = False)
     #Guarda la referencia al item antecesor o padre
     antecesor = models.ForeignKey(VersionItem, related_name='relacion_antecesor_set')
     #Guarda la referencia al item sucesor o hijo
