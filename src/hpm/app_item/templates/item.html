@@ -10,7 +10,7 @@
         {# include 'modal-modificar-tipo_item.html' #}
         {# include 'modal-import-tipo_item.html' #}
         {# include 'modal-adjuntar.html' #}
-        
+        {% include 'modal-impacto-item.html' %}
         {% include 'modal-new-item.html' %}
         
         <div id="page-wrapper">
@@ -70,6 +70,7 @@
                                         <th>Revertir</th>
                                         <th>Historial</th>
                                         <th>Relacionar</th>
+                                        <th>Calcular Impacto</th>
 
                                     </tr>
                                 </thead>
@@ -133,6 +134,12 @@
                                         <td>
                                             {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
                                             <a href="{% url 'item:relacionar' fase.id i.id %}" class="btn btn-default"><i class="fa fa-code-fork"></i></a>
+                                            {# endif #}
+                                        </td>
+
+                                        <td>
+                                            {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
+                                            <a href="#" class="btn btn-default" onClick="showImpacto('{% url 'item:getImpacto' i.id %}');"><i class="fa fa-bomb"></i></a>
                                             {# endif #}
                                         </td>
                                         

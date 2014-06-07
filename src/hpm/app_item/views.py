@@ -359,6 +359,28 @@ def getItem(request, id_tipo_item):
 
     return HttpResponse(data)
 
+def getImpactoItem(request, id_item):
+    """
+    Funcion: Se ocupa de obtener los datos de un item
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_tipo_item: Identificador del tipo de item del item del cual se quiere obtener sus datos.
+    @return: Retorna un objeto HttpResponse con los datos del item en formato json.
+    """
+
+    item = Item.objects.get(id=id_item)
+    impacto = calcularImpacto(id_item)
+
+    dic = {}
+    dic['impacto'] = impacto
+    dic['nombre'] = item.nombre
+    
+    print dic
+
+    data = json.dumps(dic)
+
+    return HttpResponse(data)
+
 
 def newItem(nombre, numero, id_fase, id_tipo_item, atributos):
     """

@@ -82,3 +82,23 @@ function adjuntarArchivo(nombre){
 	$("#modal-modificar").modal('show');
 
 }
+
+function showImpacto(url){
+	$.get( url, function( data ) {
+     	console.log( "Load was performed." + data);
+     	var datos = JSON.parse(data);
+
+     	if( datos ){
+     		var item = datos;
+
+     		console.log(item);
+
+     		$("#nombre-impacto-item").empty().append(""+item.nombre);
+     		$("#impacto-item").empty().append(""+item.impacto);
+     		
+     		$("#modal-impacto").modal('show');
+
+     	}
+
+	});
+}
