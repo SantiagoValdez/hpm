@@ -1,10 +1,15 @@
-from django.test import TestCase
+from django.test import TestCase, TransactionTestCase
+from django.db import IntegrityError
 
 # Create your tests here.
 
 from django.test import TestCase
 from django.utils import timezone
-from principal.models import Proyecto, Fase, LineaBase, Item, AtributoItem, TipoItem
+from principal.models import Proyecto, Fase, LineaBase, Item, AtributoItem, TipoItem, VersionItem, Relacion
+from app_item.views import newItem, deleteItem, newVersion, setVersionItem, setEstadoItem
+from app_item.views import newRelacionItems, deleteRelacion, getRelacionesItem, getAntecesoresItem
+from app_item.views import getSucesoresItem
+from app_item.views import getItem, getImpactoItem
 
 # Create your tests here.
 
@@ -68,6 +73,7 @@ class itemTest(TestCase):
 		fs = crear_fase("Fase test", "Fase de " + str(pr.nombre), pr)
 		fs.save()
 		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", pr, fs)
+		ti.save()
 
 		it = crear_item('item test', 1, fs, ti)
 		it.save()
@@ -84,6 +90,7 @@ class itemTest(TestCase):
 		fs = crear_fase("Fase test", "Fase de " + str(pr.nombre), pr)
 		fs.save()
 		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", pr, fs)
+		ti.save()
 
 		it = crear_item('item test', 1, fs, ti)
 		it.save()
@@ -94,3 +101,74 @@ class itemTest(TestCase):
 		fss = Fase.objects.all()
 		self.assertEqual(fss.count(),0)
 		self.assertEqual(its.count(),0)
+
+	def test_newItem(self):
+
+		prt = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
+		prt.save()
+		fst = crear_fase("Fase test", "Fase de " + str(prt.nombre), prt)
+		fst.save()
+		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", prt, fst)
+		ti.save()
+
+		atributos = {'complejidad':2,'costo':4,'prioridad':1}
+
+		newItem("item t",1,fst.id,ti.id,atributos)
+
+		item = Item.objects.get(nombre="item t")
+		self.assertEqual(item.nombre, "item t")
+
+	def test_delItem(self):
+		prt = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
+		prt.save()
+		fst = crear_fase("Fase test", "Fase de " + str(prt.nombre), prt)
+		fst.save()
+		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", prt, fst)
+		ti.save()
+
+		atributos = {'complejidad':2,'costo':4,'prioridad':1}
+
+		newItem("item t",1,fst.id,ti.id,atributos)
+
+		item = Item.objects.get(nombre="item t")
+		self.assertEqual(item.nombre, "item t")
+		deleteItem(item.id)
+		items = Item.objects.all()
+		self.assertEqual(items.count(),1)
+		item = Item.objects.get(nombre="item t")
+		self.assertEqual(item.eliminado, True)
+
+	def test_relItem(self):
+		prt = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
+		prt.save()
+		fst = crear_fase("Fase test", "Fase de " + str(prt.nombre), prt)
+		fst.save()
+		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", prt, fst)
+		ti.save()
+
+		atributos = {'complejidad':2,'costo':4,'prioridad':1}
+
+		newItem("item t1",1,fst.id,ti.id,atributos)
+		item1 = Item.objects.get(nombre="item t1")
+		vitem1 = VersionItem.objects.get(proxy=item1)
+		newItem("item t2",2,fst.id,ti.id,atributos)
+		item2 = Item.objects.get(nombre="item t2")
+		vitem2 = VersionItem.objects.get(proxy=item2)
+
+		newRelacionItems(fst.id,"Padre-Hijo",vitem1.id, vitem2.id)
+		rt = Relacion.objects.get(antecesor=item1.id)
+		self.assertEqual(rt.sucesor.id,item2.id)
+
+		newItem("item t3",2,fst.id,ti.id,atributos)
+		item3 = Item.objects.get(nombre="item t3")
+		vitem3 = VersionItem.objects.get(proxy=item3)
+
+		newRelacionItems(fst.id,"Padre-Hijo",vitem2.id, vitem3.id)
+		rt = Relacion.objects.get(antecesor=item2.id)
+		self.assertEqual(rt.sucesor.id,item3.id)
+
+		try:
+			newRelacionItems(fst.id,"Padre-Hijo",vitem3.id, vitem1.id)
+			rt = Relacion.objects.get(antecesor=item3.id)
+		except Exception, e:
+			print e

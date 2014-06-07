@@ -259,7 +259,7 @@ def historialLineaBase(operacion, id_lineabase, id_usuario):
     @param operacion: Operacion realizada sobre la linea base.
     @param id_lineabase: Identificador de la linea base sobre la cual se realizan
             las operaciones.
-    @param usuario: Usuario que realizo las operacion sobre la linea base.
+    @param id_usuario: Usuario que realizo las operacion sobre la linea base.
     """
 
     lb = LineaBase.objects.get(id=id_lineabase)
@@ -276,7 +276,17 @@ def historialLineaBase(operacion, id_lineabase, id_usuario):
     hist.save()
 
 def indexHistorialLineaBase(request, id_fase, id_lineabase):
-    """"""
+    """
+    Funcion: Panel de visualizacion del historial de un item
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_fase: Identificador de la fase al que pertenece el item.
+    @param id_lineabase: Identificador de la linea base de la cual se visualiza su historial.
+    @return: Si el usuario se encuentra logueado retorna un objeto
+            HttpResponse del template historial-lineabase.html renderizado con el contexto
+            {'usuario' : u, 'fase' : fase, 'linea_base' : lb}. Sino, retorna un objeto
+            HttpResponseRedirect hacia '/login'.
+    """
     u = is_logged(request.session)
     if(u):
         lb = LineaBase.objects.get(id=id_lineabase)

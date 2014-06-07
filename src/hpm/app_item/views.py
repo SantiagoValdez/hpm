@@ -266,6 +266,18 @@ def revertirItem(request, id_fase, id_item):
 
 
 def relacionarItem(request, id_fase, id_item):
+    """
+    Funcion: Encargada de relacionar dos items
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_fase: Identificador de la fase a la que pertenece el item antecesor.
+    @param id_item: Identificador del item a relacionar.
+    @return: Si el usuario se encuentra logueado y el item es relacionado
+            exitosamente retorna un objeto HttpResponse del template relacionar-item.html
+            renderizado con el contexto
+            {'usuario' : u,'fase' : fase, 'item' : item,  'mensaje' : 'Se cambio la version del item con exito.' }.
+            Sino, retorna un objeto HttpResponseRedirect hacia '/login'.
+    """
     u = is_logged(request.session)
 
     if(u):
@@ -728,6 +740,12 @@ def adjuntarArchivo(request, id_fase, id_item):
         return redirect('/login')
 
 def calcularImpacto(id_item):
+    """
+    Funcion: Encargada de calcular el impacto de un item dado.
+
+    @param id_item: Identificador del item del cual se calcula su impacto.
+    @return: Valor total del impacto.
+    """
     item = Item.objects.get(id=id_item)
 
     #print item
@@ -758,6 +776,12 @@ def calcularImpacto(id_item):
     return impacto
 
 def generarArborItem(id_item):
+    """
+    Funcion: Encargada de graficar el grafo de un item dado
+
+    @param id_item: Identificador del item del cual se graficara su grafo de relaciones.
+    @return: Conjunto de nodos que conforman el grafo de relaciones.
+    """
     # nodes:{foo:{color:"black", label:"foo"}, bar:{color:"green", label:"bar"}},
     # edges:{ foo: { bar: { }, baz:{ color: "blue", label: "hello"} } }
     #
