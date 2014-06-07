@@ -37,10 +37,10 @@ def indexItem(request, id_fase):
         fase = Fase.objects.get(id=id_fase)
 
         if request.method != 'POST':
-            lista = fase.item_set.all().filter(eliminado=False)
+            lista = fase.item_set.all()
         else:
             lista = fase.item_set.all().filter(
-                nombre__startswith=request.POST['search'], eliminado=False)
+                nombre__startswith=request.POST['search'])
 
         return render(request, 'item.html', {'usuario': u, 'fase': fase, 'lista': lista})
 
@@ -524,9 +524,38 @@ def deleteItem(id_item):
 
     @param id_item: Identificador del item a ser eliminado.
     """
-    item = Item.objects.get(id=id_item)
-    item.eliminado = True
-    item.save()
+    with transaction.atomic():
+        item = Item.objects.get(id=id_item)
+        item.eliminado = True
+        
+        setEstadoItem(id_item, 'eliminado')
+
+        relaciones = getRelacionesItem(id_item)
+        for r in relaciones:
+            r.eliminado = True
+            r.save()
+
+        item.save()
+
+
+def revivirItem(id_item):
+    """
+    Funcion: Encargada de eliminar el item.
+
+    @param id_item: Identificador del item a ser eliminado.
+    """
+    with transaction.atomic():
+        item = Item.objects.get(id=id_item)
+        item.eliminado = False
+        
+        setEstadoItem(id_item, 'inicial')
+
+        relaciones = getRelacionesItem(id_item)
+        for r in relaciones:
+            r.eliminado = False
+            r.save()
+
+        item.save()
 
 
 def newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor):
@@ -584,9 +613,9 @@ def getRelacionesItem(id_item):
         print item
         version = VersionItem.objects.get(id=item.id_actual)
         print version
-        antecesores = version.relacion_antecesor_set.all()
+        antecesores = version.relacion_antecesor_set.all().filter(eliminado=False)
         print antecesores
-        sucesores = version.relacion_sucesor_set.all()
+        sucesores = version.relacion_sucesor_set.all().filter(eliminado=False)
         print sucesores
 
         relaciones = []
@@ -604,7 +633,7 @@ def getAntecesoresItem(id_item):
     try:
         item = Item.objects.get(id=id_item)
         version = VersionItem.objects.get(id=item.id_actual)
-        antecesores_r = version.relacion_sucesor_set.all()
+        antecesores_r = version.relacion_sucesor_set.all().filter(eliminado=False)
         print antecesores_r
         antecesores = []
         
@@ -625,7 +654,7 @@ def getSucesoresItem(id_item):
     try:
         item = Item.objects.get(id=id_item)
         version = VersionItem.objects.get(id=item.id_actual)
-        sucesores_r = version.relacion_antecesor_set.all()
+        sucesores_r = version.relacion_antecesor_set.all().filter(eliminado=False)
         print sucesores_r
         sucesores = []
         
