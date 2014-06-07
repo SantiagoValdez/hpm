@@ -30,3 +30,4 @@ Team
 * La Rubia
 * El Wuzo
 * El Valdez
+* La Pizza
