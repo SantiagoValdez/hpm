@@ -127,7 +127,7 @@
 
                                         <td>
                                             {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
-                                            <a href="#historial" class="btn btn-default"><i class="fa fa-calendar-o"></i></a>
+                                            <a href="{% url 'item:historial' fase.id i.id %}" class="btn btn-default"><i class="fa fa-calendar-o"></i></a>
                                             {# endif #}
                                         </td>
                                         <td>

@@ -6,10 +6,12 @@ from principal.models import TipoItem
 from principal.models import Relacion
 from principal.models import ArchivoForm, Archivo
 from principal.models import HistorialItem
+from principal.models import Usuario
 from principal.views import is_logged
 from django.shortcuts import render, redirect
 from django.http.response import HttpResponse
 import json
+import datetime
 from django.db import transaction
 from django.contrib import messages
 # Create your views here.
@@ -91,7 +93,7 @@ def nuevoItem(request, id_fase, id_tipo_item):
                 try:
                     newItem(request.POST["nombre"], request.POST[
                             "numero"], fase.id, tipo_item.id, atributos)
-                    HistorialItem("crear",fase.id, user.id)
+                    historialItem("crear",fase.id, user.id)
 
                 except Exception, e:
 
@@ -186,7 +188,7 @@ def modificarItem(request, id_fase, id_item):
 
                 try:
                     newVersion(id_item, atributos)
-                    HistorialItem('modificar',item.id,user.id)
+                    historialItem('modificar',item.id,user.id)
 
                 except Exception, e:
 
@@ -239,7 +241,7 @@ def revertirItem(request, id_fase, id_item):
                 user = Usuario.objects.get(id=request.session['usuario'])
                 try:
                     setVersionItem(id_item, id_version)
-                    HistorialItem('revertir a'+ str(id_version),id_item,user.id)
+                    historialItem('revertir a'+ str(id_version),id_item,user.id)
 
                 except Exception, e:
 
@@ -288,7 +290,7 @@ def relacionarItem(request, id_fase, id_item):
                     user = Usuario.objects.get(id=request.session['usuario'])
                     newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor)
                     messages.success(request,'Se creo la relacion con exito.')
-                    HistorialItem('relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item,user.id)
+                    historialItem('relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item,user.id)
                 except Exception, e:
                     print e
                     messages.error(request, 'No se pudo crear la relacion. Intente de nuevo.')
@@ -312,7 +314,7 @@ def removerRelacionItem(request, id_fase, id_item , id_relacion):
         user = Usuario.objects.get(id=request.session['usuario'])
         deleteRelacion(id_relacion)
         messages.success(request,"Se elimino la relacion con exito")
-        HistorialItem('eliminar relacion con' + item2.nombre,item1.id,user.id)
+        historialItem('eliminar relacion con' + item2.nombre,item1.id,user.id)
 
     except Exception, e:
         print e
@@ -589,6 +591,18 @@ def historialItem(operacion, id_item, id_usuario):
     hist.item = item
     hist.usuario = user.username
     hist.save()
+
+def indexHistorialItem(request, id_fase, id_item):
+    """"""
+    u = is_logged(request.session)
+    if(u):
+        item = Item.objects.get(id=id_item)
+        fase = Fase.objects.get(id=id_fase)
+
+
+        return render(request,'historial-item.html', {'usuario' : u, 'fase' : fase, 'item' : item})
+    else:
+        redirect('/login')
 
 def adjuntarArchivo(request, id_fase, id_item):
     print id_fase
