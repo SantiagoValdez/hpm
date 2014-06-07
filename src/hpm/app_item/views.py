@@ -531,6 +531,12 @@ def newVersion(id_item, atributos):
 
 
 def setEstadoItem(id_item, estado):
+    """
+    Funcion: Encargada de establecer el estado de un item
+
+    @param id_item: Identificador del item al que se le establecera un estado dado.
+    @param estado: Estado que se le establecera a el item dado.
+    """
     with transaction.atomic():
 
         item = Item.objects.get(id=id_item)
@@ -662,6 +668,13 @@ def deleteRelacion(id_relacion):
 
 
 def getRelacionesItem(id_item, all=False):
+    """
+    Funcion: Encargada de obtener todas las relaciones donde se encuentra un item dado.
+
+    @param id_item: Identificador del item del cual se encuentran las relaciones.
+    @param all: Bandera para la inclusion de item eliminados, por defecto False.
+    @return: Todas las relaciones donde se encuentra el item dado.
+    """
     relaciones = None
     try:
         item = Item.objects.get(id=id_item)
@@ -686,6 +699,12 @@ def getRelacionesItem(id_item, all=False):
 
 
 def getAntecesoresItem(id_item):
+    """
+    Funcion: Encargada de encontrar los item antecesores inmediatos de un item dado
+
+    @param id_item: Identificador del item del cual se busca los antecesores inmediatos.
+    @return: Todos los antecesores inmediatos de un item dado.
+    """
     antecesores = None
     try:
         item = Item.objects.get(id=id_item)
@@ -707,6 +726,12 @@ def getAntecesoresItem(id_item):
     return antecesores
 
 def getAntecesoresItemDeep(id_item):
+    """
+    Funcion: Encargada de encontrar todos los item antecesores de un item dado
+
+    @param id_item: Identificador del item del cual se busca todos los antecesores.
+    @return: Todos los antecesores de un item dado.
+    """
     antecesores = None
     try:
         item = Item.objects.get(id=id_item)
@@ -728,6 +753,12 @@ def getAntecesoresItemDeep(id_item):
     return antecesores
 
 def getSucesoresItem(id_item):
+    """
+    Funcion: Encargada de encontrar los item sucesores inmediatos de un item dado
+
+    @param id_item: Identificador del item del cual se busca los sucesores inmediatos.
+    @return: Todos los sucesores inmediatos de un item dado.
+    """
     sucesores = None
     try:
         item = Item.objects.get(id=id_item)
@@ -749,6 +780,12 @@ def getSucesoresItem(id_item):
     return sucesores
 
 def getSucesoresItemDeep(id_item):
+    """
+    Funcion: Encargada de encontrar todos los item sucesores de un item dado
+
+    @param id_item: Identificador del item del cual se busca todos los sucesores.
+    @return: Todos los sucesores de un item dado.
+    """
     sucesores = None
     try:
         item = Item.objects.get(id=id_item)

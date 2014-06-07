@@ -6,10 +6,9 @@ from django.db import IntegrityError
 from django.test import TestCase
 from django.utils import timezone
 from principal.models import Proyecto, Fase, LineaBase, Item, AtributoItem, TipoItem, VersionItem, Relacion
-from app_item.views import newItem, deleteItem, newVersion, setVersionItem, setEstadoItem
-from app_item.views import newRelacionItems, deleteRelacion, getRelacionesItem, getAntecesoresItem
-from app_item.views import getSucesoresItem
-from app_item.views import getItem, getImpactoItem
+from app_item.views import newItem, deleteItem
+from app_item.views import newRelacionItems, deleteRelacion
+from app_item.views import detectCicle
 
 # Create your tests here.
 
@@ -162,13 +161,71 @@ class itemTest(TestCase):
 		newItem("item t3",2,fst.id,ti.id,atributos)
 		item3 = Item.objects.get(nombre="item t3")
 		vitem3 = VersionItem.objects.get(proxy=item3)
+		item2 = Item.objects.get(nombre="item t2")
+		vitem2 = VersionItem.objects.get(proxy=item2)
+
+		newRelacionItems(fst.id,"Padre-Hijo",vitem2.id, vitem3.id)
+		rt = Relacion.objects.get(antecesor=item2.id)
+		self.assertEqual(rt.sucesor.id,item3.id)
+		
+	def test_cicloRel(self):
+		prt = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
+		prt.save()
+		fst = crear_fase("Fase test", "Fase de " + str(prt.nombre), prt)
+		fst.save()
+		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", prt, fst)
+		ti.save()
+
+		atributos = {'complejidad':2,'costo':4,'prioridad':1}
+
+		newItem("item t1",1,fst.id,ti.id,atributos)
+		item1 = Item.objects.get(nombre="item t1")
+		vitem1 = VersionItem.objects.get(proxy=item1)
+		newItem("item t2",2,fst.id,ti.id,atributos)
+		item2 = Item.objects.get(nombre="item t2")
+		vitem2 = VersionItem.objects.get(proxy=item2)
+
+		newRelacionItems(fst.id,"Padre-Hijo",vitem1.id, vitem2.id)
+		rt = Relacion.objects.get(antecesor=item1.id)
+		self.assertEqual(rt.sucesor.id,item2.id)
+
+		newItem("item t3",2,fst.id,ti.id,atributos)
+		item3 = Item.objects.get(nombre="item t3")
+		vitem3 = VersionItem.objects.get(proxy=item3)
+		item2 = Item.objects.get(nombre="item t2")
+		vitem2 = VersionItem.objects.get(proxy=item2)
 
 		newRelacionItems(fst.id,"Padre-Hijo",vitem2.id, vitem3.id)
 		rt = Relacion.objects.get(antecesor=item2.id)
 		self.assertEqual(rt.sucesor.id,item3.id)
 
-		try:
-			newRelacionItems(fst.id,"Padre-Hijo",vitem3.id, vitem1.id)
-			rt = Relacion.objects.get(antecesor=item3.id)
-		except Exception, e:
-			print e
+		item1 = Item.objects.get(nombre="item t1")
+		item3 = Item.objects.get(nombre="item t3")
+
+		cit = detectCicle(item3.id,item1.id)
+		self.assertEqual(cit,True)
+
+	def test_delrelItem(self):
+		prt = crear_proyecto("proyectoTest","Prueba de test.py", timezone.now(), 0, "no iniciado")
+		prt.save()
+		fst = crear_fase("Fase test", "Fase de " + str(prt.nombre), prt)
+		fst.save()
+		ti = crear_tipo_item("tipo item test", "testcod", "descripcion ti test", prt, fst)
+		ti.save()
+
+		atributos = {'complejidad':2,'costo':4,'prioridad':1}
+
+		newItem("item t1",1,fst.id,ti.id,atributos)
+		item1 = Item.objects.get(nombre="item t1")
+		vitem1 = VersionItem.objects.get(proxy=item1)
+		newItem("item t2",2,fst.id,ti.id,atributos)
+		item2 = Item.objects.get(nombre="item t2")
+		vitem2 = VersionItem.objects.get(proxy=item2)
+
+		newRelacionItems(fst.id,"Padre-Hijo",vitem1.id, vitem2.id)
+		rt = Relacion.objects.get(antecesor=item1.id)
+		self.assertEqual(rt.sucesor.id,item2.id)
+
+		deleteRelacion(rt.id)
+		rt = Relacion.objects.all()
+		self.assertEqual(rt.count(),0)
