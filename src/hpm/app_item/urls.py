@@ -18,5 +18,6 @@ urlpatterns = patterns('',
  #   url(r'^(?P<id_fase>\d+)/adjuntar/(?P<id_item>\d+)','app_item.views.adjuntarArchivo', name='adjuntar'),
     url(r'^(?P<id_fase>\d+)/historial/(?P<id_item>\d+)/$','app_item.views.indexHistorialItem', name='historial'),
     url(r'^get/(?P<id_item>\d+)/$','app_item.views.getItem', name='get'),
+    url(r'^getImpacto/(?P<id_item>\d+)/$','app_item.views.getImpactoItem', name='getImpacto'),
 
 )

@@ -94,7 +94,7 @@ def nuevoItem(request, id_fase, id_tipo_item):
                 try:
                     newItem(request.POST["nombre"], request.POST[
                             "numero"], fase.id, tipo_item.id, atributos)
-                    historialItem("crear",fase.id, user.id)
+                    historialItem("crear", fase.id, user.id)
 
                 except Exception, e:
 
@@ -189,7 +189,7 @@ def modificarItem(request, id_fase, id_item):
 
                 try:
                     newVersion(id_item, atributos)
-                    historialItem('modificar',item.id,user.id)
+                    historialItem('modificar', item.id, user.id)
 
                 except Exception, e:
 
@@ -242,7 +242,8 @@ def revertirItem(request, id_fase, id_item):
                 user = Usuario.objects.get(id=request.session['usuario'])
                 try:
                     setVersionItem(id_item, id_version)
-                    historialItem('revertir a'+ str(id_version),id_item,user.id)
+                    historialItem(
+                        'revertir a' + str(id_version), id_item, user.id)
 
                 except Exception, e:
 
@@ -268,14 +269,14 @@ def relacionarItem(request, id_fase, id_item):
     u = is_logged(request.session)
 
     if(u):
-        
+
         fase = Fase.objects.get(id=id_fase)
         item = Item.objects.get(id=id_item)
-        
+
         # on post
         if request.method == 'POST':
-            if( ('sucesor' in request.POST or 'hijo' in request.POST ) and
-                'tipo' in request.POST ):
+            if(('sucesor' in request.POST or 'hijo' in request.POST) and
+               'tipo' in request.POST):
 
                 try:
 
@@ -290,23 +291,27 @@ def relacionarItem(request, id_fase, id_item):
                     item2 = Item.objects.get(id=id_sucesor)
                     user = Usuario.objects.get(id=request.session['usuario'])
                     newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor)
-                    messages.success(request,'Se creo la relacion con exito.')
-                    historialItem('relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item,user.id)
+                    messages.success(request, 'Se creo la relacion con exito.')
+                    historialItem(
+                        'relacionar ' + item1.nombre + ' y ' + item2.nombre, id_item, user.id)
                 except Exception, e:
                     print e
-                    messages.error(request, 'No se pudo crear la relacion. Intente de nuevo.')
+                    messages.error(
+                        request, 'No se pudo crear la relacion. Intente de nuevo.')
 
             else:
-                messages.error(request, 'No se pudo crear la relacion. Intente de nuevo.')
-        
+                messages.error(
+                    request, 'No se pudo crear la relacion. Intente de nuevo.')
+
         # finalmente... siempre... siempre...
         lista = getRelacionesItem(id_item)
-        return render(request, 'relacionar-item.html', {'usuario' : u, 'fase' : fase, 'item' : item, 'lista' : lista})
+        return render(request, 'relacionar-item.html', {'usuario': u, 'fase': fase, 'item': item, 'lista': lista})
 
     else:
         return redirect('/login')
 
-def removerRelacionItem(request, id_fase, id_item , id_relacion):
+
+def removerRelacionItem(request, id_fase, id_item, id_relacion):
     print "Remover ... Relacion "
     try:
         relacion = Relacion.objects.get(id=id_relacion)
@@ -314,8 +319,9 @@ def removerRelacionItem(request, id_fase, id_item , id_relacion):
         item2 = Item.objects.get(id=relacion.sucesor.proxy.id)
         user = Usuario.objects.get(id=request.session['usuario'])
         deleteRelacion(id_relacion)
-        messages.success(request,"Se elimino la relacion con exito")
-        historialItem('eliminar relacion con' + item2.nombre,item1.id,user.id)
+        messages.success(request, "Se elimino la relacion con exito")
+        historialItem(
+            'eliminar relacion con' + item2.nombre, item1.id, user.id)
 
     except Exception, e:
         print e
@@ -352,6 +358,29 @@ def getItem(request, id_tipo_item):
     data = json.dumps(dic)
 
     return HttpResponse(data)
+
+def getImpactoItem(request, id_item):
+    """
+    Funcion: Se ocupa de obtener los datos de un item
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_tipo_item: Identificador del tipo de item del item del cual se quiere obtener sus datos.
+    @return: Retorna un objeto HttpResponse con los datos del item en formato json.
+    """
+
+    item = Item.objects.get(id=id_item)
+    impacto = calcularImpacto(id_item)
+
+    dic = {}
+    dic['impacto'] = impacto
+    dic['nombre'] = item.nombre
+    
+    print dic
+
+    data = json.dumps(dic)
+
+    return HttpResponse(data)
+
 
 def newItem(nombre, numero, id_fase, id_tipo_item, atributos):
     """
@@ -453,6 +482,7 @@ def newVersion(id_item, atributos):
         item.id_actual = version_item.id
         item.save()
 
+
 def setEstadoItem(id_item, estado):
     with transaction.atomic():
 
@@ -464,8 +494,6 @@ def setEstadoItem(id_item, estado):
         version_actual.save()
         item.version = version_actual.version
         item.save()
-
-
 
 
 def setVersionItem(id_item, id_version):
@@ -523,7 +551,6 @@ def newRelacionItems(id_fase, tipo, id_antecesor, id_sucesor):
         if(item_sucesor == relacion.sucesor.proxy):
             raise Exception("Ya posee esta relacion!")
 
-
     antecesor = VersionItem.objects.get(id=item_antecesor.id_actual)
     sucesor = VersionItem.objects.get(id=item_sucesor.id_actual)
 
@@ -549,6 +576,7 @@ def deleteRelacion(id_relacion):
     relacion = Relacion.objects.get(id=id_relacion)
     relacion.delete()
 
+
 def getRelacionesItem(id_item):
     relaciones = None
     try:
@@ -570,6 +598,7 @@ def getRelacionesItem(id_item):
         print e
 
     return relaciones
+
 
 def historialItem(operacion, id_item, id_usuario):
     """
@@ -593,6 +622,7 @@ def historialItem(operacion, id_item, id_usuario):
     hist.usuario = user.username
     hist.save()
 
+
 def indexHistorialItem(request, id_fase, id_item):
     """"""
     u = is_logged(request.session)
@@ -600,14 +630,14 @@ def indexHistorialItem(request, id_fase, id_item):
         item = Item.objects.get(id=id_item)
         fase = Fase.objects.get(id=id_fase)
 
-
-        return render(request,'historial-item.html', {'usuario' : u, 'fase' : fase, 'item' : item})
+        return render(request, 'historial-item.html', {'usuario': u, 'fase': fase, 'item': item})
     else:
         redirect('/login')
 
+
 def adjuntarArchivo(request, id_fase, id_item):
     print id_fase
-    
+
 #    if request.method == 'POST':
 #        form = ArchivoForm(request.POST, request.FILES)
 #        item = Item.objects.get(id=id_item)
@@ -619,3 +649,34 @@ def adjuntarArchivo(request, id_fase, id_item):
 #            return redirect('item:index', id_fase=id_fase)
 #    else:
 #        form = ArchivoForm()
+
+
+def calcularImpacto(id_item):
+    item = Item.objects.get(id=id_item)
+
+    #print item
+    version = VersionItem.objects.get(id=item.id_actual)
+    #print version
+    antecesores = version.relacion_antecesor_set.all()
+    #print antecesores
+    sucesores = version.relacion_sucesor_set.all()
+    #print sucesores
+
+    relaciones = []
+    relaciones += antecesores
+    relaciones += sucesores
+    #print relaciones
+
+    impacto = 0 + version.costo
+
+    for r in relaciones:
+        if(r.antecesor.id != version.id):
+            v = VersionItem.objects.get(id=r.antecesor.id)
+            impacto = impacto + v.costo
+
+        if(r.sucesor.id != version.id):
+            v = VersionItem.objects.get(id=r.sucesor.id)
+            impacto = impacto + v.costo
+
+    #print impacto
+    return impacto
