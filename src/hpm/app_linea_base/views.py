@@ -8,6 +8,7 @@ from django.core import serializers
 from django.db import transaction
 from django.contrib import messages
 import datetime
+from django.utils.timezone import utc
 
 # Create your views here.
 
@@ -263,7 +264,7 @@ def historialLineaBase(operacion, id_lineabase, id_usuario):
 
     lb = LineaBase.objects.get(id=id_lineabase)
     #date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    date = datetime.datetime.now()
+    date = datetime.datetime.now().utcnow().replace(tzinfo=utc)
     user = Usuario.objects.get(id=id_usuario)
     op = operacion
 
