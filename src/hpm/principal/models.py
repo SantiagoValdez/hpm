@@ -308,6 +308,6 @@ class HistorialItem(models.Model):
         return self.id
 
     fecha = models.DateTimeField()
-    operacion = models.TextField(max_length=20)
+    operacion = models.TextField(max_length=50)
     item = models.ForeignKey(Item)
     usuario = models.TextField(max_length=45)
