@@ -19,6 +19,45 @@
 
                         <h2 class="page-header">Relaciones del Item : {{item.nombre}} </h2>
                     </div>
+                    <div class="row">
+
+                        <div class="grafo">
+                            <canvas id="viewport" width="1000" height="200"></canvas>
+                        </div>
+                        {% load staticfiles %}
+                        <script src="{% static 'js/jquery-1.10.2.js' %}"></script>
+                        <script src="{% static 'js/arbor/graphics.js' %}"></script>
+                        <script src="{% static 'js/arbor/renderer.js' %}"></script>
+                        <script src="{% static 'js/arbor/arbor.js' %}"></script>
+                        <script src="{% static 'js/arbor/arbor-tween.js' %}"></script>
+                        <script type="text/javascript">
+
+                                        var sys = arbor.ParticleSystem(100, 900, 0.5) // create the system with sensible repulsion/stiffness/friction
+                                        sys.parameters({gravity:true}) // use center-gravity to make the graph settle nicely (ymmv)
+                                        sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
+
+
+                                        // sys.graft({
+                                        //    nodes:{foo:{color:"black", label:"foo"}, bar:{color:"green", label:"bar"}},
+                                        //    edges:{ foo: { bar: { }, baz:{ color: "blue", label: "hello"} } }
+                                        // });
+
+                                        sys.graft({
+                                            {% autoescape off %} 
+                                            {{graph}}
+                                            {% endautoescape %} 
+                                        });
+
+                                        //parar simulacion 5 segundos despues
+                                        setTimeout(function(){
+                                                sys.parameters({gravity:false, friction:1});
+                                                sys.stop();
+                                        }, 3500);
+
+
+                        </script>
+
+                    </div>  
 
                     
                         {% include 'mensaje.html' %}
