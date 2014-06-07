@@ -1,0 +1,67 @@
+
+{% include 'header.html' %}
+
+
+        {% if usuario %}
+
+            <div id="page-wrapper">
+                
+                
+            
+                <div class="row">
+                    <div class="col-lg-12">
+                    <div class="row">
+
+                        <h2 class="page-header">Archivos de item : {{item.nombre}}</h2>
+                    </div>
+
+                    {% include 'mensaje.html' %}
+
+                    {% if mensaje %}
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Atención!</strong> {{mensaje}}
+                        </div>
+                    {% endif %}
+                        
+                        <!-- List of uploaded documents -->
+                        {% if documents %}
+                            <ul>
+                            {% for document in documents %}
+                                <li><a href="{{ document.archivo.url }}" target="_blank">{{ document.archivo.name }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p>No documents.</p>
+                        {% endif %}
+
+                        <!-- Upload form. Note enctype attribute! -->
+                        <form action="{% url 'item:adjuntar' fase.id  item.id %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <p>{{ form.non_field_errors }}</p>
+                            <p>{{ form.archivo.label }} {{ form.archivo.help_text }}</p>
+                            <p>
+                                {{ form.archivo.errors }}
+                                {{ form.archivo }}
+                            </p>
+                            <p><input type="submit" value="Upload" /></p>
+                        </form>                   
+                        
+                            
+                    </div>
+                    <!-- /.col-lg-12 -->
+            
+                </div>
+                <!-- /.row -->
+            
+
+                
+
+            </div>
+        {% endif %}
+
+        <!--{% load staticfiles %}
+        <script src="{% static 'js/lineasbase.js' %}"></script>-->
+
+        <!-- /#page-wrapper -->
+{% include 'footer.html' %}

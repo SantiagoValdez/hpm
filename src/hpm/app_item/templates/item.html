@@ -9,6 +9,7 @@
         {# include 'modal-new-tipo_item.html' #}
         {# include 'modal-modificar-tipo_item.html' #}
         {# include 'modal-import-tipo_item.html' #}
+        {# include 'item-adjuntar.html' #}
         {# include 'modal-adjuntar.html' #}
         {% include 'modal-impacto-item.html' %}
         {% include 'modal-new-item.html' %}
@@ -105,8 +106,9 @@
                                         </td>
                                         <td>
                                             {% if not i.eliminado %}
-                                            <a href="#adjuntar" class="btn btn-default btn-outline" onClick="adjuntarArchivo( '{{i.nombre}}' );"><i class="fa fa-paperclip"></i></a>
+                                            <a href="{% url 'item:adjuntar' fase.id i.id %}" class="btn btn-default btn-outline"><i class="fa fa-paperclip"></i></a>
                                             {% endif %}
+
                                         </td>
                                         <td></td>
                                         <td>

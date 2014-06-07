@@ -677,7 +677,7 @@ def historialItem(operacion, id_item, id_usuario):
     @param operacion: Operacion realizada sobre la linea base.
     @param id_item: Identificador del item sobre el cual se realizan
             las operaciones.
-    @param usuario: Usuario que realizo las operacion sobre la linea base.
+    @param id_usuario: Identificador del usuario que realizo las operacion sobre la linea base.
     """
 
     item = Item.objects.get(id=id_item)
@@ -694,7 +694,17 @@ def historialItem(operacion, id_item, id_usuario):
 
 
 def indexHistorialItem(request, id_fase, id_item):
-    """"""
+    """
+    Funcion: Panel de visualizacion del historial de un item
+
+    @param request: Objeto que se encarga de manejar las peticiones http.
+    @param id_fase: Identificador de la fase al que pertenece el item.
+    @param id_item: Identificador del item del cual se visualiza su historial.
+    @return: Si el usuario se encuentra logueado retorna un objeto
+            HttpResponse del template historial-item.html renderizado con el contexto
+            {'usuario' : u, 'fase' : fase, 'item' : item}. Sino, retorna un objeto
+            HttpResponseRedirect hacia '/login'.
+    """
     u = is_logged(request.session)
     if(u):
         item = Item.objects.get(id=id_item)
@@ -706,20 +716,45 @@ def indexHistorialItem(request, id_fase, id_item):
 
 
 def adjuntarArchivo(request, id_fase, id_item):
-    print id_fase
+    """
+    Funcion: Encargada de adjuntar archivos a un item dado
 
-#    if request.method == 'POST':
-#        form = ArchivoForm(request.POST, request.FILES)
-#        item = Item.objects.get(id=id_item)
-#        if form.is_valid:
-#            nuevoArchivo = Archivo(archivo=request.FILES['archivo'])
-#           nuevoArchivo.save()
-#            item.archivo = nuevoArchivo
-#
-#            return redirect('item:index', id_fase=id_fase)
-#    else:
-#        form = ArchivoForm()
+    @param request: Objeto que se encarga de manejar las petiiones http.
+    @param id_fase: Identificador de la fase a la cual pertenece el item.
+    @param id_item: Identificador del item al cual se le adjunta un archivo.
+    @return: Si el usuario se encuentra logueado, retorna un objeto 
+        HttpResponseRedirect hacia la administracion de subida de archivos.
+        Sino, retorna un objeto HttpResponseRedirect hacia /login.
+    """
+    u = is_logged(request.session)
+    if(u):
+        print id_fase
+        item = Item.objects.get(id=id_item)
+        fase = Fase.objects.get(id=id_fase)
+           
+        if request.method == 'POST':
+            form = ArchivoForm(request.POST, request.FILES)
+            
+            try:
+                if form.is_valid:
+                    nuevoArchivo = Archivo(archivo=request.FILES['archivo'])
+                    nuevoArchivo.item = item
+                    nuevoArchivo.save()
+                    
+                    return redirect('item:adjuntar', id_fase=id_fase, id_item=id_item)
 
+            except Exception,e:
+                print e
+                messages.error(request,'No se pudo subir el archivo.')
+
+        else:
+            form = ArchivoForm()
+
+        documents = Archivo.objects.filter(item=item)
+
+        return render(request, 'item-adjuntar.html',{'usuario':u,'documents':documents,'form':form,'item':item,'fase':fase})
+    else:
+        return redirect('/login')
 
 def calcularImpacto(id_item):
     item = Item.objects.get(id=id_item)
