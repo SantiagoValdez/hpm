@@ -1,0 +1,461 @@
+[
+{
+    "pk": 1, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "admin", 
+        "ci": 0, 
+        "roles": [
+            1, 
+            2
+        ], 
+        "apellido": "HPM", 
+        "nombre": "Administrador del Sistema", 
+        "password": "admin", 
+        "telefono": "000-000", 
+        "email": "admin@hpm.com"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "santiago", 
+        "ci": 4202083, 
+        "roles": [], 
+        "apellido": "Valdez", 
+        "nombre": "Santiago", 
+        "password": "santiago", 
+        "telefono": "554-889", 
+        "email": "santiago@hpm.me"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "guillermo", 
+        "ci": 4362801, 
+        "roles": [], 
+        "apellido": "Pati\u00f1o", 
+        "nombre": "Guillermo", 
+        "password": "guillermo", 
+        "telefono": "0981-722-774", 
+        "email": "guillermo@hpm.me"
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "belen", 
+        "ci": 4123321, 
+        "roles": [], 
+        "apellido": "Gonzalez", 
+        "nombre": "Belen", 
+        "password": "belen", 
+        "telefono": "0971-347-442", 
+        "email": "belen@hpm.me"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.proyecto", 
+    "fields": {
+        "descripcion": "Proyecto de software de \"gestion de proyectos\" HPM ", 
+        "nombre": "HPM", 
+        "fecha_creacion": "2014-05-17", 
+        "complejidad_total": 0, 
+        "estado": "no iniciado"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol principal del sistema. Equivalente al root.", 
+        "nombre": "Administrador del Sistema", 
+        "permisos": [
+            1
+        ], 
+        "proyecto": null
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol del administrador del proyecto HPM", 
+        "nombre": "Administrador del Proyecto HPM", 
+        "permisos": [], 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "root", 
+        "valor": 0
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.comite", 
+    "fields": {
+        "proyecto": 1, 
+        "usuarios": [
+            1
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": " Etapa donde se define el problema a resolver, las metas del proyecto, las metas de calidad y se identifica cualquier restricci\u00f3n aplicable al proyecto", 
+        "nombre": "Plan Operativo", 
+        "nro": 1, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": " Permite entregar una visi\u00f3n de alto nivel sobre el proyecto, poniendo \u00e9nfasis en la descripci\u00f3n del problema desde el punto de vista de los clientes y desarrolladores. Tambi\u00e9n se considera la posibilidad de una planificaci\u00f3n de los recursos sobre un", 
+        "nombre": "Especificaci\u00f3n de requisitos", 
+        "nro": 2, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Especifica la informaci\u00f3n sobre la cual el software a desarrollar trabajar\u00e1.", 
+        "nombre": "Especificaci\u00f3n funcional", 
+        "nro": 3, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Permite describir como el sistema va a satisfacer los requisitos. Esta etapa a menudo tiene diferentes niveles de detalle. Los niveles m\u00e1s altos de detalle generalmente describen los componentes o m\u00f3dulos que formar\u00e1n el software a ser producido.", 
+        "nombre": "Dise\u00f1o", 
+        "nro": 4, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Aqu\u00ed es donde el software a ser desarrollado se codifica. Dependiendo del tama\u00f1o del proyecto, la programaci\u00f3n puede ser distribuida entre distintos programadores o grupos de programadores.", 
+        "nombre": "Implementaci\u00f3n", 
+        "nro": 5, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Es la fase donde todos los subsistemas codificados independientemente se juntan. Cada secci\u00f3n es enlazada con otra y, entonces, probada. Este proceso se repite hasta que se han agregado todos los m\u00f3dulos y el sistema se prueba como un todo.", 
+        "nombre": "Integraci\u00f3n", 
+        "nro": 6, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Una vez que el sistema ha sido integrado, comienza esta etapa. Es donde es probado para verificar que el sistema es consistente con la definici\u00f3n de requisitos y la especificaci\u00f3n funcional.", 
+        "nombre": "Validaci\u00f3n y verificaci\u00f3n", 
+        "nro": 7, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "El mantenimiento ocurre cuando existe alg\u00fan problema dentro de un sistema existente, e involucrar\u00eda la correcci\u00f3n de errores que no fueron descubiertos en las fases de prueba, mejoras en la implementaci\u00f3n de las unidades del sistema y cambios.", 
+        "nombre": "Mantenimiento", 
+        "nro": 8, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Representa un documento que forme parte del plan operativo.", 
+        "nombre": "Documento Plan Operativo", 
+        "codigo": "doc_plan_operativo", 
+        "fase": 1, 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.atributotipoitem", 
+    "fields": {
+        "nombre": "size(kb)", 
+        "valor_por_defecto": "0", 
+        "tipo_item": 1, 
+        "tipo": "numerico"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.atributotipoitem", 
+    "fields": {
+        "nombre": "autor", 
+        "valor_por_defecto": "Autor Anonimo", 
+        "tipo_item": 1, 
+        "tipo": "texto"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "admin", 
+        "ci": 0, 
+        "roles": [
+            1, 
+            2
+        ], 
+        "apellido": "HPM", 
+        "nombre": "Administrador del Sistema", 
+        "password": "admin", 
+        "telefono": "000-000", 
+        "email": "admin@hpm.com"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "santiago", 
+        "ci": 4202083, 
+        "roles": [], 
+        "apellido": "Valdez", 
+        "nombre": "Santiago", 
+        "password": "santiago", 
+        "telefono": "554-889", 
+        "email": "santiago@hpm.me"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "guillermo", 
+        "ci": 4362801, 
+        "roles": [], 
+        "apellido": "Pati\u00f1o", 
+        "nombre": "Guillermo", 
+        "password": "guillermo", 
+        "telefono": "0981-722-774", 
+        "email": "guillermo@hpm.me"
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "belen", 
+        "ci": 4123321, 
+        "roles": [], 
+        "apellido": "Gonzalez", 
+        "nombre": "Belen", 
+        "password": "belen", 
+        "telefono": "0971-347-442", 
+        "email": "belen@hpm.me"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.proyecto", 
+    "fields": {
+        "descripcion": "Proyecto de software de \"gestion de proyectos\" HPM ", 
+        "nombre": "HPM", 
+        "fecha_creacion": "2014-05-17", 
+        "complejidad_total": 0, 
+        "estado": "no iniciado"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol principal del sistema. Equivalente al root.", 
+        "nombre": "Administrador del Sistema", 
+        "permisos": [
+            1
+        ], 
+        "proyecto": null
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol del administrador del proyecto HPM", 
+        "nombre": "Administrador del Proyecto HPM", 
+        "permisos": [], 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "root", 
+        "valor": 0
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.comite", 
+    "fields": {
+        "proyecto": 1, 
+        "usuarios": [
+            1
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": " Etapa donde se define el problema a resolver, las metas del proyecto, las metas de calidad y se identifica cualquier restricci\u00f3n aplicable al proyecto", 
+        "nombre": "Plan Operativo", 
+        "nro": 1, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": " Permite entregar una visi\u00f3n de alto nivel sobre el proyecto, poniendo \u00e9nfasis en la descripci\u00f3n del problema desde el punto de vista de los clientes y desarrolladores. Tambi\u00e9n se considera la posibilidad de una planificaci\u00f3n de los recursos sobre un", 
+        "nombre": "Especificaci\u00f3n de requisitos", 
+        "nro": 2, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Especifica la informaci\u00f3n sobre la cual el software a desarrollar trabajar\u00e1.", 
+        "nombre": "Especificaci\u00f3n funcional", 
+        "nro": 3, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Permite describir como el sistema va a satisfacer los requisitos. Esta etapa a menudo tiene diferentes niveles de detalle. Los niveles m\u00e1s altos de detalle generalmente describen los componentes o m\u00f3dulos que formar\u00e1n el software a ser producido.", 
+        "nombre": "Dise\u00f1o", 
+        "nro": 4, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Aqu\u00ed es donde el software a ser desarrollado se codifica. Dependiendo del tama\u00f1o del proyecto, la programaci\u00f3n puede ser distribuida entre distintos programadores o grupos de programadores.", 
+        "nombre": "Implementaci\u00f3n", 
+        "nro": 5, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Es la fase donde todos los subsistemas codificados independientemente se juntan. Cada secci\u00f3n es enlazada con otra y, entonces, probada. Este proceso se repite hasta que se han agregado todos los m\u00f3dulos y el sistema se prueba como un todo.", 
+        "nombre": "Integraci\u00f3n", 
+        "nro": 6, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Una vez que el sistema ha sido integrado, comienza esta etapa. Es donde es probado para verificar que el sistema es consistente con la definici\u00f3n de requisitos y la especificaci\u00f3n funcional.", 
+        "nombre": "Validaci\u00f3n y verificaci\u00f3n", 
+        "nro": 7, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "El mantenimiento ocurre cuando existe alg\u00fan problema dentro de un sistema existente, e involucrar\u00eda la correcci\u00f3n de errores que no fueron descubiertos en las fases de prueba, mejoras en la implementaci\u00f3n de las unidades del sistema y cambios.", 
+        "nombre": "Mantenimiento", 
+        "nro": 8, 
+        "estado": "inicial", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Representa un documento que forme parte del plan operativo.", 
+        "nombre": "Documento Plan Operativo", 
+        "codigo": "doc_plan_operativo", 
+        "fase": 1, 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.atributotipoitem", 
+    "fields": {
+        "nombre": "size(kb)", 
+        "valor_por_defecto": "0", 
+        "tipo_item": 1, 
+        "tipo": "numerico"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.atributotipoitem", 
+    "fields": {
+        "nombre": "autor", 
+        "valor_por_defecto": "Autor Anonimo", 
+        "tipo_item": 1, 
+        "tipo": "texto"
+    }
+}
+
+]

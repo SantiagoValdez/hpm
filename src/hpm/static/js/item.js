@@ -9,6 +9,17 @@ function eliminarItem(id, url){
 
 }
 
+function revivirItem(id, url){
+	console.log("Eliminar Fase");
+	console.log(id);
+	console.log(url);
+
+	$("#nombre-revivir-item").text(id);
+	$("#modal-revivir").modal('show');
+	$("#btn-revivir").attr('href', url);
+
+}
+
 function revertirItem(version, id_version){
 	console.log("Revertir item");
 	console.log(id_version);
