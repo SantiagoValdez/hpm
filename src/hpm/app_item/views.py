@@ -272,7 +272,7 @@ def relacionarItem(request, id_fase, id_item):
 
         fase = Fase.objects.get(id=id_fase)
         item = Item.objects.get(id=id_item)
-
+        graph = generarArborItem(id_item)
         # on post
         if request.method == 'POST':
             if(('sucesor' in request.POST or 'hijo' in request.POST) and
@@ -305,7 +305,7 @@ def relacionarItem(request, id_fase, id_item):
 
         # finalmente... siempre... siempre...
         lista = getRelacionesItem(id_item)
-        return render(request, 'relacionar-item.html', {'usuario': u, 'fase': fase, 'item': item, 'lista': lista})
+        return render(request, 'relacionar-item.html', {'usuario': u, 'fase': fase, 'item': item, 'lista': lista, 'graph':graph})
 
     else:
         return redirect('/login')
@@ -599,6 +599,47 @@ def getRelacionesItem(id_item):
 
     return relaciones
 
+def getAntecesoresItem(id_item):
+    antecesores = None
+    try:
+        item = Item.objects.get(id=id_item)
+        version = VersionItem.objects.get(id=item.id_actual)
+        antecesores_r = version.relacion_sucesor_set.all()
+        print antecesores_r
+        antecesores = []
+        
+        for r in antecesores_r:
+            i = Item.objects.get(id=r.antecesor.proxy.id)
+            antecesores.append(i)
+
+        
+        print antecesores
+
+    except Exception, e:
+        print e
+
+    return antecesores
+
+def getSucesoresItem(id_item):
+    sucesores = None
+    try:
+        item = Item.objects.get(id=id_item)
+        version = VersionItem.objects.get(id=item.id_actual)
+        sucesores_r = version.relacion_antecesor_set.all()
+        print sucesores_r
+        sucesores = []
+        
+        for r in sucesores_r:
+            i = Item.objects.get(id=r.sucesor.proxy.id)
+            sucesores.append(i)
+
+        
+        print sucesores
+
+    except Exception, e:
+        print e
+
+    return sucesores
 
 def historialItem(operacion, id_item, id_usuario):
     """
@@ -680,3 +721,42 @@ def calcularImpacto(id_item):
 
     #print impacto
     return impacto
+
+def generarArborItem(id_item):
+    # nodes:{foo:{color:"black", label:"foo"}, bar:{color:"green", label:"bar"}},
+    # edges:{ foo: { bar: { }, baz:{ color: "blue", label: "hello"} } }
+    #
+
+    js = ""
+
+    item = Item.objects.get(id=id_item)
+
+    js += 'nodes:{' + str(item.id) + ':{ color:"#428bca", mass:200, label:"'+ item.nombre + '"},'
+
+    #los nodos antecesores
+    ant = getAntecesoresItem(id_item)
+
+    for i in ant:
+        js += ' '+ str(i.id) + ':{ color: "green", label: "'+ i.nombre +'"},'
+
+    suc = getSucesoresItem(id_item)
+    for i in suc:
+        js += ' '+ str(i.id) + ':{ color: "red", label: "'+ i.nombre +'"},'
+
+    js += '}, edges:{'
+
+    #sucesores
+    js += ' '+ str(item.id) + ': {'
+    for i in suc:
+        js += ' '+ str(i.id) + ':{ color: "red" },'
+    js += '},'
+
+    #antecesores
+    for i in ant:
+        js += ' ' + str(i.id) + ': { ' + str(item.id) + ': { color : "green" } },'
+
+    js += '}'
+
+    
+    return js
+
