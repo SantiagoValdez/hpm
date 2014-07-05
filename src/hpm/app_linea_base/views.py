@@ -360,9 +360,21 @@ def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
             deleteItemLB(id_item)
             historialLineaBase("item " + item.nombre + " eliminado",lb.id,user.id)
             messages.success(request, 'Se removio el item con exito.')
+            condicion = False   # Todas las lineas base tienen 0 items
             
             for lb in lbs :
-            
+                cantidadItems = lb.item_set.all().count()
+                if (cantidadItems == 0) :
+                    print 'lb con 0 items'
+                    condicion = True
+                elif (cantidadItems > 0) :
+                    print 'lb con > 0 items'
+                    condicion = False
+
+            if (condicion == True) :
+                fase.estado = 'en desarrollo'
+                fase.save()
+
         except Exception, e:
             print e
             messages.error(request,'Ocurrio un error al remover el item. Intente de nuevo.')
