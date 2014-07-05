@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     'app_item',
     'app_mensajeria',
     'app_solicitud',
+    'app_reporte',
     
 )
 

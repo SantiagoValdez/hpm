@@ -122,16 +122,17 @@ def eliminarLineaBase(request, id_fase, id_lineabase):
 
         lineab = LineaBase.objects.get(id=id_lineabase)
         items = Item.objects.filter(linea_base=lineab)
-        for i in items :
+        for i in items:
             version = VersionItem.objects.get(id=i.id_actual)
             version.estado = 'aprobado'
             version.save()
         LineaBase.objects.filter(id=id_lineabase).delete()
-        # El estado de una fase es 'con linea base' cuando la fase tiene una linea base
+        # El estado de una fase es 'con linea base' cuando la fase tiene una
+        # linea base
         fase = Fase.objects.get(id=id_fase)
         lineasb = LineaBase.objects.filter(fase=fase)
         cantidad_lb = lineasb.count()
-        if (cantidad_lb == 0) :
+        if (cantidad_lb == 0):
             fase.estado = 'en desarrollo'
             fase.save()
 
@@ -288,6 +289,7 @@ def historialLineaBase(operacion, id_lineabase, id_usuario):
     hist.usuario = user.username
     hist.save()
 
+
 def indexHistorialLineaBase(request, id_fase, id_lineabase):
     """
     Funcion: Panel de visualizacion del historial de un item
@@ -305,20 +307,22 @@ def indexHistorialLineaBase(request, id_fase, id_lineabase):
         lb = LineaBase.objects.get(id=id_lineabase)
         fase = Fase.objects.get(id=id_fase)
 
-        return render(request,'historial-lineabase.html', {'usuario' : u, 'fase' : fase, 'linea_base' : lb})
+        return render(request, 'historial-lineabase.html', {'usuario': u, 'fase': fase, 'linea_base': lb})
     else:
         redirect('/login')
 
-def itemLineaBase(request,id_fase,id_lineabase):
-    
+
+def itemLineaBase(request, id_fase, id_lineabase):
+
     u = is_logged(request.session)
     if(u):
         lb = LineaBase.objects.get(id=id_lineabase)
         fase = Fase.objects.get(id=id_fase)
 
-        return render(request,'item-lineabase.html', {'usuario' : u, 'fase' : fase, 'linea_base' : lb})
+        return render(request, 'item-lineabase.html', {'usuario': u, 'fase': fase, 'linea_base': lb})
     else:
         redirect('/login')
+
 
 def agregarItemLineaBase(request, id_fase, id_lineabase):
     u = is_logged(request.session)
@@ -330,27 +334,29 @@ def agregarItemLineaBase(request, id_fase, id_lineabase):
             lb = LineaBase.objects.get(id=id_lineabase)
             fase = Fase.objects.get(id=id_fase)
             user = Usuario.objects.get(id=request.session['usuario'])
-            
+
             try:
-                addItemLB(id_item,id_lineabase)
-                historialLineaBase("item " + item.nombre + " agregado",lb.id,user.id)
+                addItemLB(id_item, id_lineabase)
+                historialLineaBase(
+                    "item " + item.nombre + " agregado", lb.id, user.id)
                 messages.success(request, 'Se agrego el item con exito.')
                 fase.estado = 'con linea base'
                 fase.save()
-                estadoFinalFase(id_fase,id_lineabase)
+                estadoFinalFase(id_fase, id_lineabase)
             except Exception, e:
                 print e
-                messages.error(request,'Ocurrio un error al agregar el item. Intente de nuevo.')
-            
+                messages.error(
+                    request, 'Ocurrio un error al agregar el item. Intente de nuevo.')
 
-        return redirect('lineasbase:items', id_fase = id_fase, id_lineabase = id_lineabase)
+        return redirect('lineasbase:items', id_fase=id_fase, id_lineabase=id_lineabase)
     else:
         redirect('/login')
 
+
 def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
     u = is_logged(request.session)
-    if(u):        
-        
+    if(u):
+
         try:
             item = Item.objects.get(id=id_item)
             lb = LineaBase.objects.get(id=id_lineabase)
@@ -358,8 +364,10 @@ def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
             lbs = fase.lineabase_set.all()
             user = Usuario.objects.get(id=request.session['usuario'])
             deleteItemLB(id_item)
-            historialLineaBase("item " + item.nombre + " eliminado",lb.id,user.id)
+            historialLineaBase(
+                "item " + item.nombre + " eliminado", lb.id, user.id)
             messages.success(request, 'Se removio el item con exito.')
+
             condicion = False   # Todas las lineas base tienen 0 items
             
             for lb in lbs :
@@ -377,14 +385,16 @@ def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
 
         except Exception, e:
             print e
-            messages.error(request,'Ocurrio un error al remover el item. Intente de nuevo.')
+            messages.error(
+                request, 'Ocurrio un error al remover el item. Intente de nuevo.')
 
-        return redirect('lineasbase:items', id_fase = id_fase, id_lineabase = id_lineabase)
+        return redirect('lineasbase:items', id_fase=id_fase, id_lineabase=id_lineabase)
     else:
         redirect('/login')
 
+
 def addItemLB(id_item, id_lb):
-	#comprobar que se pueda
+        # comprobar que se pueda
     with transaction.atomic():
         lb = LineaBase.objects.get(id=id_lb)
         item = Item.objects.get(id=id_item)
@@ -395,15 +405,17 @@ def addItemLB(id_item, id_lb):
         version.estado = 'final'
         version.save()
 
-def deleteItemLB(id_item):
-	with transaction.atomic():
-		item = Item.objects.get(id=id_item)
-        version = VersionItem.objects.get(id=item.id_actual)
 
-        item.linea_base = None
-        item.save()
-        version.estado = 'aprobado'
-        version.save()
+def deleteItemLB(id_item):
+    with transaction.atomic():
+        item = Item.objects.get(id=id_item)
+    version = VersionItem.objects.get(id=item.id_actual)
+
+    item.linea_base = None
+    item.save()
+    version.estado = 'aprobado'
+    version.save()
+
 
 def estadoFinalFase(id_fase, id_lineabase):
 
@@ -414,49 +426,52 @@ def estadoFinalFase(id_fase, id_lineabase):
     cantidad_itemsFaseActual = itemsFaseActual.count()
     # Cantidad de items en la fase que estan en una linea base
     cantidad_itemsFaseActualLb = 0
-    faseFinalc1 = False     # Condicion de que todos los items de la fase deben estar en una linea base
+    # Condicion de que todos los items de la fase deben estar en una linea base
+    faseFinalc1 = False
     faseFinalc2 = False     # Condicion la fase anterior finalizada
 
-    for i in itemsFaseActual :
+    for i in itemsFaseActual:
         version = VersionItem.objects.get(id=i.id_actual)
-        if (version.estado == 'final' or version.estado == 'eliminado') :
+        if (version.estado == 'final' or version.estado == 'eliminado'):
             cantidad_itemsFaseActualLb += 1
 
-    if (cantidad_itemsFaseActual == cantidad_itemsFaseActualLb) :
+    if (cantidad_itemsFaseActual == cantidad_itemsFaseActualLb):
         # Todos los items de la fase actual se encuentran en lineas base
         faseFinalc1 = True
 
     print faseFinalc1
-    if (faseFinalc1 == True) :
+    if (faseFinalc1 == True):
 
         cantidadFases = proyecto.fase_set.all().count()
-        if (cantidadFases == 1) : 
+        if (cantidadFases == 1):
             # Solo existe una fase entonces se puede finalizar la fase
             faseFinalc2 = True
 
-        elif (cantidadFases > 1) :
-            # Si existen mas fases se verifica si la fase anterior esta finalizada
+        elif (cantidadFases > 1):
+            # Si existen mas fases se verifica si la fase anterior esta
+            # finalizada
             nroFaseActual = faseActual.nro
             fases = Fase.objects.filter(proyecto=proyecto)
-            faseAnterior = fases.filter(nro__lt=nroFaseActual).order_by('nro').last()
+            faseAnterior = fases.filter(
+                nro__lt=nroFaseActual).order_by('nro').last()
 
-            if (faseAnterior == None) :
-                # No existe una fase anterior por lo tanto la fase es la primera
+            if (faseAnterior == None):
+        # No existe una fase anterior por lo tanto la fase es la primera
                 faseFinalc2 = True
 
-            elif (faseAnterior.estado == 'finalizada') :
+            elif (faseAnterior.estado == 'finalizada'):
                 # Existe una fase anterior
                 faseFinalc2 = True
 
     print faseFinalc2
-    if (faseFinalc2 == True) : 
+    if (faseFinalc2 == True):
         faseActual.estado = 'finalizada'
         faseActual.save()
         print faseActual.estado
 
 # Si existen lineas base global
 # Mejorar la seccion para hallar la fase anterior
-#def estadoFinalFase(id_fase, id_lineabase):
+# def estadoFinalFase(id_fase, id_lineabase):
 #
 #    faseActual = Fase.objects.get(id=id_fase)
 #    lista_itemfase = faseActual.item_set.all()
@@ -467,7 +482,7 @@ def estadoFinalFase(id_fase, id_lineabase):
 #
 #    if (faseActual == ultimaFase) :
 #        ultimaFasec = True
-#    
+#
 #    for i in lista_itemfase :
 #        version = VersionItem.objects.get(id=i.id_actual)
 #        if (version.estado == 'aprobado' or version.estado == 'final') :
@@ -484,8 +499,8 @@ def estadoFinalFase(id_fase, id_lineabase):
 #    print cantidad_itemlb
 #    if (cantidad_itemfaseActual == cantidad_itemlb) :
 
-#        faseFinalc1 = False     # Todos los items dentro de la lb y con sucesores
-#        faseFinalc2 = False     # La fase anterior finalizada
+# faseFinalc1 = False     # Todos los items dentro de la lb y con sucesores
+# faseFinalc2 = False     # La fase anterior finalizada
 
         # Comprobacion de si todos los items tienen sucesores
 #        for i in lista_itemlb :
@@ -516,7 +531,7 @@ def estadoFinalFase(id_fase, id_lineabase):
 #            if (nroFaseActual > 1) :
 #                nroFaseAnterior = nroFaseActual - 1
 #                print 'entro 1'
-#                # Suponiendo que todas las fases tienen sus numeros sucesivos y ordenados
+# Suponiendo que todas las fases tienen sus numeros sucesivos y ordenados
                 # de forma ascendente
 #                faseAnterior = Fase.objects.get(nro=nroFaseAnterior,proyecto=proyecto)
 #                faseAnteriorEstado = faseAnterior.estado
@@ -528,7 +543,7 @@ def estadoFinalFase(id_fase, id_lineabase):
 #                faseFinalc2 = True
 
 #        print faseFinalc2
-#        if (faseFinalc2 == True) : 
+#        if (faseFinalc2 == True) :
 #            print 'finalizada'
 #            faseActual.estado = 'finalizada'
 #            faseActual.save()

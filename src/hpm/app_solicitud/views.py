@@ -366,6 +366,6 @@ def liberarItem(item):
     	setEstadoItem(item.id, "revision")
 
         lb = item.linea_base
-        lb.estado = 'liberado'
+        lb.estado = 'no valido'
         item.save()
         lb.save()

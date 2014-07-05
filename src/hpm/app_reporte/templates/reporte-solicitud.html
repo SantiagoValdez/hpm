@@ -1,0 +1,111 @@
+<html>
+<head>
+
+    <title>Informe de Solicitudes Proyecto {{proyecto.nombre}}</title>
+
+    <style type="text/css">
+        h1{
+            background-color: #111;
+            color:#fff;
+            padding-top: 10px;
+        }
+
+        td {
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .odd td{
+            background-color: #ccc;
+        }
+
+        .normal td{
+            background-color: #eee;
+        }
+        .t-head td {
+
+            background-color: #aaa;
+            color: #fff;
+            font-weight: bolder;
+            padding: 5px  5px  5px 5px ;
+            margin-right: 5px;
+            margin-left: 5px;
+            text-align: center; 
+        }
+        .tabla {
+            padding-left: 15%;
+            margin-bottom: 20px;
+        }
+        .fasebox{
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            background-color: #eee;
+
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+<small>Hephaestus Project Manager - Generado el {% now "jS F Y H:i" %}</small>
+<center>
+
+    <h1>Informe de Solicitudes del Proyecto {{proyecto.nombre}}</h1>
+
+    <h3>Listado de Solicitudes del Proyecto</h3>
+
+</center>
+<hr>
+<br>
+<br>
+
+    <div class="tabla">
+        <table>
+
+                <tr class="t-head">
+                    <td>Nombre</td>
+                    <td>Descripcion</td>
+                    <td>Accion</td>
+                    <td>Item</td>
+                    <td>LB</td>
+                    <td>Solicitante</td>
+                    <td>Estado</td>
+                    
+                    <td>A Favor</td>
+                    <td>En Contra</td>
+                    <td>Votado</td>
+
+                </tr>
+            {% for solicitud in solicitudes %}  
+                <tr class="{% cycle 'odd' 'normal' %}">
+                    <td >{{solicitud.nombre}}</td>
+                    <td>{{solicitud.descripcion}}</td>
+                    <td>{{solicitud.accion}}</td>
+                    <td>{{solicitud.item}}</td>
+                    <td>{{solicitud.item.linea_base}}</td>
+                    <td>{{solicitud.usuario}}</td>
+                    <td>{{solicitud.estado}}</td>
+                    
+                    <td>{{solicitud.votos_positivos}}</td>
+                    <td>{{solicitud.votos_negativos}}</td>
+                    <td>
+                    {% for v in solicitud.votantes.all %}
+                        {% if v.id = usuario.id %}
+                            Si
+                        {% endif %}
+                    {% endfor %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <hr>
+    <br>
+    <br>
+</body>
+</html>

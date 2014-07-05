@@ -10,7 +10,8 @@ Iteracion 2 completa
 Iteracion 3 completa
 Iteracion 4 completa
 Iteracion 5 completa
-Iteracion 6 en proceso 2do parcial
+Iteracion 6 completa
+Iteracion 7 examen final 
 
 ToDo
 ====

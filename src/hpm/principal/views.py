@@ -12,6 +12,7 @@ import datetime
 
 
 
+
 def home(request):
 	"""  
 	Funcion: Genera la pagina principal
@@ -52,6 +53,7 @@ def login(request):
 			return render(request, 'login.html', {'mensaje' : 'Usuario o password incorrectos...'})		
 	else :
 		return render(request, 'login.html')
+
 
 def logout(request):
 	"""  
