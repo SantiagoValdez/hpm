@@ -253,7 +253,13 @@ def cerrarLineaBase(request, id_fase, id_lineabase):
         fase = Fase.objects.get(id=id_fase)
         lineasb = LineaBase.objects.filter(fase=fase).order_by('nro')
 
-        lb.estado = "valido"
+        estado = "valido"
+        for i in lb.item_set.all():
+            v = i.versionitem_set.filter(id = i.id_actual).first()
+            if(v.estado == "revision"):
+                estado = "no valido"
+
+        lb.estado = estado
         lb.save()
         user = Usuario.objects.get(id=request.session['usuario'])
         historialLineaBase("cerrar", lb.id, user.id)
@@ -368,6 +374,20 @@ def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
                 "item " + item.nombre + " eliminado", lb.id, user.id)
             messages.success(request, 'Se removio el item con exito.')
 
+            condicion = False
+
+            for lb in lbs :
+                cantidadItems = lb.item_set.all().count()
+                if (cantidadItems == 0) :
+                    print 'lb con 0 items'
+                    condicion = True
+                elif (cantidadItems > 0) :
+                    print 'lb con > 0 items'
+                    condicion = False
+
+            if (condicion == True) :
+                fase.estado = 'en desarrollo'
+                fase.save()
         except Exception, e:
             print e
             messages.error(

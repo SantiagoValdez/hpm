@@ -113,14 +113,14 @@
                                         <td></td>
                                         <td>
                                             {% if not i.eliminado %} 
-                                                {% if i.linea_base.estado = 'liberada' %}
+                                                {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="{% url 'item:modificar' fase.id i.id %}" class="btn btn-primary btn-outline"><i class="fa fa-pencil"></i></a> 
                                                 {% endif %}
                                             {% endif %}
                                         </td>
                                         <td>
                                             {% if not i.eliminado %}
-                                                {% if i.linea_base.estado = 'liberada' %}
+                                                {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarItem( '{{i.nombre}}', '{% url 'item:eliminar' fase.id i.id %}' );"><i class="fa fa-minus-square"></i></a>
                                                 {% endif %}
                                             {% endif %}
@@ -128,7 +128,7 @@
 
                                         <td>
                                             {% if not i.eliminado %}
-                                                {% if i.linea_base.estado = 'liberada' %}
+                                                {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="{% url 'item:revertir' fase.id i.id %}" class="btn btn-warning"><i class="fa fa-step-backward"></i></a>
                                                 {% endif %}
                                             {% endif %}
@@ -143,9 +143,9 @@
                                         </td>
                                         <td>
                                             {% if not i.eliminado %}
-                                            {% if i.linea_base.estado = 'liberada' %}
+                                            {# if i.linea_base.estado = 'liberada' or i.linea_base.estado = None #}
                                                 <a href="{% url 'item:relacionar' fase.id i.id %}" class="btn btn-default"><i class="fa fa-code-fork"></i></a>
-                                            {% endif %}
+                                            {# endif #}
                                             {% endif %}
                                         </td>
 
@@ -159,8 +159,22 @@
                                         
                                         <td>
                                             {% if i.eliminado %}
-                                            {% if i.linea_base.estado = 'liberada' %}
+                                            {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="#" class="btn btn-default" onClick="revivirItem('{{i.nombre}}', '{% url 'item:revivir' fase.id i.id %}');"><i class="fa fa-ambulance"></i></a>
+                                            {% endif %}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if not i.eliminado %}
+                                            {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
+                                                {% for version in i.versionitem_set.all %}
+                                                {% if version.id == i.id_actual %}
+                                                {% if version.estado != 'aprobado' %}
+                                                <a href="{% url 'item:aprobar' fase.id i.id %}" class="btn btn-default"><i class="fa fa-thumbs-up"></i></a>
+                                                {% endif %}
+                                                {% endif %}
+                                                {% endfor%}
+
                                             {% endif %}
                                             {% endif %}
                                         </td>
