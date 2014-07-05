@@ -1,0 +1,50 @@
+1,root,0
+2,Crear Usuario,0
+3,Eliminar Usuario,0
+4,Modificar Usuario,0
+5,Crear Roles,0
+6,Modificar Roles,0
+7,Eliminar Roles,0
+8,Crear Proyectos,0
+9,Modificar Proyectos,0
+10,Configurar Proyectos,0
+11,Eliminar Proyectos,0
+12,Crear Fases,0
+13,Ver Fases,0
+14,Crear Item,0
+15,Configurar Item,0
+16,Eliminar Item,0
+17,Modificar Tipo Item,0
+18,Crear Linea Base,0
+19,Modificar Item,0
+20,Aprobar-Rechazar Item,0
+21,Crear Tipo Item,0
+22,Eliminar Tipo Item,0
+23,Liberar-Cerrar Linea Base,0
+24,Eliminar Linea Base,0
+25,Informes Solicitar,0
+26,Votar,0
+27,Asignar-Desasignar Usuario a Comite,0
+28,Asignar-Desasignar Rol a Usuario,0
+29,Crear Solicitud,0
+30,Eliminar Solicitud,0
+31,Modificar Solicitud,0
+32,Enviar Solicitud,0
+33,Roles Usuario,0
+34,Administrar Usuario,0
+35,Administrar Proyectos,0
+36,Administrar Roles,0
+37,Asignar-Desasignar Permiso a Rol,0
+38,Ver Tipo Item,0
+39,Ver Linea Base,0
+40,Ver Item,0
+41,Ver Solicitud,0
+42,Historial Linea Base,0
+43,Modificar Linea Base,0
+44,Asignar-Desasignar Item a Linea Base,0
+45,Adjuntar Archivo,0
+46,Revertir Item,0
+47,Relacionar Item,0
+48,Calcular Impacto,0
+49,Revivir Item,0
+50,Historial Item,0

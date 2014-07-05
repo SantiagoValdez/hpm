@@ -96,38 +96,52 @@
                                 <tbody>
                                     {% for f in fases %}
                                     <tr>
-                                        <td style="color:{{colores|get_item:f.id}}">{{f.nro}}</td>
+                                        <td style="color:{{col
+                                        ores|get_item:f.id}}">{{f.nro}}</td>
                                         
                                         <td>{{f.nombre}}</td>
                                         <td>{{f.descripcion}}</td>
                                         <td>{{f.estado}}</td>
                                         <td></td>
-                                        <td> 
+                                        <td>
+                                            {% if 'Configurar Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if 'no iniciado' in proyecto.estado %}
                                             <a href="#modificar" class="btn btn-primary btn-outline"
                                             onClick="modificarFase( '{{f.id}}','{{f.nro}}','{{f.nombre}}','{{f.descripcion}}','{{f.estado}}' );"><i class="fa fa-pencil"></i></a> 
                                             {% endif %}
+                                            {% endif %}
+                                        
                                         </td>
                                         <td>
+                                            {% if 'Configurar Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if 'no iniciado' in proyecto.estado and fases.count > 1 %}
                                             <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarFase( '{{f.nombre}}', '{% url 'fases:eliminar' proyecto.id f.id %}' );"><i class="fa fa-minus-square"></i></a>
                                             {% endif %}
+                                            {% endif %}
                                         </td>
                                         <td>
+                                            {% if 'Ver Tipo Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {# if 'no iniciado' in proyecto.estado #}
                                             <a href="{% url 'tipoitem:index' f.id %}" class="btn btn-warning"><i class="fa fa-sitemap"></i></a>
                                             {# endif #}
+                                            {% endif %}
                                         </td>
                                         <td>
+                                            {% if 'Ver Linea Base' in usuario.permisos or 'root' in usuario.permisos %}
                                             <a href="{% url 'lineasbase:index' f.id %}" class="btn btn-default btn-outline"><i class="fa fa-calendar"></i></a>
+                                            {% endif %}
                                         </td>
 
                                         <td>
+                                            {% if 'Ver Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             <a href="{% url 'item:index' f.id %}" class="btn btn-default"><i class="fa fa-dot-circle-o"></i></a>
+                                            {% endif %}
                                         </td>
 
                                         <td>
+                                            {% if 'Ver Solicitud' in usuario.permisos or 'root' in usuario.permisos %}
                                             <a href="{% url 'solicitud:index' f.id %}" class="btn btn-primary"><i class="fa fa-clipboard"></i></a>
+                                            {% endif %}
                                         </td>
 
                                     </tr>
@@ -141,8 +155,10 @@
 
                             
                             <center>
+                                {% if 'Crear Fases' in usuario.permisos or 'root' in usuario.permisos %}
                                 {% if 'no iniciado' in proyecto.estado %}
                                 <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                                {% endif %}
                                 {% endif %}                               
                                                                 
                             </center>

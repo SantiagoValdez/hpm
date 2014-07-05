@@ -91,7 +91,7 @@
                                     </td>
 
                                     <td>
-                                        {% if 'Permisos Roles' in usuario.permisos or 'root' in usuario.permisos %}
+                                        {% if 'Asignar-Desasignar Permiso a Rol' in usuario.permisos or 'root' in usuario.permisos %}
                                         {% if r.id != 1 %}
                                         <a class="btn btn-warning" href="{% url 'roles:permisos' r.id %}">
                                             <i class="fa fa-lock"></i>

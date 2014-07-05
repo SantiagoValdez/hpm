@@ -83,18 +83,18 @@
                                          {% endif %}
                                     </td>
                                     <td>
-                                        {% if 'Fase Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
+                                        {% if 'Ver Fases' in usuario.permisos or 'root' in usuario.permisos %}
                                         <a class="btn btn-warning" href="{% url 'fases:index' p.id %}">
                                             <i class="fa fa-tasks"></i>
                                         </a>
                                         {% endif %}
                                     </td>
                                     <td>
-                                        {# if 'Fase Proyectos' in usuario.permisos or 'root' in usuario.permisos #}
+                                        {% if 'Asignar-Desasignar Usuario a Comite' in usuario.permisos or 'root' in usuario.permisos %}
                                          <a class="btn btn-info" href="{% url 'comites:index' p.id %}">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                         {# endif #}
+                                         {% endif %}
                                     </td>
 
 
