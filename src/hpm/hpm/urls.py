@@ -41,6 +41,7 @@ urlpatterns = patterns('',
 
     url(r'^solicitud/', include('app_solicitud.urls' , namespace='solicitud')),
 
+    url(r'^reporte/', include('app_reporte.urls' , namespace='reporte')),    
     # url(r'^api/usuarios/', include('principal.urls')),
     # #url(r'^api/usuarios/', 'principal.views.apiGetUsuarios'),
     # #url(r'^api/usuario/(?P<id>\d+)/$', 'principal.views.apiGetUsuario'),

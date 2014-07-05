@@ -1,0 +1,57 @@
+<html>
+<head>
+
+    <title>Informe</title>
+
+    <style type="text/css">
+        h1{
+            background-color: #bbb;
+            color:#fff;
+        }
+
+        td {
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .odd td{
+            background-color: #ccc;
+        }
+
+        .normal td{
+            background-color: #fff;
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+<h1>{{mensaje}}</h1>
+<div class="tabla">
+    <table>
+
+            <tr>
+                <td>Username</td>
+                <td>Nombre</td>
+                <td>Telefono</td>
+                <td>Email</td>
+            </tr>
+
+
+        {% for u in usuarios %}    
+            <tr class="{% cycle 'odd' 'normal' %}">
+                <td >{{u.username}}</td>
+                <td>{{u.nombre}} {{u.apellido}}</td>
+                <td>{{u.telefono}}</td>
+                <td>{{u.email}}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+</body>
+</html>
