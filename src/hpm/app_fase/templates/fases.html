@@ -71,9 +71,9 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if 'no iniciado' in proyecto.estado %}
+                                            {# if 'no iniciado' in proyecto.estado #}
                                             <a href="{% url 'tipoitem:index' f.id %}" class="btn btn-warning"><i class="fa fa-sitemap"></i></a>
-                                            {% endif %}
+                                            {# endif #}
                                         </td>
                                         <td>
                                             <a href="{% url 'lineasbase:index' f.id %}" class="btn btn-default btn-outline"><i class="fa fa-calendar"></i></a>
@@ -98,9 +98,9 @@
 
                             
                             <center>
-                                
+                                {% if 'no iniciado' in proyecto.estado %}
                                 <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
-                               
+                                {% endif %}                               
                                                                 
                             </center>
                             <hr>
