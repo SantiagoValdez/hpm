@@ -80,7 +80,7 @@ def nuevoTipoItem(request, id_fase):
 				# Una fase se encuentra en estado de desarrollo si tiene por lo menos un tipo item
 				# definido por el usuario
 				cantidad_ti = lista.count()
-				if (cantidad_ti == 1) :
+				if (cantidad_ti != 0) :
 					fase.estado = "en desarrollo"
 					fase.save()
 
@@ -239,12 +239,14 @@ def importarTipoItem(request, id_fase):
 					lista = fase.tipoitem_set.all()
 					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
 
+				fase = Fase.objects.get(id=id_fase)
 				lista = fase.tipoitem_set.all()
 				# Una fase se encuentra en estado de desarrollo si tiene por lo menos un tipo item
 				# definido por el usuario
 				cantidad_ti = lista.count()
-				if (cantidad_ti == 1) :
+				if (cantidad_ti != 0) :
 					fase.estado = 'en desarrollo'
+					fase.save()
 
 				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Se importo el tipo item con exito'})
 			else:

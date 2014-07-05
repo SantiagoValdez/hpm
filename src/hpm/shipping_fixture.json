@@ -1,0 +1,2212 @@
+[
+{
+    "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
+    }
+},
+{
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "user", 
+        "name": "user", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
+    }
+},
+{
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
+    }
+},
+{
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "usuario", 
+        "name": "Usuario", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "proyecto", 
+        "name": "Proyecto", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "rol", 
+        "name": "Rol", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permiso", 
+        "name": "Permiso", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 11, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "comite", 
+        "name": "Comite", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "fase", 
+        "name": "Fase", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "tipoitem", 
+        "name": "TipoItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "atributotipoitem", 
+        "name": "AtributoTipoItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 15, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "atributoitem", 
+        "name": "AtributoItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 16, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "versionitem", 
+        "name": "VersionItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 17, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "item", 
+        "name": "Item", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 18, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "archivo", 
+        "name": "archivo", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 19, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "relacion", 
+        "name": "Relacion", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 20, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "lineabase", 
+        "name": "LineaBase", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 21, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "mensaje", 
+        "name": "Mensaje", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 22, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "solicitud", 
+        "name": "Solicitud", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 23, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "historiallineabase", 
+        "name": "HistorialLineaBase", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": 24, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "historialitem", 
+        "name": "HistorialItem", 
+        "app_label": "principal"
+    }
+},
+{
+    "pk": "hp32k3ql3jrd50qvl29svykidezn2597", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2014-07-19T08:34:07.074Z", 
+        "session_data": "NGFhNWE3MzM5ZWU3NDMxZGQ1NGQ3Nzk0NDUyZTQyOWEzYmIwMDM4Mzp7Il9hdXRoX3VzZXJfaWQiOjEsIl9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwidXN1YXJpbyI6MX0="
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "admin", 
+        "ci": 0, 
+        "roles": [
+            1, 
+            2, 
+            3, 
+            4
+        ], 
+        "apellido": "Del Sistema", 
+        "nombre": "Administrador", 
+        "password": "admin", 
+        "telefono": "000-000", 
+        "email": "admin@hpm.me"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.proyecto", 
+    "fields": {
+        "descripcion": "Un proyecto que muestra como se encuentra antes de iniciar", 
+        "nombre": "Proyecto Antes de Iniciar", 
+        "fecha_creacion": "2014-07-05", 
+        "complejidad_total": 0, 
+        "estado": "no iniciado"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.proyecto", 
+    "fields": {
+        "descripcion": "Proyecto en estado Iniciado puedan agregarse items, lineas base, solicitudes de cambio, finalizar fase, etc ", 
+        "nombre": "Proyecto Iniciado", 
+        "fecha_creacion": "2014-07-05", 
+        "complejidad_total": 0, 
+        "estado": "iniciado"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.proyecto", 
+    "fields": {
+        "descripcion": "Proyecto que tenga todas sus fases listas para cerrar y para finalizar el proyecto", 
+        "nombre": "Proyecto Antes de Finalizar", 
+        "fecha_creacion": "2014-07-05", 
+        "complejidad_total": 0, 
+        "estado": "no iniciado"
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Administrador del Sistema", 
+        "nombre": "Administrador del Sistema", 
+        "permisos": [
+            1
+        ], 
+        "proyecto": null
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol del administrador del proyecto Proyecto Antes de Iniciar", 
+        "nombre": "Administrador del Proyecto Proyecto Antes de Iniciar", 
+        "permisos": [], 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol del administrador del proyecto Proyecto Iniciado", 
+        "nombre": "Administrador del Proyecto Proyecto Iniciado", 
+        "permisos": [], 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol del administrador del proyecto Proyecto Antes de Finalizar", 
+        "nombre": "Administrador del Proyecto Proyecto Antes de Finalizar", 
+        "permisos": [], 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "root", 
+        "valor": 0
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Usuario", 
+        "valor": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Usuario", 
+        "valor": 0
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Usuario", 
+        "valor": 0
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Roles", 
+        "valor": 0
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Roles", 
+        "valor": 0
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Roles", 
+        "valor": 0
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Proyectos", 
+        "valor": 0
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Proyectos", 
+        "valor": 0
+    }
+},
+{
+    "pk": 10, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Configurar Proyectos", 
+        "valor": 0
+    }
+},
+{
+    "pk": 11, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Proyectos", 
+        "valor": 0
+    }
+},
+{
+    "pk": 12, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Fases", 
+        "valor": 0
+    }
+},
+{
+    "pk": 13, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Ver Fases", 
+        "valor": 0
+    }
+},
+{
+    "pk": 14, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 15, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Configurar Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 16, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 17, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Tipo Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 18, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 19, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 20, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Aprobar-Rechazar Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 21, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Tipo Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 22, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Tipo Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 23, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Liberar-Cerrar Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 24, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 25, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Informes Solicitar", 
+        "valor": 0
+    }
+},
+{
+    "pk": 26, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Votar", 
+        "valor": 0
+    }
+},
+{
+    "pk": 27, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Asignar-Desasignar Usuario a Comite", 
+        "valor": 0
+    }
+},
+{
+    "pk": 28, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Asignar-Desasignar Rol a Usuario", 
+        "valor": 0
+    }
+},
+{
+    "pk": 29, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Crear Solicitud", 
+        "valor": 0
+    }
+},
+{
+    "pk": 30, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Eliminar Solicitud", 
+        "valor": 0
+    }
+},
+{
+    "pk": 31, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Solicitud", 
+        "valor": 0
+    }
+},
+{
+    "pk": 32, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Enviar Solicitud", 
+        "valor": 0
+    }
+},
+{
+    "pk": 33, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Roles Usuario", 
+        "valor": 0
+    }
+},
+{
+    "pk": 34, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Administrar Usuario", 
+        "valor": 0
+    }
+},
+{
+    "pk": 35, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Administrar Proyectos", 
+        "valor": 0
+    }
+},
+{
+    "pk": 36, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Administrar Roles", 
+        "valor": 0
+    }
+},
+{
+    "pk": 37, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Asignar-Desasignar Permiso a Rol", 
+        "valor": 0
+    }
+},
+{
+    "pk": 38, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Ver Tipo Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 39, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Ver Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 40, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Ver Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 41, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Ver Solicitud", 
+        "valor": 0
+    }
+},
+{
+    "pk": 42, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Historial Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 43, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Modificar Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 44, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Asignar-Desasignar Item a Linea Base", 
+        "valor": 0
+    }
+},
+{
+    "pk": 45, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Adjuntar Archivo", 
+        "valor": 0
+    }
+},
+{
+    "pk": 46, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Revertir Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 47, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Relacionar Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 48, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Calcular Impacto", 
+        "valor": 0
+    }
+},
+{
+    "pk": 49, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Revivir Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 50, 
+    "model": "principal.permiso", 
+    "fields": {
+        "nombre": "Historial Item", 
+        "valor": 0
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.comite", 
+    "fields": {
+        "proyecto": 1, 
+        "usuarios": [
+            1
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.comite", 
+    "fields": {
+        "proyecto": 2, 
+        "usuarios": [
+            1
+        ]
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.comite", 
+    "fields": {
+        "proyecto": 3, 
+        "usuarios": [
+            1
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 1 P1", 
+        "nombre": "Fase 1", 
+        "nro": 1, 
+        "estado": "en desarrollo", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 2 P1", 
+        "nombre": "Fase 2", 
+        "nro": 2, 
+        "estado": "en desarrollo", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 3 P1", 
+        "nombre": "Fase 3", 
+        "nro": 3, 
+        "estado": "en desarrollo", 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 1 P2", 
+        "nombre": "Fase 1 P2", 
+        "nro": 1, 
+        "estado": "en desarrollo", 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 2 P2", 
+        "nombre": "Fase 2 P2", 
+        "nro": 2, 
+        "estado": "en desarrollo", 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 3 P2", 
+        "nombre": "Fase 3 P2", 
+        "nro": 3, 
+        "estado": "en desarrollo", 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 1 P3", 
+        "nombre": "Fase 1 P3", 
+        "nro": 1, 
+        "estado": "inicial", 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 2 P3", 
+        "nombre": "Fase 2 P3", 
+        "nro": 2, 
+        "estado": "inicial", 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.fase", 
+    "fields": {
+        "descripcion": "Fase 3 P3", 
+        "nombre": "Fase 3 P3", 
+        "nro": 3, 
+        "estado": "inicial", 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "Tipo Item de Prueba", 
+        "codigo": "TI1F1", 
+        "fase": 1, 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "Tipo Item de Prueba 2", 
+        "codigo": "TI1F2", 
+        "fase": 2, 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "Tipo Item de Prueba 3", 
+        "codigo": "TI1F3", 
+        "fase": 3, 
+        "proyecto": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "tipo_item_test_1", 
+        "codigo": "tipo_item_1", 
+        "fase": 4, 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "tipo_item_test_2", 
+        "codigo": "tipo_item_2", 
+        "fase": 5, 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "tipo_item_test_3", 
+        "codigo": "tipo_item_3", 
+        "fase": 6, 
+        "proyecto": 2
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 0, 
+        "version": "2014-07-05T08:54:02.397Z", 
+        "proxy": 1, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T08:54:25.312Z", 
+        "proxy": 2, 
+        "estado": "inicial", 
+        "prioridad": 1, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 2, 
+        "version": "2014-07-05T08:54:45.403Z", 
+        "proxy": 3, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T08:56:11.941Z", 
+        "proxy": 4, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 2, 
+        "version": "2014-07-05T08:56:27.522Z", 
+        "proxy": 5, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T08:59:03.034Z", 
+        "proxy": 6, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:15:44.696Z", 
+        "proxy": 7, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:16:02.257Z", 
+        "proxy": 8, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:16:32.221Z", 
+        "proxy": 9, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 10, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:16:50.065Z", 
+        "proxy": 10, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 11, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:17:28.072Z", 
+        "proxy": 11, 
+        "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 1, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T08:54:02.397Z", 
+        "nombre": "item1-f1", 
+        "tipo_item": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 2, 
+        "numero": 2, 
+        "eliminado": false, 
+        "version": "2014-07-05T08:54:25.312Z", 
+        "nombre": "item2-f1", 
+        "tipo_item": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 3, 
+        "numero": 3, 
+        "eliminado": false, 
+        "version": "2014-07-05T08:54:45.403Z", 
+        "nombre": "item3-f1", 
+        "tipo_item": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 4, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T08:56:11.941Z", 
+        "nombre": "item1-f2", 
+        "tipo_item": 2, 
+        "fase": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 5, 
+        "numero": 2, 
+        "eliminado": false, 
+        "version": "2014-07-05T08:56:27.522Z", 
+        "nombre": "item2-f2", 
+        "tipo_item": 2, 
+        "fase": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 6, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T08:59:03.034Z", 
+        "nombre": "item1-f3", 
+        "tipo_item": 3, 
+        "fase": 3
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 7, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:15:44.696Z", 
+        "nombre": "item1-f1", 
+        "tipo_item": 4, 
+        "fase": 4
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 8, 
+        "numero": 2, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:16:02.257Z", 
+        "nombre": "item2-f1", 
+        "tipo_item": 4, 
+        "fase": 4
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 9, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:16:32.221Z", 
+        "nombre": "item1-f2", 
+        "tipo_item": 5, 
+        "fase": 5
+    }
+},
+{
+    "pk": 10, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 10, 
+        "numero": 2, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:16:50.065Z", 
+        "nombre": "item2-f2", 
+        "tipo_item": 5, 
+        "fase": 5
+    }
+},
+{
+    "pk": 11, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": null, 
+        "id_actual": 11, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:17:28.072Z", 
+        "nombre": "item1-f3", 
+        "tipo_item": 6, 
+        "fase": 6
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "padre-hijo", 
+        "sucesor": 2, 
+        "eliminado": false, 
+        "proyecto": 1, 
+        "antecesor": 1, 
+        "fase": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "padre-hijo", 
+        "sucesor": 3, 
+        "eliminado": false, 
+        "proyecto": 1, 
+        "antecesor": 2, 
+        "fase": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 4, 
+        "eliminado": false, 
+        "proyecto": 1, 
+        "antecesor": 3, 
+        "fase": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "padre-hijo", 
+        "sucesor": 5, 
+        "eliminado": false, 
+        "proyecto": 1, 
+        "antecesor": 4, 
+        "fase": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 6, 
+        "eliminado": false, 
+        "proyecto": 1, 
+        "antecesor": 5, 
+        "fase": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "padre-hijo", 
+        "sucesor": 8, 
+        "eliminado": false, 
+        "proyecto": 2, 
+        "antecesor": 7, 
+        "fase": 4
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 9, 
+        "eliminado": false, 
+        "proyecto": 2, 
+        "antecesor": 8, 
+        "fase": 4
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "padre-hijo", 
+        "sucesor": 10, 
+        "eliminado": false, 
+        "proyecto": 2, 
+        "antecesor": 9, 
+        "fase": 5
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 11, 
+        "eliminado": false, 
+        "proyecto": 2, 
+        "antecesor": 10, 
+        "fase": 5
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 1, 
+        "fecha": "2014-07-05T08:54:02.710Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 1, 
+        "fecha": "2014-07-05T08:54:25.596Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 1, 
+        "fecha": "2014-07-05T08:54:45.627Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 2, 
+        "fecha": "2014-07-05T08:56:12.158Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 2, 
+        "fecha": "2014-07-05T08:56:27.708Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 3, 
+        "fecha": "2014-07-05T08:59:03.252Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 1, 
+        "fecha": "2014-07-05T08:59:15.320Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f1 y item2-f1"
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 2, 
+        "fecha": "2014-07-05T08:59:22.690Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item2-f1 y item3-f1"
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 3, 
+        "fecha": "2014-07-05T08:59:33.958Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item3-f1 y item1-f2"
+    }
+},
+{
+    "pk": 10, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 4, 
+        "fecha": "2014-07-05T08:59:54.513Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item2-f2"
+    }
+},
+{
+    "pk": 11, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 5, 
+        "fecha": "2014-07-05T09:00:02.972Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item2-f2 y item1-f3"
+    }
+},
+{
+    "pk": 12, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 4, 
+        "fecha": "2014-07-05T09:15:44.865Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 13, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 4, 
+        "fecha": "2014-07-05T09:16:02.467Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 14, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 5, 
+        "fecha": "2014-07-05T09:16:32.509Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 15, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 5, 
+        "fecha": "2014-07-05T09:16:50.354Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 16, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 6, 
+        "fecha": "2014-07-05T09:17:28.445Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 17, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 7, 
+        "fecha": "2014-07-05T09:17:40.445Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f1 y item2-f1"
+    }
+},
+{
+    "pk": 18, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 8, 
+        "fecha": "2014-07-05T09:17:49.325Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item2-f1 y item1-f2"
+    }
+},
+{
+    "pk": 19, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 9, 
+        "fecha": "2014-07-05T09:18:05.608Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item2-f2"
+    }
+},
+{
+    "pk": 20, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 10, 
+        "fecha": "2014-07-05T09:18:13.791Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item2-f2 y item1-f3"
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_usuario", 
+        "name": "Can add Usuario", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_usuario", 
+        "name": "Can change Usuario", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_usuario", 
+        "name": "Can delete Usuario", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_proyecto", 
+        "name": "Can add Proyecto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_proyecto", 
+        "name": "Can change Proyecto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_proyecto", 
+        "name": "Can delete Proyecto", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_rol", 
+        "name": "Can add Rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_rol", 
+        "name": "Can change Rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_rol", 
+        "name": "Can delete Rol", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permiso", 
+        "name": "Can add Permiso", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permiso", 
+        "name": "Can change Permiso", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permiso", 
+        "name": "Can delete Permiso", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_comite", 
+        "name": "Can add Comite", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_comite", 
+        "name": "Can change Comite", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_comite", 
+        "name": "Can delete Comite", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_fase", 
+        "name": "Can add Fase", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_fase", 
+        "name": "Can change Fase", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_fase", 
+        "name": "Can delete Fase", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_tipoitem", 
+        "name": "Can add TipoItem", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_tipoitem", 
+        "name": "Can change TipoItem", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_tipoitem", 
+        "name": "Can delete TipoItem", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_atributotipoitem", 
+        "name": "Can add AtributoTipoItem", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_atributotipoitem", 
+        "name": "Can change AtributoTipoItem", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_atributotipoitem", 
+        "name": "Can delete AtributoTipoItem", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_atributoitem", 
+        "name": "Can add AtributoItem", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_atributoitem", 
+        "name": "Can change AtributoItem", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_atributoitem", 
+        "name": "Can delete AtributoItem", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 46, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_versionitem", 
+        "name": "Can add VersionItem", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 47, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_versionitem", 
+        "name": "Can change VersionItem", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 48, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_versionitem", 
+        "name": "Can delete VersionItem", 
+        "content_type": 16
+    }
+},
+{
+    "pk": 49, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_item", 
+        "name": "Can add Item", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 50, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_item", 
+        "name": "Can change Item", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 51, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_item", 
+        "name": "Can delete Item", 
+        "content_type": 17
+    }
+},
+{
+    "pk": 52, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_archivo", 
+        "name": "Can add archivo", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 53, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_archivo", 
+        "name": "Can change archivo", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 54, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_archivo", 
+        "name": "Can delete archivo", 
+        "content_type": 18
+    }
+},
+{
+    "pk": 55, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_relacion", 
+        "name": "Can add Relacion", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 56, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_relacion", 
+        "name": "Can change Relacion", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 57, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_relacion", 
+        "name": "Can delete Relacion", 
+        "content_type": 19
+    }
+},
+{
+    "pk": 58, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_lineabase", 
+        "name": "Can add LineaBase", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 59, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_lineabase", 
+        "name": "Can change LineaBase", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 60, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_lineabase", 
+        "name": "Can delete LineaBase", 
+        "content_type": 20
+    }
+},
+{
+    "pk": 61, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_mensaje", 
+        "name": "Can add Mensaje", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 62, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_mensaje", 
+        "name": "Can change Mensaje", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 63, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_mensaje", 
+        "name": "Can delete Mensaje", 
+        "content_type": 21
+    }
+},
+{
+    "pk": 64, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_solicitud", 
+        "name": "Can add Solicitud", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 65, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_solicitud", 
+        "name": "Can change Solicitud", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 66, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_solicitud", 
+        "name": "Can delete Solicitud", 
+        "content_type": 22
+    }
+},
+{
+    "pk": 67, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_historiallineabase", 
+        "name": "Can add HistorialLineaBase", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 68, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_historiallineabase", 
+        "name": "Can change HistorialLineaBase", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 69, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_historiallineabase", 
+        "name": "Can delete HistorialLineaBase", 
+        "content_type": 23
+    }
+},
+{
+    "pk": 70, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_historialitem", 
+        "name": "Can add HistorialItem", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 71, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_historialitem", 
+        "name": "Can change HistorialItem", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 72, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_historialitem", 
+        "name": "Can delete HistorialItem", 
+        "content_type": 24
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "admin", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2014-07-05T08:32:44.412Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$RubqcHK6voDs$/XxbLJIiOFQGVtyTnXDIdjlFgciJOzepEK+JHqBmc/M=", 
+        "email": "admin@admin.com", 
+        "date_joined": "2014-07-05T08:31:09.144Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2014-07-05T08:33:54.109Z", 
+        "object_repr": "Administrador del Sistema", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 9
+    }
+},
+{
+    "pk": 2, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2014-07-05T08:33:59.275Z", 
+        "object_repr": "admin", 
+        "object_id": "1", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 7
+    }
+}
+]

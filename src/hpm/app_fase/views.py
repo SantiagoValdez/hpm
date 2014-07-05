@@ -203,9 +203,10 @@ def generarGrafo(id_proyecto):
             else:
                 color = 'black'
 
-            js += str(relacion.antecesor.proxy.id) + \
-                ':{' + str(relacion.sucesor.proxy.id) + \
-                ':{ color : "' + color + '"}' + '},'
+            js += str(relacion.antecesor.proxy.id) + ':{' 
+            for r in proyecto.relacion_set.filter(antecesor=relacion.antecesor):
+                js+= str(r.sucesor.proxy.id) + ':{ color : "' + color + '"},' 
+            js+= '},'
 
 
     js += '}'  # fin arcos
