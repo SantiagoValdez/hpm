@@ -102,7 +102,7 @@
                                         </td>
                                         <td>
                                             {% if 'Historial Linea Base' in usuario.permisos or 'root' in usuario.permisos %}
-                                            <a href="{% url 'lineasbase:reporte' fase.id l.id %}" class="btn btn-default btn-outline"><i class="fa fa-bar-chart-o"></i></a>
+                                            <a href="{% url 'lineasbase:reporte' fase.id l.id %}" class="btn btn-default btn-outline" target="_blank"><i class="fa fa-bar-chart-o"></i></a>
                                             {% endif %}
 
                                         </td>

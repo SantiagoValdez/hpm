@@ -150,6 +150,11 @@ def modificarProyecto(request):
 								lista = Proyecto.objects.all()
 								return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Existen fases sin finalizar','usuarios' : usuarios})
 
+						if(request.POST['estado'] == 'iniciado'):
+							if (p.fase_set.all().count() == 0):
+								lista = Proyecto.objects.all()
+								return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'No se puede iniciar un proyecto sin fases','usuarios' : usuarios})
+
 						p.nombre = request.POST['nombre']  
 						p.descripcion = request.POST['descripcion']  
 						p.fecha_creacion = datetime.datetime.strptime(request.POST['fecha_creacion'], '%d/%m/%Y').date()
