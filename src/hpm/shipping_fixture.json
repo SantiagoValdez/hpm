@@ -243,6 +243,50 @@
     }
 },
 {
+    "pk": 2, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "santiago", 
+        "ci": 4202083, 
+        "roles": [
+            5
+        ], 
+        "apellido": "Valdez", 
+        "nombre": "Santiago", 
+        "password": "santiago", 
+        "telefono": "555-555", 
+        "email": "santiagovaldez@hpm.me"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "belen", 
+        "ci": 123321, 
+        "roles": [], 
+        "apellido": "Gonzalez", 
+        "nombre": "Belen", 
+        "password": "belen", 
+        "telefono": "123-321", 
+        "email": "belen@hpm.me"
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.usuario", 
+    "fields": {
+        "username": "tino", 
+        "ci": 108108, 
+        "roles": [], 
+        "apellido": "Pati\u00f1o", 
+        "nombre": "Guillermo", 
+        "password": "tino", 
+        "telefono": "321-000", 
+        "email": "tino@hpm.me"
+    }
+},
+{
     "pk": 1, 
     "model": "principal.proyecto", 
     "fields": {
@@ -272,7 +316,7 @@
         "nombre": "Proyecto Antes de Finalizar", 
         "fecha_creacion": "2014-07-05", 
         "complejidad_total": 0, 
-        "estado": "no iniciado"
+        "estado": "iniciado"
     }
 },
 {
@@ -315,6 +359,34 @@
         "nombre": "Administrador del Proyecto Proyecto Antes de Finalizar", 
         "permisos": [], 
         "proyecto": 3
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.rol", 
+    "fields": {
+        "descripcion": "Rol de Desarrollador", 
+        "nombre": "Desarrollador", 
+        "permisos": [
+            15, 
+            19, 
+            29, 
+            30, 
+            31, 
+            32, 
+            34, 
+            35, 
+            38, 
+            39, 
+            40, 
+            41, 
+            45, 
+            46, 
+            48, 
+            49, 
+            50
+        ], 
+        "proyecto": null
     }
 },
 {
@@ -820,7 +892,7 @@
         "descripcion": "Fase 1 P3", 
         "nombre": "Fase 1 P3", 
         "nro": 1, 
-        "estado": "inicial", 
+        "estado": "finalizada", 
         "proyecto": 3
     }
 },
@@ -831,7 +903,7 @@
         "descripcion": "Fase 2 P3", 
         "nombre": "Fase 2 P3", 
         "nro": 2, 
-        "estado": "inicial", 
+        "estado": "finalizada", 
         "proyecto": 3
     }
 },
@@ -842,7 +914,7 @@
         "descripcion": "Fase 3 P3", 
         "nombre": "Fase 3 P3", 
         "nro": 3, 
-        "estado": "inicial", 
+        "estado": "con linea base", 
         "proyecto": 3
     }
 },
@@ -910,6 +982,39 @@
         "codigo": "tipo_item_3", 
         "fase": 6, 
         "proyecto": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "tipo-item-1", 
+        "codigo": "tipo.item.1", 
+        "fase": 7, 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "tipo-item-2", 
+        "codigo": "tipo.item.2", 
+        "fase": 8, 
+        "proyecto": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.tipoitem", 
+    "fields": {
+        "descripcion": "Tipo Item de Prueba", 
+        "nombre": "tipo-item-3", 
+        "codigo": "tipo.item.3", 
+        "fase": 9, 
+        "proyecto": 3
     }
 },
 {
@@ -1050,6 +1155,97 @@
         "version": "2014-07-05T09:17:28.072Z", 
         "proxy": 11, 
         "estado": "inicial", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 12, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:39:54.607Z", 
+        "proxy": 12, 
+        "estado": "final", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 13, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:39:57.044Z", 
+        "proxy": 13, 
+        "estado": "final", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 14, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:39:59.811Z", 
+        "proxy": 14, 
+        "estado": "final", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 15, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:41:02.022Z", 
+        "proxy": 15, 
+        "estado": "final", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 16, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:43:47.639Z", 
+        "proxy": 16, 
+        "estado": "final", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 17, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:43:50.731Z", 
+        "proxy": 17, 
+        "estado": "final", 
+        "prioridad": 0, 
+        "atributos": [], 
+        "complejidad": 0
+    }
+},
+{
+    "pk": 18, 
+    "model": "principal.versionitem", 
+    "fields": {
+        "costo": 1, 
+        "version": "2014-07-05T09:43:52.954Z", 
+        "proxy": 18, 
+        "estado": "final", 
         "prioridad": 0, 
         "atributos": [], 
         "complejidad": 0
@@ -1210,6 +1406,104 @@
     }
 },
 {
+    "pk": 12, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 1, 
+        "id_actual": 12, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:24:50.339Z", 
+        "nombre": "item1-f1", 
+        "tipo_item": 7, 
+        "fase": 7
+    }
+},
+{
+    "pk": 13, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 1, 
+        "id_actual": 13, 
+        "numero": 2, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:25:10.457Z", 
+        "nombre": "item2-f1", 
+        "tipo_item": 7, 
+        "fase": 7
+    }
+},
+{
+    "pk": 14, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 1, 
+        "id_actual": 14, 
+        "numero": 3, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:25:30.836Z", 
+        "nombre": "item3-f1", 
+        "tipo_item": 7, 
+        "fase": 7
+    }
+},
+{
+    "pk": 15, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 2, 
+        "id_actual": 15, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:26:19.555Z", 
+        "nombre": "item1-f2", 
+        "tipo_item": 8, 
+        "fase": 8
+    }
+},
+{
+    "pk": 16, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 3, 
+        "id_actual": 16, 
+        "numero": 1, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:26:49.671Z", 
+        "nombre": "item1-f3", 
+        "tipo_item": 9, 
+        "fase": 9
+    }
+},
+{
+    "pk": 17, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 3, 
+        "id_actual": 17, 
+        "numero": 2, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:27:01.357Z", 
+        "nombre": "item2-f3", 
+        "tipo_item": 9, 
+        "fase": 9
+    }
+},
+{
+    "pk": 18, 
+    "model": "principal.item", 
+    "fields": {
+        "linea_base": 3, 
+        "id_actual": 18, 
+        "numero": 3, 
+        "eliminado": false, 
+        "version": "2014-07-05T09:27:17.335Z", 
+        "nombre": "item3-f3", 
+        "tipo_item": 9, 
+        "fase": 9
+    }
+},
+{
     "pk": 1, 
     "model": "principal.relacion", 
     "fields": {
@@ -1315,6 +1609,231 @@
         "proyecto": 2, 
         "antecesor": 10, 
         "fase": 5
+    }
+},
+{
+    "pk": 10, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 15, 
+        "eliminado": false, 
+        "proyecto": 3, 
+        "antecesor": 12, 
+        "fase": 7
+    }
+},
+{
+    "pk": 11, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 15, 
+        "eliminado": false, 
+        "proyecto": 3, 
+        "antecesor": 13, 
+        "fase": 7
+    }
+},
+{
+    "pk": 12, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 15, 
+        "eliminado": false, 
+        "proyecto": 3, 
+        "antecesor": 14, 
+        "fase": 7
+    }
+},
+{
+    "pk": 13, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 16, 
+        "eliminado": false, 
+        "proyecto": 3, 
+        "antecesor": 15, 
+        "fase": 8
+    }
+},
+{
+    "pk": 14, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 17, 
+        "eliminado": false, 
+        "proyecto": 3, 
+        "antecesor": 15, 
+        "fase": 8
+    }
+},
+{
+    "pk": 15, 
+    "model": "principal.relacion", 
+    "fields": {
+        "tipo": "antecesor-sucesor", 
+        "sucesor": 18, 
+        "eliminado": false, 
+        "proyecto": 3, 
+        "antecesor": 15, 
+        "fase": 8
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.lineabase", 
+    "fields": {
+        "nombre": "LB Fase 1", 
+        "usuario": 1, 
+        "nro": 1, 
+        "estado": "valido", 
+        "fase": 7
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.lineabase", 
+    "fields": {
+        "nombre": "LB Fase 2", 
+        "usuario": 1, 
+        "nro": 1, 
+        "estado": "inicial", 
+        "fase": 8
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.lineabase", 
+    "fields": {
+        "nombre": "LB Fase 3", 
+        "usuario": 1, 
+        "nro": 1, 
+        "estado": "inicial", 
+        "fase": 9
+    }
+},
+{
+    "pk": 1, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:39:32.820Z", 
+        "usuario": "admin", 
+        "lineabase": 1, 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 2, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:39:54.745Z", 
+        "usuario": "admin", 
+        "lineabase": 1, 
+        "operacion": "item item1-f1 agregado"
+    }
+},
+{
+    "pk": 3, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:39:57.306Z", 
+        "usuario": "admin", 
+        "lineabase": 1, 
+        "operacion": "item item2-f1 agregado"
+    }
+},
+{
+    "pk": 4, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:39:59.948Z", 
+        "usuario": "admin", 
+        "lineabase": 1, 
+        "operacion": "item item3-f1 agregado"
+    }
+},
+{
+    "pk": 5, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:40:25.669Z", 
+        "usuario": "admin", 
+        "lineabase": 1, 
+        "operacion": "liberar"
+    }
+},
+{
+    "pk": 6, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:40:32.751Z", 
+        "usuario": "admin", 
+        "lineabase": 1, 
+        "operacion": "cerrar"
+    }
+},
+{
+    "pk": 7, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:40:57.080Z", 
+        "usuario": "admin", 
+        "lineabase": 2, 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 8, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:41:02.146Z", 
+        "usuario": "admin", 
+        "lineabase": 2, 
+        "operacion": "item item1-f2 agregado"
+    }
+},
+{
+    "pk": 9, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:43:43.174Z", 
+        "usuario": "admin", 
+        "lineabase": 3, 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 10, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:43:47.817Z", 
+        "usuario": "admin", 
+        "lineabase": 3, 
+        "operacion": "item item1-f3 agregado"
+    }
+},
+{
+    "pk": 11, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:43:50.874Z", 
+        "usuario": "admin", 
+        "lineabase": 3, 
+        "operacion": "item item2-f3 agregado"
+    }
+},
+{
+    "pk": 12, 
+    "model": "principal.historiallineabase", 
+    "fields": {
+        "fecha": "2014-07-05T09:43:53.098Z", 
+        "usuario": "admin", 
+        "lineabase": 3, 
+        "operacion": "item item3-f3 agregado"
     }
 },
 {
@@ -1515,6 +2034,236 @@
         "fecha": "2014-07-05T09:18:13.791Z", 
         "usuario": "admin", 
         "operacion": "relacionar item2-f2 y item1-f3"
+    }
+},
+{
+    "pk": 21, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 7, 
+        "fecha": "2014-07-05T09:24:50.512Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 22, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 7, 
+        "fecha": "2014-07-05T09:25:10.665Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 23, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 7, 
+        "fecha": "2014-07-05T09:25:30.996Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 24, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 8, 
+        "fecha": "2014-07-05T09:26:19.771Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 25, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 9, 
+        "fecha": "2014-07-05T09:26:49.880Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 26, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 9, 
+        "fecha": "2014-07-05T09:27:01.615Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 27, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 9, 
+        "fecha": "2014-07-05T09:27:17.588Z", 
+        "usuario": "admin", 
+        "operacion": "crear"
+    }
+},
+{
+    "pk": 28, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 12, 
+        "fecha": "2014-07-05T09:28:01.841Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f1 y item1-f2"
+    }
+},
+{
+    "pk": 29, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 13, 
+        "fecha": "2014-07-05T09:28:09.069Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item2-f1 y item1-f2"
+    }
+},
+{
+    "pk": 30, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 14, 
+        "fecha": "2014-07-05T09:28:16.608Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item3-f1 y item1-f2"
+    }
+},
+{
+    "pk": 31, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:28:35.565Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item1-f3"
+    }
+},
+{
+    "pk": 32, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:28:45.968Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item2-f3"
+    }
+},
+{
+    "pk": 33, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:28:52.386Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item3-f3"
+    }
+},
+{
+    "pk": 34, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:29:33.428Z", 
+        "usuario": "admin", 
+        "operacion": "eliminar relacion conitem1-f3"
+    }
+},
+{
+    "pk": 35, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:29:41.268Z", 
+        "usuario": "admin", 
+        "operacion": "eliminar relacion conitem2-f3"
+    }
+},
+{
+    "pk": 36, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:29:48.161Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item1-f3"
+    }
+},
+{
+    "pk": 37, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:29:53.825Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item2-f3"
+    }
+},
+{
+    "pk": 38, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:30:53.748Z", 
+        "usuario": "admin", 
+        "operacion": "eliminar relacion conitem2-f3"
+    }
+},
+{
+    "pk": 39, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:30:57.051Z", 
+        "usuario": "admin", 
+        "operacion": "eliminar relacion conitem1-f3"
+    }
+},
+{
+    "pk": 40, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:30:59.938Z", 
+        "usuario": "admin", 
+        "operacion": "eliminar relacion conitem3-f3"
+    }
+},
+{
+    "pk": 41, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:31:05.368Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item1-f3"
+    }
+},
+{
+    "pk": 42, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:31:20.421Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item2-f3"
+    }
+},
+{
+    "pk": 43, 
+    "model": "principal.historialitem", 
+    "fields": {
+        "item": 15, 
+        "fecha": "2014-07-05T09:32:28.237Z", 
+        "usuario": "admin", 
+        "operacion": "relacionar item1-f2 y item3-f3"
     }
 },
 {
