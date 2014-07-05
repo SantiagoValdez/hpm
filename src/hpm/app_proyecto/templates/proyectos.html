@@ -54,6 +54,8 @@
                                     <th>Fecha de creacion</th>
                                     <th>Complejidad</th>
                                     <th>Estado</th>
+                                    <th>Reporte Items</th>
+                                    <th>Reporte Solicitudes</th>
                                     <th></th>
                                     <th>Modificar</th>
                                     <th>Eliminar</th>
@@ -70,6 +72,14 @@
                                     <td>{{p.fecha_creacion}}</td>
                                     <td>{{p.complejidad_total}}</td>
                                     <td>{{p.estado}}</td>
+                                    <td>
+                                        <a class="btn btn-default btn-outline" href="{% url 'reporte:proyecto' p.id %}"><i class="fa fa-bar-chart-o"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-default btn-outline" href="{% url 'reporte:solicitud' p.id %}"><i class="fa fa-bar-chart-o"></i>
+                                        </a>
+                                    </td>
                                     <td></td>
                                     <td> 
                                         {% if 'Modificar Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
@@ -91,7 +101,7 @@
                                     </td>
                                     <td>
                                         {% if 'Asignar-Desasignar Usuario a Comite' in usuario.permisos or 'root' in usuario.permisos %}
-                                         <a class="btn btn-info" href="{% url 'comites:index' p.id %}">
+                                        <a class="btn btn-info" href="{% url 'comites:index' p.id %}">
                                             <i class="fa fa-eye"></i>
                                         </a>
                                          {% endif %}

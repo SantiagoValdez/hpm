@@ -1,0 +1,123 @@
+<html>
+<head>
+
+    <title>Informe Linea Base {{lineab.nombre}}</title>
+
+    <style type="text/css">
+        h1{
+            background-color: #111;
+            color:#fff;
+            padding-top: 10px;
+        }
+
+        td {
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        .odd td{
+            background-color: #ccc;
+        }
+
+        .normal td{
+            background-color: #eee;
+        }
+        .t-head td {
+
+            background-color: #aaa;
+            color: #fff;
+            font-weight: bolder;
+            padding: 5px  5px  5px 5px ;
+            margin-right: 5px;
+            margin-left: 5px;
+            text-align: center; 
+        }
+        .tabla {
+            padding-left: 30%;
+            margin-bottom: 20px;
+        }
+        .fasebox{
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            background-color: #eee;
+
+        }
+
+    </style>
+
+
+</head>
+
+
+<body>
+
+<small>Hephaestus Project Manager - Generado el {% now "jS F Y H:i" %}</small>
+<center>
+
+    <h1>Informe General de la Linea Base {{lineab.nombre}}</h1>
+
+    <h3>Listado de Items de la linea base</h3>
+
+</center>
+<hr>
+<br>
+<br>
+
+{# for item in items #}
+
+    <div class="fasebox">
+        <h3>Linea Base {{lineab.nombre}}</h3><br>
+        {{fase.descripcion}}
+        
+    </div>
+    <br>
+    <div class="tabla">
+        <table>
+
+                <tr class="t-head">
+                    <td>Numero</td>
+                    <td>Nombre</td>
+                    <td>Tipo</td>
+                    <td>Padres</td>
+                    <td>Costo</td>
+                    <td>Version</td>
+                </tr>
+
+
+            {% for item in items %}    
+                <tr class="{% cycle 'odd' 'normal' %}">
+                    <td>{{item.numero}}</td>
+                    <td >{{item.nombre}}</td>
+                    <td>{{item.tipo_item}}</td>
+                    
+
+                    {% for v in item.versionitem_set.all %}
+                        {% if v.id == item.id_actual %}
+                            <td>
+                            <ul>    
+                            {% for r in v.relacion_sucesor_set.all %}    
+                                {% if r.tipo == 'padre-hijo' %}
+                                    
+                                    <li>{{r.antecesor.proxy.nombre}}</li>
+                                
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                            </td>
+                            <td>{{v.costo}}</td>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    
+                    <td>{{item.version}}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    <hr>
+    <br>
+    <br>
+{# endfor #}
+</body>
+</html>
