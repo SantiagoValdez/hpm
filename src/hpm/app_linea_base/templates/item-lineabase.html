@@ -71,7 +71,9 @@
                                         <td></td>
                                         
                                         <td>
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{i.nombre}}', '{% url 'lineasbase:removerItem' fase.id linea_base.id i.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {% if not 'valido' in linea_base.estado %}
+                                                <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{i.nombre}}', '{% url 'lineasbase:removerItem' fase.id linea_base.id i.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {% endif %}
                                         </td>
                                         
                                     </tr>
@@ -85,9 +87,9 @@
 
                             
                             <center>
-                                
-                                <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
-                                
+                                {% if not 'valido' in linea_base.estado %}
+                                    <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                                {% endif %}
                                                                                             
                             </center>
                             <hr>

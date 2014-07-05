@@ -187,7 +187,7 @@
                                             {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 {% for version in i.versionitem_set.all %}
                                                 {% if version.id == i.id_actual %}
-                                                {% if version.estado != 'aprobado' %}
+                                                {% if version.estado != 'aprobado' and version.estado != 'final' %}
                                                 <a href="{% url 'item:aprobar' fase.id i.id %}" class="btn btn-default"><i class="fa fa-thumbs-up"></i></a>
                                                 {% endif %}
                                                 {% endif %}

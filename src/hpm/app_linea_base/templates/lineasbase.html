@@ -77,14 +77,18 @@
                                          <td></td>
                                         <td>
                                             {% if 'Modificar Linea Base' in usuario.permisos or 'root' in usuario.permisos %} 
-                                            <a href="#modificar" class="btn btn-primary btn-outline"
-                                            onClick="modificarLineaBase( '{{l.id}}','{{l.nro}}','{{l.nombre}}','{{l.estado}}' );"><i class="fa fa-pencil"></i></a> 
+                                                {% if not 'finalizada' in fase.estado %}
+                                                    <a href="#modificar" class="btn btn-primary btn-outline"
+                                                    onClick="modificarLineaBase( '{{l.id}}','{{l.nro}}','{{l.nombre}}','{{l.estado}}' );"><i class="fa fa-pencil"></i></a>
+                                                {% endif %} 
                                             {% endif %}
                                         </td>
                                         <td>
                                             {% if 'Eliminar Linea Base' in usuario.permisos or 'root' in usuario.permisos %}
                                             {# if not 'valido' in l.estado or 'inicial' in l.estado #}
-                                                <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id l.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                                {% if not 'finalizada' in fase.estado %}
+                                                    <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id l.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                                {% endif %}
                                             {# endif #}
                                             {% endif %}
                                         </td>
@@ -128,7 +132,9 @@
                             
                             <center>
                                 {% if 'Crear Linea Base' in usuario.permisos or 'root' in usuario.permisos %}
-                                <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                                    {% if not 'finalizada' in fase.estado %}
+                                        <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                                    {% endif %}
                                 {% endif %}
                                                                                             
                             </center>

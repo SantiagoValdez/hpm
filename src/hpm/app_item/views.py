@@ -184,6 +184,7 @@ def modificarItem(request, id_fase, id_item):
 
     if (u):
         fase = Fase.objects.get(id=id_fase)
+        lbs = fase.lineabase_set.all()
         item = Item.objects.get(id=id_item)
         version = VersionItem.objects.get(id=item.id_actual)
         tipo_item = item.tipo_item
@@ -216,6 +217,7 @@ def modificarItem(request, id_fase, id_item):
                 try:
                     item.linea_base = None
                     item.save()
+
                     newVersion(id_item, atributos)
                     historialItem('modificar', item.id, user.id)
                     item = Item.objects.get(id=id_item)
@@ -223,6 +225,22 @@ def modificarItem(request, id_fase, id_item):
                     print "VERSION :"
                     print version
                     estadoRevisionItem(version)
+                    # -----------------------------------------------------------------
+                    # Verifica si las lineas base se quedaron sin items
+                    condicion = False   # Todas las lineas base tienen 0 items
+            
+                    for lb in lbs :
+                        cantidadItems = lb.item_set.all().count()
+                        if (cantidadItems == 0) :
+                            print 'lb con 0 items'
+                            condicion = True
+                        elif (cantidadItems > 0) :
+                            print 'lb con > 0 items'
+                            condicion = False
+
+                    if (condicion == True) :
+                        fase.estado = 'en desarrollo'
+                        fase.save()
 
                 except Exception, e:
 
@@ -708,8 +726,6 @@ def getRelacionesItem(id_item, all=False):
 
         print antecesores
 
-        
-        
         print sucesores
 
         relaciones = []
@@ -762,8 +778,6 @@ def estadoRevisionItem(version):
             if (lineab != None) :
                 # El item no pertenece a ninguna linea base
                 if(lineab.estado != 'liberada'):
-                    print "Entro"
-                    print lineab.estado
                     lineab.estado = 'no valido'
                     lineab.save()
                     fase = lineab.fase
