@@ -220,6 +220,9 @@ def liberarLineaBase(request, id_fase, id_lineabase):
 
         lb.estado = "liberada"
         lb.save()
+        if (fase.estado == 'finalizada') :
+            fase.estado = 'con linea base'
+            fase.save()
         user = Usuario.objects.get(id=request.session['usuario'])
         historialLineaBase("liberar", lb.id, user.id)
 
@@ -253,10 +256,17 @@ def cerrarLineaBase(request, id_fase, id_lineabase):
         fase = Fase.objects.get(id=id_fase)
         lineasb = LineaBase.objects.filter(fase=fase).order_by('nro')
 
-        lb.estado = "valido"
+        estado = "valido"
+        for i in lb.item_set.all():
+            v = i.versionitem_set.filter(id = i.id_actual).first()
+            if(v.estado == "revision"):
+                estado = "no valido"
+
+        lb.estado = estado
         lb.save()
         user = Usuario.objects.get(id=request.session['usuario'])
         historialLineaBase("cerrar", lb.id, user.id)
+        estadoFinalFase(id_fase, id_lineabase)
 
         # Falta la varificacion de los item pertenecientes
 
@@ -342,7 +352,7 @@ def agregarItemLineaBase(request, id_fase, id_lineabase):
                 messages.success(request, 'Se agrego el item con exito.')
                 fase.estado = 'con linea base'
                 fase.save()
-                estadoFinalFase(id_fase, id_lineabase)
+                #estadoFinalFase(id_fase, id_lineabase)
             except Exception, e:
                 print e
                 messages.error(
@@ -429,6 +439,7 @@ def estadoFinalFase(id_fase, id_lineabase):
     # Condicion de que todos los items de la fase deben estar en una linea base
     faseFinalc1 = False
     faseFinalc2 = False     # Condicion la fase anterior finalizada
+    faseFinalc3 = False     # Condicino de que todas las lineas base deben estar validas
 
     for i in itemsFaseActual:
         version = VersionItem.objects.get(id=i.id_actual)
@@ -464,7 +475,17 @@ def estadoFinalFase(id_fase, id_lineabase):
                 faseFinalc2 = True
 
     print faseFinalc2
-    if (faseFinalc2 == True):
+    if (faseFinalc2 == True) :
+        lineasb = faseActual.lineabase_set.all()
+
+        if (lineasb != None) :
+            for lb in lineasb :
+                if (lb.estado == 'valido') :
+                    faseFinalc3 = True
+                elif (lb.estado == 'no valido' or lb.estado == 'liberada' or lb.estado == 'inicial') :
+                    faseFinalc3 = False
+
+    if (faseFinalc3 == True):
         faseActual.estado = 'finalizada'
         faseActual.save()
         print faseActual.estado

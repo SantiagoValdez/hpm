@@ -184,6 +184,7 @@ def modificarItem(request, id_fase, id_item):
 
     if (u):
         fase = Fase.objects.get(id=id_fase)
+        lbs = fase.lineabase_set.all()
         item = Item.objects.get(id=id_item)
         version = VersionItem.objects.get(id=item.id_actual)
         tipo_item = item.tipo_item
@@ -216,10 +217,30 @@ def modificarItem(request, id_fase, id_item):
                 try:
                     item.linea_base = None
                     item.save()
+
                     newVersion(id_item, atributos)
                     historialItem('modificar', item.id, user.id)
-
+                    item = Item.objects.get(id=id_item)
+                    version = item.versionitem_set.filter(id=item.id_actual).first()
+                    print "VERSION :"
+                    print version
                     estadoRevisionItem(version)
+                    # -----------------------------------------------------------------
+                    # Verifica si las lineas base se quedaron sin items
+                    condicion = False   # Todas las lineas base tienen 0 items
+            
+                    for lb in lbs :
+                        cantidadItems = lb.item_set.all().count()
+                        if (cantidadItems == 0) :
+                            print 'lb con 0 items'
+                            condicion = True
+                        elif (cantidadItems > 0) :
+                            print 'lb con > 0 items'
+                            condicion = False
+
+                    if (condicion == True) :
+                        fase.estado = 'en desarrollo'
+                        fase.save()
 
                 except Exception, e:
 
@@ -531,7 +552,13 @@ def newVersion(id_item, atributos):
         version_item.save()
 
         for r in getRelacionesItem(id_item,True):
-            r.eliminado = True
+
+            if( str(r.antecesor.proxy.id) == str(id_item)):
+                r.antecesor = version_item
+
+            if(str(r.sucesor.proxy.id) == str(id_item)):
+                r.sucesor = version_item
+
             r.save()
 
         item.version = version_item.version
@@ -718,6 +745,16 @@ def estadoRevisionItem(version):
 
     @param versin: Version del item que fue modificado.
     """
+
+
+
+    itemac = version.proxy
+    fase = itemac.fase
+    fase.estado = 'con linea base'
+    fase.save()
+    
+    print "V DENTRO DE ER"
+    print version
     print version.version
     # Se encuentran todas las relaciones en donde se encuentra el item modificado
     relacionVerant = Relacion.objects.filter(antecesor=version)
@@ -737,11 +774,16 @@ def estadoRevisionItem(version):
             versionSuc.save()
             itemSuc = versionSuc.proxy
             lineab = itemSuc.linea_base
+
             if (lineab != None) :
                 # El item no pertenece a ninguna linea base
                 if(lineab.estado != 'liberada'):
                     lineab.estado = 'no valido'
                     lineab.save()
+                    fase = lineab.fase
+                    if(fase.estado == 'finalizada'):
+                        fase.estado = 'con linea base'
+                        fase.save()
 
     # En cada relacion en la que el item modificado esta como sucesor
     # se cambia el estado del item asociado a revision y la linea base donde
@@ -759,7 +801,10 @@ def estadoRevisionItem(version):
                 if(lineab.estado != 'liberada'):
                     lineab.estado = 'no valido'
                     lineab.save()
-
+                    fase = lineab.fase
+                    if(fase.estado == 'finalizada'):
+                        fase.estado = 'con linea base'
+                        fase.save()
 
 def getAntecesoresItem(id_item):
     """
@@ -912,6 +957,19 @@ def indexHistorialItem(request, id_fase, id_item):
         return render(request, 'historial-item.html', {'usuario': u, 'fase': fase, 'item': item})
     else:
         redirect('/login')
+
+def aprobarItem(request,id_fase,id_item):
+    
+    try:
+        item = Item.objects.get(id=id_item)
+        v = item.versionitem_set.filter(id=item.id_actual).first()
+        v.estado = 'aprobado'
+        v.save()
+    except Exception, e:
+        print e
+
+    return redirect('item:index', id_fase=id_fase)
+
 
 
 def adjuntarArchivo(request, id_fase, id_item):

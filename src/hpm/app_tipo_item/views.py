@@ -245,6 +245,7 @@ def importarTipoItem(request, id_fase):
 				cantidad_ti = lista.count()
 				if (cantidad_ti == 1) :
 					fase.estado = 'en desarrollo'
+					fase.save()
 
 				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Se importo el tipo item con exito'})
 			else:
