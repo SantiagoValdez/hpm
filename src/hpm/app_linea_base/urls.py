@@ -18,4 +18,5 @@ urlpatterns = patterns('',
     url(r'^(?P<id_fase>\d+)/items/(?P<id_lineabase>\d+)/$','app_linea_base.views.itemLineaBase', name='items'),
     url(r'^(?P<id_fase>\d+)/item/add/(?P<id_lineabase>\d+)/$','app_linea_base.views.agregarItemLineaBase', name='agregarItem'),
     url(r'^(?P<id_fase>\d+)/item/remove/(?P<id_lineabase>\d+)/(?P<id_item>\d+)/$','app_linea_base.views.removerItemLineaBase', name='removerItem'),
+    url(r'^(?P<id_fase>\d+)/reporte/(?P<id_lineabase>\d+)/$','app_linea_base.views.reporteLineaBase', name='reporte'),
 )

@@ -61,6 +61,7 @@
                                         <th>Eliminar</th>
                                         <th></th>
                                         <th>Historial</th>
+                                        <th>Reporte</th>
                                         <th>Items</th>
                                         <th>Liberar</th>
                                         <th>Cerrar</th>
@@ -96,6 +97,12 @@
                                         <td>
                                             {% if 'Historial Linea Base' in usuario.permisos or 'root' in usuario.permisos %}
                                             <a href="{% url 'lineasbase:historial' fase.id l.id %}" class="btn btn-default btn-outline"><i class="fa fa-calendar-o"></i></a>
+                                            {% endif %}
+
+                                        </td>
+                                        <td>
+                                            {% if 'Historial Linea Base' in usuario.permisos or 'root' in usuario.permisos %}
+                                            <a href="{% url 'lineasbase:reporte' fase.id l.id %}" class="btn btn-default btn-outline"><i class="fa fa-bar-chart-o"></i></a>
                                             {% endif %}
 
                                         </td>

@@ -11,6 +11,11 @@ from django.contrib import messages
 from django.db.models import Q
 import datetime
 from django.utils.timezone import utc
+import xhtml2pdf.pisa as pisa
+import cStringIO as StringIO
+import cgi
+from django.template.loader import get_template
+from django.template import Context
 
 # Create your views here.
 
@@ -489,6 +494,33 @@ def estadoFinalFase(id_fase, id_lineabase):
         faseActual.estado = 'finalizada'
         faseActual.save()
         print faseActual.estado
+
+def render_to_pdf(template_src, context_dict, filename):
+    template = get_template(template_src)
+    context = Context(context_dict)
+    html = template.render(context)
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(
+        StringIO.StringIO(html.encode("utf-8")), result)
+    if not pdf.err:
+        response = HttpResponse(result.getvalue(), mimetype='application/pdf')
+        response['Content-Disposition'] = 'filename='+ filename +'.pdf'
+        return response
+    return HttpResponse('No se pudo generar el reporte : <pre>%s</pre>' % cgi.escape(html))
+
+def reporteLineaBase(request, id_fase, id_lineabase):
+
+    u = is_logged(request.session)
+
+    if(u):
+        fase = Fase.objects.get(id=id_fase)
+        proyecto = fase.proyecto
+        lineab = LineaBase.objects.get(id=id_lineabase)
+        items = lineab.item_set.all()
+
+        return render_to_pdf('reporte-lineabase.html',{'usuario':u,'proyecto':proyecto,'lineab':lineab,'items':items},'reporte-lineabase-'+lineab.nombre+'-'+proyecto.nombre)
+    else:
+        return redirect('/login')
 
 # Si existen lineas base global
 # Mejorar la seccion para hallar la fase anterior
