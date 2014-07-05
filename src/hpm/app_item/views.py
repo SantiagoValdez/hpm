@@ -214,8 +214,11 @@ def modificarItem(request, id_fase, id_item):
                 user = Usuario.objects.get(id=request.session['usuario'])
 
                 try:
+                    item.linea_base = None
+                    item.save()
                     newVersion(id_item, atributos)
                     historialItem('modificar', item.id, user.id)
+
                     estadoRevisionItem(version)
 
                 except Exception, e:
@@ -526,6 +529,11 @@ def newVersion(id_item, atributos):
 
         # Guardamos la version de nuevo y actualizamos las versiones
         version_item.save()
+
+        for r in getRelacionesItem(id_item,True):
+            r.eliminado = True
+            r.save()
+
         item.version = version_item.version
         item.id_actual = version_item.id
         item.save()
@@ -682,10 +690,17 @@ def getRelacionesItem(id_item, all=False):
         print item
         version = VersionItem.objects.get(id=item.id_actual)
         print version
-        antecesores = version.relacion_antecesor_set.all().filter(
-            eliminado=all)
+        if(all):
+            antecesores = version.relacion_antecesor_set.all()
+            sucesores = version.relacion_sucesor_set.all()
+        else:
+            antecesores = version.relacion_antecesor_set.all().filter(eliminado=False)
+            sucesores = version.relacion_sucesor_set.all().filter(eliminado=False)
+
         print antecesores
-        sucesores = version.relacion_sucesor_set.all().filter(eliminado=all)
+
+        
+        
         print sucesores
 
         relaciones = []
@@ -726,8 +741,9 @@ def estadoRevisionItem(version):
             lineab = itemSuc.linea_base
             if (lineab != None) :
                 # El item no pertenece a ninguna linea base
-                lineab.estado = 'no valido'
-                lineab.save()
+                if(lineab.estado != 'liberado'):
+                    lineab.estado = 'no valido'
+                    lineab.save()
 
     # En cada relacion en la que el item modificado esta como sucesor
     # se cambia el estado del item asociado a revision y la linea base donde
@@ -742,8 +758,9 @@ def estadoRevisionItem(version):
             lineab = itemAnt.linea_base
             if (lineab != None) :
                 # El item no pertenece a ninguna linea base
-                lineab.estado = 'no valido'
-                lineab.save()
+                if(lineab.estado != 'liberado'):
+                    lineab.estado = 'no valido'
+                    lineab.save()
 
 
 def getAntecesoresItem(id_item):

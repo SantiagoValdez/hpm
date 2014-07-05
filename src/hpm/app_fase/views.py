@@ -195,16 +195,17 @@ def generarGrafo(id_proyecto):
 
     # Genera las relaciones
     js += ',edges:{'
-    for relacion in proyecto.relacion_set.all():
+    for relacion in proyecto.relacion_set.filter(eliminado = False):
+        if(relacion.antecesor.proxy.id_actual == relacion.antecesor.id
+            and relacion.sucesor.proxy.id_actual == relacion.sucesor.id):
+            if(relacion.tipo == 'padre-hijo'):
+                color = 'green'
+            else:
+                color = 'black'
 
-        if(relacion.tipo == 'padre-hijo'):
-            color = 'green'
-        else:
-            color = 'black'
-
-        js += str(relacion.antecesor.proxy.id) + \
-            ':{' + str(relacion.sucesor.proxy.id) + \
-            ':{ color : "' + color + '"}' + '},'
+            js += str(relacion.antecesor.proxy.id) + \
+                ':{' + str(relacion.sucesor.proxy.id) + \
+                ':{ color : "' + color + '"}' + '},'
 
 
     js += '}'  # fin arcos
