@@ -73,6 +73,7 @@
                                         <th>Relacionar</th>
                                         <th>Calcular Impacto</th>
                                         <th>Revivir</th>
+                                        <th>Aprobar</th>
 
                                     </tr>
                                 </thead>
@@ -105,66 +106,83 @@
 
                                         </td>
                                         <td>
+                                            {% if 'Adjuntar Archivo' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                             <a href="{% url 'item:adjuntar' fase.id i.id %}" class="btn btn-default btn-outline"><i class="fa fa-paperclip"></i></a>
+                                            {% endif %}
                                             {% endif %}
 
                                         </td>
                                         <td></td>
                                         <td>
+                                            {% if 'Modificar Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %} 
                                                 {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="{% url 'item:modificar' fase.id i.id %}" class="btn btn-primary btn-outline"><i class="fa fa-pencil"></i></a> 
                                                 {% endif %}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
                                         <td>
+                                            {% if 'Eliminar Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                                 {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarItem( '{{i.nombre}}', '{% url 'item:eliminar' fase.id i.id %}' );"><i class="fa fa-minus-square"></i></a>
                                                 {% endif %}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
 
                                         <td>
+                                            {% if 'Revertir Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                                 {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="{% url 'item:revertir' fase.id i.id %}" class="btn btn-warning"><i class="fa fa-step-backward"></i></a>
                                                 {% endif %}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
 
                                         <td>
+                                            {% if 'Historial Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                                 {# if i.linea_base.estado = 'liberada' #}
                                                 <a href="{% url 'item:historial' fase.id i.id %}" class="btn btn-default"><i class="fa fa-calendar-o"></i></a>
                                                 {# endif #}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
                                         <td>
+                                            {% if 'Relacionar Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                             {# if i.linea_base.estado = 'liberada' or i.linea_base.estado = None #}
                                                 <a href="{% url 'item:relacionar' fase.id i.id %}" class="btn btn-default"><i class="fa fa-code-fork"></i></a>
                                             {# endif #}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
 
                                         <td>
+                                            {% if 'Calcular Impacto' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                             {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
                                             <a href="#" class="btn btn-default" onClick="showImpacto('{% url 'item:getImpacto' i.id %}');"><i class="fa fa-bomb"></i></a>
                                             {# endif #}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
                                         
                                         <td>
+                                            {% if 'Revivir Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if i.eliminado %}
                                             {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 <a href="#" class="btn btn-default" onClick="revivirItem('{{i.nombre}}', '{% url 'item:revivir' fase.id i.id %}');"><i class="fa fa-ambulance"></i></a>
                                             {% endif %}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
                                         <td>
+                                            {% if 'Aprobar-Rechazar Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if not i.eliminado %}
                                             {% if i.linea_base.estado = 'liberada' or i.linea_base.estado = None %}
                                                 {% for version in i.versionitem_set.all %}
@@ -175,6 +193,7 @@
                                                 {% endif %}
                                                 {% endfor%}
 
+                                            {% endif %}
                                             {% endif %}
                                             {% endif %}
                                         </td>
@@ -190,9 +209,11 @@
 
                             
                             <center>
+                                {% if 'Crear Item' in usuario.permisos or 'root' in usuario.permisos %}
                                 {% if not 'finalizada' in fase.estado %}
                                     <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo' onClick="setUrlNewItem({{fase.id}})"><i class="fa fa-plus-square fa-2x"></i></a>
-                                {% endif %}                           
+                                {% endif %}
+                                {% endif %}                             
                                                                 
                             </center>
                             <hr>

@@ -23,7 +23,13 @@
 </head>
 
 <body>
-
+    <!--
+        {{usuario.permisos}}
+        =====================
+        {% for r in usuario.roles %}
+            {{r.proyecto}}
+        {% endfor %}
+    -->
     <div id="wrapper">
 
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
@@ -77,7 +83,7 @@
                             <a href="{% url 'principal.views.home' %}"><i class="fa fa-home fa-fw"></i> Home</a>
                         </li>
 
-                        {% if 'Administrar Usuarios' in usuario.permisos or 'root' in usuario.permisos %}
+                        {% if 'Administrar Usuario' in usuario.permisos or 'root' in usuario.permisos %}
                         <li>
                             <a href="{% url 'usuarios:index' %}"><i class="fa fa-users fa-fw"></i> Usuarios</a>
                         </li>

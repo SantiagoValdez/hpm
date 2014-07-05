@@ -52,23 +52,29 @@
                                         <td>{{t.nombre}}</td>
                                         <td>{{t.descripcion}}</td>
                                         <td></td>
-                                        <td> 
+                                        <td>
+                                            {% if 'Modificar Tipo Item' in usuario.permisos or 'root' in usuario.permisos %} 
                                             {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado%}
                                             <a href="#modificar" class="btn btn-primary btn-outline"
                                             onClick="modificarTipoItem( '{{t.id}}','{{t.codigo}}','{{t.nombre}}','{{t.descripcion}}' );"><i class="fa fa-pencil"></i></a> 
                                             {% endif %}
+                                            {% endif %}
                                         </td>
                                         <td>
+                                            {% if 'Eliminar Tipo Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado %}
                                                 {% if lista.count > 1 %}
                                                 <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarTipoItem( '{{t.nombre}}', '{% url 'tipoitem:eliminar' fase.id t.id %}' );"><i class="fa fa-minus-square"></i></a>
                                                 {% endif %}
                                             {% endif %}
+                                            {% endif %}
                                         </td>
 
                                         <td>
+                                            {% if 'Modificar Tipo Item' in usuario.permisos or 'root' in usuario.permisos %}
                                             {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado %}
                                                 <a href="{% url 'tipoitem:indexAtributo' t.id %}" class="btn btn-warning"><i class="fa fa-bars"></i></a>
+                                            {% endif %}
                                             {% endif %}
                                         </td>
 
@@ -83,11 +89,13 @@
 
                             
                             <center>
-                                
+                                {% if 'Crear Tipo Item' in usuario.permisos or 'root' in usuario.permisos %}
                                 <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
+                                {% endif %}
                                 <hr>
+                                {% if 'Crear Tipo Item' in usuario.permisos or 'root' in usuario.permisos %}
                                 <a class="btn btn-info btn-outline" data-toggle="modal" href='#modal-importar' onClick="mostrarInfoTipoItem();"><i class="fa fa-download"></i> <small>importar</small> </a>
-                                                                
+                                {% endif %}                                
                             </center>
                             <hr>
                             <a class="btn btn-primary" href="{% url 'fases:index' fase.proyecto.id %}">

@@ -55,21 +55,27 @@
                                     
                                     <td></td>
                                     <td>
-                                        {% if s.estado == 'inicial' %} 
+                                        {% if 'Modificar Solicitud' in usuario.permisos or 'root' in usuario.permisos %}
+                                        {% if s.estado == 'inicial' and s.usuario.id == usuario.id %} 
                                          <a href="#modificar" class="btn btn-primary btn-outline" onClick="modificarSolicitud( '{{s.id}}','{{s.item.id}}','{{s.nombre}}','{{s.descripcion}}','{{s.accion}}' );" ><i class="fa fa-pencil" ></i></a>
+                                        {% endif %}
                                         {% endif %}
                                      </td>
                                     <td>
-                                        {% if s.estado == 'inicial' %}
+                                        {% if 'Eliminar Solicitud' in usuario.permisos or 'root' in usuario.permisos %}
+                                        {% if s.estado == 'inicial' and s.usuario.id == usuario.id %}
                                          <a href="#eliminar" class="btn btn-danger btn-outline"  onClick="eliminarSolicitud( '{{s.nombre}}', '{% url 'solicitud:eliminar' fase.id s.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                        {% endif %}
                                         {% endif %}
                                      </td>
 
                                      <td>
-                                        {% if s.estado == 'inicial' %} 
+                                        {% if 'Enviar Solicitud' in usuario.permisos or 'root' in usuario.permisos %}
+                                        {% if s.estado == 'inicial' and s.usuario.id == usuario.id %}
 
                                          <a href="#enviar" class="btn btn-primary btn-outline" onClick="enviarSolicitud( '{{s.nombre}}', '{% url 'solicitud:enviar' fase.id s.id %}' );"><i class="fa fa-envelope"></i></a>
 
+                                        {% endif %}
                                         {% endif %}
                                      </td>
 
@@ -99,9 +105,11 @@
                         </table>
 
                         <center>
+                            {% if 'Crear Solicitud' in usuario.permisos or 'root' in usuario.permisos %}
                             {# if 'Crear Proyectos' in usuario.permisos or 'root' in usuario.permisos #}
                             <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo'><i class="fa fa-plus-square fa-2x"></i></a>
                             {# endif #}
+                            {% endif %}
                         </center>
                         <hr>
                             <a class="btn btn-primary" href="{% url 'fases:index' fase.proyecto.id %}">
