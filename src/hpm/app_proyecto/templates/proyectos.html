@@ -83,11 +83,11 @@
                                          {% endif %}
                                     </td>
                                     <td>
-                                        {# if 'Fase Proyectos' in usuario.permisos or 'root' in usuario.permisos #}
-                                         <a class="btn btn-warning" href="{% url 'fases:index' p.id %}">
+                                        {% if 'Fase Proyectos' in usuario.permisos or 'root' in usuario.permisos %}
+                                        <a class="btn btn-warning" href="{% url 'fases:index' p.id %}">
                                             <i class="fa fa-tasks"></i>
                                         </a>
-                                         {# endif #}
+                                        {% endif %}
                                     </td>
                                     <td>
                                         {# if 'Fase Proyectos' in usuario.permisos or 'root' in usuario.permisos #}

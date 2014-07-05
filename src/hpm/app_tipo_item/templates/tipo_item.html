@@ -53,21 +53,23 @@
                                         <td>{{t.descripcion}}</td>
                                         <td></td>
                                         <td> 
-                                            {# if 'no iniciado' in proyecto.estado #}
+                                            {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado%}
                                             <a href="#modificar" class="btn btn-primary btn-outline"
                                             onClick="modificarTipoItem( '{{t.id}}','{{t.codigo}}','{{t.nombre}}','{{t.descripcion}}' );"><i class="fa fa-pencil"></i></a> 
-                                            {# endif #}
+                                            {% endif %}
                                         </td>
                                         <td>
-                                            {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarTipoItem( '{{t.nombre}}', '{% url 'tipoitem:eliminar' fase.id t.id %}' );"><i class="fa fa-minus-square"></i></a>
-                                            {# endif #}
+                                            {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado %}
+                                                {% if lista.count > 1 %}
+                                                <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarTipoItem( '{{t.nombre}}', '{% url 'tipoitem:eliminar' fase.id t.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                                {% endif %}
+                                            {% endif %}
                                         </td>
 
                                         <td>
-                                            {# if 'no iniciado' in proyecto.estado and fases.count > 1 #}
-                                            <a href="{% url 'tipoitem:indexAtributo' t.id %}" class="btn btn-warning"><i class="fa fa-bars"></i></a>
-                                            {# endif #}
+                                            {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado %}
+                                                <a href="{% url 'tipoitem:indexAtributo' t.id %}" class="btn btn-warning"><i class="fa fa-bars"></i></a>
+                                            {% endif %}
                                         </td>
 
                                     </tr>

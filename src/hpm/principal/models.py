@@ -191,7 +191,7 @@ class Item(models.Model):
 
     fase = models.ForeignKey(Fase)
     tipo_item = models.ForeignKey(TipoItem)
-    linea_base = models.ForeignKey('LineaBase', null=True, blank=True, default = None, on_delete=models.CASCADE)
+    linea_base = models.ForeignKey('LineaBase', null=True, blank=True, default = None, on_delete=models.SET_NULL)
 
 class Archivo(models.Model):
     archivo = models.FileField(upload_to='archivos')

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from principal.models import Proyecto, Usuario, Fase, LineaBase, Item, HistorialLineaBase
+from principal.models import Relacion, VersionItem
 from principal.views import is_logged
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect
@@ -7,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.db import transaction
 from django.contrib import messages
+from django.db.models import Q
 import datetime
 from django.utils.timezone import utc
 
@@ -118,9 +120,20 @@ def eliminarLineaBase(request, id_fase, id_lineabase):
 
     if(u):
 
+        lineab = LineaBase.objects.get(id=id_lineabase)
+        items = Item.objects.filter(linea_base=lineab)
+        for i in items :
+            version = VersionItem.objects.get(id=i.id_actual)
+            version.estado = 'aprobado'
+            version.save()
         LineaBase.objects.filter(id=id_lineabase).delete()
-
-        # falta poner los item que forman parte a estado aprobado
+        # El estado de una fase es 'con linea base' cuando la fase tiene una linea base
+        fase = Fase.objects.get(id=id_fase)
+        lineasb = LineaBase.objects.filter(fase=fase)
+        cantidad_lb = lineasb.count()
+        if (cantidad_lb == 0) :
+            fase.estado = 'en desarrollo'
+            fase.save()
 
         return redirect('lineasbase:index', id_fase=id_fase)
 
@@ -315,12 +328,16 @@ def agregarItemLineaBase(request, id_fase, id_lineabase):
             id_item = request.POST['id_item']
             item = Item.objects.get(id=id_item)
             lb = LineaBase.objects.get(id=id_lineabase)
+            fase = Fase.objects.get(id=id_fase)
             user = Usuario.objects.get(id=request.session['usuario'])
             
             try:
                 addItemLB(id_item,id_lineabase)
                 historialLineaBase("item " + item.nombre + " agregado",lb.id,user.id)
                 messages.success(request, 'Se agrego el item con exito.')
+                fase.estado = 'con linea base'
+                fase.save()
+                estadoFinalFase(id_fase,id_lineabase)
             except Exception, e:
                 print e
                 messages.error(request,'Ocurrio un error al agregar el item. Intente de nuevo.')
@@ -337,10 +354,15 @@ def removerItemLineaBase(request, id_fase, id_lineabase, id_item):
         try:
             item = Item.objects.get(id=id_item)
             lb = LineaBase.objects.get(id=id_lineabase)
+            fase = Fase.objects.get(id=id_fase)
+            lbs = fase.lineabase_set.all()
             user = Usuario.objects.get(id=request.session['usuario'])
             deleteItemLB(id_item)
-            historialLineaBase("item " + item.nombre + " elimanado",lb.id,user.id)
+            historialLineaBase("item " + item.nombre + " eliminado",lb.id,user.id)
             messages.success(request, 'Se removio el item con exito.')
+            
+            for lb in lbs :
+            
         except Exception, e:
             print e
             messages.error(request,'Ocurrio un error al remover el item. Intente de nuevo.')
@@ -354,15 +376,147 @@ def addItemLB(id_item, id_lb):
     with transaction.atomic():
         lb = LineaBase.objects.get(id=id_lb)
         item = Item.objects.get(id=id_item)
+        version = VersionItem.objects.get(id=item.id_actual)
 
         item.linea_base = lb
-        item.estado = 'final'
         item.save()
+        version.estado = 'final'
+        version.save()
 
 def deleteItemLB(id_item):
 	with transaction.atomic():
 		item = Item.objects.get(id=id_item)
+        version = VersionItem.objects.get(id=item.id_actual)
 
-		item.linea_base = None
+        item.linea_base = None
+        item.save()
+        version.estado = 'aprobado'
+        version.save()
 
-		item.save()
+def estadoFinalFase(id_fase, id_lineabase):
+
+    faseActual = Fase.objects.get(id=id_fase)
+    proyecto = faseActual.proyecto
+    itemsFaseActual = Item.objects.filter(fase=faseActual)
+    # Cantidad de items en la fase
+    cantidad_itemsFaseActual = itemsFaseActual.count()
+    # Cantidad de items en la fase que estan en una linea base
+    cantidad_itemsFaseActualLb = 0
+    faseFinalc1 = False     # Condicion de que todos los items de la fase deben estar en una linea base
+    faseFinalc2 = False     # Condicion la fase anterior finalizada
+
+    for i in itemsFaseActual :
+        version = VersionItem.objects.get(id=i.id_actual)
+        if (version.estado == 'final' or version.estado == 'eliminado') :
+            cantidad_itemsFaseActualLb += 1
+
+    if (cantidad_itemsFaseActual == cantidad_itemsFaseActualLb) :
+        # Todos los items de la fase actual se encuentran en lineas base
+        faseFinalc1 = True
+
+    print faseFinalc1
+    if (faseFinalc1 == True) :
+
+        cantidadFases = proyecto.fase_set.all().count()
+        if (cantidadFases == 1) : 
+            # Solo existe una fase entonces se puede finalizar la fase
+            faseFinalc2 = True
+
+        elif (cantidadFases > 1) :
+            # Si existen mas fases se verifica si la fase anterior esta finalizada
+            nroFaseActual = faseActual.nro
+            fases = Fase.objects.filter(proyecto=proyecto)
+            faseAnterior = fases.filter(nro__lt=nroFaseActual).order_by('nro').last()
+
+            if (faseAnterior == None) :
+                # No existe una fase anterior por lo tanto la fase es la primera
+                faseFinalc2 = True
+
+            elif (faseAnterior.estado == 'finalizada') :
+                # Existe una fase anterior
+                faseFinalc2 = True
+
+    print faseFinalc2
+    if (faseFinalc2 == True) : 
+        faseActual.estado = 'finalizada'
+        faseActual.save()
+        print faseActual.estado
+
+# Si existen lineas base global
+# Mejorar la seccion para hallar la fase anterior
+#def estadoFinalFase(id_fase, id_lineabase):
+#
+#    faseActual = Fase.objects.get(id=id_fase)
+#    lista_itemfase = faseActual.item_set.all()
+#    cantidad_itemfaseActual = 0
+#
+#    proyecto = faseActual.proyecto
+#    ultimaFase = Fase.objects.filter(proyecto=proyecto).order_by('nro').last()
+#
+#    if (faseActual == ultimaFase) :
+#        ultimaFasec = True
+#    
+#    for i in lista_itemfase :
+#        version = VersionItem.objects.get(id=i.id_actual)
+#        if (version.estado == 'aprobado' or version.estado == 'final') :
+#            cantidad_itemfaseActual += 1
+#
+#    lineab = LineaBase.objects.get(id=id_lineabase)
+#    lista_itemlb = lineab.item_set.all()
+#    cantidad_itemlb = lista_itemlb.count()
+
+    # Primera condicion es que la cantidad de item en la fase sea igual
+    # a la cantidad de item que cuenta la linea base
+    # entonces todos los items de la fase se encuentran dentro de la linea base
+#    print cantidad_itemfaseActual
+#    print cantidad_itemlb
+#    if (cantidad_itemfaseActual == cantidad_itemlb) :
+
+#        faseFinalc1 = False     # Todos los items dentro de la lb y con sucesores
+#        faseFinalc2 = False     # La fase anterior finalizada
+
+        # Comprobacion de si todos los items tienen sucesores
+#        for i in lista_itemlb :
+#            version = VersionItem.objects.get(id=i.id_actual)
+
+#            if (ultimaFasec == False) :
+                # Si no es la ultima fase se busca ademas que cumpla el tipo de relacion
+                # antecesor-sucesor
+#                relaciones = Relacion.objects.filter(antecesor=version,tipo='antecesor-sucesor')
+#            elif (ultimaFasec == True) :
+                # Si es la ultima fase, entonces solo existiran relaciones del tipo padre-hijo
+                #
+#                relaciones = Relacion.objects.filter(antecesor=version,tipo='padre-hijo')
+
+#            cantidad_relaciones = relaciones.count()
+
+#            if (cantidad_relaciones > 0) :
+
+#                for r in relaciones :
+#                    if (r.sucesor != None) :
+#                        faseFinalc1 = True
+#                    elif (r.sucesor == None) :
+#                        faseFinalc1 = False
+#        print faseFinalc1
+#        if (faseFinalc1 == True) :
+#            nroFaseActual = faseActual.nro
+#            print nroFaseActual
+#            if (nroFaseActual > 1) :
+#                nroFaseAnterior = nroFaseActual - 1
+#                print 'entro 1'
+#                # Suponiendo que todas las fases tienen sus numeros sucesivos y ordenados
+                # de forma ascendente
+#                faseAnterior = Fase.objects.get(nro=nroFaseAnterior,proyecto=proyecto)
+#                faseAnteriorEstado = faseAnterior.estado
+
+#                if (faseAnteriorEstado == 'finalizada') :
+#                    faseFinalc2 = True
+#            elif (nroFaseActual == 1) :
+#                print 'entro 2'
+#                faseFinalc2 = True
+
+#        print faseFinalc2
+#        if (faseFinalc2 == True) : 
+#            print 'finalizada'
+#            faseActual.estado = 'finalizada'
+#            faseActual.save()
