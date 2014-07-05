@@ -29,8 +29,9 @@ def indexTipoItem(request, id_fase):
 
 		fase = Fase.objects.get(id=id_fase)
 		lista = fase.tipoitem_set.all()
+		proyecto = fase.proyecto
 			
-		return render(request, 'tipo_item.html', {'usuario' : u, 'fase' : fase, 'lista' : lista})
+		return render(request, 'tipo_item.html', {'usuario' : u, 'fase' : fase, 'lista' : lista, 'proyecto' : proyecto})
 
 	else : 
 		return redirect('/login')
@@ -52,7 +53,7 @@ def nuevoTipoItem(request, id_fase):
 
 	if (u):
 		fase = Fase.objects.get(id=id_fase)
-		
+		proyecto = fase.proyecto
 		if (request.method == 'POST'):
 			
 			if('nombre' in request.POST and
@@ -73,13 +74,20 @@ def nuevoTipoItem(request, id_fase):
 
 					print e
 					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
+					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
 
 				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se creo el tipo item con exito'})
+				# Una fase se encuentra en estado de desarrollo si tiene por lo menos un tipo item
+				# definido por el usuario
+				cantidad_ti = lista.count()
+				if (cantidad_ti == 1) :
+					fase.estado = "en desarrollo"
+					fase.save()
+
+				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Se creo el tipo item con exito'})
 			else:
 				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
+				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error'})
 
 		else:
 			return redirect('tipoitem:index', id_fase = id_fase)
@@ -105,6 +113,14 @@ def eliminarTipoItem(request, id_fase, id_tipo_item):
 	if( u ):
 
 		TipoItem.objects.filter(id=id_tipo_item).delete()
+		fase = Fase.objects.get(id=id_fase)
+		lista = TipoItem.objects.filter(fase=fase)
+		cantidad_ti = lista.count()
+
+		# Una fase se encuentra en estado de desarrollo si tiene por lo menos un tipo item
+		# definido por el usuario 
+		if (cantidad_ti == 0):
+			fase.estado = 'inicial'
 
 		return redirect('tipoitem:index', id_fase = id_fase)
 
@@ -128,6 +144,7 @@ def modificarTipoItem(request, id_fase):
 
 	if( u ):
 		fase = Fase.objects.get(id=id_fase)
+		proyecto = fase.proyecto
 		if( request.method == 'POST' ):
 			if ( 'nombre' in request.POST and 
 				'descripcion' in request.POST and
@@ -144,19 +161,19 @@ def modificarTipoItem(request, id_fase):
 						t.save()
 					except Exception, e:
 						lista = fase.tipoitem_set.all()
-						return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
+						return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
 
 					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se modifico el tipo item con exito'})
+					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Se modifico el tipo item con exito'})
 
 
 				else:
 					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
+					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error'})
 
 			else:
 				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error. Verifique si completo los campos correctamente'})
+				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error. Verifique si completo los campos correctamente'})
 
 
 
@@ -183,6 +200,7 @@ def importarTipoItem(request, id_fase):
 
 	if (u):
 		fase = Fase.objects.get(id=id_fase)
+		proyecto = fase.proyecto
 		
 		if (request.method == 'POST'):
 			
@@ -219,13 +237,19 @@ def importarTipoItem(request, id_fase):
 						ti.delete()
 					print e
 					lista = fase.tipoitem_set.all()
-					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
+					return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error, verifique que el nombre y el codigo son unicos e intente de nuevo'})
 
 				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Se importo el tipo item con exito'})
+				# Una fase se encuentra en estado de desarrollo si tiene por lo menos un tipo item
+				# definido por el usuario
+				cantidad_ti = lista.count()
+				if (cantidad_ti == 1) :
+					fase.estado = 'en desarrollo'
+
+				return render(request, 'tipo_item.html',{'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Se importo el tipo item con exito'})
 			else:
 				lista = fase.tipoitem_set.all()
-				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'mensaje' : 'Ocurrio un error'})
+				return render(request, 'tipo_item.html', {'usuario' : u,'fase' : fase,'lista' : lista,'proyecto' : proyecto,'mensaje' : 'Ocurrio un error'})
 
 		else:
 			return redirect('tipoitem:index', id_fase = id_fase)
@@ -285,10 +309,10 @@ def indexAtributoTipoItem(request, id_tipo_item):
 	if( u ):
 
 		tipoitem = TipoItem.objects.get(id=id_tipo_item)
-		print tipoitem
+		proyecto = tipoitem.proyecto
 		lista = tipoitem.atributotipoitem_set.all()
 			
-		return render(request, 'atributo_tipo_item.html', {'usuario' : u, 'tipo_item' : tipoitem, 'lista' : lista})
+		return render(request, 'atributo_tipo_item.html', {'usuario' : u, 'tipo_item' : tipoitem, 'lista' : lista, 'proyecto' : proyecto})
 
 	else : 
 		return redirect('/login')

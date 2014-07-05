@@ -142,6 +142,14 @@ def modificarProyecto(request):
 					id = request.POST['id'] 
 					p = Proyecto.objects.get(id=id)
 					if ( p ):
+
+						if (request.POST['estado'] == 'finalizado') :
+							fasesFinalCon = controlProyectoFinalizado(p)
+
+							if (fasesFinalCon ==  False) :
+								lista = Proyecto.objects.all()
+								return render(request, 'proyectos.html', {'usuario' : u, 'lista' : lista, 'mensaje' : 'Existen fases sin finalizar','usuarios' : usuarios})
+
 						p.nombre = request.POST['nombre']  
 						p.descripcion = request.POST['descripcion']  
 						p.fecha_creacion = datetime.datetime.strptime(request.POST['fecha_creacion'], '%d/%m/%Y').date()
@@ -204,3 +212,16 @@ def crearComite(proyecto, administrador):
 	comite.save()
 	comite.usuarios.add(administrador)
 	comite.save()
+
+def controlProyectoFinalizado(proyecto):
+
+	fases = proyecto.fase_set.all()
+	fasesFinalc = False
+
+	for f in fases :
+		if (f.estado == 'finalizada') :
+			fasesFinalc = True
+		elif (f.estado != 'finalizada') :
+			fasesFinalc = False
+
+	return fasesFinalc

@@ -37,7 +37,7 @@ def indexItem(request, id_fase):
         fase = Fase.objects.get(id=id_fase)
 
         if request.method != 'POST':
-            lista = fase.item_set.all()
+            lista = fase.item_set.all().order_by('numero')
         else:
             lista = fase.item_set.all().filter(
                 nombre__startswith=request.POST['search'])
@@ -216,6 +216,7 @@ def modificarItem(request, id_fase, id_item):
                 try:
                     newVersion(id_item, atributos)
                     historialItem('modificar', item.id, user.id)
+                    estadoRevisionItem(version)
 
                 except Exception, e:
 
@@ -696,6 +697,53 @@ def getRelacionesItem(id_item, all=False):
         print e
 
     return relaciones
+
+def estadoRevisionItem(version):
+    """
+    Funcion: Encargada de cambiar los estados de los item asociados al item modificado
+        a 'revision'.
+
+    @param versin: Version del item que fue modificado.
+    """
+    print version.version
+    # Se encuentran todas las relaciones en donde se encuentra el item modificado
+    relacionVerant = Relacion.objects.filter(antecesor=version)
+    relacionVersuc = Relacion.objects.filter(sucesor=version)
+    print 'entro funcion'
+    print relacionVerant.count()
+    print relacionVersuc.count()
+
+    # En cada relacion en la que el item modificado esta como antecesor
+    # se cambia el estado del item asociado a revision y la linea base donde
+    # se encuentra a no valido
+    if (relacionVerant != None) :
+        for r in relacionVerant :
+            versionSuc = r.sucesor
+            print versionSuc.estado
+            versionSuc.estado = 'revision'
+            versionSuc.save()
+            itemSuc = versionSuc.proxy
+            lineab = itemSuc.linea_base
+            if (lineab != None) :
+                # El item no pertenece a ninguna linea base
+                lineab.estado = 'no valido'
+                lineab.save()
+
+    # En cada relacion en la que el item modificado esta como sucesor
+    # se cambia el estado del item asociado a revision y la linea base donde
+    # se encuentra a no valido
+    if (relacionVersuc != None) :
+        for r in relacionVersuc :
+            versionAnt = r.antecesor
+            print versionAnt.estado
+            versionAnt.estado = 'revision'
+            versionAnt.save()
+            itemAnt = versionAnt.proxy
+            lineab = itemAnt.linea_base
+            if (lineab != None) :
+                # El item no pertenece a ninguna linea base
+                lineab.estado = 'no valido'
+                lineab.save()
 
 
 def getAntecesoresItem(id_item):

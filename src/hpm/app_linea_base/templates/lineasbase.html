@@ -80,7 +80,9 @@
                                             onClick="modificarLineaBase( '{{l.id}}','{{l.nro}}','{{l.nombre}}','{{l.estado}}' );"><i class="fa fa-pencil"></i></a> 
                                         </td>
                                         <td>
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id l.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {# if not 'valido' in l.estado or 'inicial' in l.estado #}
+                                                <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarLineaBase( '{{l.nombre}}', '{% url 'lineasbase:eliminar' fase.id l.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                            {# endif #}
                                         </td>
                                         <td></td>
                                         <td>
@@ -92,10 +94,14 @@
 
                                         </td>
                                         <td>
-                                            <a class="btn btn-info" href="{% url 'lineasbase:liberar' fase.id l.id %}"><i class="fa fa-unlock "></i></a>
+                                            {% if not 'liberada' in l.estado %}
+                                                <a class="btn btn-info" href="{% url 'lineasbase:liberar' fase.id l.id %}"><i class="fa fa-unlock "></i></a>
+                                            {% endif %}
                                         </td>
                                         <td>
-                                            <a class="btn btn-info" href="{% url 'lineasbase:cerrar' fase.id l.id %}"><i class="fa fa-lock "></i></a>
+                                            {% if not 'valido' in l.estado %}
+                                                <a class="btn btn-info" href="{% url 'lineasbase:cerrar' fase.id l.id %}"><i class="fa fa-lock "></i></a>
+                                            {% endif %}
                                         </td>
                                        
                                         

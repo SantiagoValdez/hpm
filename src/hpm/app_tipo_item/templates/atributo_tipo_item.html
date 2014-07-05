@@ -52,15 +52,17 @@
                                         <td>{{a.valor_por_defecto}}</td>
                                         <td></td>
                                         <td> 
-                                            {# if 'no iniciado' in proyecto.estado #}
-                                            <a href="#modificar" class="btn btn-primary btn-outline"
-                                            onClick="modificarAtributoTipoItem( '{{a.id}}','{{a.nombre}}','{{a.tipo}}','{{a.valor_por_defecto}}' );"><i class="fa fa-pencil"></i></a> 
-                                            {# endif #}
+                                            {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado %}
+                                                <a href="#modificar" class="btn btn-primary btn-outline"
+                                                onClick="modificarAtributoTipoItem( '{{a.id}}','{{a.nombre}}','{{a.tipo}}','{{a.valor_por_defecto}}' );"><i class="fa fa-pencil"></i></a> 
+                                            {% endif %}
                                         </td>
                                         <td>
-                                            {# if 'no iniciado' in proyecto.estado and tipo_items.count > 1 #}
-                                            <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarAtributoTipoItem( '{{a.nombre}}', '{% url 'tipoitem:eliminarAtributo' tipo_item.id a.id %}' );"><i class="fa fa-minus-square"></i></a>
-                                            {# endif #}
+                                            {% if 'no iniciado' in proyecto.estado or 'iniciado' in proyecto.estado %}
+                                                {% if lista.count > 1 %}
+                                                    <a href="#eliminar" class="btn btn-danger btn-outline" onClick="eliminarAtributoTipoItem( '{{a.nombre}}', '{% url 'tipoitem:eliminarAtributo' tipo_item.id a.id %}' );"><i class="fa fa-minus-square"></i></a>
+                                                {% endif %}
+                                            {% endif %}
                                         </td>
 
                                     </tr>

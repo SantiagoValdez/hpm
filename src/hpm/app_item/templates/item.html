@@ -113,10 +113,9 @@
                                         <td></td>
                                         <td>
                                             {% if not i.eliminado %} 
-                                            {# if 'no iniciado' in proyecto.estado #}
-                                            <a href="{% url 'item:modificar' fase.id i.id %}" class="btn btn-primary btn-outline"
-                                            ><i class="fa fa-pencil"></i></a> 
-                                            {# endif #}
+                                                {% if 'liberada' in i.linea_base.estado or 'inicial' in i.linea_base.estado or i.linea_base == None %}
+                                                <a href="{% url 'item:modificar' fase.id i.id %}" class="btn btn-primary btn-outline"><i class="fa fa-pencil"></i></a> 
+                                                {% endif %}
                                             {% endif %}
                                         </td>
                                         <td>
@@ -177,9 +176,9 @@
 
                             
                             <center>
-                                
-                                <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo' onClick="setUrlNewItem({{fase.id}})"><i class="fa fa-plus-square fa-2x"></i></a>
-                                                               
+                                {% if not 'finalizada' in fase.estado %}
+                                    <a class="btn btn-success" data-toggle="modal" href='#modal-nuevo' onClick="setUrlNewItem({{fase.id}})"><i class="fa fa-plus-square fa-2x"></i></a>
+                                {% endif %}                           
                                                                 
                             </center>
                             <hr>
